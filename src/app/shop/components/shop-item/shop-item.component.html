@@ -1,0 +1,18 @@
+<div class="shop-item">
+  <div class="shop-item__image">
+    <img [src]="item.image" alt="item"/>
+  </div>
+  <div class="shop-item__info" [ngStyle]="gradientStyle">
+    <div class="shop-item__name" [ngStyle]="{color: item.color}">
+      {{ item.name }}
+    </div>
+    <div class="shop-item__actions" [ngStyle]="{backgroundColor: item.color}" (click)="buy()">
+      <div class="shop-item__buy">
+        Buy
+      </div>
+      <div class="shop-item__price">
+        ${{ item.value | number:'1.2-2'}}
+      </div>
+    <div>
+  </div>
+</div>

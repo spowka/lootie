@@ -1,0 +1,215 @@
+@import '../../../../styles/partials/index.scss';
+@import '../../../../styles/variables.scss';
+
+@include register-component {
+  .dialog-header {
+    background-color: from-theme(battle-navbar-background);
+    border-color: from-theme(battle-screen-border);
+  }
+}
+
+.dialog-content {
+  text-align: center;
+  margin: -14px -28px;
+  padding: 0;
+
+  .dialog-header {
+    font-size: 25px;
+    font-weight: 500;
+    line-height: normal;
+    letter-spacing: 0.42px;
+    padding: 36px 0;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    text-transform: uppercase;
+  }
+
+  .total-won {
+    font-size: 22px;
+    font-weight: 500;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #f44747;
+    margin: 25px 0;
+  }
+
+  .winner-label {
+    font-size: 27px;
+    font-weight: bold;
+    line-height: normal;
+    letter-spacing: 0.7px;
+    margin-bottom: 20px;
+  }
+
+  .winner-image {
+    width: 90px;
+    height: 90px;
+    position: relative;
+    margin: auto;
+    margin-bottom: 60px;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      border-radius: 4px;
+    }
+
+    &::before {
+      content: "";
+      position: absolute;
+      left: 5px;
+      top: 0;
+      background-image: url('/assets/images/icons/winner-medal.png');
+      background-size: contain;
+      background-repeat: no-repeat;
+      height: 50px;
+      width: 30px;
+    }
+  }
+
+  .players {
+    margin: auto;
+    margin-bottom: 50px;
+    width: 350px;
+  }
+
+  .player-image {
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+    opacity: 0.8;
+    border-radius: 4px;
+  }
+
+}
+
+.footer-actions {
+  justify-content: center;
+
+  .mat-button {
+    width: 300px;
+    height: 40px;
+    font-size: 18px;
+    font-weight: 500;
+    padding: 10px;
+    line-height: normal;
+    letter-spacing: 0.64px;
+    text-align: center;
+    text-transform: uppercase;
+  }
+
+  @media(min-width: 767px) and (max-width: 1024px) {
+    .mat-button {
+      width: 216px;;
+    }
+
+    &__row-2 {
+      .mat-button:not(:last-child) {
+        margin-right: 100px;
+      }
+    }
+  }
+
+  &__row-1 {
+    margin-bottom: 20px;
+
+    .mat-button :not(:last-child) {
+      margin-right: 35px;
+    }
+  }
+
+  &__row-2 {
+    .mat-button:not(:last-child) {
+      margin-right: 111px;
+    }
+  }
+
+  .btn-outline-gray {
+    border: 2px solid $colorSecondaryLightBorder;
+  }
+}
+
+@media (max-width: 767px) {
+  .dialog-content {
+    .dialog-header {
+      font-size: 18px;
+    }
+
+    .total-won {
+      font-size: 16px;
+    }
+
+    .winner-image {
+      width: 80px;
+      height: 80px;
+
+      &::before {
+        height: 45px;
+        width: 30px;
+      }
+    }
+
+    .winner-label {
+      font-size: 18px;
+      font-weight: 500;
+    }
+  }
+
+  .footer-actions {
+    justify-content: center;
+
+    &__row-2 {
+      .mat-button {
+        width: 300px;
+      }
+
+      .mat-button:not(:last-child) {
+        margin-right: 0;
+        margin-bottom: 20px;
+      }
+    }
+
+    &__row-1 {
+      .mat-button {
+        width: 300px;
+      }
+    }
+
+    .btn-outline-gray {
+      margin-bottom: 20px;
+    }
+  }
+}
+
+@media(max-width: 440px) {
+  .dialog-content {
+    .players {
+      width: 100%;
+      padding: 0 20px;
+    }
+  }
+
+  .footer-actions {
+
+    &__row-2 {
+      .mat-button {
+        width: 250px;
+      }
+    }
+
+    &__row-1 {
+      .mat-button {
+        width: 250px;
+      }
+    }
+  }
+}
+
+@media(orientation: landscape) {
+  ::ng-deep {
+    .dialog-content {
+      max-height: unset!important;
+    }
+  }
+}

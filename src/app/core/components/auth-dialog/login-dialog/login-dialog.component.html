@@ -1,0 +1,52 @@
+<div class="flex-row mat-mode">
+  <form [formGroup]="loginForm" (ngSubmit)="login()" class="dialog-section flex-col login-form">
+    <div class="dialog-section__content flex-col">
+      <div class="login-inputs login-inputs-group">
+        <mat-form-field class="height-all email login-form-field">
+          <span matPrefix>{{'LOGIN_DIALOG.E_MAIL' | translate }}</span>
+          <input matInput type="email" formControlName="email">
+          <mat-error *ngIf="email.errors && email.errors.pattern">
+            {{'LOGIN_DIALOG.E_MAIL_INVALID' | translate }}
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="height-all login-form-field">
+          <span matPrefix>{{'LOGIN_DIALOG.PASSWORD' | translate }} </span>
+          <input matInput type="password" formControlName="password">
+          <mat-error *ngIf="password.errors && password.errors.minlength">
+            {{'LOGIN_DIALOG.PASSWORD_INVALID' | translate }}
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="flex-row flex-row__btw login-inputs m-b-30">
+        <mat-checkbox class="skinworld-customized" formControlName="remember" >
+          {{'LOGIN_DIALOG.REMEMBER' | translate }}
+        </mat-checkbox>
+      </div>
+    </div>
+    <div class="dialog-section__actions flex-row flex-row__center m-b-30">
+      <button *ngIf="!(isLoading$ | async)" type="submit" mat-button [disabled]="!loginForm.valid"
+        class="height-all btn-large btn-linear btn-square" (click)="login()">
+        {{'LOGIN_DIALOG.SIGN_IN' | translate }}
+      </button>
+      <div *ngIf="(isLoading$ | async)" class="flex-row flex-row__center w-100">
+        <mat-spinner mode="indeterminate" class="skinworld-customized">
+        </mat-spinner>
+      </div>
+    </div>
+
+    <span class="social-actions__title">{{ 'LOGIN_DIALOG.OR_CONTINUE' | translate }}</span>
+    <div class="flex-row social-actions flex-row__center m-b-20 w-100">
+      <button type="button" mat-button class="btn-large login btn-square btn-google" (click)="googleLogin()">
+        <span class="button-icon google"></span>
+      </button>
+      <button type="button" mat-button class="btn-large login btn-square btn-facebook" (click)="facebookLogin()">
+        <span class="button-icon facebook"></span>
+      </button>
+    </div>
+
+    <div class="pointer" (click)="openForgotPassword()">
+      {{'LOGIN_DIALOG.FORGOTTEN_PASSWORD' | translate }}?
+    </div>
+
+  </form>
+</div>

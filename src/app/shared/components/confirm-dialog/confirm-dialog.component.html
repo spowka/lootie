@@ -1,0 +1,12 @@
+<div class="dialog-wrapper dialog-wrapper__light" #wrapper>
+  <div mat-dialog-title class="center" *ngIf="data.title">{{ data.title }}</div>
+
+  <mat-dialog-content *ngIf="data.message">
+    <div class="message">{{ data.message }}</div>
+  </mat-dialog-content>
+
+  <mat-dialog-actions>
+    <button mat-button class="btn-large" (click)="cancel()">{{ data.cancelButton }}</button>
+    <button mat-button class="btn-large btn-linear" (click)="confirm()">{{ data.confirmButton }}</button>
+  </mat-dialog-actions>
+</div>

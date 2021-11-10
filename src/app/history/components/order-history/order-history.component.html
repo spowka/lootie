@@ -1,0 +1,166 @@
+<div id="orders"
+  infiniteScroll
+  infiniteScrollDistance="0"
+  (scrolled)="onScroll()"
+  [scrollWindow]="false">
+
+  <table class="stripped header-table" *ngIf="!(isMobile$ | async); else orderHistoryMobile">
+    <thead>
+      <tr>
+        <td style="width: 25%">
+          {{'ORDERS.ITEM' | translate }}
+        </td>
+        <td style="width: 30%">
+          {{'ORDERS.NAME' | translate }}
+        </td>
+        <td style="width: 45%; text-align: center;">
+          {{'ORDERS.STATUS' | translate }}
+        </td>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let order of orders; let i = index">
+        <td style="width: 25%">
+          <ng-container>
+            <div class="flex-row flex-row__center order__images-preview" [ngStyle]="{'color': colors[i]}">
+              <img [src]="order.item.itemId.image">
+            </div>
+          </ng-container>
+        </td>
+        <td style="width: 30%">
+          <ng-container>
+            <div class="order__name-content">
+              <span class="order__title"
+                [matTooltip]="order.item.itemId.name"
+                [ngStyle]="{'color': colors[i]}">
+                {{ order.item.itemId.name }}
+              </span>
+
+              <button class="btn">Tracking</button>
+            </div>
+          </ng-container>
+        </td>
+        <td style="width: 45%">
+          <ng-container *ngTemplateOutlet="orderStatus; context: {item: order}"></ng-container>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <ng-template #orderHistoryMobile>
+    <div class="order-history-mobile__container">
+      <div class="order-history-mobile__item" *ngFor="let order of orders; let i = index">
+        <div class="order-history-mobile__item-info">
+          <span class="icon-item"></span>
+          <span class="text-item">item:</span>
+        </div>
+
+        <div class="order__name-content">
+          <span class="order__title" [ngStyle]="{'color': colors[i]}">
+            {{ order.item.itemId.name }}
+          </span>
+        </div>
+
+        <ng-container>
+          <div class="flex-row flex-row__center order__images-preview" [ngStyle]="{'color': colors[i]}">
+            <img [src]="order.item.itemId.image">
+          </div>
+        </ng-container>
+
+        <ng-container *ngTemplateOutlet="orderStatus; context: {item: order}"></ng-container>
+
+        <button class="btn">Tracking</button>
+      </div>
+
+      <div class="order-history-mobile__actions">
+        <button class="btn-action">
+          <div class="btn-gradient">
+            <span>Load More</span>
+          </div>
+        </button>
+      </div>
+    </div>
+  </ng-template>
+
+  <ng-template #orderStatus let-item="item">
+    <div class="order__status-container">
+      <div class="order__status-content">
+        <div class="order__status-item">
+          <span class="active">Processing</span>
+
+          <div class="order__status-progress">
+            <div class="order__progress-line disabled"></div>
+
+            <div class="order__circle-status active">
+              <mat-icon>done</mat-icon>
+            </div>
+
+            <div class="order__progress-line right-line" [ngClass]="{
+                            'active': item.status === statuses.ordered || item.status === statuses.shipped,
+                            'progress': item.status === statuses.pending
+                          }">
+              <span *ngIf="item.status === statuses.pending" class="auto-icon"></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="order__status-item">
+          <span [ngClass]="{'active': item.status === statuses.ordered || item.status === statuses.shipped}">Ordered</span>
+
+          <div class="order__status-progress">
+            <div class="order__progress-line left-line" [ngClass]="{
+                            'active': item.status === statuses.ordered || item.status === statuses.shipped,
+                            'progress': item.status === statuses.pending
+                          }">
+            </div>
+
+            <div class="order__circle-status"
+              [ngClass]="{'active': item.status === statuses.ordered || item.status === statuses.shipped}">
+              <mat-icon *ngIf="item.status === statuses.ordered || item.status === statuses.shipped">done</mat-icon>
+            </div>
+
+            <div class="order__progress-line right-line" [ngClass]="{
+                            'active': item.status === statuses.shipped,
+                            'progress': item.status === statuses.ordered,
+                            'inactive': item.status === statuses.pending
+                          }">
+              <span *ngIf="item.status === statuses.ordered" class="auto-icon"></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="order__status-item">
+          <span [ngClass]="{'active': item.status === statuses.shipped}">Shipped</span>
+
+          <div class="order__status-progress">
+            <div class="order__progress-line left-line" [ngClass]="{
+                            'active': item.status === statuses.shipped,
+                            'progress': item.status === statuses.ordered,
+                            'inactive': item.status === statuses.pending
+                          }">
+            </div>
+
+            <div class="order__circle-status" [ngClass]="{'active': item.status === statuses.shipped}">
+              <span *ngIf="item.status === statuses.shipped" class="finish-icon">
+                <img src="/assets/images/icons/flag.svg">
+              </span>
+            </div>
+
+            <div class="order__progress-line disabled"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="order__date">
+        {{ item.createdAt | date: 'dd/MM/y h:mm:ss a ' }}
+      </div>
+    </div>
+  </ng-template>
+  <div class="empty-data" *ngIf="!orders.length && !(loading$ | async) && !loadingData">
+    {{ 'NO_DATA' | translate }}
+  </div>
+  <div class="flex-row flex-row__center loading">
+    <mat-spinner *ngIf="loading$ | async" mode="indeterminate" class="skinworld-customized"></mat-spinner>
+  </div>
+</div>

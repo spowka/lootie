@@ -1,0 +1,59 @@
+<div class="slider-container" [class.opened]="isChatOpened$ | async">
+  <app-cases-slider></app-cases-slider>
+</div>
+
+<div [class.opened]="isChatOpened$ | async">
+  <h1 class="page-title center m-b-20 m-t-40">
+    {{ 'SHOP.PAGE_TITLE' | translate }}
+  </h1>
+
+  <div *ngIf="!(isLoggedIn$ | async)" class="page-subtitle center m-b-20">
+    {{ 'SHOP.PAGE_SUB_TITLE' | translate }}
+  </div>
+
+  <div class="page-content m-b-40">
+    <app-shop-filter
+      [filters]="filters"
+      (sidebarFiltersChange)="filtersChanges($event)"
+      (filtersChange)="updateFilters($event)"
+    ></app-shop-filter>
+    <div class="shop-panel">
+      <div class="shop-sidebar">
+        <app-shop-filter-sidebar
+          [sidebarFilters]="filters"
+          (filtersChange)="filtersChanges($event)">
+        </app-shop-filter-sidebar>
+      </div>
+      <div class="shop-items-list">
+        <app-shop-filter-header
+          (deleteFilter)="filtersChanges($event)"
+          (deleteAllFilters)="deleteAllFilter()"
+          [sidebarFilters]="filters">
+        </app-shop-filter-header>
+        <div class="items-container" #itemsContainer>
+          <app-shop-item
+            *ngFor="let item of siteItems$ | async"
+            [item]="item"
+            (buyShopItem)="buyItem($event)"
+          ></app-shop-item>
+        </div>
+        <div class="flex-row flex-row__center" *ngIf="hasNoItems$ | async">
+          No Items found.
+        </div>
+        <div class="flex-row flex-row__center m-t-30 m-b-30 loading-container" *ngIf="isLoading$ | async">
+          <mat-spinner
+            mode="indeterminate"
+            class="skinworld-customized"
+          ></mat-spinner>
+        </div>
+        <div class="pagination" *ngIf="totalPages > 0">
+          <app-paginator
+            [page]="page"
+            [totalPages]="totalPages"
+            (pageChange)="changePage($event)"
+          ></app-paginator>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

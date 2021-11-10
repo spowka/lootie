@@ -1,0 +1,236 @@
+@import "../../../../styles/partials/index.scss";
+@import "../../../../styles/concepts.scss";
+@import "../../../../styles/variables.scss";
+
+@include register-component {
+
+  .general-item {
+    background-color: from-theme(mobile-header-general-links);
+    border-bottom-color: from-theme(mobile-header-general-border) !important;
+  }
+
+  .mobile-modal-section {
+    background-color: from-theme(header-background);
+
+    &__text.active {
+      position: relative;
+
+      &:before {
+        content: "";
+        border-style: solid;
+        border-width: 1px;
+        border-image-source: linear-gradient(179deg, #f48836, #f4364c);
+        border-image-slice: 1;
+        position: absolute;
+        left: -2px;
+        top: 0;
+        bottom: 0;
+      }
+
+      .mobile-modal-section__wrapper {
+        &>span:not(.item-badge-new) {
+          background-image: linear-gradient(97deg, #f48836, #f4364c);
+          font-weight: 500;
+          letter-spacing: 0.57px;
+          -webkit-background-clip: text;
+          background-clip: text;
+          -webkit-text-fill-color: transparent;
+        }
+
+        .mobile-modal-section__icon {
+          &.boxes {
+            background-image: url('/assets/images/mobile-menu/box.svg');
+          }
+
+          &.partner {
+            background-image: url('/assets/images/mobile-menu/handshake.svg');
+          }
+
+          &.unboxings {
+            background-image: url('/assets/images/header/photocamera-active.svg');
+          }
+
+          &.battle {
+            background-image: url('/assets/images/mobile-menu/sword-cross.svg');
+          }
+
+          &.account {
+            background-image: url('/assets/images/mobile-menu/profile.svg');
+          }
+
+          &.affiliates {
+            background-image: url('/assets/images/mobile-menu/affiliates.svg');
+          }
+
+          &.my-boxes {
+            background-image: url('/assets/images/mobile-menu/box.svg');
+          }
+
+          &.inventory {
+            background-image: url('/assets/images/mobile-menu/inventory.svg');
+          }
+
+          &.history-unboxings {
+            background-image: url('/assets/images/mobile-menu/history.svg');
+          }
+
+          &.withdraw {
+            background-image: url('/assets/images/mobile-menu/money.svg');
+          }
+
+          &.how-it-works {
+            background-image: url('/assets/images/mobile-menu/info-with-circle.svg');
+          }
+        }
+      }
+    }
+
+    &__navigation {
+      .mobile-modal-section__text {
+        border-bottom-style: solid;
+        border-bottom-width: 1px;
+        border-bottom-color: from-theme(mobile-header-border);
+      }
+    }
+  }
+
+  .user-menu-items {
+    &:hover {
+      background-color: from-theme(background);
+    }
+  }
+}
+
+.general-item {
+  .mobile-modal-section__wrapper {
+    position: relative;
+
+    .item-badge-new {
+      position: relative;
+      top: -2px;
+      right: -12px;
+      border-radius: 1px;
+      font-size: 8px;
+      font-weight: bold;
+      line-height: 1;
+      letter-spacing: 0.19px;
+      padding: 2px 3px;
+      color: #ffffff;
+      background-color: #fd2a04;
+    }
+  }
+}
+
+.mobile-modal-section {
+  justify-content: flex-start;
+  height: 100%;
+  padding: 0;
+  position: relative;
+
+  &__text {
+    margin-bottom: 10px;
+    font-weight: 300;
+    font-size: 22px;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: 0.79px;
+    outline: none;
+    border-left: 2px solid transparent;
+
+    .mat-icon {
+      margin-left: 5px;
+    }
+  }
+
+  &__navigation {
+    width: 100%;
+
+    .mobile-modal-section__text {
+      width: 100%;
+      margin: 0;
+      padding: 15px 0;
+      color: $colorSecondaryDarkBorder;
+      justify-content: flex-start;
+      font-size: 14px;
+      padding-left: 15px;
+      text-transform: uppercase;
+
+      &.general-item {
+        font-size: 16px;
+      }
+
+      &.active {
+        font-weight: normal;
+      }
+    }
+
+    .mobile-modal-section__icon {
+      width: 20px;
+      height: 20px;
+      margin-right: 15px;
+      background-repeat: no-repeat;
+
+      &.boxes {
+        background-image: url('/assets/images/icons/box.svg');
+      }
+
+      &.partner {
+        background-image: url('/assets/images/icons/handshake.svg');
+      }
+
+      &.unboxings {
+        background-image: url('/assets/images/icons/unboxings.svg');
+      }
+
+      &.battle {
+        background-image: url('/assets/images/icons/sword.svg');
+      }
+
+      &.account {
+        background-image: url('/assets/images/icons/profile.svg');
+      }
+
+      &.affiliates {
+        background-image: url('/assets/images/icons/affiliates-mobile.svg');
+      }
+
+      &.my-boxes {
+        background-image: url('/assets/images/icons/box.svg');
+      }
+
+      &.inventory {
+        background-image: url('/assets/images/icons/invent-mobile.svg');
+      }
+
+      &.history-unboxings {
+        background-image: url('/assets/images/icons/history-mobile.svg');
+      }
+
+      &.withdraw {
+        background-image: url('/assets/images/icons/withdraw-mobile.svg');
+      }
+
+      &.how-it-works {
+        background-image: url('/assets/images/icons/info-with-circle.svg');
+      }
+
+      svg {
+        width: 18px;
+        height: 18px;
+      }
+    }
+  }
+}
+
+@media (max-width: 360px) {
+  .mobile-modal-section {
+    padding: 0;
+  }
+
+  .user-info {
+    &__amount {
+      font-size: 14px;
+    }
+  }
+}

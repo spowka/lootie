@@ -1,0 +1,143 @@
+<div *ngIf="isMobile$ | async" [ngClass]="{ 'slider-container-mobile': (currentUrl$ | async) !== '/'}" class="slider-container">
+  <app-cases-slider></app-cases-slider>
+</div>
+<div class="deposit-info page-container">
+  <div class="page-title center m-b-50">
+    {{'DEPOSIT_INFORMAYION.PAGE_TITLE' | translate }}
+  </div>
+
+  <div class="flex-row flex-row__btw flex-center_mobile">
+    <div class="deposit-info__content mobile-second">
+      <img *ngIf="(theme$ |async) === 'light'; else darkMethod" class="deposit-info__image"
+        alt="White method"
+        src="assets\images\deposit-info\method-white.svg">
+      <ng-template #darkMethod>
+        <img class="deposit-info__image" alt="Dark method" src="assets\images\deposit-info\method-dark.svg">
+      </ng-template>
+    </div>
+    <div class="deposit-info__content mobile-first">
+      <img class="deposit-info__icon" src="assets\images\deposit-info\balance.png">
+      <h3>{{'DEPOSIT_INFORMAYION.TOP_AP_BALANCE' | translate }}</h3>
+      <p>
+        {{'DEPOSIT_INFORMAYION.TOP_UP_BALANCE_HINT' | translate }}
+      </p>
+      <button mat-button class="btn-large btn-linear" [routerLink]="['/deposit']">{{'DEPOSIT_INFORMAYION.GET_STARTED' | translate }}<span class="right-double">&#187;</span></button>
+    </div>
+  </div>
+
+
+  <div class="flex-row flex-row__btw flex-center_mobile">
+    <div class="deposit-info__content">
+      <img class="deposit-info__icon" alt="Browse collections" src="assets\images\deposit-info\collections.png">
+      <h3>{{'DEPOSIT_INFORMAYION.BROWSE_OUR_COLLECTIONS' | translate }}</h3>
+      <p>
+        {{'DEPOSIT_INFORMAYION.BROWSING_HINT' | translate }}
+      </p>
+      <button mat-button class="btn-large btn-linear" [routerLink]="['/deposit']">{{'DEPOSIT_INFORMAYION.START_BROWSING' | translate }} <span class="right-double">&#187;</span></button>
+    </div>
+    <div class="deposit-info__content">
+      <img class="deposit-info__image mobile" alt="Browse collections" src="assets\images\deposit-info\boxes.png">
+    </div>
+  </div>
+
+  <div class="flex-row flex-row__btw flex-center_mobile">
+    <div class="deposit-info__content mobile-second">
+      <img class="deposit-info__image-open-box" alt="Open box" src="assets\images\deposit-info\opne-box.png">
+    </div>
+    <div class="deposit-info__content mobile-first">
+      <img class="deposit-info__icon" alt="Open box" src="assets\images\deposit-info\box.png">
+      <h3>{{'DEPOSIT_INFORMAYION.OPEN_MYSTERY_BOX' | translate }}</h3>
+      <p>
+        {{'DEPOSIT_INFORMAYION.UNBOXING_HINT' | translate }}
+      </p>
+      <button mat-button class="btn-large btn-linear" [routerLink]="['/deposit']">{{'DEPOSIT_INFORMAYION.START_UNBOXING' | translate }}<span class="right-double">&#187;</span></button>
+    </div>
+  </div>
+
+  <div class="flex-row flex-row__btw">
+    <div class="deposit-info__content">
+      <img class="deposit-info__icon" alt="Order or upgrade your item" src="assets\images\deposit-info\order.png">
+      <h3> {{'DEPOSIT_INFORMAYION.WITHDRAW_SELL_UPGRADE' | translate }}
+      </h3>
+      <p>
+        {{'DEPOSIT_INFORMAYION.WITHDRAW_SELL_UPGRADE_HINT' | translate }}
+      </p>
+      <button mat-button class="btn-large btn-linear" [routerLink]="['/deposit']">{{'DEPOSIT_INFORMAYION.START_BROWSING' | translate }}<span class="right-double">&#187;</span></button>
+    </div>
+
+    <div class="flex-row deposit-info__content">
+      <ng-container *ngIf="!(isMobile$ | async); else mobileImg">
+        <div class="deposit-info__img-left">
+          <img *ngIf="(theme$ | async) === 'light'; else darkImgGroup" class="deposit-info__image"
+            alt="Group white"
+            src="assets\images\deposit-info\group-white.png">
+          <ng-template #darkImgGroup>
+            <img class="deposit-info__image" alt="Group dark" src="assets\images\deposit-info\group-dark.png">
+          </ng-template>
+        </div>
+      </ng-container>
+
+      <ng-template #mobileImg>
+        <div class="deposit-info__img-left">
+          <img *ngIf="(theme$ | async) === 'light'; else darkImgGroup" class="deposit-info__image"
+            alt="Group white"
+            src="assets\images\deposit-info\group-white-mobile.svg">
+          <ng-template #darkImgGroup>
+            <img class="deposit-info__image" alt="Group dark" src="assets\images\deposit-info\group-dark-mobile.svg">
+          </ng-template>
+        </div>
+      </ng-template>
+
+    </div>
+  </div>
+
+  <div class="center m-b-50 deposit-info__rarety-content">
+    <h3>{{'DEPOSIT_INFORMAYION.TRANSPARENCY_AND_OPENNESS' | translate }}</h3>
+    <p>
+      {{'DEPOSIT_INFORMAYION.TRANSPARENCY_AND_OPENNESS_HINT' | translate }}
+    </p>
+  </div>
+
+  <div class="flex-row flex-row__center deposit-info__rarety">
+    <span class="w-100">{{'DEPOSIT_INFORMAYION.ITEM_RARETY' | translate }}</span>
+  </div>
+
+  <div class="flex-row flex-row__btw m-b-50">
+    <div class="flex-row deposit-info__content-icons">
+      <img class="deposit-info__icon" alt="Legendary" src="assets\images\deposit-info\legendary.png">
+      <span>{{'DEPOSIT_INFORMAYION.LEGENDARY' | translate }}</span>
+    </div>
+    <div class="flex-row deposit-info__content-icons">
+      <img class="deposit-info__icon" alt="Exotic" src="assets\images\deposit-info\exotic.png">
+      <span>{{'DEPOSIT_INFORMAYION.EXOTIC' | translate }}</span>
+    </div>
+    <div class="flex-row deposit-info__content-icons">
+      <img class="deposit-info__icon" alt="Epic" src="assets\images\deposit-info\epic.png">
+      <span>{{'DEPOSIT_INFORMAYION.EPIC' | translate }}</span>
+    </div>
+    <div class="flex-row deposit-info__content-icons">
+      <img class="deposit-info__icon" alt="Rare" src="assets\images\deposit-info\rare.png">
+      <span>{{'DEPOSIT_INFORMAYION.RARE' | translate }}</span>
+    </div>
+    <div class="flex-row deposit-info__content-icons">
+      <img class="deposit-info__icon" alt="Uncommon" src="assets\images\deposit-info\uncommon.png">
+      <span>{{'DEPOSIT_INFORMAYION.UNCOMMON' | translate }}</span>
+    </div>
+    <div class="flex-row deposit-info__content-icons">
+      <img class="deposit-info__icon" alt="Common" src="assets\images\deposit-info\common.png">
+      <span>{{'DEPOSIT_INFORMAYION.COMMON' | translate }}</span>
+    </div>
+  </div>
+
+  <div class="center m-b-50 deposit-info__conclusion">
+    <h3>
+      {{'DEPOSIT_INFORMAYION.WHY_WAIT' | translate }}
+      <br/>
+      {{'DEPOSIT_INFORMAYION.SCORE_STREETWEAR' | translate }}
+    </h3>
+  </div>
+
+  <div class="flex-row flex-row__center deposit-info__start-unboxing">
+    <button mat-button class="btn-large btn-linear" [routerLink]="['/deposit']">START UNBOXING <span class="right-double">&#187;</span></button>
+  </div>
+</div>

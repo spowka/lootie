@@ -1,0 +1,80 @@
+<div class="flex-row flex-row__center">
+  <div class="reward-content">
+    <div class="reward-content__title">
+      {{'REWARD.REDEEM_CODE' | translate }}
+    </div>
+    <hr>
+    <div class="reward-content__data">
+      <div class="reward-content__text flex-col">
+        {{'REWARD.ENTER_CODE_AND_GET_FREEBOX' | translate }}
+      </div>
+      <div class="reward-content__buttons">
+        <div class="reward-input-wrapper">
+          <input type="text" maxlength="10" placeholder="Enter a code" [formControl]="refCode"
+            class="reward-input-field center">
+        </div>
+        <button mat-button class="btn-large btn-linear" [disabled]="refCode.invalid" (click)="redeemCode()">{{'REWARD.REDEEM_CODE' | translate }}</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="reward-content flex-col">
+    <div class="reward-content__title">
+      {{'REWARD.FOLLOW_TWITTER_PAGE' | translate }}
+    </div>
+    <hr>
+    <div class="reward-content__data">
+      <div class="reward-content__text flex-col">
+        {{'REWARD.FOLLOW_TWITTER_PAGE' | translate }}
+      </div>
+      <div class="reward-content__buttons">
+        <button mat-button class="btn-large btn-blue" (click)="openTwitter()">
+          <img class="button-icon twitter" img src="/assets/images/icons/twitter.svg">
+          <span>{{'REWARD.OPEN_TWITTER' | translate }}</span>
+        </button>
+        <button mat-button class="btn-large btn-linear" (click)="claimTwitter()"
+          [disabled]="!twitterSignedRequest || (user$ | async)?.rewards?.twitter?.claimed">{{'REWARD.CLAIM' | translate }} $0.50</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="reward-content">
+    <div class="reward-content__title">
+      {{'REWARD.LINK_FB' | translate }}
+    </div>
+    <hr>
+    <div class="reward-content__data">
+      <div class="reward-content__text flex-col">
+        {{'REWARD.LINK_FB_PROFILE' | translate }}
+      </div>
+      <div class="reward-content__buttons">
+        <button mat-button class="btn-large btn-darkblue" (click)="openFacebook()">
+          <img class="button-icon facebook" src="/assets/images/icons/facebook.svg">
+          <span>{{'REWARD.OPEN_FACEBOOK' | translate }}</span>
+        </button>
+        <button mat-button class="btn-large btn-linear" (click)="claimFacebook()"
+          [disabled]="!facebookSignedRequest || (user$ | async)?.rewards?.facebook?.claimed">{{'REWARD.CLAIM' | translate }} $0.50</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="reward-content">
+    <div class="reward-content__title">
+      {{'REWARD.JOIN_DISCORD' | translate }}
+    </div>
+    <hr>
+    <div class="reward-content__data">
+      <div class="reward-content__text flex-col">
+        {{'REWARD.JOIN_DISCORD_SERVER' | translate }}
+      </div>
+      <div class="reward-content__buttons" *ngIf="!(user$ | async)?.rewards?.discord?.claimed">
+        <button mat-button class="btn-large btn-purple" (click)="joinDiscord()">
+          <img class="button-icon discord" src="/assets/images/icons/discord.svg">
+          <span>{{'REWARD.JOIN_DISCORD' | translate }}</span>
+        </button>
+        <button mat-button class="btn-large btn-linear" (click)="claimDiscord()" [disabled]="!discordToken">{{'REWARD.CLAIM' | translate }}
+          $0.50</button>
+      </div>
+    </div>
+  </div>
+</div>

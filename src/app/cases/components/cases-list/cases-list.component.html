@@ -1,0 +1,14 @@
+<div class="flex-row flex-row__center cases-list">
+  <app-case-box *ngFor="let item of cases; let i = index" [item]="item" [itemIndex]="i" [caseType]="this.caseType"
+    [canEdit]="(user$ | async) && (user$ | async).type === 'ADMIN'" (unbox)="unboxCase($event)"
+    (edit)="editCase($event)" class="case-box">
+  </app-case-box>
+  <div *ngIf="!(cases.length) && !(loading$ | async)">No result to show</div>
+  <div *ngIf="(loaded$ | async) && total !== cases.length" class="flex-row flex-row__center w-100 m-b-30">
+    <button mat-button class="btn-large btn-linear" (click)="onLoad()"> {{'LOAD_MORE' | translate }}</button>
+  </div>
+</div>
+
+<div class="flex-row flex-row__center spinner-wrapper" *ngIf="!(loaded$ | async)">
+  <mat-spinner mode="indeterminate" class="skinworld-customized"></mat-spinner>
+</div>

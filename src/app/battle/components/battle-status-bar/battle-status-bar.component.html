@@ -1,0 +1,52 @@
+<div class="flex-row flex-row__btw bs">
+
+  <div class="flex-row bs__options">
+    <div class="bs__img">
+      <img src="https://cdn.zeplin.io/5e91836acb6b8c20e5f97204/assets/D66C10C6-9C0E-4451-88DE-FD9FAE085B63.png">
+    </div>
+    <div class="flex-col wrapper-case">
+      <div class="bc__option-title">{{'BATTLE_STATUS_BAR.CASE' | translate }}</div>
+      <div class="status">Off-White Lucky <span>$15</span></div>
+    </div>
+  </div>
+
+  <div class="bs__options">
+    <div class="flex-col wrapper-round">
+      <div class="bc__option-title">{{'BATTLE_STATUS_BAR.ROUNDS' | translate }}</div>
+      <div class="round">
+          <svg width="65" height="34" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient spreadMethod="pad" y2="0.5" x2="1" y1="0.5" x1="0" id="svg_11">
+                <stop offset="0" stop-color="#f48836" />
+                <stop offset="1" stop-color="#f4364c" />
+              </linearGradient>
+              <linearGradient y2="0.496094" x2="1" y1="0.390625" x1="0.511719" id="svg_18">
+                <stop offset="0" stop-color="#ef5c40" />
+                <stop offset="1" stop-opacity="0" stop-color="0" />
+              </linearGradient>
+            </defs>
+            <g>
+              <path stroke="url(#svg_11)" transform="rotate(90 32.50000000000001,17.000000000000004) " id="svg_8"
+                d="m16.141304,17l7.010871,-14.021746l18.695655,0l7.010869,14.021746l-7.010869,14.021746l-18.695655,0l-7.010871,-14.021746z"
+                fill="none" />
+              <line stroke="url(#svg_18)" transform="rotate(45 55.55816650390625,17) " stroke-linecap="null"
+                stroke-linejoin="null" id="svg_23" y2="10.977794" x2="61.580372" y1="23.022205" x1="49.535961"
+                fill-opacity="null" stroke-opacity="null" stroke-width="null" fill="none" />
+              <line transform="rotate(-135 9.455423355102539,17) " stroke="url(#svg_18)" stroke-linecap="null"
+                stroke-linejoin="null" id="svg_24" y2="10.977794" x2="15.477628" y1="23.022205" x1="3.433217"
+                fill-opacity="null" stroke-opacity="null" stroke-width="null" fill="none" />
+              <text [ngStyle]="{'fill': (theme$ |async) === 'light' ? '#000' : '#FFF'}" x="50%" y="50%" font-size="19px" font-weight="normal" dominant-baseline="central"
+                text-anchor="middle">0</text>
+            </g>
+          </svg>
+      </div>
+    </div>
+  </div>
+
+  <div class="bs__options">
+    <div class="flex-col wrapper-action">
+      <div class="bc__option-title">{{'BATTLE_STATUS_BAR.ACTION' | translate }}</div>
+      <div class="status">{{'BATTLE_STATUS_BAR.PREPARING_NEXT_ROUND' | translate }}<span>15</span></div>
+    </div>
+  </div>
+</div>

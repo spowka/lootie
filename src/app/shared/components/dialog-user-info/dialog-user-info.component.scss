@@ -1,0 +1,42 @@
+@import '../../../../styles/concepts.scss';
+@import '../../../../styles/variables.scss';
+
+.user-info {
+  min-width: 450px;
+
+  &__avatar {
+    @extend %bg-image;
+    display: inline-block;
+    vertical-align: top;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    margin: 0 auto 20px;
+    background-image: $colorPrimaryGradient;
+    cursor: pointer;
+  }
+
+  &__name {
+    font-size: 22px;
+    letter-spacing: normal;
+    margin-bottom: 20px;
+  }
+
+  &__date {
+    opacity: .4;
+  }
+
+  &__data {
+    width: 50%;
+
+    span:not(.user-info__data-label) {
+      font-size: 22px;
+      line-height: 28px;
+      margin-bottom: 8px;
+    }
+
+    &-label {
+      opacity: .4;
+    }
+  }
+}

@@ -1,0 +1,63 @@
+<div class="slider-container">
+  <app-cases-slider></app-cases-slider>
+</div>
+
+<div id="product-content" class="page-container">
+  <div class="flex-col product__menu">
+
+    <div class="product__header">
+      <div class="flex-row go-back" (click)="goBack()">
+        <span class="go-back__icon"></span>
+        <span>{{'DAILY_CASE.GO_BACK' | translate }}</span>
+      </div>
+
+      <div class="flex-row flex-row__center">
+        <span class="product__header-title">Product Info</span>
+      </div>
+
+      <div class="flex-row flex-row__center"></div>
+    </div>
+
+    <div *ngIf="(isMobile$ | async)">
+      <ng-container *ngTemplateOutlet="productName"></ng-container>
+    </div>
+
+    <section class="product__content">
+      <div class="product__preview">
+        <div class="product__info-badges">
+          <span>Condition: <span class="product__condition">NEW</span></span>
+          <span class="product__separation-badges"></span>
+          <span>Ticker: <span class="product__ticker">BCG-38BF-GG</span></span>
+          <span class="product__separation-badges"></span>
+          <span class="product__pre-info">100% Authentic</span>
+        </div>
+        <app-product-view-360></app-product-view-360>
+
+        <div *ngIf="!(isMobile$ | async)">
+          <ng-container *ngTemplateOutlet="productBox"></ng-container>
+        </div>
+      </div>
+      <div class="product__information">
+        <div class="product__info-content">
+          <div *ngIf="!(isMobile$ | async)">
+            <ng-container *ngTemplateOutlet="productName"></ng-container>
+          </div>
+          <app-product-info></app-product-info>
+        </div>
+      </div>
+
+      <div *ngIf="(isMobile$ | async)" class="product__mobile-boxes">
+        <ng-container *ngTemplateOutlet="productBox"></ng-container>
+      </div>
+    </section>
+  </div>
+</div>
+
+<ng-template #productName>
+  <h3 class="product__title">Balenciaga Triple S Grey Red Blue (2018 Reissue)</h3>
+</ng-template>
+
+<ng-template #productBox>
+  <h3 class="product__sub-title">Box</h3>
+  <app-product-box></app-product-box>
+</ng-template>

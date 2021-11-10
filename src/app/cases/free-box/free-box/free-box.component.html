@@ -1,0 +1,37 @@
+<div class="free-box page-container">
+  <div class="flex-col free-box__menu">
+    <div class="flex-col flex-col__center free-box__menu-content m-b-10">
+      <div class="free-box__menu-title">{{'FREE_BOX.MENU_TITLE' | translate }}</div>
+      <div class="flex-col flex-col__center w-100 m-b-20">
+        <input type="text" maxlength="50" class="custom-input-field promocode" placeholder="Enter code"
+          [formControl]="refCode" [disabled]="isInvite" />
+      </div>
+      <ng-container *ngIf="(isLoggedIn$ | async); else loginButton">
+        <button mat-button class="btn-large btn-linear btn-proceed" (click)="applyRefCode()">
+          <ng-container *ngIf="!(isLoading$ | async); else loadingSpinner">
+            {{'FREE_BOX.APPLY' | translate }}
+          </ng-container>
+  
+          <ng-template #loadingSpinner>
+            <div class="flex-row flex-row__center">
+              <mat-spinner mode="indeterminate" class="skinworld-customized"></mat-spinner>
+            </div>
+          </ng-template>
+        </button>
+      </ng-container>
+      <ng-template #loginButton>
+        <button mat-button class="btn-large btn-linear btn-proceed" (click)="login()">
+          {{ 'FREE_BOX.SIGN_IN' | translate }}
+        </button>
+      </ng-template>
+    </div>
+    <span class="free-box__menu-info m-b-20">
+      {{'FREE_BOX.DEPOSIT_NOTE' | translate }}
+    </span>
+    <div class="flex-col flex-col__center free-box__menu-footer">
+      <span class="free-box__note">
+        {{'FREE_BOX.DEPOSIT_HINT' | translate }}
+      </span>
+    </div>
+  </div>
+</div>

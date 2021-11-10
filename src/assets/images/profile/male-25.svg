@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="100px" height="100px" viewBox="0 0 100 100" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 61.2 (89653) - https://sketch.com -->
+    <title>Red 5</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="User-pic" transform="translate(-529.000000, -158.000000)">
+            <g id="Red-5" transform="translate(529.000000, 158.000000)">
+                <rect id="Rectangle-Copy" fill="#EB4B4B" x="0" y="0" width="100" height="100"></rect>
+                <path d="M63.5,79 L63.5,22 C47.7598846,22 35,34.7598846 35,50.5 C35,66.2401154 47.7598846,79 63.5,79 Z" id="Oval" fill="#FFFFFF"></path>
+                <path d="M64,73 L64,28 C51.8497355,28 42,38.0735931 42,50.5 C42,62.9264069 51.8497355,73 64,73 Z" id="Oval-Copy-5" fill="#FFD700"></path>
+            </g>
+        </g>
+    </g>
+</svg>

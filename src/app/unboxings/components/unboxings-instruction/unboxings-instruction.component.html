@@ -1,0 +1,24 @@
+<div class="flex-col unboxings-instruction">
+    <div class="flex-row unboxings-instruction__back"
+        (click)="goBack()">
+        <span class="unboxings-instruction__back-icon">
+            <img class="back-icon" src="assets/images/icons/back.svg">
+        </span>
+        <span class="text">Go Back</span>
+    </div>
+
+    <div class="unboxings-instruction__instruction" (click)="toggleInfo()">
+        <span class="unboxings-instruction__image"></span>
+        <span class="unboxings-instruction__text">
+            {{ isShow ? ('UNBOXINGS.INFO.HIDE_INSTRUCTION' | translate) : ('UNBOXINGS.INFO.INSTRUCTION' | translate) }}
+        </span>
+    </div>
+
+</div>
+
+<div class="flex-col unboxings-instruction__info" *ngIf="isShow">
+    <div class="unboxings-instruction__item" *ngFor="let item of unboxingsInfoItems; let i = index">
+        <span class="info-icon">{{ i + 1 }}</span>
+        <span class="info-text" [innerHTML]="item.title | translate"></span>
+    </div>
+</div>

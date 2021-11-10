@@ -1,0 +1,65 @@
+@import "../../../../styles/partials/index.scss";
+@import "../../../../styles/variables.scss";
+
+@include register-component {
+  .info {
+    &__border-bottom {
+      border-bottom: solid 1px from-theme(product-info-border);
+    }
+
+    &__border-top {
+      border-top: solid 1px from-theme(product-info-border);
+    }
+
+    &__content-info {
+      & > h3 {
+        color: from-theme(product-info-content-info-color);
+      }
+
+      & > p {
+        color: #5b6873;
+      }
+    }
+  }
+}
+
+.info {
+  &__content-info {
+    & > h3 {
+      font-size: 13px;
+      font-weight: bold;
+      letter-spacing: 0.51px;
+      text-transform: uppercase;
+      margin-bottom: 7px;
+    }
+
+    & > p {
+      font-size: 14px;
+      line-height: 1.57;
+      letter-spacing: 0.55px;
+      margin-bottom: 14px;
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  .info {
+    &__content-info {
+      border-top: none !important;
+
+      & > h3 {
+        font-size: 12px;
+        font-weight: 500;
+        line-height: 1.75;
+        letter-spacing: 0.29px;
+        margin-bottom: 4px;
+      }
+
+      & > p {
+        font-size: 12px;
+        line-height: 1.33;
+        letter-spacing: 0.1px;
+      }
+    }
+  }
+}

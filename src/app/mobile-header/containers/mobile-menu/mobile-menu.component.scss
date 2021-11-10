@@ -1,0 +1,109 @@
+@import "../../../../styles/partials/index.scss";
+@import "../../../../styles/concepts.scss";
+
+@include register-component {
+  .mobile-modal-content {
+    background-color: from-theme(background-header);
+    box-shadow: 0 9px 15px 0 rgba(0, 0, 0, 0.64);
+    color: from-theme(color);
+  }
+
+  .language-button {
+    color: from-theme(color);
+    border-color: from-theme(border-color);
+  }
+}
+
+.mobile-modal-content {
+  justify-content: space-around;
+  padding: 0;
+  height: 100%;
+  font-size: 12.5px;
+
+  app-mobile-forgot-password,
+  app-mobile-sign-up,
+  app-mobile-login {
+    height: calc(100% - 30px);
+    width: 100%;
+    overflow: auto;
+  }
+
+  app-mobile-forgot-password,
+  app-mobile-sign-up,
+  app-mobile-login {
+    padding: 0 15px;
+  }
+
+  app-mobile-navigation {
+    height: initial;
+    width: 100%;
+    overflow: auto;
+    padding-bottom: 30px;
+  }
+
+  app-mobile-logoff {
+    height: 100%;
+    width: 100%;
+    overflow: auto;
+  }
+
+  &__footer {
+    width: 100%;
+    height: 30px;
+    justify-content: space-between;
+
+    .language-button {
+      padding: 0;
+      height: 30px;
+      line-height: 1;
+      font-size: 10px;
+      letter-spacing: 0.5px;
+
+      &[aria-expanded="true"] {
+        .mat-icon {
+          transform: rotate(-180deg);
+        }
+      }
+
+      .mat-icon {
+        opacity: 0.2;
+        width: 22px;
+        height: 22px;
+        font-size: 22px;
+        transition: transform 0.3s ease;
+      }
+    }
+
+    .age-limit-icon {
+      background: url(/assets/images/icons/age-limit.svg) no-repeat;
+      background-size: contain;
+      background-position: center;
+      width: 27px;
+      height: 27px;
+      margin: 0px 7px 0 14px;
+    }
+  }
+}
+
+:host {
+  ::ng-deep {
+    .mat-button-toggle-appearance-standard {
+      .mat-button-toggle-label-content {
+        line-height: 30px;
+        padding: 0 8.5px;
+
+        .mat-icon {
+          width: 15px;
+          height: 15px;
+          font-size: 15px;
+        }
+      }
+    }
+  }
+}
+
+@media (orientation: landscape) {
+  .mobile-modal-content {
+    min-height: 500px;
+  }
+}

@@ -1,0 +1,270 @@
+<div *ngIf="isMobile$ | async" [ngClass]="{ 'slider-container-mobile': (currentUrl$ | async) !== '/'}"
+  class="slider-container" class="slider-container">
+  <app-cases-slider></app-cases-slider>
+</div>
+
+<div id="affiliates" class="page-container">
+  <div class="page-title center m-b-10">
+    {{'AFFILIATES.PAGE_TITLE' | translate }}
+  </div>
+
+  <div class="page-subtitle center m-b-50">
+    {{'AFFILIATES.PAGE_SUB_TITLE' | translate }}
+  </div>
+
+  <div class="flex-row flex-row__center m-b-30">
+    <div class="flex-row custom-input-container referral">
+      <div class="flex-row flex-row__btw custom-input-wrapper">
+        <input type="text" maxlength="10" placeholder="Create your referral code…" class="custom-input-field"
+          [formControl]="referralCode">
+        <span>{{ 10 - referralCode.value.length }} {{'AFFILIATES.REFERRAL_CODE' | translate }}</span>
+      </div>
+      <button *ngIf="!(isMobile$ | async)" mat-button class="btn-large btn-linear"
+        [disabled]="referralCode.invalid || (user$ | async)?.referralCode === referralCode.value"
+        (click)="createCode()">{{'AFFILIATES.UPDATE_CODE' | translate }}</button>
+    </div>
+  </div>
+  <div *ngIf="isMobile$ | async" class="flex-row flex-row__center w-100">
+    <button mat-button class="btn-large btn-linear"
+      [disabled]="referralCode.invalid || (user$ | async)?.referralCode === referralCode.value"
+      (click)="createCode()">{{'AFFILIATES.UPDATE_CODE' | translate }}</button>
+  </div>
+
+  <div *ngIf="(isMobile$ | async) || (isDesktop$ | async); else tabletView">
+    <section>
+      <div class="section-title">
+        01 &nbsp; <span>{{'AFFILIATES.START_INVITING' | translate }}</span>
+      </div>
+
+      <div class="flex-row flex-row__btw inviting">
+        <div class="flex-row flex-row__btw inviting__email-wrap">
+          <div class="flex-row custom-input-container">
+            <div class="custom-input-wrapper">
+              <input type="text" maxlength="50" placeholder="Enter an email address..." class="custom-input-field"
+                [formControl]="referralEmail">
+            </div>
+            <button *ngIf="!(isMobile$ | async)" mat-button class="btn-large btn-linear"
+              [disabled]="referralEmail.invalid" (click)="sendInvitation()">
+              {{'AFFILIATES.SEND_INVITATION' | translate }}
+            </button>
+          </div>
+          <div class="round-buttons-group">
+            <button *ngIf="isMobile$ | async" mat-button class="btn-large btn-linear" [disabled]="referralEmail.invalid"
+              (click)="sendInvitation()">
+              {{'AFFILIATES.SEND_INVITATION' | translate }}
+            </button>
+            <button mat-button class="btn-round btn-blue">
+              <img class="button-icon twitter" src="/assets/images/icons/twitter.svg">
+            </button>
+            <button mat-button class="btn-round btn-darkblue">
+              <img class="button-icon facebook" src="/assets/images/icons/facebook.svg">
+            </button>
+            <button mat-button class="btn-round btn-purple">
+              <img class="button-icon discord" src="/assets/images/icons/discord.svg">
+            </button>
+          </div>
+          <div class="affiliates-label">
+            <span>
+              {{'AFFILIATES.AFFILATE_LINK_INFO' | translate }}
+            </span>
+          </div>
+        </div>
+
+        <div class="inviting__copy-link-wrap">
+          <div class="flex-row custom-input-container">
+            <div class="custom-input-wrapper">
+              <input type="text" readonly #referrer class="custom-input-field link" [value]="referrerLink">
+            </div>
+            <button *ngIf="!(isMobile$ | async)" mat-button class="btn-large btn-linear" [ngxClipboard]="referrer"
+              (cbOnSuccess)="onCopySuccess()" (cbOnError)="onCopyFailure()">
+              {{'AFFILIATES.COPY_LINK' | translate }}
+            </button>
+          </div>
+          <div *ngIf="isMobile$ | async" class="flex-row flex-row__center w-100">
+            <button mat-button class="btn-large btn-linear" [ngxClipboard]="referrer" (cbOnSuccess)="onCopySuccess()"
+              (cbOnError)="onCopyFailure()">
+              {{'AFFILIATES.COPY_LINK' | translate }}
+            </button>
+          </div>
+          <div class="affiliates-label">
+            <span>{{'AFFILIATES.REFERRAL_URL_INFO' | translate }}</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-title">
+        02 &nbsp; <span>{{'AFFILIATES.EARN_MORE' | translate }}</span>
+      </div>
+
+      <drag-scroll>
+        <div class="ref">
+          <div class="flex-row flex-row__btw ref-stages-wrapper m-b-40">
+            <div #elem class="flex-col ref-stages" *ngFor="let stage of afConfig.refStages; let i = index"
+              [matMenuTriggerFor]="levelOne" #levelOneTrigger="matMenuTrigger" (click)="hoveredIndex = i">
+              <button mat-button class="btn-round btn-white" mat-button>
+                {{ i + 1 }}
+              </button>
+              <span>{{stage}} {{'AFFILIATES.REFERRALS' | translate }}</span>
+            </div>
+          </div>
+
+          <mat-menu class="affiliates-customized" #levelOne="matMenu" direction="down" yPosition="below">
+            <div class="af-menu">
+              <div class="item-popup flex-col flex-col__start">
+                <div class="flex-col flex-col__start m-b-20 text-color-white">
+                  <span class="m-b-10">{{'AFFILIATES.COMMISSIONS_CUT' | translate }}</span>
+                  {{ afConfig.referralCutLevels[hoveredIndex] * 100 | number:'1.0' }}%
+                </div>
+                <div class="flex-col flex-col__start text-color-white">
+                  <span class="m-b-10">{{'AFFILIATES.REFERRALS_RECEIVES' | translate }}</span>
+                  {{'AFFILIATES.FREE_BOX' | translate }}
+                </div>
+              </div>
+            </div>
+          </mat-menu>
+
+          <div class="af-progress-wrapper">
+            <div class="affiliates-progress">
+              <div class="affiliates-progress__achieved"
+                [ngStyle]="{'clip-path': 'inset(0 '+ affiliatesProgress +'% 0 0)'}"></div>
+            </div>
+          </div>
+        </div>
+      </drag-scroll>
+
+      <div class="flex-row flex-row__btw ref-labels" *ngIf="nextRefLevel">
+        <div class="affiliates-label"
+          [innerHTML]="'AFFILIATES.CURRENT_REFERRAL_LEVEL_INFO' | translate: {value: nextRefLevel - 1, value2: referralInfo?.personal.commisionCut * 100 | number:'1.0'}">
+        </div>
+        <div class="affiliates-label" [innerHTML]="'AFFILIATES.MISSING_REFERRAL_CODE_INFO' | translate: {
+        value: referralInfo ? afConfig.refStages[nextRefLevel - 1] - referralInfo.personal.totalReferrals : 0,
+        value2: nextRefLevel,
+        value3: afConfig.referralCutLevels[nextRefLevel - 1] * 100 | number:'1.0'}"></div>
+      </div>
+
+    </section>
+
+    <section>
+      <div class="section-title" [innerHTML]="'AFFILIATES.SECTION_TITLE' | translate"></div>
+
+      <app-affiliates-claim-stats></app-affiliates-claim-stats>
+
+    </section>
+  </div>
+
+  <ng-template #tabletView>
+    <mat-expansion-panel [expanded]="true" [hideToggle]="true" [disabled]="true" class="skinworld-customized">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          01 &nbsp; <span>{{'AFFILIATES.START_INVITING' | translate }}</span>
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <div class="flex-row flex-row__btw inviting">
+        <div class="flex-row flex-row__btw inviting__email-wrap">
+          <div class="flex-row custom-input-container">
+            <div class="custom-input-wrapper">
+              <input type="text" maxlength="50" placeholder="Enter an email address..." class="custom-input-field"
+                [formControl]="referralEmail">
+            </div>
+            <button *ngIf="!(isMobile$ | async)" mat-button class="btn-large btn-linear"
+              [disabled]="referralEmail.invalid" (click)="sendInvitation()">
+              {{'AFFILIATES.SEND_INVITATION' | translate }}
+            </button>
+          </div>
+          <div class="round-buttons-group">
+            <button mat-button class="btn-round btn-blue">
+              <img class="button-icon twitter" src="/assets/images/icons/twitter.svg">
+            </button>
+            <button mat-button class="btn-round btn-darkblue">
+              <img class="button-icon facebook" src="/assets/images/icons/facebook.svg">
+            </button>
+            <button mat-button class="btn-round btn-purple">
+              <img class="button-icon discord" src="/assets/images/icons/discord.svg">
+            </button>
+          </div>
+          <div class="affiliates-label">
+            {{'AFFILIATES.AFFILATE_LINK_INFO' | translate }}
+          </div>
+        </div>
+
+        <div class="inviting__copy-link-wrap">
+          <div class="flex-row custom-input-container">
+            <div class="custom-input-wrapper">
+              <input type="text" readonly #referrer class="custom-input-field link" [value]="referrerLink">
+            </div>
+            <button *ngIf="!(isMobile$ | async)" mat-button class="btn-large btn-linear" [ngxClipboard]="referrer"
+              (cbOnSuccess)="onCopySuccess()" (cbOnError)="onCopyFailure()">
+              {{'AFFILIATES.COPY_LINK' | translate }}
+            </button>
+          </div>
+          <div class="affiliates-label">
+            {{'AFFILIATES.REFERRAL_URL_INFO' | translate }}
+          </div>
+        </div>
+      </div>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel [expanded]="true" [hideToggle]="true" [disabled]="true" class="skinworld-customized">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          02 &nbsp; <span>{{'AFFILIATES.EARN_MORE' | translate }}</span>
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+
+      <drag-scroll>
+        <div class="ref">
+          <div class="flex-row flex-row__btw ref-stages-wrapper m-b-40">
+            <div #elem class="flex-col ref-stages" *ngFor="let stage of afConfig.refStages; let i = index"
+              [matMenuTriggerFor]="levelOne" #levelOneTrigger="matMenuTrigger" (click)="hoveredIndex = i">
+              <button mat-button class="btn-round btn-white" mat-button>
+                {{ i + 1 }}
+              </button>
+              <span>{{stage}} {{'AFFILIATES.REFERRALS' | translate }}</span>
+            </div>
+          </div>
+
+          <mat-menu class="affiliates-customized" #levelOne="matMenu" direction="down" yPosition="below">
+            <div class="af-menu">
+              <div class="item-popup flex-col flex-col__start">
+                <div class="flex-col flex-col__start m-b-20 text-color-white">
+                  <span class="m-b-10">{{'AFFILIATES.COMMISSIONS_CUT' | translate }}</span>
+                  {{ afConfig.referralCutLevels[hoveredIndex] * 100 | number:'1.0' }}%
+                </div>
+                <div class="flex-col flex-col__start text-color-white">
+                  <span class="m-b-10">{{'AFFILIATES.REFERRALS_RECEIVES' | translate }}</span>
+                  {{'AFFILIATES.FREE_BOX' | translate }}
+                </div>
+              </div>
+            </div>
+          </mat-menu>
+          <div class="af-progress-wrapper">
+            <div class="affiliates-progress">
+              <div class="affiliates-progress__achieved" [ngStyle]="{'clip-path': 'inset(0 '+ affiliatesProgress +'% 0 0)'}"></div>
+            </div>
+          </div>
+        </div>
+      </drag-scroll>
+
+      <div class="flex-row flex-row__btw ref-labels" *ngIf="nextRefLevel">
+        <div class="affiliates-label"
+          [innerHTML]="'AFFILIATES.CURRENT_REFERRAL_LEVEL_INFO' | translate:{value: nextRefLevel - 1 , value2: referralInfo?.personal.commisionCut * 100 | number:'1.0' }">
+        </div>
+        <div class="affiliates-label"
+          [innerHTML]="'AFFILIATES.MISSING_REFERRAL_CODE_INFO'  | translate:{value: referralInfo ? afConfig.refStages[nextRefLevel - 1] - referralInfo.personal.totalReferrals : 0 , value2: nextRefLevel, value3: afConfig.referralCutLevels[nextRefLevel - 1]}">
+        </div>
+      </div>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel [expanded]="true" [hideToggle]="true" [disabled]="true" class="skinworld-customized">
+      <mat-expansion-panel-header>
+        <mat-panel-title [innerHTML]="'AFFILIATES.SECTION_TITLE' | translate">
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+
+      <app-affiliates-claim-stats></app-affiliates-claim-stats>
+
+    </mat-expansion-panel>
+  </ng-template>
+</div>

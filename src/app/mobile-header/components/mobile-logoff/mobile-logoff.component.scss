@@ -1,0 +1,296 @@
+@import "../../../../styles/partials/index.scss";
+@import "../../../../styles/concepts.scss";
+@import "../../../../styles/variables.scss";
+
+@include register-component {
+  .mat-button-toggle-group.skinworld-customized {
+    border-radius: 15px;
+    background-color: rgba(129, 129, 129, 0.1);
+    border: none;
+    height: 30px;
+  }
+
+  .mat-button-toggle-group.skinworld-customized .mat-button-toggle {
+    background: from-theme(mobile-logoff-theme-icon-color);
+    display: flex;
+    border: none;
+  }
+
+  .mat-button-toggle-group.skinworld-customized .mat-button-toggle-checked {
+    background: from-theme(mobile-logoff-theme-icon-checked-color);
+  }
+
+  .theme-light-icon {
+    width: 18px;
+    height: 17px;
+    background-image: from-theme(mobile-logoff-theme-light-icon);
+    display: flex;
+    background-repeat: no-repeat;
+    position: relative;
+    left: 3px;
+    top: 3px;
+  }
+
+  .theme-dark-icon {
+    width: 18px;
+    height: 17px;
+    background-image: from-theme(mobile-logoff-theme-dark-icon);
+    display: flex;
+    background-repeat: no-repeat;
+    position: relative;
+    left: 0;
+    top: 3px;
+  }
+
+  .mobile-modal-section {
+    background-color: from-theme(mobile-logoff-background);
+    color: from-theme(color);
+
+    &__subtitle {
+      color: #5b6873;
+    }
+
+    &__title {
+      color: from-theme(mobile-logoff-title-color);
+    }
+
+    &__text-underline {
+      color: from-theme(mobile-logoff-text-underline-color);
+    }
+
+    &__text-info {
+      color: #5b6873;
+    }
+
+    &__text-terms {
+      color: #f45f40;
+    }
+
+    &__footer-links {
+      border-top: solid 1px from-theme(mobile-logoff-footer-links-border);
+    }
+
+    &__footer-link-item {
+      color: #5b6873;
+      border-bottom: solid 1px from-theme(mobile-logoff-footer-links-border);
+    }
+
+    &__actions {
+      .btn-square {
+        color: #ffffff;
+      }
+
+      .btn-google,
+      .btn-facebook {
+        color: #ffffff;
+      }
+
+      .btn-google {
+        background-color: #ca423e;
+      }
+
+      .btn-facebook {
+        background-color: #327ab7;
+      }
+
+      .btn-outline-gray {
+        box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.05);
+        border: solid 2px #747c7f;
+        color: #747c7f;
+      }
+    }
+
+    .btn-steam {
+      background-color: from-theme(background-header);
+    }
+  }
+
+  .btn-square {
+    color: from-theme(color);
+  }
+}
+
+.mobile-modal-section {
+  justify-content: space-around;
+  font-size: 12.5px;
+  padding: 0 20px;
+  margin-bottom: 50px;
+
+  &__title {
+    font-size: 18px;
+    font-weight: bold;
+    line-height: 0.94;
+    letter-spacing: 0.64px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    margin-top: 32px;
+  }
+
+  &__subtitle {
+    font-size: 16px;
+    line-height: 1.31;
+    letter-spacing: 0.57px;
+    text-align: center;
+    margin: 0 0 35px 0;
+  }
+
+  &__text {
+    text-align: center;
+    line-height: 1.86;
+    font-size: 14px;
+    margin: 0;
+
+    .skinworld-terms {
+      color: $colorSecondaryBrightOrange;
+      cursor: pointer;
+    }
+  }
+
+  &__text-medium {
+    font-size: 16px;
+  }
+
+  &__text-underline {
+    font-size: 16px;
+    line-height: 1.31;
+    letter-spacing: 0.57px;
+    text-align: center;
+    margin: 20px 0;
+  }
+
+  &__text-info {
+    font-size: 10px;
+    line-height: 1.4;
+    letter-spacing: 0.46px;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+
+  &__text-terms {
+    font-size: 11px;
+    line-height: 1.27;
+    letter-spacing: 0.5px;
+    text-align: center;
+    margin-bottom: 40px;
+  }
+
+  &__footer-links {
+    margin-bottom: 30px;
+    width: calc(100% + 40px);
+  }
+
+  &__footer-link-item {
+    margin: 0;
+    width: 100%;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.21;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    padding: 15px;
+  }
+
+  &__text-big {
+    font-size: 18px;
+  }
+
+  &__actions {
+    width: 100%;
+
+    .btn-square {
+      height: 40px;
+      margin: 0 0 25px 0;
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: 0.3px;
+      text-align: center;
+    }
+
+    .btn-google,
+    .btn-facebook {
+      padding-bottom: 0 !important;
+      height: 40px;
+      padding-top: 0 !important;
+      margin-bottom: 25px;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.25px;
+    }
+
+    .btn-facebook {
+      margin-bottom: 0;
+    }
+
+    .btn-outline-gray {
+      margin: 0 0 32px 0;
+      height: 40px;
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      text-align: center;
+    }
+  }
+
+  &__submit {
+    flex-wrap: nowrap;
+
+    .btn-square {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.btn-square {
+  @extend .l-md;
+  width: 100%;
+  height: 52px;
+  font-size: 11.5px;
+  border-radius: 25px !important;
+  padding: 13px 20px !important;
+  text-transform: uppercase;
+  white-space: nowrap;
+  transition: 0.3s all ease-in-out;
+
+  &[disabled] {
+    border: 2px solid rgba(0, 0, 0, 0.1);
+    cursor: default;
+  }
+
+  &.btn-outline-gray {
+    border: 2px solid rgba($colorPrimaryWhite, 0.2);
+  }
+}
+
+.button-icon {
+  @extend %button-icon;
+  margin-right: 15px;
+
+  &.login {
+    width: 14px;
+    height: 14px;
+    margin-right: 10px;
+  }
+
+  &.steam {
+    width: 21.8px;
+    height: 21.8px;
+    background-image: url("/assets/images/icons/social_steam.svg");
+  }
+
+  &.opskins {
+    width: 16.7px;
+    height: 23px;
+    background-image: url("/assets/images/icons/op-skins.svg");
+  }
+
+  &.google {
+    width: 16.7px;
+    height: 23px;
+  }
+
+  &.facebook {
+    width: 16.7px;
+    height: 23px;
+  }
+}

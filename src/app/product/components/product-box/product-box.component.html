@@ -1,0 +1,14 @@
+<section class="product-box__container">
+  <div class="product-box__item" *ngFor="let item of boxItems">
+    <div class="product-box__image"
+      [ngStyle]="{'background-image': 'url(https://skinworld-dev.s3.amazonaws.com/images/case-images/OFFCL_002_Yeeze.png)'}">
+    </div>
+    <div class="product-box__title">
+      {{ item.name }}
+      <div class="product-box__box-overflow"></div>
+    </div>
+    <div class="product-box__price">
+      ${{ item.price | number:'1.2-2' }}
+    </div>
+  </div>
+</section>

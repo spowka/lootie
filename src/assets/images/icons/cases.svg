@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="15px" height="16px" viewBox="0 0 15 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 60 (88103) - https://sketch.com -->
+    <title>Case</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Desktop" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Update-Light-(Laptop)" transform="translate(-120.000000, -30.000000)">
+            <g id="Header-white">
+                <g id="Topbar">
+                    <g id="Main-Menus" transform="translate(117.000000, 28.000000)">
+                        <g id="Cases">
+                            <g id="Case">
+                                <rect id="bound" x="0" y="0" width="20" height="20"></rect>
+                                <g id="Group-3" transform="translate(3.000000, 2.000000)" fill-rule="nonzero">
+                                    <path d="M14.5051154,3.03478667 C14.8060554,3.16853779 15,3.46697236 15,3.7962963 L15,11.0977326 C15,11.4003719 14.8359234,11.6792224 14.5713691,11.826197 L7.90470242,15.5299007 C7.653017,15.669726 7.346983,15.669726 7.09529758,15.5299007 L0.428630892,11.826197 C0.164076567,11.6792224 0,11.4003719 0,11.0977326 L0,3.7962963 C0,3.46697236 0.1939446,3.16853779 0.494884608,3.03478667 L7.16155125,0.0718237063 C7.37702242,-0.0239412354 7.62297758,-0.0239412354 7.83844875,0.0718237063 L14.5051154,3.03478667 Z" id="Combined-Shape" fill="#76797B"></path>
+                                    <polygon id="Combined-Shape-Copy" fill="#33373A" points="9.97262683 0.941749356 3.83333325 4.35246799 3.83333325 8.17613747 5.49999992 9.00947081 5.49999992 5.33314024 11.879225 1.78912632"></polygon>
+                                </g>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

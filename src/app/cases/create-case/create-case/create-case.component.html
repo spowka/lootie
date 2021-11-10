@@ -1,0 +1,312 @@
+<div class="slider-container" [ngClass]="{ 'slider-container-mobile': (currentUrl$ | async) !== '/'}"
+  class="slider-container" [class.opened]="(isChatOpened$ | async)">
+  <app-cases-slider></app-cases-slider>
+</div>
+
+<div class="page-title center m-b-10">
+  {{'CREATE_CASE.PAGE_TITLE' | translate }}
+</div>
+
+<div class="page-subtitle center m-b-40">
+  {{'CREATE_CASE.PAGE_SUB_TITLE' | translate }}
+</div>
+
+<div id="create-case">
+  <div class="case-container">
+
+    <ng-container *ngIf="!(isMobile$ | async); else mobileView">
+      <div class="flex-row flex-row__btw m-b-20 case-container__header">
+        <div class="flex-row go-back" (click)="goBack()">
+          <span class="back-icon"></span>
+          <span class="go-back-text">{{'DAILY_CASE.GO_BACK' | translate }}</span>
+        </div>
+      </div>
+
+      <section class="actions-container">
+        <mat-expansion-panel [expanded]="true" [disabled]="true">
+          <mat-expansion-panel-header>
+            <div class="step-title"><span class="step-count"> {{'CREATE_CASE.STEP' | translate }} 1 </span>
+              {{'CREATE_CASE.NAME_AFFILIATES' | translate }}</div>
+          </mat-expansion-panel-header>
+          <div class="input-wrapper">
+            <input matInput type="text" maxlength="50" placeholder="Enter box name..." class="input-field"
+              [(ngModel)]="caseNameString" (ngModelChange)="inputChange()"
+              (keyup.enter)="openKeyboard($event)"
+              [disabled]="caseNameString.length > 50 || caseNameString.length < 0">
+            <mat-icon *ngIf="caseNameString" class="clear-icon" (click)="clear()">close</mat-icon>
+            <span>*{{ 50 - caseNameString.length }} {{'CREATE_CASE.CHARACTERS_LEFT' | translate }}</span>
+          </div>
+
+          <ng-container *ngIf="isEdit">
+            <div class="input-wrapper">
+              <p>Badge label</p>
+              <input matInput type="text" class="input-field" [(ngModel)]="badgeLabel" placeholder="Create custom label">
+            </div>
+
+            <div class="input-wrapper">
+              <p>Sale percent</p>
+              <input matInput type="number" class="input-field" [(ngModel)]="salePercent" placeholder="0 ~ 100">
+            </div>
+          </ng-container>
+
+          <div class="flex-row affilates-cut" [class.m-b-30]="isEdit">
+            <div class="flex-row add-cut">
+              <span>{{'CREATE_CASE.COMMISSION_CUT' | translate }}</span>
+              <img *ngIf="(theme$ |async) === 'dark'; else lightImg" src="/assets/images/icons/q-mark-dark.svg">
+              <ng-template #lightImg>
+                <img src="/assets/images/icons/q-mark-light.svg">
+              </ng-template>
+            </div>
+            <div class="cut-percent">
+              <mat-slider thumbLabel [displayWith]="formatLabel" min="0" max="3" step="0.1" class="skinworld-customized"
+                [(ngModel)]="affiliateCut">
+              </mat-slider>
+              <div class="flex-row flex-row__btw affiliate-cut">
+                <div>| <br> 0%</div>
+                <div>| <br> 1.0%</div>
+                <div>| <br> 2.0%</div>
+                <div>| <br> 3.0%</div>
+              </div>
+            </div>
+            <span class="percent">{{ affiliateCut }}%</span>
+          </div>
+          <div>
+
+          </div>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel [expanded]="true" [disabled]="true">
+          <mat-expansion-panel-header>
+            <div class="step-title"><span class="step-count">{{'CREATE_CASE.STEP' | translate }} 2
+              </span>{{'CREATE_CASE.SELECT_BOX_IMAGE' | translate }}</div>
+          </mat-expansion-panel-header>
+          <div class="case-choise">
+            <div class="cases-list flex-row">
+              <app-case-item *ngFor="let item of caseLogos" [item]="item" [showTitle]="false" [showFooter]="false"
+                [isInventory]="false" [isSelected]="item.image === selectedLogo" [showChoosen]="true"
+                [isSelectedImg]="false" (addToSelected)="addToSelectedCases($event)"
+                (removeFromSelected)="removeFromSelectedCases($event)" class="case-box">
+              </app-case-item>
+              <div class="empty-box" *ngFor="let i of [].constructor(8)"></div>
+            </div>
+          </div>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel [expanded]="true" [disabled]="true">
+          <mat-expansion-panel-header>
+            <div class="step-title"><span class="step-count">{{'CREATE_CASE.STEP' | translate }} 3
+              </span>{{'CREATE_CASE.SELECT_ITEMS' | translate }}</div>
+          </mat-expansion-panel-header>
+          <div class="case-choise">
+            <div class="filter-wrapper">
+              <app-filters [showSelected]="true" [isCreateCase]='true' [showTagSearch]="true"
+                [selectedCount]="selectedItems.length" (filtersChange)="onFiltersChange($event)">
+              </app-filters>
+            </div>
+
+            <div class="cases-list item flex-row" infiniteScroll infiniteScrollDistance="0" [alwaysCallback]="false"
+              [scrollWindow]="false" [infiniteScrollDisabled]="isScrollDisabled" (scrolled)="onScroll()">
+              <app-case-item *ngFor="let item of siteItems" [item]="item" [isInventory]="false"
+                [isCreateCase]="selectedItemsIds.includes(item._id)" [isSelected]="selectedItemsIds.includes(item._id)"
+                (addToSelected)="addToSelectedItems($event)" (removeFromSelected)="removeFromSelectedItems($event)"
+                class="case-item">
+              </app-case-item>
+              <div class="empty-item" *ngFor="let i of [].constructor(8)"></div>
+            </div>
+            <div *ngIf="!siteItems.length && (isLoaded$ | async)" class="empty-data">
+              {{'CREATE_CASE.NO_DATA' | translate }}
+            </div>
+            <div class="flex-row flex-row__center cases-loading">
+              <mat-spinner *ngIf="!(isLoaded$ | async)" mode="indeterminate" class="skinworld-customized"></mat-spinner>
+            </div>
+          </div>
+        </mat-expansion-panel>
+
+        <section class="case-choise choose-odds">
+          <div class="step-title"><span class="step-count">{{'CREATE_CASE.STEP' | translate }} 4 </span>
+            {{'CREATE_CASE.CHOOSE_ODDS' | translate }}</div>
+
+          <div class="odds-table">
+            <app-odds-table [items]="selectedItems" (changeOdd)="onChangeOdd($event)" (deleteOdd)="onDeleteOdd($event)">
+            </app-odds-table>
+          </div>
+
+          <section class="summary">
+            <div class="flex-row flex-row__btw">
+              <div class="flex-row summary__total">
+                <div class="flex-row flex-row__btw summary__item totalOdds">
+                  <span class="summary__label">{{'CREATE_CASE.TOTAL_ODDS' | translate | uppercase}}</span>
+                  <span class="summary__value">
+                    {{ totalOdds | number:'1.1-5' }}%
+                  </span>
+                </div>
+                <div class="flex-row flex-row__btw summary__item">
+                  <span class="summary__label">{{'CREATE_CASE.CASE_PRICE' | translate |uppercase}}</span>
+                  <span *ngIf="selectedItems.length" class="summary__value">
+                    ${{ (casePrice$ | async) || 0 | number:'1.2-2' }}
+                  </span>
+                  <span *ngIf="!selectedItems.length" class="summary__value">
+                    ${{ 0 | number:'1.2-2' }}
+                  </span>
+                </div>
+              </div>
+              <button *ngIf="!isEdit; else editButton" mat-button class="btn-large create-button btn-linear"
+                [disabled]="totalOdds !== 100" (click)="createCase()">
+                {{'CREATE_CASE.CREATE_BOX' | translate }}
+              </button>
+
+              <ng-template #editButton>
+                <button mat-button class="btn-large btn-linear" (click)="updateCase()">
+                  <mat-icon class="skinworld-customized">edit</mat-icon>
+                  {{'CREATE_CASE.UPDATE_BOX' | translate }}
+                </button>
+              </ng-template>
+            </div>
+          </section>
+        </section>
+
+        <div class="requirements-hint">
+          <div class="requirements">{{'CREATE_CASE.REQUIREMENTS' | translate }}:</div>
+          <p>*{{'CREATE_CASE.TOTAL_ODD' | translate }}.</p>
+          <p>*{{'CREATE_CASE.BOX_PRICE' | translate }}.</p>
+        </div>
+      </section>
+
+    </ng-container>
+
+    <ng-template #mobileView>
+      <div class="flex-row flex-row__btw m-b-20 case-container__header mobile">
+        <div class="flex-row go-back" (click)="goBack()">
+          <span class="back-icon"></span>
+        </div>
+      </div>
+
+      <section class="actions-container actions-container-mobile">
+        <mat-expansion-panel [expanded]="true" [disabled]="true">
+          <mat-expansion-panel-header>
+            <div class="step-title"><span class="step-count">01 </span>{{'CREATE_CASE.NAME_AFFILIATES' | translate }}
+            </div>
+          </mat-expansion-panel-header>
+
+          <div class="affiliate-cut-percent">
+            <div class="add-cut">{{'CREATE_CASE.SET_AFFILIATE_CUT' | translate }}</div>
+            <div class="percent">{{ affiliateCut }}%</div>
+            <mat-slider thumbLabel [displayWith]="formatLabel" min="0" max="3" step="0.1" class="skinworld-customized"
+              [(ngModel)]="affiliateCut">
+            </mat-slider>
+            <div class="flex-row flex-row__btw cut-percent">
+              <div>| <br> 0%</div>
+              <div>| <br> 1.0%</div>
+              <div>| <br> 2.0%</div>
+              <div>| <br> 3.0%</div>
+            </div>
+          </div>
+
+          <div class="input-wrapper">
+            <input matInput type="text" [disabled]="caseNameString.length > 50 || caseNameString.length < 0"
+              maxlength="50" placeholder="Enter box name..." class="input-field" [(ngModel)]="caseNameString" (ngModelChange)="inputChange()">
+            <mat-icon *ngIf="caseNameString" class="clear-icon" (click)="clear()">close</mat-icon>
+            <span>*{{ 50 - caseNameString.length }} {{'CREATE_CASE.CHARACTERS_LEFT' | translate }}</span>
+          </div>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel [expanded]="true" [disabled]="true">
+          <mat-expansion-panel-header>
+            <div class="step-title"><span class="step-count">02</span>{{'CREATE_CASE.SELECT_BOX_IMAGE' | translate }}
+            </div>
+          </mat-expansion-panel-header>
+
+          <drag-scroll>
+            <div class="flex-row casses-wrapper">
+              <app-case-item *ngFor="let item of caseLogos" [item]="item" [showTitle]="false" [showFooter]="false"
+                [isInventory]="false" [isSelected]="item.image === selectedLogo" [showChoosen]="true"
+                [isSelectedImg]="false" (addToSelected)="addToSelectedCases($event)"
+                (removeFromSelected)="removeFromSelectedCases($event)" class="case-box">
+              </app-case-item>
+            </div>
+          </drag-scroll>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel [expanded]="true" [disabled]="true">
+          <mat-expansion-panel-header>
+            <div class="step-title"><span class="step-count">03</span>{{'CREATE_CASE.SELECT_ITEMS' | translate }}</div>
+          </mat-expansion-panel-header>
+          <div class="case-choise">
+            <div class="filter-wrapper">
+              <app-filters [showSelected]="true" [isCreateCase]='true' [showTagSearch]="true"
+                [selectedCount]="selectedItems.length" (filtersChange)="onFiltersChange($event)">
+              </app-filters>
+            </div>
+
+            <div class="cases-list item flex-row" infiniteScroll infiniteScrollDistance="0" [alwaysCallback]="false"
+              [scrollWindow]="false" [infiniteScrollDisabled]="isScrollDisabled" (scrolled)="onScroll()">
+              <app-case-item *ngFor="let item of siteItems" [item]="item" [isInventory]="false"
+                [isCreateCase]="selectedItemsIds.includes(item._id)" [isSelected]="selectedItemsIds.includes(item._id)"
+                (addToSelected)="addToSelectedItems($event)" (removeFromSelected)="removeFromSelectedItems($event)"
+                class="case-item">
+              </app-case-item>
+              <div class="empty-item" *ngFor="let i of [].constructor(3)"></div>
+            </div>
+            <div *ngIf="!siteItems.length && (isLoaded$ | async)" class="empty-data">
+              {{'CREATE_CASE.NO_DATA' | translate }}
+            </div>
+            <div class="flex-row flex-row__center cases-loading">
+              <mat-spinner *ngIf="!(isLoaded$ | async)" mode="indeterminate" class="skinworld-customized"></mat-spinner>
+            </div>
+          </div>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel [expanded]="true" [disabled]="true">
+          <mat-expansion-panel-header>
+            <div class="step-title"><span class="step-count">04</span>{{'CREATE_CASE.CHOOSE_ODDS' | translate }}</div>
+          </mat-expansion-panel-header>
+
+          <div class="odds-table">
+            <app-odds-table [items]="selectedItems" (changeOdd)="onChangeOdd($event)" (deleteOdd)="onDeleteOdd($event)">
+            </app-odds-table>
+          </div>
+
+        </mat-expansion-panel>
+
+        <section class="summary">
+          <div class="flex-row summary__total">
+            <div class="flex-row summary__item totalOdds">
+              <span class="summary__label">{{'CREATE_CASE.TOTAL_ODDS' | translate | uppercase}}</span>
+              <span class="summary__value">
+                {{ totalOdds | number:'1.1-5' }}%
+              </span>
+            </div>
+            <div class="flex-row summary__item">
+              <span class="summary__label">{{'CREATE_CASE.CASE_PRICE' | translate |uppercase}}</span>
+              <span class="summary__value">
+                ${{ (casePrice$ | async) || 0 | number:'1.2-2' }}
+              </span>
+            </div>
+          </div>
+        </section>
+
+        <div class="requirements-hint">
+          <div class="requirements">Requirements:</div>
+          <p>*{{'CREATE_CASE.TOTAL_ODD' | translate }}.</p>
+          <p>*{{'CREATE_CASE.BOX_PRICE' | translate }}</p>
+        </div>
+
+        <button *ngIf="!isEdit; else editButton" mat-button class="btn-large create-button btn-linear"
+          (click)="createCase()">
+          {{'CREATE_CASE.CREATE_BOX' | translate }}
+        </button>
+
+        <ng-template #editButton>
+          <button mat-button class="btn-large btn-linear" (click)="updateCase()">
+            <mat-icon class="skinworld-customized">edit</mat-icon>
+            {{'CREATE_CASE.UPDATE_BOX' | translate }}
+          </button>
+        </ng-template>
+
+      </section>
+
+
+    </ng-template>
+
+  </div>
+</div>

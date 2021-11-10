@@ -1,0 +1,115 @@
+<div class="slider-container" [ngClass]="{ 'slider-container-mobile': (currentUrl$ | async) !== '/'}" class="slider-container" [class.opened]="(isChatOpened$ | async)">
+  <app-cases-slider></app-cases-slider>
+</div>
+
+<h1 class="page-title center m-b-20">
+  {{'CREATE_BATTLE.TITLE' | translate }}
+</h1>
+
+<div class="battle-container bc">
+  <div class="flex-row flex-row__btw battle-header m-b-20">
+    <div class="flex-row battle-back-button" (click)="goBack()">
+      <mat-icon>keyboard_arrow_left</mat-icon>
+      <span>{{'CREATE_BATTLE.GO_BACK' | translate }}</span>
+    </div>
+
+    <div class="flex-row bc__toggler">
+      <span [class.checked]="!isPrivate">{{'CREATE_BATTLE.PUBLIC_BATTLE' | translate }}</span>
+      <div class="battle-toggle-wrapper">
+        <input #inputCheck class="battle-toggle-button" type="checkbox" [(ngModel)]="isPrivate">
+        <div class="battle-toggle-after"></div>
+        <div class="battle-toggle-before"></div>
+        <div *ngIf="!isPrivate" class="battle-toggle-arrow-left"></div>
+        <div *ngIf="isPrivate" class="battle-toggle-arrow-right"></div>
+      </div>
+      <span [class.checked]="isPrivate">{{'CREATE_BATTLE.PRIVATE_BATTLE' | translate }}</span>
+    </div>
+  </div>
+
+  <div class="flex-row flex-row__btw m-b-10 bc__options">
+    <div class="flex-col">
+      <span class="bc__option-title">{{'CREATE_BATTLE.TOTAL_COST' | translate }}</span>
+      <span class="bc__option-price">${{ battleCost | number:'1.2-2' }}</span>
+    </div>
+
+    <ng-container *ngIf="!(isMobile$ | async); else playersCount">
+      <div class="flex-col">
+        <span class="bc__option-title">{{'CREATE_BATTLE.ROUNDS' | translate }}</span>
+        <ng-container>
+          <div class="flex-row flex-row__center indicator-round">
+            <span>{{ rounds }}</span>
+          </div>
+        </ng-container>
+
+      </div>
+
+      <div class="flex-col">
+        <span class="bc__option-title">{{'CREATE_BATTLE.TYPE' | translate }}</span>
+        <span class="bc__option-status">{{ isPrivate ? 'Private Battle' : 'Public Battle' }}</span>
+      </div>
+    </ng-container>
+
+    <ng-template #playersCount>
+      <div class="flex-col">
+        <span class="bc__option-title">{{'CREATE_BATTLE.ROUNDS' | translate }}</span>
+        <span class="bc__option-price">{{ rounds }}</span>
+      </div>
+
+      <div class="flex-col">
+        <span class="bc__option-title">{{'CREATE_BATTLE.PLAYERS' | translate }}</span>
+        <span class="bc__option-price">{{ selectedPlayer }}</span>
+      </div>
+
+    </ng-template>
+
+
+  </div>
+
+  <div class="battle-wrapper m-b-20">
+    <div class="flex-row flex-roe__center battle-box">
+      <app-battle-box [box]="box" *ngFor="let box of selectedBoxes" [isRemove]="true" (remove)="onRemove($event)"
+        (changeCount)="onChangeCount($event)" class="bc__item"></app-battle-box>
+
+      <div (click)="openDialogBoxes()" class="flex-col flex-col__center bc__item bc__add">
+        <ng-container *ngIf="platform !== 'safari'; else showPlusAsImage">
+          <svg width="34" height="34" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient spreadMethod="pad" y2="0.5" x2="1" y1="0.5" x1="0" id="svg_11">
+                <stop offset="0" stop-color="#f48836" />
+                <stop offset="1" stop-color="#f4364c" />
+              </linearGradient>
+            </defs>
+            <g>
+              <path stroke="url(#svg_11)" transform="rotate(90 17,17.000001907348636) " id="svg_8"
+                d="m0.641302,17l7.010871,-14.021746l18.695655,0l7.010869,14.021746l-7.010869,14.021746l-18.695655,0l-7.010871,-14.021746z"
+                fill="none" />
+            </g>
+            <text fill="#d85a3f" x="50%" y="50%" font-size="23px" font-weight="300" dominant-baseline="central"
+              text-anchor="middle">+</text>
+          </svg>
+        </ng-container>
+
+        <ng-template #showPlusAsImage>
+          <div class="indicator-plus"></div>
+        </ng-template>
+
+        <span>{{'CREATE_BATTLE.ADD_CASE' | translate }}</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="flex-row flex-row__center bc__footer">
+    <div class="flex-row flex-row__center w-100 bc__players">
+      <nav mat-tab-nav-bar>
+        <a mat-tab-link
+          [active]="selectedPlayer === player.value"
+          *ngFor="let player of players"
+          (click)="selectedPlayer = player.value">
+          {{ player.label }}
+        </a>
+      </nav>
+    </div>
+    <button mat-button class="btn-large btn-linear" (click)="createBattle()"
+      [disabled]="(isLoading$ | async) || !selectedBoxes.length">{{'CREATE_BATTLE.TITLE' | translate }}</button>
+  </div>
+</div>

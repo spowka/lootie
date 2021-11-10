@@ -1,0 +1,43 @@
+<div class="slider-container" [ngClass]="{ 'slider-container-mobile': (currentUrl$ | async) !== '/'}"
+  class="slider-container" [class.opened]="(isChatOpened$ | async)">
+  <app-cases-slider></app-cases-slider>
+</div>
+
+<h1 class="page-title center m-b-20">
+  {{ battleType === battleTypes.history ? 'Battles History' : 'My Battles' }}
+</h1>
+
+<div class="battle-container bl">
+
+  <div class="flex-row flex-row__btw battle-header m-b-20">
+    <a class="flex-row battle-back-button" (click)="goBack()">
+      <mat-icon>keyboard_arrow_left</mat-icon>
+      <span *ngIf="!(isMobile$ | async)">{{'CREATE_BATTLE.GO_BACK' | translate }}</span>
+    </a>
+  </div>
+
+  <table class="bl__table">
+    <tr>
+      <td class="bl_h__rounds">{{'BATTLE_WAITING.ROUNDS' | translate }}</td>
+      <td class="bl_h__boxes">{{'BATTLE_LIST.BOXES_SCENARIO' | translate }}</td>
+      <td class="bl_h__cost">{{'BATTLE_WAITING.TOTAL_COST' | translate }}</td>
+      <td class="bl_h__players">{{'BATTLE_WAITING.PLAYERS' | translate }}</td>
+      <td class="bl_h__winning">{{'BATTLE.WINNING' | translate }}</td>
+      <td class="bl_h__watch"></td>
+    </tr>
+
+    <div class="battles-list" infiniteScroll infiniteScrollDistance="0" [alwaysCallback]="false" [scrollWindow]="false"
+      [infiniteScrollDisabled]="isScrollDisabled" (scrolled)="onScroll()">
+      <tr @fadeUp app-battle-list-item [battle]="battle"
+        *ngFor="let battle of battles; trackBy: identifyItem" [finished]="true"></tr>
+    </div>
+  </table>
+
+  <div class="no-battle"
+    *ngIf="!(isLoading$ | async) && !(battles$ | async)">
+    {{'BATTLE_LIST.NO_BATTLE_TO_WATCH' | translate }}
+  </div>
+
+  <mat-spinner *ngIf="isLoading$ | async" mode="indeterminate" class="skinworld-customized">
+  </mat-spinner>
+</div>

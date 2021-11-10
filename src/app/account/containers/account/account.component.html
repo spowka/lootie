@@ -1,0 +1,207 @@
+<div class="slider-container">
+  <app-cases-slider></app-cases-slider>
+</div>
+
+<div id="account-content" class="page-container" *ngIf="(user$ | async) as user">
+  <section class="profile-info flex-row flex-row__btw m-b-40">
+    <div class="flex-row user-info">
+      <div class="user-info__img" [ngStyle]="{'background': 'url(' + user.profileImageUrl + ')'}"
+        [matMenuTriggerFor]="selectProfileImage"></div>
+      <div class="flex-col flex-col__start user-info__info">
+        <span class="user-info__name">{{ user.username }}</span>
+        <span class="user-info__since"> {{'ACCOUNT.USER_DATA' | translate }}
+          {{ user.createdAt | date: 'd MMMM y' }}</span>
+      </div>
+      <button *ngIf="(isMobile$ | async)" mat-button class="btn-large btn-linear" (click)="signOut()"></button>
+    </div>
+    <mat-menu #selectProfileImage="matMenu">
+      <ng-template matMenuContent>
+        <div class="user-images flex-row flex-row__btw">
+          <img mat-menu-item alt="User avatar" class="user-images__image" *ngFor="let url of avatars" [src]="url"
+            (click)="onChooseAvatar(url)">
+        </div>
+      </ng-template>
+    </mat-menu>
+    <div class="flex-row flex-row__btw user__actions">
+      <div class="user__action flex-col">
+        <span class="value">{{ user.unboxedCases || 0 }}</span>
+        <span class="title">{{'ACCOUNT.USER_UNBOX' | translate }}</span>
+      </div>
+      <div class="user__action flex-col">
+        <span class="value">${{ (user.depositedValue || 0) | number:'1.2-2' }}</span>
+        <span class="title">{{'ACCOUNT.USER_DEPOSIT' | translate }}</span>
+      </div>
+    </div>
+    <div class="flex-row flex-row__end user__sign-out" *ngIf="!(isMobile$ | async)">
+      <button mat-button class="btn-large btn-linear" (click)="signOut()">Sign Out</button>
+    </div>
+  </section>
+
+  <section class="shipping-address">
+    <!-- Shipping Address Form -->
+    <form [formGroup]="shippingAddressForm" novalidate>
+      <div class="shipping-info">
+        <span>{{'ACCOUNT.SHIPPING_TITLE' | translate }}</span>
+      </div>
+
+      <div class="form-group__container">
+        <div class="form-group name-group">
+          <span class="form-group__prefix">{{'ACCOUNT.USER_NAME' | translate }}</span>
+          <mat-form-field appearance="fill" [hideRequiredMarker]="'auto'"
+            class="skinworld-customized account-form-field">
+            <input type="text" [placeholder]="'James'" matInput formControlName="firstName">
+          </mat-form-field>
+          <div class="invalid"
+            *ngIf="shippingAddressForm.controls['firstName'].invalid && shippingAddressForm.controls['firstName'].touched">
+            {{'ACCOUNT.USER_NAME_INVALID_MESSAGE' | translate }}
+          </div>
+        </div>
+
+        <div class="form-group lastName-group">
+          <span class="form-group__prefix">{{'ACCOUNT.USER_LAST_NAME' | translate }}</span>
+          <mat-form-field appearance="fill" [hideRequiredMarker]="'auto'"
+            class="skinworld-customized account-form-field">
+            <input type="text" [placeholder]="'McGill'" matInput formControlName="lastName">
+          </mat-form-field>
+          <div class="invalid"
+            *ngIf="shippingAddressForm.controls['lastName'].invalid && shippingAddressForm.controls['lastName'].touched">
+            {{'ACCOUNT.USER_LAST_NAME_INVALID_MESSAGE' | translate }}
+          </div>
+        </div>
+
+        <div class="form-group address-group">
+          <span class="form-group__prefix">{{'ACCOUNT.ADDRESS_TITLE' | translate }}</span>
+          <mat-form-field appearance="fill" [hideRequiredMarker]="'auto'"
+            class="skinworld-customized account-form-field address">
+            <input type="text" [placeholder]="'Banking Street 31'" matInput formControlName="address">
+          </mat-form-field>
+          <div class="invalid"
+            *ngIf="shippingAddressForm.controls['address'].invalid && shippingAddressForm.controls['address'].touched">
+            {{'ACCOUNT.ADDRESS_INVALID_MESSAGE' | translate }}
+          </div>
+        </div>
+
+        <div class="form-group city-group">
+          <span class="form-group__prefix">{{'ACCOUNT.CITY_TITLE' | translate }}</span>
+          <mat-form-field appearance="fill" [hideRequiredMarker]="'auto'"
+            class="skinworld-customized account-form-field city">
+            <input google-place [control]="shippingAddressForm.controls['city']" [placeholder]="'Los Angeles'"
+              (selectionChange)="fillInAddress($event)" type="text" matInput formControlName="city">
+          </mat-form-field>
+          <div class="invalid"
+            *ngIf="shippingAddressForm.controls['city'].hasError('required') && shippingAddressForm.controls['city'].touched">
+            {{'ACCOUNT.CITY_INVALID_MESSAGE' | translate }}
+          </div>
+          <div class="invalid" *ngIf="shippingAddressForm.controls['city'].hasError('incorrect')">
+            {{'ACCOUNT.CITY_INCORRECT' | translate }}
+          </div>
+
+        </div>
+
+        <div class="form-group postal-group">
+          <span class="form-group__prefix">{{'ACCOUNT.POSTE_CODE' | translate }}</span>
+          <mat-form-field appearance="fill" [hideRequiredMarker]="'auto'"
+            class="skinworld-customized account-form-field code">
+            <input type="text" matInput [placeholder]="'568546'" formControlName="postalCode">
+          </mat-form-field>
+          <div class="invalid"
+            *ngIf="shippingAddressForm.controls['postalCode'].invalid && shippingAddressForm.controls['postalCode'].touched">
+            {{'ACCOUNT.POSTE_CODE_INVALID_MESSAGE' | translate }}
+          </div>
+        </div>
+
+        <div class="form-group country-group">
+          <span class="form-group__prefix">{{'ACCOUNT.COUNTRY_TITLE' | translate }}</span>
+          <mat-form-field appearance="fill" [hideRequiredMarker]="'auto'"
+            class="skinworld-customized account-form-field country">
+            <mat-select #countriesSelect formControlName="country" (openedChange)="openedChange($event)"
+              [placeholder]="'United States'">
+              <mat-option *ngFor="let country of (shippingCountries$ | async)" [value]="country.code">
+                {{country.name}} ({{country.code}})
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <div class="invalid"
+            *ngIf="shippingAddressForm.controls['country'].invalid && shippingAddressForm.controls['country'].touched">
+            {{'ACCOUNT.COUNTRY_INVALID_MESSAGE' | translate }}
+          </div>
+        </div>
+
+        <!-- <ng-template #tabletView>
+                <div class="flex-row form-row">
+                  <div class="form-group country-group">
+                    <mat-form-field class="skinworld-customized account-form-field country">
+                      <span matPrefix>{{'ACCOUNT.COUNTRY_TITLE' | translate }} &nbsp;</span>
+                      <span *ngIf="!(isMobile$ | async) && !(isTablet$ | async)"
+                        matSuffix>{{'ACCOUNT.COUNTRY_SELECT' | translate }}</span>
+                      <mat-select formControlName="country">
+                        <mat-option *ngFor="let country of ((shippingCountries$ | async) | keyvalue)" [value]="country.value">
+                          {{country.value}} ({{country.key}})
+                        </mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                    <div class="invalid"
+                      *ngIf="shippingAddressForm.controls['country'].invalid && shippingAddressForm.controls['country'].touched">
+                      {{'ACCOUNT.COUNTRY_INVALID_MESSAGE' | translate }}
+                    </div>
+                  </div>
+
+                  <div class="form-group province-group">
+                    <mat-form-field class="skinworld-customized account-form-field">
+                      <span matPrefix>{{'ACCOUNT.STATE_TITLE' | translate }} &nbsp;</span>
+                      <input type="text" matInput formControlName="province">
+                    </mat-form-field>
+                    <div class="invalid"
+                      *ngIf="shippingAddressForm.controls['province'].invalid && shippingAddressForm.controls['province'].touched">
+                      {{'ACCOUNT.STATE_INVALID_MESSAGE' | translate }}
+                    </div>
+                  </div>
+
+                  <div class="form-group city-group">
+                    <mat-form-field class="skinworld-customized account-form-field city">
+                      <span matPrefix>{{'ACCOUNT.CITY_TITLE' | translate }} &nbsp;</span>
+                      <input google-place (selectionChange)="fillInAddress($event)" type="text" matInput formControlName="city">
+                    </mat-form-field>
+                    <div class="invalid"
+                      *ngIf="shippingAddressForm.controls['city'].invalid && shippingAddressForm.controls['city'].touched">
+                      {{'ACCOUNT.CITY_INVALID_MESSAGE' | translate }}
+                    </div>
+                  </div>
+                </div>
+              </ng-template> -->
+
+        <div class="form-group">
+          <span class="form-group__prefix">{{'ACCOUNT.STATE_TITLE' | translate }}</span>
+          <mat-form-field appearance="fill" [hideRequiredMarker]="'auto'"
+            class="skinworld-customized account-form-field">
+            <input type="text" matInput [placeholder]="'California'" formControlName="province">
+          </mat-form-field>
+          <div class="invalid"
+            *ngIf="shippingAddressForm.controls['province'].invalid && shippingAddressForm.controls['province'].touched">
+            {{'ACCOUNT.STATE_INVALID_MESSAGE' | translate }}
+          </div>
+        </div>
+
+        <div class="form-group phone-group">
+          <span class="form-group__prefix">{{'ACCOUNT.USER_PHONE' | translate }}</span>
+          <mat-form-field appearance="fill" [hideRequiredMarker]="'auto'"
+            class="skinworld-customized account-form-field">
+            <input type="text" matInput [placeholder]="'5865896584'" inputmode="numeric" formControlName="phoneNumber">
+          </mat-form-field>
+          <div class="invalid"
+            *ngIf="shippingAddressForm.controls['phoneNumber'].invalid && shippingAddressForm.controls['phoneNumber'].touched">
+            {{'ACCOUNT.USER_PHONE_INVALID_MESSAGE' | translate }}
+          </div>
+        </div>
+
+      </div>
+    </form>
+
+    <div class="flex-row flex-row__center btn-save">
+      <button mat-button class="btn-large btn-linear" [ngClass]="{'btn-linear': shippingAddressForm.valid}"
+        [disabled]="shippingAddressForm.invalid" (click)="updateShippingAddress()">
+        {{'ACCOUNT.SAVE_INFO' | translate }}
+      </button>
+    </div>
+  </section>
+</div>

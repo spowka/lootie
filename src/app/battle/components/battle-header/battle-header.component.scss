@@ -1,0 +1,125 @@
+@import '../../../../styles/partials/index.scss';
+@import '../../../../styles/concepts.scss';
+@import '../../../../styles/variables.scss';
+@import '../../../../styles/register.scss';
+
+@include register-component {
+  color: from-theme(text-color);
+
+  .bh {
+    &__provably {
+      border-color: from-theme(dark-border-color);
+    }
+
+    &__tab {
+      background: from-theme(battle-header-link);
+      border-color: from-theme(battle-header-divider);
+
+      .icon {
+        border-color: from-theme(battle-header-divider);
+      }
+    }
+  }
+}
+
+.bh {
+  &__tab {
+    max-width: 600px;
+    width: calc(100% - 250px);
+    height: 35px;
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 4px;
+
+    .icon {
+      width: 35px;
+      min-width: 35px;
+      height: 100%;
+      padding: 0;
+      margin: 0;
+      border-radius: 0;
+      border-right-style: solid;
+      border-right-width: 1px;
+      background-image: url('/assets/images/icons/copy-battle.svg');
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: 16px;
+      border-radius: 4px 0 0 4px;
+      box-shadow: none;
+
+      &[disabled] {
+        background-color: transparent;
+      }
+    }
+
+    .link {
+      width: calc(100% - 35px);
+      height: 100%;
+      font-size: 16px;
+      font-style: italic;
+      font-weight: 300;
+      letter-spacing: 0.4px;
+      opacity: 0.5;
+      padding: 0 10px;
+
+      span {
+        width: 100%;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+    }
+  }
+
+  &__provably {
+    font-size: 12px;
+    line-height: 1;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    cursor: pointer;
+
+    span {
+      border-bottom: 1px solid;
+    }
+
+    .icon {
+      @extend %bg-image;
+      width: 35px;
+      height: 35px;
+    }
+  }
+
+}
+
+@media(max-width: 767px) {
+  .bh {
+    &__provably {
+      flex-direction: column;
+      justify-content: flex-start;
+      text-align: center;
+      width: 55px;
+      height: 100%;
+      border-left: 1px solid;
+
+      .icon {
+        width: 25px;
+        height: 25px;
+      }
+
+      span {
+        font-size: 8px;
+        letter-spacing: 0.3px;
+        border-bottom: 0;
+      }
+    }
+
+    &__tab {
+      width: calc(100% - 125px);
+      height: 30px;
+
+      .link {
+        font-size: 12px;
+      }
+    }
+  }
+}

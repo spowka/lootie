@@ -1,0 +1,10 @@
+<section class="variants__container">
+  <a href="#" class="variants__link">In Amazon</a>
+
+  <div class="variants__items-list">
+    <div class="variants__item" *ngFor="let variant of variants" [ngClass]="{'disabled': !variant.isHave}">
+      <span class="variants__title">{{ variant.size }}</span>
+      <span class="variants__price">{{ variant.price ? '$' + (variant.price | number:'1.2-2' ) : '-' }}</span>
+    </div>
+  </div>
+</section>

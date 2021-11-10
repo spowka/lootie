@@ -1,0 +1,105 @@
+@import '../../../../styles/variables.scss';
+
+.inventory-title {
+  font-size: 18px;
+  margin-bottom: 15px;
+
+  span {
+    margin-left: 10px;
+    color: $colorSecondaryRed;
+  }
+}
+
+.inventory-subtitle {
+  line-height: 1.29;
+  opacity: 0.4;
+}
+
+.cases-list {
+  width: 100%;
+  max-height: 450px;
+  overflow: auto;
+
+  .case-item {
+    width: calc(100%/6 - 20px);
+    min-width: 160px;
+    max-width: 160px;
+    margin: 10px 5px;
+  }
+}
+
+@media(max-width: 767px) {
+  .inventory {
+
+    &-header {
+      justify-content: center;
+    }
+
+    &-title {
+      width: 100%;
+      text-align: center;
+
+      span {
+        margin-left: 0px;
+        display: block;
+      }
+    }
+
+    &-subtitle {
+      width: 100%;
+      text-align: center;
+      margin-bottom: 10px;
+    }
+  }
+
+  .buttons-group {
+    position: relative;
+    justify-content: center;
+  }
+
+  .loading-spinner {
+    position: absolute;
+    left: -40px;
+  }
+
+  .cases-list {
+    .case-item {
+      width: calc(100%/3 - 10px);
+      margin: 5px;
+      min-width: 0;
+    }
+  }
+}
+
+@media(min-width: 568px) and (max-width: 767px) and (orientation: landscape) {
+  .flex-row__btw {
+    .btn-large {
+      min-width: 137px;
+      margin-bottom: 15px;
+    }
+  }
+
+  .cases-list {
+    max-height: 127px;
+  }
+}
+
+@media (min-width: 813px) {
+  .dialog-wrapper {
+    .mat-spinner {
+      width: 25px !important;
+      height: 25px !important;
+    }
+
+    mat-spinner.skinworld-customized ::ng-deep {
+      svg {
+        width: 25px !important;
+        height: 25px !important;
+      }
+    }
+  }
+
+  .loading-spinner {
+    margin: 0 10px 0 40px;
+  }
+}

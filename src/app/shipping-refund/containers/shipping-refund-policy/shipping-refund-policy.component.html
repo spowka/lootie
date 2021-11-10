@@ -1,0 +1,24 @@
+<div *ngIf="isMobile$ | async" class="slider-container">
+  <app-cases-slider></app-cases-slider>
+</div>
+
+<div id="shipping-refund" class="page-container">
+  <div class="page-title center m-b-50">
+    {{'SHIPPING_REFOUND_POLICY.PAGE_TITLE' | translate }}
+  </div>
+
+  <div class="sfp">
+    <div class="sfp-content">
+      <hr>
+      <div class="p-lg">
+        <div class="sfp-content__text inline">
+          <span [innerHTML]="'SHIPPING_REFOUND_POLICY.INFORMATION_1' | translate">{{'SHIPPING_REFOUND_POLICY.EFFECTIVE_DATA' | translate }}</span>
+        </div>
+        <a class="link inline" href="mailto:support@lootie.com" target="_top">support@lootie.com.</a>
+        <div class="sfp-content__text inline" [innerHTML]="'SHIPPING_REFOUND_POLICY.INFORMATION_2' | translate">
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

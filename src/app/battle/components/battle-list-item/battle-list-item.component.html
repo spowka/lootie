@@ -1,0 +1,62 @@
+<td class="bl__rounds">
+  <div class="bl__label" *ngIf="isMobile$ | async">Rounds</div>
+  <div class="active-round" *ngIf="!(isMobile$ | async)">
+    <ng-container>
+      <div class="flex-row flex-row__center indicator-totalRounds"
+        [class.running]="battle.status === battleStatuses.running">
+        <span [ngStyle]="{'font-size': battle.currentRound > 9 ? '18px' : '22px'}">{{ battle.totalRounds }}</span>
+      </div>
+    </ng-container>
+
+    <p *ngIf="battle.status === battleStatuses.running">{{ battle.status }}</p>
+  </div>
+  <div *ngIf="isMobile$ | async">{{ battle.totalRounds }}</div>
+</td>
+
+<td class="bl__boxes" #boxesContainer>
+  <div class="bl__label" *ngIf="isMobile$ | async">Boxes scenario</div>
+  <div class="bl__running" *ngIf="(battle.status === battleStatuses.running) && (isMobile$ | async)">
+    {{ battle.status }}
+  </div>
+  <app-battle-case-slider>
+    <div class="boxes">
+      <ng-container *ngFor="let case of battle.cases; let i = index">
+        <div class="flex-col box-wrapper" [ngStyle]="{'color': colors[i]}">
+          <div class="box-image">
+            <img [src]="case.image">
+            <div class="box-count">{{ case.count }}</div>
+          </div>
+
+          <div class="box-label">{{ case.name }}</div>
+        </div>
+      </ng-container>
+    </div>
+  </app-battle-case-slider>
+</td>
+
+<td class="bl__cost">
+  <div class="bl__label" *ngIf="isMobile$ | async">Cost</div>
+  ${{ battle.price | number:'1.2-2' }}
+</td>
+
+<td class="bl__players">
+  <div class="bl__label" *ngIf="isMobile$ | async">{{ battle.userCount }} Players</div>
+  <div class="m-b-10" *ngIf="!(isMobile$ | async)">{{ battle.sessions.length }}/{{ battle.userCount }}</div>
+  <div class="flex-row flex-row__center">
+    <img *ngFor="let session of battle.sessions" [src]="session.profileImageUrl" alt="{{ session.username }}"
+      [matTooltip]="session.username" [ngClass]="{ 'winner': finished && battle?.winner?._id === session._id }" />
+  </div>
+</td>
+
+<td *ngIf="finished" class="bl__winning">
+  <div class="bl__label" *ngIf="isMobile$ | async"> {{'BATTLE.WINNING' | translate}}</div>
+  ${{ (battle.totalWinning || 0) | number:'1.2-2' }}
+</td>
+
+<td class="bl__watch">
+  <button mat-button class="btn-linear btn-medium"
+    [routerLink]="battle.status === battleStatuses.pending ? [ '/battle/pending', battle._id ] : [ '/battle/', battle._id ]">
+   <span class="btn-desktop">{{'BATTLE.WATCH_BATTLE' | translate}}</span> 
+   <span class="btn-tablet">WATCH</span> 
+  </button>
+</td>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="9px" height="11px" viewBox="0 0 9 11" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Triangle Copy 7</title>
+    <defs>
+        <linearGradient x1="0%" y1="16.5289256%" x2="100%" y2="83.4710744%" id="linearGradient-1">
+            <stop stop-color="#F48836" offset="0%"></stop>
+            <stop stop-color="#F4364C" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Unboxings-History-(Dark)-How-it-works" transform="translate(-167.000000, -1029.000000)" fill="url(#linearGradient-1)">
+            <path d="M171.926641,1030.69814 L176.535112,1038.23927 C176.679107,1038.4749 176.604824,1038.78265 176.369197,1038.92664 C176.290693,1038.97462 176.200474,1039 176.108472,1039 L166.891528,1039 C166.615386,1039 166.391528,1038.77614 166.391528,1038.5 C166.391528,1038.408 166.416913,1038.31778 166.464888,1038.23927 L171.073359,1030.69814 C171.217354,1030.46251 171.525098,1030.38823 171.760725,1030.53222 C171.828408,1030.57359 171.885279,1030.63046 171.926641,1030.69814 Z" id="Triangle-Copy-7" transform="translate(171.500000, 1034.500000) rotate(-270.000000) translate(-171.500000, -1034.500000) "></path>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,173 @@
+@import '../../../../styles/concepts.scss';
+@import '../../../../styles/partials/index.scss';
+
+@include register-component {
+  ::ng-deep {
+    .mat-select-value {
+      color: from-theme(color);
+    }
+
+    .mat-select-arrow {
+      color: from-theme(color);
+    }
+
+    .mat-checkbox-frame {
+      border-color: from-theme(color);
+      opacity: 0.4;
+    }
+  }
+
+  input.search-field {
+    color: from-theme(text-color);
+    background-image: from-theme(search-icon);
+    background-position-x: 7px;
+  }
+
+  .filters-wrap {
+    .createCase-tag {
+      border-color: from-theme(create-case-line);
+    }
+  }
+}
+
+.search-wrap {
+  .mat-icon {
+    font-size: 12px;
+    color: #5b6873;
+  }
+}
+
+.mobile-modal__toggle {
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+}
+
+.filters-wrap {
+  width: 100%;
+  padding-left: 7px;
+
+  .selected {
+    font-size: 12px;
+    text-transform: uppercase;
+
+    .mat-icon {
+      margin-right: 10px;
+    }
+
+    .check-img {
+      margin-right: 10px;
+    }
+
+    span {
+      opacity: 0.4;
+    }
+  }
+
+  .createCase-tag {
+    margin: 0 25px;
+    padding: 0 25px;
+    border-left: 1px solid;
+    border-right: 1px solid;
+  }
+
+  @media (max-width: 950px) and (min-width: 767px) {
+    .createCase-tag {
+      margin: 0 10px;
+      padding: 0;
+      padding-right: 10px;
+    }
+  }
+}
+
+:host {
+  ::ng-deep {
+
+    .filter-form-field {
+      font-size: 12px !important;
+
+      .mat-form-field-prefix {
+        @extend .l-md;
+        margin-right: 6px;
+        text-transform: uppercase;
+        opacity: 0.4;
+        border: none;
+        background: inherit;
+      }
+
+      &.box-type {
+        .mat-form-field-infix {
+          max-width: none;
+        }
+      }
+
+      .mat-form-field-infix {
+        border-top: none;
+        width: auto;
+
+        .mat-select-value {
+          text-transform: uppercase;
+          font-weight: 500;
+        }
+
+        .mat-select-arrow {
+          opacity: 0.4;
+        }
+      }
+    }
+
+    .mat-checkbox.skinworld-customized {
+      .mat-checkbox-label {
+        font-size: 12px !important;
+        text-transform: uppercase;
+      }
+    }
+  }
+}
+
+.mobile-modal__toggle {
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+}
+
+
+
+@media (max-width: 767px) {
+  :host {
+    ::ng-deep {
+      .filter-form-field {
+
+        .mat-form-field-infix {
+          margin-top: 7px;
+        }
+      }
+    }
+  }
+
+
+
+  .mobile-modal__toggle {
+    margin-left: 10px;
+  }
+
+  .search-wrap {
+    position: relative;
+
+    .mat-icon {
+      position: absolute;
+      top: 10px;
+      right: 0px;
+    }
+  }
+
+  .mat-select-panel {
+    max-height: 150px;
+  }
+}
+
+@media (max-width: 360px) {
+  .search-wrap {
+    width: 60%;
+  }
+}

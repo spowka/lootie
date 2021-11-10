@@ -1,0 +1,366 @@
+@import '../../../../styles/concepts.scss';
+@import '../../../../styles/variables.scss';
+@import '../../../../styles/register.scss';
+@import '../../../../styles/material-styles.scss';
+
+@include register-component {
+  .affiliates-progress {
+    background: from-theme(affiliates-progress-bar);
+  }
+
+  .mat-expansion-panel-header {
+    border-bottom-color: from-theme(border-color);
+  }
+}
+
+#affiliates {
+  max-width: 1180px;
+}
+
+.custom-input-container {
+  &.referral {
+    width: 560px;
+  }
+}
+
+.referral {
+  .btn-large.btn-linear {
+    height: 43px;
+    margin: 0px 6px;
+  }
+}
+
+.inviting {
+  align-items: flex-start;
+
+  &__email-wrap {
+    max-width: 620px;
+    margin-right: 50px;
+  }
+
+  &__copy-link-wrap {
+    max-width: 510px;
+  }
+}
+
+input.custom-input-field {
+  &.link {
+    width: 100%;
+  }
+}
+
+.item-popup {
+  span {
+    color: rgba($colorPrimaryWhite, 0.4);
+  }
+}
+
+.af-progress-wrapper {
+  width: 1060px;
+  position: relative;
+  margin: 0 auto;
+
+  .affiliates-progress {
+    width: 100%;
+    margin: 0 auto;
+    height: 60px;
+    background-repeat: no-repeat;
+    background-size: contain;
+  
+    &__achieved {
+      position: absolute;
+      width: 100%;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      height: 60px;
+      background-image: url('/assets/images/affiliates-achieved.png');
+      background-size: contain;
+      background-repeat: no-repeat;
+      transition: clip-path 2s;
+    }
+  }
+}
+
+.ref {
+  width: 1124px;
+}
+
+.affiliates-label {
+  margin-top: 20px;
+  
+
+  span {
+    line-height: 1.43;
+    opacity: 0.4;
+  }
+}
+
+.button-icon {
+  @extend %button-icon;
+  top: -2px;
+
+
+  &.twitter {
+    left: 1px;
+    width: 16.4px;
+    height: 12.8px;
+    background-position: center;
+  }
+
+  &.facebook {
+    left: -1px;
+    width: 8.9px;
+    height: 17.2px;
+    background-position: center;
+  }
+
+  &.discord {
+    left: 1px;
+    width: 19px;
+    height: 14px;
+    background-position: center;
+  }
+}
+
+.ref-stages-wrapper {
+  width: 100%;
+  margin-left: -5px;
+}
+
+.af-menu {
+  width: 100%;
+  padding: 20px 10px;
+  color: $colorPrimaryWhite;
+}
+
+.ref-stages {
+  max-width: 90px;
+  min-width: 90px;
+  z-index: 1050;
+
+  span {
+    @extend .p-md;
+    margin-top: 20px;
+  }
+
+  &.active,
+  &:hover {
+    button {
+      background: $colorPrimaryGradient;
+      color: $colorPrimaryWhite;
+      box-shadow: 0 0 60px 0 rgba(230, 116, 77, 0.8);
+    }
+  }
+}
+
+@media (min-width: 813px) and (max-width: 1366px) {
+  .inviting {
+    flex-direction: row;
+
+    &__email-wrap {
+      margin-right: 0;
+      width: 55%;
+    }
+
+    &__copy-link-wrap {
+      margin-right: 0;
+      width: 40%;
+    }
+  }
+
+  .mat-expansion-panel {
+    margin-bottom: 20px;
+
+    .mat-expansion-panel-header {
+      border-bottom: 1px solid;
+    }
+
+    ::ng-deep {
+      .mat-expansion-panel-body {
+        padding: 16px 24px;
+      }
+    }
+
+    .inviting__email-wrap {
+      .btn-large.btn-linear {
+        height: 41px;
+        min-width: 140px;
+      }
+
+      .custom-input-container {
+        width: 70%;
+      }
+
+      .custom-input-wrapper {
+        height: 45px;
+        padding: 12px 195px 13px 24px;
+      }
+    }
+
+    .inviting__copy-link-wrap {
+      .btn-large.btn-linear {
+        min-width: 110px;
+        height: 41px;
+        width: 110px;
+      }
+
+      .custom-input-wrapper {
+        height: 45px;
+        padding: 12px 133px 13px 24px;
+      }
+    }
+
+    .custom-input-container {
+      margin-right: 0;
+    }
+
+    .round-buttons-group {
+      width: 30%;
+
+      button {
+        min-width: 32px;
+        width: 37px;
+        height: 37px;
+        line-height: 39px;
+      }
+    }
+
+    .mat-expansion-panel-header-title {
+      display: block;
+      text-align: center;
+      margin: 0;
+      opacity: 0.8;
+      font-size: 16px;
+      font-weight: bold;
+      letter-spacing: 0.87px;
+
+      span {
+        opacity: 0.5;
+        font-weight: 500;
+      }
+    }
+  }
+}
+
+@media (min-width: 813px) and (max-width: 1024px) {
+  .mat-expansion-panel {
+
+    .inviting__email-wrap {
+      .btn-large.btn-linear {
+        height: 41px;
+        min-width: 146px;
+      }
+
+      .custom-input-wrapper {
+        height: 45px;
+        padding: 12px 125px 13px 24px;
+      }
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  .custom-input-container {
+    width: 100%;
+  }
+
+  input.custom-input-field {
+    flex-grow: 0;
+    min-width: 163px;
+  }
+
+  .custom-input-wrapper {
+    padding: 16px 25px;
+    min-width: 200px;
+  }
+
+  .inviting {
+    flex-direction: column;
+
+    .custom-input-field {
+      width: 100%;
+      padding: 0;
+    }
+
+    &__email-wrap {
+      width: 100%;
+      max-width: none;
+      margin-right: 0;
+    }
+
+    &__copy-link-wrap {
+      width: 100%;
+      max-width: none;
+
+      button {
+        margin-top: 20px;
+      }
+    }
+  }
+
+  .round-buttons-group {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 15px;
+    margin-left: 0;
+
+    button {
+      min-width: auto;
+      margin: 0;
+    }
+  }
+
+  .affiliates-label {
+    margin-bottom: 20px;
+  }
+
+  .ref-labels {
+    margin-top: 20px;
+
+    .affiliates-label {
+      text-align: center;
+    }
+  }
+}
+
+@media (min-width: 813px) and (max-width: 913px) {
+  .mat-expansion-panel {
+    .inviting__email-wrap {
+      .custom-input-wrapper {
+        min-width: 270px;
+
+        .custom-input-field {
+          font-size: 13px;
+          min-width: 58px;
+          width: 132px;
+        }
+      }
+
+      .round-buttons-group {
+        button {
+          min-width: 30px;
+          width: 30px;
+          height: 30px;
+          line-height: 33px;
+        }
+      }
+
+      .btn-large.btn-linear {
+        min-width: 130px;
+        padding: 15px 17px;
+      }
+    }
+
+    .inviting__copy-link-wrap {
+      .custom-input-wrapper {
+        min-width: 288px;
+
+        .custom-input-field {
+          min-width: 152px;
+        }
+      }
+    }
+  }
+}

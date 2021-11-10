@@ -1,0 +1,13 @@
+<div class="dialog-wrapper dialog-wrapper__light" #wrapper>
+  <button mat-dialog-close>
+    <mat-icon>close</mat-icon>
+  </button>
+
+  <div mat-dialog-title class="center">{{'GAME_RULES' | translate }}</div>
+
+  <mat-dialog-content class="flex-col flex-col__btw game-rules">
+    <span class="rule" *ngFor="let rule of gameRules">
+      {{ rule }}
+    </span>
+  </mat-dialog-content>
+</div>

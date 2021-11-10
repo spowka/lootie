@@ -1,0 +1,12 @@
+<div class="mobile-modal-content flex-col mat-mode" [ngSwitch]="showContent">
+  <app-mobile-logoff *ngSwitchCase="'logOff'" (changePage)="changePage($event)"></app-mobile-logoff>
+
+  <app-mobile-navigation *ngSwitchCase="'navigation'" (changePage)="changePage($event)"></app-mobile-navigation>
+
+  <app-mobile-login *ngSwitchCase="'logIn'" (changePage)="changePage($event)"></app-mobile-login>
+
+  <app-mobile-sign-up *ngSwitchCase="'signUp'" (changePage)="changePage($event)"></app-mobile-sign-up>
+
+  <app-mobile-forgot-password *ngSwitchCase="'resetPassword'" (changePage)="changePage($event)">
+  </app-mobile-forgot-password>
+</div>

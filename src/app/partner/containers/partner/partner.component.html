@@ -1,0 +1,65 @@
+<div class="slider-container" [ngClass]="{ 'slider-container-mobile': (currentUrl$ | async) !== '/'}">
+  <app-cases-slider></app-cases-slider>
+</div>
+
+<div id="partner" class="page-container partner">
+  <div class="page-title center m-b-10">
+    {{ 'PARTNER.TITLE' | translate }}
+  </div>
+
+  <div class="page-subtitle center m-b-30">
+    {{ 'PARTNER.SUBTITLE' | translate }}
+  </div>
+
+  <div class="flex-col partner__content">
+
+    <div class="partner__header">
+      <div class="flex-row go-back" (click)="goBack()">
+        <img class="go-back__icon" src="/assets/images/icons/back.svg"> <span>{{'DAILY_CASE.GO_BACK' | translate }}</span>
+      </div>
+
+      <div class="flex-row flex-row__center"></div>
+
+      <div class="flex-row flex-row__center"></div>
+    </div>
+
+    <div class="flex-col flex-col__center partner__actions">
+      <button mat-button class="btn-large btn-linear btn-proceed m-b-10">
+        <a [href]="'mailto:partner@lootie.com'">
+          <img class="email-image" [src]="'assets/images/icons/email.svg'">
+          partner@lootie.com
+        </a>
+      </button>
+
+      <span class="partner__subtitle">{{ 'PARTNER.CONTACT_EMAIL' | translate }}</span>
+    </div>
+
+  </div>
+
+  <div class="flex-col partner__stream-socials">
+    <div class="partner__item">
+      <div class="content-social-item youtube">
+        <span class="social-image"></span>
+        <p class="social-title">{{ 'PARTNER.YOUTUBE_TITLE' | translate }}</p>
+        <span class="social-subtitle">{{ 'PARTNER.YOUTUBE_SUBTITLE' | translate }}</span>
+      </div>
+    </div>
+
+    <div class="partner__item">
+      <div class="content-social-item tiktok">
+        <span class="social-image"></span>
+        <p class="social-title">{{ 'PARTNER.TIKTOK_TITLE' | translate }}</p>
+        <span class="social-subtitle">{{ 'PARTNER.TIKTOK_SUBTITLE' | translate }}</span>
+      </div>
+    </div>
+
+    <div class="partner__item">
+      <div class="content-social-item twitch">
+        <span class="social-image"></span>
+        <p class="social-title">{{ 'PARTNER.TWITCH_TITLE' | translate }}</p>
+        <span class="social-subtitle">{{ 'PARTNER.TWITCH_SUBTITLE' | translate }}</span>
+      </div>
+    </div>
+  </div>
+
+</div>

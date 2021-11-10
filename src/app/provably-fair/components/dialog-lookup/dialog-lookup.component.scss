@@ -1,0 +1,227 @@
+@import '../../../../styles/concepts.scss';
+@import '../../../../styles/variables.scss';
+@import '../../../../styles/partials/index.scss';
+
+@include register-component {
+  .dialog-wrapper {
+    background-color: from-theme(background-dialog);
+    color: from-theme(color);
+  }
+
+  .unboxings-content {
+    &:before {
+      border-bottom: 1px solid;
+    }
+  
+    &__user-avatar {
+      @extend %bg-image;
+      background-image: $colorPrimaryGradient;
+    }
+  
+    &__user-name {
+      @extend .p-lg;
+    }
+  }
+  
+  ::ng-deep {
+    .pf__form-field {
+      background-color: from-theme(box-items-background);
+      box-shadow: $shadow5;
+
+      .mat-form-field-infix {
+        .mat-input-element,
+        .mat-select-value-text {
+          color: from-theme(history-title-color) !important;
+        }
+      }
+    }
+  }
+  
+  .pf {
+    &__input-container {
+      &:before {
+        background-image: from-theme(dialog-lookup-after-background);
+      }
+    }
+  }
+  
+  .button-icon {
+    @extend %button-icon;
+  
+    &.copy {
+      background-image: url('/assets/images/icons/copy-white.svg');
+    }
+  }
+
+  .upgrade-chance-wrapper {
+    .upward {
+      color: $colorSecondaryRed;
+    }
+
+    .downward {
+      color: $colorSecondaryGreen;
+    }
+  }
+
+  .upgrade-images {
+    .image {
+      @extend %bg-image;
+      width: 100%;
+      height: 60px;
+    }
+  }
+}
+
+.unboxings-content {
+  position: relative;
+  margin-bottom: 25px;
+
+  &.padd {
+    margin: 0;
+    padding: 19px 0 27px;
+  }
+
+  &:before {
+    content: '';
+    display: inline-block;
+    position: absolute;
+    top: 100%;
+    width: 100%;
+    opacity: 0.1;
+  }
+
+  &__user-avatar {
+    width: 42px;
+    height: 42px;
+    margin-right: 13px;
+    border-radius: 4px;
+  }
+
+  &__date {
+    max-width: 147px;
+    text-align: right;
+    line-height: 1.43;
+    opacity: 0.4;
+  }
+}
+
+:host {
+  ::ng-deep {
+    .pf__form-field {
+      width: 413px;
+      min-width: 100%;
+      height: 51px;
+      border-radius: 27.5px;
+
+      .mat-form-field-wrapper {
+        padding: 0 25px;
+      }
+
+      .mat-form-field-prefix {
+        width: 135px;
+      }
+
+      .mat-form-field-infix {
+        padding: 1.4em 0 !important;
+        border-top: none;
+
+        .mat-input-element,
+        .mat-select-value-text {
+          font-weight: 500;
+        }
+      }
+    }
+  }
+}
+
+.pf {
+  &__input-container {
+    width: 100%;
+    position: relative;
+
+    button {
+      position: absolute;
+      top: 7px;
+      right: 3px;
+      display: none;
+    }
+
+    &:hover {
+      button {
+        display: block;
+      }
+    }
+
+    &:before {
+      content: '';
+      display: block;
+      position: absolute;
+      top: 5px;
+      bottom: 5px;
+      right: 10px;
+      width: 30%;
+      height: calc(100% - 20px);
+      filter: blur(10px);
+      pointer-events: none;
+      z-index: 10;
+    }
+  }
+}
+
+.button-icon {
+  position: relative;
+  top: -2px;
+  left: 1px;
+
+  &.copy {
+    width: 12px;
+    height: 16px;
+  }
+}
+
+.upgrade-wrapper {
+  padding: 20px 0;
+}
+
+.upgrade-divider {
+  margin: 0 10px;
+}
+
+.upgrade-images {
+  width: 120px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+
+  .image {
+    width: 100%;
+    height: 60px;
+
+    &.multiple {
+      width: calc(100%/3);
+      height: 40px;
+    }
+  }
+}
+
+@media(max-width: 479px) {
+  .upgrade-images {
+    width: 80px;
+  }
+}
+
+@media(min-width: 568px) and (max-width: 767px) and (orientation: landscape) {
+  .dialog-wrapper {
+    overflow: auto;
+    height: 300px;
+  }
+}
+
+@media(max-width: 767px) and (orientation: landscape) {
+  .dialog-wrapper {
+    button {
+      top: 10px;
+      right: 10px;
+    }
+  }
+}

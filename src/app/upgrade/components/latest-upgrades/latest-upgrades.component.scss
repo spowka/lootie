@@ -1,0 +1,221 @@
+@import '../../../../styles/partials/index.scss';
+@import '../../../../styles/concepts.scss';
+@import '../../../../styles/variables.scss';
+
+@include register-component {
+  .lu-container {
+    background: from-theme(background);
+  }
+
+  .lu {
+
+    &__item-label,
+    &__item-title {
+      color: from-theme(color);
+    }
+  }
+}
+
+.latest-upgrades-wrap {
+  width: 300px;
+  overflow: hidden;
+  z-index: 999;
+  position: fixed;
+  top: 80px;
+  bottom: 100px;
+  right: 30px;
+  padding-top: 30px;
+}
+
+.title {
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.mobile .title {
+  font-size: 18px;
+  opacity: 1;
+}
+
+.lu-list {
+  height: calc(100% - 30px);
+}
+
+.mobile .lu-list {
+  margin: 20px auto 0;
+}
+
+.lu-container {
+  width: 300px;
+  overflow-x: hidden;
+  border-radius: 4px;
+  box-shadow: $shadow5;
+  background: $colorPrimaryWhite;
+  margin-bottom: 12px;
+
+  .lu {
+    &__user {
+      width: 100%;
+      padding: 10.5px 15px;
+    }
+
+    &__user-avatar {
+      @extend %bg-image;
+      width: 25px;
+      height: 25px;
+      margin-right: 12px;
+      border-radius: 4px;
+      background-image: $colorPrimaryGradient;
+      cursor: pointer;
+    }
+
+    &__user-name {
+      font-size: 13.5px;
+    }
+
+    &__time {
+      @extend .p-sm;
+      opacity: 0.4;
+    }
+
+    &__items {
+      width: 100%;
+    }
+
+    &__item {
+      position: relative;
+      width: 150px;
+      height: 200px;
+      padding: 20px;
+
+      &:after {
+        content: '';
+        display: block;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0.25;
+        box-shadow: inset 0px -100px 100px -75px currentColor;
+        pointer-events: none;
+        z-index: 0;
+      }
+    }
+
+    &__item-images {
+      width: 100px;
+      height: 100px;
+    }
+
+    &__item-title {
+      @extend %text-elipsis;
+      width: 110px;
+      margin-bottom: 5px;
+      text-align: center;
+    }
+
+    &__item-label {
+      font-weight: 500;
+    }
+
+    &__item-image {
+      @extend %bg-image;
+      width: 100%;
+      height: 100%;
+
+      &.multiple {
+        width: calc(100% / 3);
+        height: calc(100% / 3);
+      }
+    }
+
+    &__item-bottom-border {
+      height: 2px;
+      background: currentColor;
+      position: absolute;
+      left: 0px;
+      bottom: 0px;
+      right: 0px;
+      transition: .1s all ease-in-out;
+      border-bottom-left-radius: 4px;
+      border-bottom-right-radius: 4px;
+    }
+
+    &__item-type {
+      @extend .l-md;
+      text-transform: uppercase;
+      color: currentColor;
+    }
+  }
+
+  hr {
+    margin: 0;
+    opacity: .1;
+  }
+}
+
+@media (min-width: 813px) and (max-width: 1024px) {
+  .latest-upgrades-wrap {
+    background: $colorPrimaryGray;
+    width: 0px;
+    overflow: hidden;
+    z-index: 1000;
+    position: fixed;
+    top: 120px;
+    bottom: 0;
+    right: -330px;
+    box-shadow: 5px 20px 40px 0 rgba($colorPrimaryBlack, 0.4);
+    transition: .1s all ease-in-out;
+    padding: 0;
+
+    &.opened {
+      width: 330px;
+      right: 0;
+      z-index: 998;
+    }
+  }
+
+  .latest-upgrades-container {
+    height: 100%;
+  }
+
+  .latest-upgrades-header {
+    width: 100%;
+    background: $colorPrimaryGray;
+    color: $colorPrimaryWhite;
+    padding: 30px;
+
+    &__title {
+      position: relative;
+      top: -2px;
+    }
+
+    &__subtitle {
+      margin-left: 15px;
+      text-transform: uppercase;
+      color: hexToRGBA($colorPrimaryWhite, .4);
+    }
+
+    &__close {
+      mat-icon {
+        width: 10px;
+      }
+
+      color: hexToRGBA($colorPrimaryWhite, .4);
+    }
+  }
+
+  .lu-list {
+    margin: auto;
+  }
+}
+
+@media (min-width: 813px) and (max-width: 1366px) {
+  .latest-upgrades-wrap {
+    top: 80px;
+    bottom: 100px;
+  }
+}

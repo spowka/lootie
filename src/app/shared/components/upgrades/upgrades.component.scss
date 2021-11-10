@@ -1,0 +1,55 @@
+@import '../../../../styles/concepts.scss';
+@import '../../../../styles/variables.scss';
+@import '../../../../styles/register.scss';
+
+#upgrades {
+  overflow: auto;
+  display: block;
+  max-height: 516px;
+}
+
+.lose-icon {
+  color: $colorSecondaryRed;
+}
+
+.win-icon {
+  color: $colorSecondaryGreen;
+}
+
+.empty-data {
+  text-align: center;
+  opacity: .4;
+}
+
+.upgrade-images {
+  width: 120px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+
+  .image {
+    @extend %bg-image;
+    width: 100%;
+    height: 40px;
+
+    &.multiple {
+      width: calc(100%/3);
+    }
+  }
+}
+
+@media (min-width: 813px) {
+  #upgrades {
+    .mat-spinner {
+      width: 25px !important;
+      height: 25px !important;
+    }
+
+    mat-spinner.skinworld-customized ::ng-deep {
+      svg {
+        width: 25px !important;
+        height: 25px !important;
+      }
+    }
+  }
+}

@@ -1,0 +1,29 @@
+<div class="flex-col flex-col__btw box-wrapper" (click)="selectItem()" [ngStyle]="{'color': color || '#8847ff'}"
+  [class.price-on-top]="priceOnTop">
+
+  <div *ngIf="isRemove" (click)="onRemove()" class="flex-col box-wrapper__remove">
+    <mat-icon>clear</mat-icon>
+  </div>
+
+  <div *ngIf="isSelected" class="flex-row flex-row__center box-wrapper__active">
+    <mat-icon class="check-icon">check</mat-icon>
+  </div>
+
+  <div *ngIf="priceOnTop" class="box-wrapper__price">${{ box.price | number:'1.2-2' }}</div>
+
+  <div class="box-wrapper__img" [ngStyle]="{'background-image': 'url(' + box.image + ')'}">
+  </div>
+
+  <div class="box-wrapper__title">{{ box.name }}</div>
+  <div *ngIf="!priceOnTop" class="box-wrapper__price">${{ box.price | number:'1.2-2' }}</div>
+  <div *ngIf="isMultiple" class="flex-row box-wrapper__count">
+    <div class="flex-row flex-row__center box-wrapper__count-button remove" (click)="onChangeCount(-1)">
+      <mat-icon>remove</mat-icon>
+    </div>
+    <input class="flex-row flex-row__center" type="number" [(ngModel)]="box.count" placeholder="1"
+      (ngModelChange)="onCustomChangeCount()">
+    <div class="flex-row flex-row__center box-wrapper__count-button add" (click)="onChangeCount(1)">
+      <mat-icon>add</mat-icon>
+    </div>
+  </div>
+</div>

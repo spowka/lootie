@@ -1,0 +1,135 @@
+<ng-container *ngIf="!(isMobile$ | async); else mobileView">
+  <table id="create-case-odds">
+    <thead>
+      <tr>
+        <th *ngFor="let header of headerItems">
+          {{ header | uppercase }}
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="odd-item" *ngFor="let item of items; let i = index">
+        <td class="flex-row flex-row__btw nowrap odd-item__category">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="17" fill="none" viewBox="0 0 16 17">
+            <path fill-rule="evenodd" [ngStyle]="{'stroke': item.color }" stroke-linecap="round"
+              stroke-linejoin="round" stroke-width="1.5"
+              d="M8.35 1.304l5.4 2.7c.46.228.75.696.75 1.208v6.433c0 .512-.29.98-.75 1.208l-5.4 2.7c-.38.19-.827.19-1.207 0l-5.4-2.7c-.459-.23-.747-.702-.743-1.215V5.212c0-.512.29-.98.75-1.208l5.4-2.7c.378-.188.822-.188 1.2 0z"
+              clip-rule="evenodd" />
+            <path [ngStyle]="{'stroke': item.color }" stroke-linecap="round" stroke-linejoin="round"
+              stroke-width="1.5" d="M1.216 4.483L7.75 7.75l6.534-3.267M7.75 15.688V7.75" />
+          </svg>
+          <div class="img" [ngStyle]="{'background-image': 'url(' + item.image + ')'}"></div>
+        </td>
+        <td [ngStyle]="{'color': item.color}">
+          <div class="odd-item__info">
+            <div class="odd-item__title">{{ item.name }}</div>
+            <div class="odd-item__type">{{ item.tag || item.type }}</div>
+          </div>
+        </td>
+        <td class="odd-item__price">${{ (item.value) | number:'1.2-2' }}</td>
+        <td class="odd-item__case-price">
+          +${{ ((itemsPrices[item._id]?.price) || 0) | number:'1.2-2' }}
+        </td>
+        <td class="odd-item__odds">
+          <div class="flex-row odds-wrapper">
+            <div class="flex-row flex-row__center remove" (click)="onChangeOdd(item._id, +odd.value - 1)">
+              <mat-icon>remove</mat-icon>
+            </div>
+            <input #odd
+              [disabled]="isLoading$ | async"
+              [value]="item.odd ? item.odd : 0"
+              (input)="onChangeOdd(item._id, odd.value)"
+              type="number"
+              min="0"
+              max="100"
+              step="any">
+            <div class="flex-row flex-row__center add" (click)="onChangeOdd(item._id, +odd.value + 1)">
+              <mat-icon>add</mat-icon>
+            </div>
+          </div>
+        </td>
+        <td *ngIf="(isLoading$ | async) && lastId === item._id; else deleteIcon" class="odd-item__loading m-b-30">
+          <mat-spinner mode="indeterminate" class="skinworld-customized"></mat-spinner>
+        </td>
+
+        <ng-template #deleteIcon>
+          <td class="odd-item__delete" (click)="onDeleteOdd(item._id, item.odd)">
+            <mat-icon *ngIf="!(isMobile$ | async); else mobileDelete">clear</mat-icon>
+            <ng-template #mobileDelete>
+              <mat-icon>close</mat-icon>
+            </ng-template>
+          </td>
+        </ng-template>
+
+      </tr>
+    </tbody>
+  </table>
+</ng-container>
+
+<ng-template #mobileView>
+  <table class="flex-col mobile" *ngFor="let item of items; let i = index">
+    <tr class="flex-row">
+      <td class="flex-row odd-item__category" [ngStyle]="{'color': item.color}">
+        <div class="header">Category:</div>
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="17" fill="none" viewBox="0 0 16 17">
+          <path fill-rule="evenodd" [ngStyle]="{'stroke': item.color }" stroke-linecap="round" stroke-linejoin="round"
+            stroke-width="1.5"
+            d="M8.35 1.304l5.4 2.7c.46.228.75.696.75 1.208v6.433c0 .512-.29.98-.75 1.208l-5.4 2.7c-.38.19-.827.19-1.207 0l-5.4-2.7c-.459-.23-.747-.702-.743-1.215V5.212c0-.512.29-.98.75-1.208l5.4-2.7c.378-.188.822-.188 1.2 0z"
+            clip-rule="evenodd" />
+          <path [ngStyle]="{'stroke': item.color }" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+            d="M1.216 4.483L7.75 7.75l6.534-3.267M7.75 15.688V7.75" />
+        </svg>
+        <div class="odd-item__title">{{ item.name }}</div>
+
+      </td>
+      <td class="flex-row odd-item__image">
+        <div class="header">IMAGE:</div>
+        <div class="img" [ngStyle]="{'background-image': 'url(' + item.image + ')'}"></div>
+      </td>
+    </tr>
+
+    <tr class="flex-row odd-item__item">
+      <div class="header">ITEM:</div>
+      <div class="odd-item__title">{{ item.name }}</div>
+    </tr>
+
+    <tr class="flex-row">
+      <td class="flex-row odd-item__item-price">
+        <div class="header">ITEM PRICE:</div>
+        <div>${{ (item.value) | number:'1.2-2' }}</div>
+      </td>
+      <td class="flex-row odd-item__box-price">
+        <div class="header">BOX PRICE:</div>
+        <div>+${{ ((itemsPrices[item._id]?.price) || 0) | number:'1.2-2' }}</div>
+      </td>
+    </tr>
+
+    <tr class="flex-col">
+      <div class="odds-title">ODDS</div>
+      <div class="flex-row odds-wrapper">
+        <div class="flex-row flex-row__center remove" (click)="onChangeOdd(item._id, +odd.value - 1)">
+          <mat-icon>remove</mat-icon>
+        </div>
+        <input #odd
+          [disabled]="isLoading$ | async"
+          [value]="item.odd ? item.odd : ''"
+          (input)="onChangeOdd(item._id, odd.value)"
+          type="number" step="any">
+        <div class="flex-row flex-row__center add" (click)="onChangeOdd(item._id, +odd.value + 1)">
+          <mat-icon>add</mat-icon>
+        </div>
+      </div>
+      <div *ngIf="(isLoading$ | async) && lastId === item._id; else deleteIcon" class="odd-item__loading m-b-30">
+        <mat-spinner mode="indeterminate" class="skinworld-customized"></mat-spinner>
+      </div>
+
+      <ng-template #deleteIcon>
+        <button [ngClass]="(theme$ |async) === 'dark'? 'remove-btn-dark' : 'remove-btn-light'"
+          class="btn-larg btn-liner" (click)="onDeleteOdd(item._id, item.odd)">REMOVE</button>
+      </ng-template>
+
+    </tr>
+  </table>
+
+
+</ng-template>

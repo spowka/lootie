@@ -1,0 +1,255 @@
+<div *ngIf="isMobile$ | async" [ngClass]="{ 'slider-container-mobile': (currentUrl$ | async) !== '/' }" class="slider-container">
+  <app-cases-slider></app-cases-slider>
+</div>
+
+<div id="provably-fair" class="page-container">
+  <button mat-button class="btn-medium btn-linear btn-back" *ngIf="(fromURL$ | async)" (click)="goBack()">
+    <mat-icon class="skinworld-customized">chevron_left</mat-icon>
+    <ng-container *ngIf="!(isMobile$ | async)">{{'PROVABLY_FAIR.BACK' | translate }}</ng-container>
+  </button>
+
+  <div *ngIf="(isMobile$ | async) || (isDesktop$ | async)" class="page-title center m-b-10">
+    {{'PROVABLY_FAIR.PAGE_TITLE' | translate }}
+  </div>
+
+  <div class="page-subtitle center m-b-20">
+    {{'PROVABLY_FAIR.PAGE_SUB_TITLE' | translate }}
+  </div>
+
+  <section *ngIf="(isMobile$ | async) || (isDesktop$ | async); else viewTablet" class="current">
+    <div class="section-title">
+      <span>{{'PROVABLY_FAIR.CURRENT_SEEDS' | translate }}</span>
+    </div>
+
+    <div class="m-b-20">
+      <div class="flex-row pf-input-container">
+        <mat-form-field class="skinworld-customized pf__form-field">
+          <span matPrefix>{{'PROVABLY_FAIR.CLIENT_SEED' | translate }} &nbsp;</span>
+          <input type="text" matInput [formControl]="currentClientSeedControl">
+        </mat-form-field>
+        <button *ngIf="!(isMobile$ | async)" mat-button class="btn-medium btn-linear" (click)="changeClientSeed()"
+          [disabled]="currentClientSeedControl.invalid">
+          {{'PROVABLY_FAIR.UPDATE' | translate }}
+        </button>
+      </div>
+      <ng-container *ngIf="(serverSeed$ | async) as serverSeed">
+        <div class="flex-row pf-input-container" *ngFor="let dice of serverSeed">
+          <mat-form-field class="skinworld-customized pf__form-field">
+            <span matPrefix>{{'PROVABLY_FAIR.SERVER_SEED_HASHED' | translate }} &nbsp;</span>
+            <input type="text" matInput readonly [value]="dice.seed">
+          </mat-form-field>
+          <button mat-button class="btn-medium btn-linear" (click)="changeServerSeed(dice.id)">
+            {{'PROVABLY_FAIR.CHANGE' | translate }}
+          </button>
+        </div>
+        <ng-container *ngIf="!serverSeed.length">
+          <div class="flex-row pf-input-container">
+            <mat-form-field class="skinworld-customized pf__form-field">
+              <span matPrefix>{{'PROVABLY_FAIR.SERVER_SEED_HASHED' | translate }} &nbsp;</span>
+              <input type="text" matInput readonly value="Not Available (N/A)">
+            </mat-form-field>
+          </div>
+        </ng-container>
+      </ng-container>
+      <div *ngIf="isMobile$ | async" class="flex-row flex-row__center pf-update-seed">
+        <button mat-button class="btn-large btn-linear" (click)="changeClientSeed()"
+          [disabled]="currentClientSeedControl.invalid">
+          {{'PROVABLY_FAIR.CHANGE_SEED' | translate }}
+        </button>
+      </div>
+    </div>
+
+    <div class="flex-row flex-row__btw m-b-40">
+      <div class="flex-col flex-col__start current-seeds">
+        <div class="provably-label__bold">
+          {{'PROVABLY_FAIR.BET_LOOKUP' | translate }}
+        </div>
+        <div class="provably-label">
+          <span>
+            {{'PROVABLY_FAIR.HINT' | translate }}
+          </span>
+        </div>
+      </div>
+      <div class="flex-row flex-row__end current-seeds">
+        <div class="custom-input-wrapper">
+          <input type="number" maxlength="50" placeholder="Insert ID..." class="custom-input-field"
+            [formControl]="lookupId" (keypress)="keyCheck($event)">
+        </div>
+        <button mat-button class="btn-large btn-black" [disabled]="lookupId.invalid" (click)="lookup()">
+          <span *ngIf="!(loading$ | async).provablyFair; else loading">{{'PROVABLY_FAIR.LOOKUP' | translate }}</span>
+          <ng-template #loading>
+            <div class="flex-row flex-row__center">
+              <mat-spinner mode="indeterminate" class="skinworld-customized"></mat-spinner>
+            </div>
+          </ng-template>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <ng-template #viewTablet>
+    <section class="current">
+      <div class="section-title">
+        <span>{{'PROVABLY_FAIR.CURRENT_SEEDS' | translate }}</span>
+      </div>
+
+      <div class="m-b-20">
+        <div class="flex-row pf-input-container">
+          <mat-form-field class="skinworld-customized pf__form-field">
+            <span matPrefix>{{'PROVABLY_FAIR.CLIENT_SEED' | translate }} &nbsp;</span>
+            <input type="text" matInput [formControl]="currentClientSeedControl">
+          </mat-form-field>
+          <button *ngIf="!(isMobile$ | async)" mat-button class="btn-medium btn-linear" (click)="changeClientSeed()"
+            [disabled]="currentClientSeedControl.invalid">
+            {{'PROVABLY_FAIR.UPDATE' | translate }}
+          </button>
+        </div>
+        <ng-container *ngIf="(serverSeed$ | async) as serverSeed">
+          <div class="flex-row pf-input-container" *ngFor="let dice of serverSeed">
+            <mat-form-field class="skinworld-customized pf__form-field">
+              <span matPrefix>{{'PROVABLY_FAIR.SERVER_SEED_HASHED' | translate }} &nbsp;</span>
+              <input type="text" matInput readonly [value]="dice.seed">
+            </mat-form-field>
+            <button mat-button class="btn-medium btn-linear" (click)="changeServerSeed(dice.id)">
+              {{'PROVABLY_FAIR.CHANGE' | translate }}
+            </button>
+          </div>
+          <ng-container *ngIf="!serverSeed.length">
+            <div class="flex-row pf-input-container">
+              <mat-form-field class="skinworld-customized pf__form-field">
+                <span matPrefix>{{'PROVABLY_FAIR.SERVER_SEED_HASHED' | translate }} &nbsp;</span>
+                <input type="text" matInput readonly value="Not Available (N/A)">
+              </mat-form-field>
+            </div>
+          </ng-container>
+        </ng-container>
+        <div *ngIf="isMobile$ | async" class="flex-row flex-row__center pf-update-seed">
+          <button mat-button class="btn-large btn-linear" (click)="changeClientSeed()"
+            [disabled]="currentClientSeedControl.invalid">
+            {{'PROVABLY_FAIR.CHANGE_SEED' | translate }}
+          </button>
+        </div>
+      </div>
+
+      <div class="flex-row flex-row__btw m-b-40">
+        <div class="flex-col flex-col__start current-seeds">
+          <div class="provably-label__bold">
+            {{'PROVABLY_FAIR.BET_LOOKUP' | translate }}
+          </div>
+          <div class="provably-label">
+            <span>
+              {{'PROVABLY_FAIR.HINT' | translate }}
+            </span>
+          </div>
+        </div>
+        <div class="flex-row flex-row__end current-seeds">
+          <div class="custom-input-wrapper">
+            <input type="number" maxlength="50" placeholder="Insert ID..." class="custom-input-field"
+              [formControl]="lookupId" (keypress)="keyCheck($event)">
+          </div>
+          <button mat-button class="btn-large btn-black" [disabled]="lookupId.invalid" (click)="lookup()">
+            <span *ngIf="!(loading$ | async).provablyFair; else loading">{{'PROVABLY_FAIR.LOOKUP' | translate }}</span>
+            <ng-template #loading>
+              <div class="flex-row flex-row__center">
+                <mat-spinner mode="indeterminate" class="skinworld-customized"></mat-spinner>
+              </div>
+            </ng-template>
+          </button>
+        </div>
+      </div>
+      <section class="previous">
+        <div class="section-title">
+          <span>{{'PROVABLY_FAIR.PREVIOUS_SEEDS' | translate }}</span>
+        </div>
+
+        <mat-form-field class="skinworld-customized pf__form-field">
+          <span matPrefix>{{'PROVABLY_FAIR.CLIENT_SEED' | translate }} &nbsp;</span>
+          <input type="text" matInput readonly [value]="(previousSeeds$ | async)?.clientSeed || 'Not Available (N/A)'">
+        </mat-form-field>
+
+        <ng-container *ngFor="let seed of (previousSeeds$ | async)?.serverSeed; let i = index">
+          <div class="flex-row flex-row__btw pf-input-container">
+            <mat-form-field class="skinworld-customized pf__form-field">
+              <span matPrefix>{{'PROVABLY_FAIR.SERVER_SEED' | translate }} &nbsp;</span>
+              <input type="text" matInput readonly [value]="seed" #previousServerSeed>
+            </mat-form-field>
+            <button mat-button class="btn-medium btn-linear" [ngxClipboard]="previousServerSeed"
+              (cbOnSuccess)="onCopySuccess()" (cbOnError)="onCopyFailure()">
+              {{'PROVABLY_FAIR.COPY' | translate }}
+            </button>
+          </div>
+          <mat-form-field *ngIf="(previousSeeds$ | async)?.serverSeedHashed as seedHashed"
+            class="skinworld-customized pf__form-field">
+            <span matPrefix>{{'PROVABLY_FAIR.SERVER_SEED_HASHED' | translate }} &nbsp;</span>
+            <input type="text" matInput readonly [value]="seedHashed[i]">
+          </mat-form-field>
+        </ng-container>
+
+        <ng-container *ngIf="!(previousSeeds$ | async)">
+          <mat-form-field class="skinworld-customized pf__form-field">
+            <span matPrefix>{{'PROVABLY_FAIR.SERVER_SEED' | translate }} &nbsp;</span>
+            <input type="text" matInput readonly value="Not Available (N/A)">
+          </mat-form-field>
+
+          <mat-form-field class="skinworld-customized pf__form-field">
+            <span matPrefix>{{'PROVABLY_FAIR.SERVER_SEED_HASHED' | translate }} &nbsp;</span>
+            <input type="text" matInput readonly value="Not Available (N/A)">
+          </mat-form-field>
+        </ng-container>
+      </section>
+    </section>
+  </ng-template>
+
+  <section *ngIf="(isMobile$ | async) || (isDesktop$ | async)" class="previous">
+    <div class="section-title">
+      <span>{{'PROVABLY_FAIR.PREVIOUS_SEEDS' | translate }}</span>
+    </div>
+
+    <mat-form-field class="skinworld-customized pf__form-field">
+      <span matPrefix>{{'PROVABLY_FAIR.CLIENT_SEED' | translate }} &nbsp;</span>
+      <input type="text" matInput readonly [value]="(previousSeeds$ | async)?.clientSeed || 'Not Available (N/A)'">
+    </mat-form-field>
+
+    <ng-container *ngFor="let seed of (previousSeeds$ | async)?.serverSeed; let i = index">
+      <div class="flex-row flex-row__btw pf-input-container">
+        <mat-form-field class="skinworld-customized pf__form-field">
+          <span matPrefix>{{'PROVABLY_FAIR.SERVER_SEED' | translate }} &nbsp;</span>
+          <input type="text" matInput readonly [value]="seed" #previousServerSeed>
+        </mat-form-field>
+        <button mat-button class="btn-medium btn-linear" [ngxClipboard]="previousServerSeed"
+          (cbOnSuccess)="onCopySuccess()" (cbOnError)="onCopyFailure()">
+          {{'PROVABLY_FAIR.COPY' | translate }}
+        </button>
+      </div>
+      <mat-form-field *ngIf="(previousSeeds$ | async)?.serverSeedHashed as seedHashed"
+        class="skinworld-customized pf__form-field">
+        <span matPrefix>{{'PROVABLY_FAIR.SERVER_SEED_HASHED' | translate }} &nbsp;</span>
+        <input type="text" matInput readonly [value]="seedHashed[i]">
+      </mat-form-field>
+    </ng-container>
+
+    <ng-container *ngIf="!(previousSeeds$ | async)">
+      <mat-form-field class="skinworld-customized pf__form-field">
+        <span matPrefix>{{'PROVABLY_FAIR.SERVER_SEED' | translate }} &nbsp;</span>
+        <input type="text" matInput readonly value="Not Available (N/A)">
+      </mat-form-field>
+
+      <mat-form-field class="skinworld-customized pf__form-field">
+        <span matPrefix>{{'PROVABLY_FAIR.SERVER_SEED_HASHED' | translate }} &nbsp;</span>
+        <input type="text" matInput readonly value="Not Available (N/A)">
+      </mat-form-field>
+    </ng-container>
+  </section>
+
+  <section class="account-history">
+    <div class="section-title">
+      <span>{{'PROVABLY_FAIR.HISTORY' | translate }}</span>
+    </div>
+    <div class="navbar-wrap">
+      <app-navbar [nav]="historyNav" [uppercase]="false"></app-navbar>
+    </div>
+    <div class="table-wrapper">
+      <router-outlet></router-outlet>
+    </div>
+  </section>
+</div>

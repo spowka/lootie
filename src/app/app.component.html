@@ -1,0 +1,32 @@
+<app-loader-routing-bar></app-loader-routing-bar>
+
+<div
+  class="app-wrapper"
+  [class.is-mobile]="isMobile$ | async"
+  [class.is-tablet]="isTablet$ | async"
+  [class.is-laptop]="isLaptop$ | async"
+  [class.is-desktop]="isDesktop$ | async"
+  #appWrapper
+>
+  <app-header *ngIf="!isUnavailable" class="hide-mobile hide-tablet"></app-header>
+  <app-mobile-header *ngIf="!isUnavailable" class="hide-laptop hide-desktop"></app-mobile-header>
+
+  <main class="theme"
+    [ngClass]="{'full-height': isUnavailable}"
+    [class.theme-mobile]="(isMobile$ | async) || (isTablet$ | async)"
+    #mainWrapper>
+    <div class="theme-container"
+      [class.opened]="(isChatOpened$ | async) && !(isTablet$ | async) && !(isMobile$ | async)">
+      <div class="component-container">
+        <div *ngIf="(isMobile$ | async) && !isUnavailable" class="giveaway">
+          <button mat-button class="btn-larg giveaway-button" [routerLink]="['/giveaway']">
+            <span>{{'GIVEAWAY' | translate }}</span>
+          </button>
+        </div>
+        <router-outlet (activate)="onActivate()"></router-outlet>
+      </div>
+      <app-footer *ngIf="!isUnavailable"></app-footer>
+    </div>
+  </main>
+
+</div>

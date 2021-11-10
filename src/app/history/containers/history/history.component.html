@@ -1,0 +1,45 @@
+<div id="history" class="page-container">
+  <div class="page-title center m-b-10">
+    {{'HISTORY.PAGE_TITLE' | translate }}
+  </div>
+
+  <div class="page-subtitle center m-b-40">
+    {{'HISTORY.PAGE_SUB_TITLE' | translate }}
+  </div>
+
+  <section class="history__container">
+    <div class="flex-row flex-row__btw m-b-20 actions">
+      <div class="flex-row go-back" (click)="goBack()">
+        <img class="back-icon" src="assets/images/icons/back.svg">
+        <span>{{'DAILY_CASE.GO_BACK' | translate }}</span>
+      </div>
+
+      <div class="flex-row flex-row__center"></div>
+
+      <div class="flex-row flex-row__center"></div>
+    </div>
+
+    <div class="history__content">
+      <div class="navbar-wrap">
+        <app-navbar
+          *ngIf="!(isMobile$ | async); else mobileNavbar"
+          [nav]="historyNav"
+          [uppercase]="false">
+        </app-navbar>
+
+        <ng-template #mobileNavbar>
+          <mat-form-field appearance="fill" [hideRequiredMarker]="'auto'" class="">
+            <mat-select [ngModel]="historyRoute" (selectionChange)="routeTo($event)">
+              <mat-option *ngFor="let nav of historyNav" [value]="(nav.url)">
+                {{ nav.title | translate }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </ng-template>
+      </div>
+      <div>
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </section>
+</div>

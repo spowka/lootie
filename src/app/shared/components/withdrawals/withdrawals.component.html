@@ -1,0 +1,23 @@
+<div id="withdrawals" infiniteScroll infiniteScrollDistance="0" [scrollWindow]="false" (scrolled)="onScroll()">
+  <table class="stripped">
+    <tbody>
+      <tr *ngFor="let withdrawal of withdrawals">
+        <td>#{{ withdrawal._id }}</td>
+        <td>{{ withdrawal.withdrawalType | replace: '_':' ' | titlecase }}</td>
+        <td>
+          <ng-container *ngFor="let item of withdrawal.items">
+            {{ item.name }},<br>
+          </ng-container>
+        </td>
+        <td>{{ withdrawal.sentTimestamp | date: 'h:mm a d MMMM y' }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div *ngIf="!withdrawals.length && !(loading$ | async)" class="empty-data">
+    {{'NO_DATA' | translate }}
+  </div>
+  <div class="flex-row flex-row__center">
+    <mat-spinner *ngIf="loading$ | async" mode="indeterminate" class="skinworld-customized"></mat-spinner>
+  </div>
+</div>

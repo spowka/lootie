@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="21px" height="23px" viewBox="0 0 21 23" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>spinner-triangle</title>
+    <defs>
+        <linearGradient x1="50%" y1="9.003%" x2="50%" y2="85.026%" id="linearGradient-1">
+            <stop stop-color="#FFAF28" offset="0%"></stop>
+            <stop stop-color="#F02F46" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="spinner-triangle" transform="translate(10.500000, 11.500000) rotate(-180.000000) translate(-10.500000, -11.500000) " fill-rule="nonzero">
+            <g id="Group" transform="translate(10.714000, 11.286000) rotate(-90.000000) translate(-10.714000, -11.286000) translate(-0.286000, 1.286000)">
+                <g id="prefix__b-link" fill="#000000">
+                    <path d="M11.864,1.48 L21.573,18.125 C21.851,18.602 21.69,19.214 21.213,19.492 C20.952,19.645 20.636,19.671 20.353,19.563 L11.356,16.136 C11.126,16.048 10.873,16.048 10.644,16.136 L1.647,19.563 C1.131,19.76 0.553,19.501 0.357,18.985 C0.249,18.702 0.275,18.385 0.427,18.125 L10.137,1.481 C10.415,1.004 11.027,0.843 11.504,1.121 C11.653,1.208 11.777,1.331 11.864,1.481 L11.864,1.48 Z" id="prefix__b"></path>
+                </g>
+                <g id="prefix__b-link" fill="url(#linearGradient-1)">
+                    <path d="M11.864,1.48 L21.573,18.125 C21.851,18.602 21.69,19.214 21.213,19.492 C20.952,19.645 20.636,19.671 20.353,19.563 L11.356,16.136 C11.126,16.048 10.873,16.048 10.644,16.136 L1.647,19.563 C1.131,19.76 0.553,19.501 0.357,18.985 C0.249,18.702 0.275,18.385 0.427,18.125 L10.137,1.481 C10.415,1.004 11.027,0.843 11.504,1.121 C11.653,1.208 11.777,1.331 11.864,1.481 L11.864,1.48 Z" id="prefix__b"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

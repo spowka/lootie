@@ -1,0 +1,61 @@
+<div class="flex-row">
+  <form [formGroup]="signUpForm" (ngSubmit)="signUp()" class="signup dialog-section flex-col flex-col__btw">
+    <div class="dialog-section__content flex-col">
+      <div class="login-inputs input-section">
+        <mat-form-field class="height-all m-b login-form-field">
+          <span matPrefix>{{'SIGN_UP_DIALOG.USERNAME' | translate }}</span>
+          <input matInput type="text" formControlName="username">
+          <mat-error *ngIf="username.errors && username.errors.pattern">
+            {{'SIGN_UP_DIALOG.SPACE_ERROR' | translate }}
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="height-all m-b login-form-field">
+          <span matPrefix>{{'SIGN_UP_DIALOG.E_MAIL' | translate }}</span>
+          <input matInput type="email" formControlName="email">
+          <mat-error *ngIf="email.errors">
+            {{'SIGN_UP_DIALOG.E_MAIL_INVALID' | translate }}
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="height-all m-b login-form-field">
+          <span matPrefix>{{'SIGN_UP_DIALOG.PASSWORD' | translate }}</span>
+          <input matInput type="password" formControlName="password">
+          <mat-error *ngIf="password.errors && password.errors.minlength">
+            {{'SIGN_UP_DIALOG.PASSWORD_INVALID' | translate }}
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="height-all login-form-field">
+          <span matPrefix>{{'SIGN_UP_DIALOG.REPEAT_PASSWORD' | translate }}</span>
+          <input matInput type="password" formControlName="passwordConfirm" [errorStateMatcher]="matcher">
+          <mat-error *ngIf="signUpForm.hasError('notSame')">
+            {{'SIGN_UP_DIALOG.PASSWORD_ERROR' | translate }}
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="dialog-section__actions flex-row flex-row__center m-b-40">
+      <button type="submit" mat-button *ngIf="!(isLoading$ | async)"
+        class="height-all btn-large btn-linear btn-square start-unboxing"
+        [disabled]="signUpForm.invalid">
+        {{'SIGN_UP_DIALOG.START_UNBOXING' | translate }}
+      </button>
+      <div *ngIf="(isLoading$ | async)"  class="flex-row flex-row__center w-100">
+        <mat-spinner mode="indeterminate" class="skinworld-customized">
+        </mat-spinner>
+      </div>
+    </div>
+    <span class="social-actions__title">{{ 'LOGIN_DIALOG.OR_REGISTER' | translate }}</span>
+    <div class="flex-row social-actions flex-row__center m-b-20 w-100">
+      <button type="button" mat-button class="btn-large login btn-square btn-google" (click)="googleLogin()">
+        <span class="button-icon google"></span>
+      </button>
+      <button type="button" mat-button class="btn-large login btn-square btn-facebook" (click)="facebookLogin()">
+        <span class="button-icon facebook"></span>
+      </button>
+    </div>
+
+    <div class="pointer" (click)="openForgotPassword()">
+      {{'LOGIN_DIALOG.FORGOTTEN_PASSWORD' | translate }}?
+    </div>
+
+  </form>
+</div>

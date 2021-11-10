@@ -1,0 +1,14 @@
+<div class="mobile-modal-section__navigation">
+  <div class="flex-row flex-row__center mobile-modal-section__text"
+    [ngClass]="{ 'general-item': item.background }"
+    [routerLink]="[item.link]"
+    [routerLinkActiveOptions]="{ exact: (item.className === 'boxes') ? true : false }"
+    routerLinkActive="active"
+    (click)="close()">
+    <div class="flex-row flex-row__start mobile-modal-section__wrapper">
+      <div class="mobile-modal-section__icon {{item.className}}"></div>
+      <span>{{ item.name | translate }}</span>
+      <span *ngIf="item.badge" class="item-badge-new">{{'HEADER_MENU.NEW' | translate }}</span>
+    </div>
+  </div>
+</div>

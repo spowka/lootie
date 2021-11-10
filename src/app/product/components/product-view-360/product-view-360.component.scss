@@ -1,0 +1,213 @@
+@import "../../../../styles/partials/index.scss";
+@import "../../../../styles/variables.scss";
+
+@include register-component {
+  .view {
+    &__container {
+      border-bottom: solid 1px from-theme(product-view-container-border);
+    }
+
+    &__icon {
+      background-image: from-theme(product-view-icon);
+    }
+
+    &__backdrop-preview-image {
+      background-color: from-theme(product-view-backdrop-preview-image);
+    }
+
+    &__slide {
+      background-color: from-theme(product-view-slide-background);
+      border: 1px solid from-theme(product-view-slide-border);
+
+      &:hover {
+        box-shadow: from-theme(product-view-slide-hover-shadow);
+        border: solid 1px from-theme(product-view-slide-hover-border);
+      }
+    }
+
+    &__backdrop-slide {
+      background-color: from-theme(product-view-backdrop-slide);
+    }
+  }
+
+  .slider-bar {
+    background-color: from-theme(product-view-slider-bar-background);
+
+    &__filled {
+      background-color: from-theme(product-view-slider-bar-filled-background);
+    }
+
+    &__movable-thumb-dot {
+      box-shadow: from-theme(product-view-slider-bar-movable-thumb-dot-shadow);
+      background-color: from-theme(product-view-slider-bar-movable-thumb-dot-background);
+      border: solid 1px from-theme(product-view-slider-bar-movable-thumb-dot-border);
+    }
+  }
+}
+
+.view {
+  &__container {
+    padding-bottom: 18px;
+    margin-bottom: 17px;
+  }
+
+  &__icon {
+    width: 47px;
+    height: 21px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    position: absolute;
+    right: 0;
+    top: 30px;
+  }
+
+  &__image-preview {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    padding-bottom: 50px;
+    padding-top: 80px;
+
+    & > img {
+      z-index: 1;
+      max-width: 100%;
+    }
+  }
+
+  &__backdrop-preview-image {
+    width: 350px;
+    height: 64px;
+    position: absolute;
+    bottom: 22px;
+    border-radius: 70%;
+    z-index: 0;
+  }
+
+  &__slides {
+    display: flex;
+    align-items: center;
+    overflow-y: auto;
+  }
+
+  &__slide {
+    width: 104px;
+    min-width: 104px;
+    height: 101px;
+    border-radius: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    margin-right: 20px;
+    cursor: pointer;
+    transition: .3s all ease-in-out;
+
+    &:hover {
+      transition: .3s all ease-in-out;
+
+      & > img {
+        transform: scale(1.07);
+        transition: .3s all ease-in-out;
+      }
+    }
+
+    & > img {
+      z-index: 1;
+      max-width: 70px;
+      max-height: 62px;
+      transition: .3s all ease-in-out;
+    }
+  }
+
+  &__backdrop-slide {
+    width: 70px;
+    height: 14px;
+    position: absolute;
+    z-index: 0;
+    bottom: 16px;
+    border-radius: 80%;
+  }
+}
+
+.slider-bar {
+  width: 266px;
+  margin: 5px auto 30px auto;
+  position: relative;
+  height: 4px;
+  border-radius: 12px;
+
+  &__filled {
+    height: 100%;
+    max-width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: 4px;
+    transition: width 0.05s linear;
+  }
+
+  &__movable-thumb-dot {
+    width: 14px;
+    height: 14px;
+    position: absolute;
+    border-radius: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    cursor: pointer;
+    transition: left 0.05s linear;
+  }
+}
+
+@media (max-width: 767px) {
+  .view {
+    &__container {
+      border-bottom: none !important;
+      margin-bottom: 0;
+    }
+
+    &__icon {
+      top: 5px;
+    }
+
+    &__image-preview {
+      & > img {
+        max-width: 175px;
+      }
+    }
+
+    &__backdrop-preview-image {
+      width: 185px;
+      height: 25px;
+      bottom: 38px;
+    }
+
+    &__slide {
+      min-width: 74px;
+      height: 74px;
+      width: 74px;
+      margin: 0 7px 0 7px;
+
+      & > img {
+        max-width: 52px;
+        max-height: 42px;
+      }
+    }
+
+    &__backdrop-slide {
+      width: 52px;
+      height: 8px;
+      bottom: 14px;
+    }
+  }
+
+  .slider-bar {
+    margin-bottom: 40px;
+    margin-top: 0;
+
+    &__movable-thumb-dot {
+      background-color: #c0c8cf;
+    }
+  }
+}

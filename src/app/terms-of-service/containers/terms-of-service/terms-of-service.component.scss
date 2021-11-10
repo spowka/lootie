@@ -1,0 +1,62 @@
+@import '../../../../styles/concepts.scss';
+
+#terms {
+  max-width: 900px;
+
+  button {
+    margin: 0 7px;
+  }
+
+  .page-title {
+    font-size: 18px;
+  }
+
+  .page-subtitle {
+    font-size: 14px;
+  }
+}
+
+.tos {
+  max-height: calc(100vh - 320px);
+  overflow: auto;
+  padding-right: 16px;
+}
+
+.tos-content {
+  width: 100%;
+  margin-bottom: 32px;
+
+  &__text {
+    line-height: 1.25;
+    opacity: 0.4;
+
+    span {
+      display: block;
+      margin-bottom: 28px;
+    }
+  }
+}
+
+@media(max-width: 479px) {
+  .tos-actions {
+    width: 100%;
+    justify-content: space-between;
+
+    button {
+      margin: 0 !important;
+      min-width: 100px;
+      width: calc(100%/2 - 5px);
+    }
+  }
+
+  .tos {
+    max-height: none;
+    padding: 0;
+  }
+}
+
+@media (max-width: 767px) and (orientation: landscape) {
+  .tos {
+    max-height: unset;
+  }
+}

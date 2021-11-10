@@ -1,0 +1,8 @@
+<mat-form-field class="filter-dropdown skinworld-customized">
+  <span matPrefix>{{ label }}</span>
+  <mat-select [value]="value" (selectionChange)="selectionChange($event)">
+    <mat-option *ngFor="let option of options" [value]="option.value">
+      {{ option.label }}
+    </mat-option>
+  </mat-select>
+</mat-form-field>

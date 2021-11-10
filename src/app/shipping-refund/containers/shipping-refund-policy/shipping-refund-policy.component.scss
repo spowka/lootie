@@ -1,0 +1,41 @@
+#shipping-refund {
+  max-width: 900px;
+
+  button {
+    margin: 0 7px;
+  }
+}
+
+.inline {
+  display: inline;
+}
+
+.sfp {
+  max-height: calc(100vh - 320px);
+  overflow: auto;
+  padding-right: 16px;
+}
+
+.sfp-content {
+  width: 100%;
+  margin-bottom: 32px;
+
+  &__text {
+    line-height: 1.25;
+    opacity: 0.6;
+
+    span {
+      margin-right: 5px;
+    }
+
+    ::ng-deep ul {
+      opacity: 0.6;
+    }
+  }
+}
+
+@media (max-width: 767px) and (orientation: landscape) {
+  .sfp {
+    max-height: unset;
+  }
+}

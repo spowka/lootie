@@ -1,0 +1,50 @@
+<div *ngIf="isMobile$ | async" [ngClass]="{ 'slider-container-mobile': (currentUrl$ | async) !== '/'}" class="slider-container">
+  <app-cases-slider></app-cases-slider>
+</div>
+
+<div id="eula-terms" class="page-container">
+  <div class="page-title center m-b-50">
+    {{'EULA_TERMS.PAGE_TITLE' | translate }}
+  </div>
+
+  <div class="et">
+    <div class="et-content">
+      <hr>
+      <div class="p-lg">
+        <div class="et-content__text inline">
+          {{'EULA_TERMS.TERMS_AND_CONDITIONS_HINT' | translate }}
+        </div>
+        <a class="link inline" href="https://pay.g2a.com/terms-and-conditions" target="_target">
+          https://pay.g2a.com/terms-and-conditions
+        </a>
+        <div class="et-content__text inline">
+          {{'EULA_TERMS.TRANSACTION_HINT' | translate }}
+        </div>
+
+        <br><br>
+
+        <div class="et-content__text inline">
+          <b>
+            {{'EULA_TERMS.CONTACT_BY_EMAIL' | translate }}
+          </b>
+        </div>
+        <a class="link inline" href="mailto:support@lootie.com" target="_target">
+          support@lootie.com.
+        </a>
+        <br>
+        <div class="et-content__text inline">
+          <b>
+            {{'EULA_TERMS.QUESTIONS_SUPPORT' | translate }}
+          </b>
+        </div>
+        <a class="link inline" href="mailto:support@g2a.com" target="_target">
+          support@g2a.com.
+        </a>
+        <br>
+        <div class="et-content__text inline">
+          {{'EULA_TERMS.SUGETION' | translate }}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

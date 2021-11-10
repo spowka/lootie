@@ -1,0 +1,11 @@
+<div class="arrow-container arrow-left" *ngIf="scroll > 0" (click)="scrollLeft()">
+  <img class="arrow" src="assets/images/icons/arrow-left.svg">
+</div>
+<div class="battle-case-slider" #slider>
+  <div class="battle-case-slider-content" #sliderContent [ngStyle]="{marginLeft: (-1 * scroll) + 'px'}">
+    <ng-content></ng-content>
+  </div>
+</div>
+<div class="arrow-container arrow-right" *ngIf="arrowRight" (click)="scrollRight()">
+  <img class="arrow" src="assets/images/icons/arrow-right.svg">
+</div>

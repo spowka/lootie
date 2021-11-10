@@ -1,0 +1,48 @@
+@import '../../../../styles/partials/index.scss';
+@import '../../../../styles/concepts.scss';
+@import '../../../../styles/variables.scss';
+
+@include register-component {
+  .unboxings-list {
+    &__load {
+      .btn-show-all {
+        background-color: from-theme(unboxings-show-all-background);
+        color: from-theme(unboxings-show-all-color);
+        border: 2px solid from-theme(unboxings-show-all-border);
+      }
+    }
+  }
+}
+
+.unboxings-list {
+  overflow-y: auto;
+  width: 100%;
+  max-width: 1018px;
+  margin: auto;
+
+  &__load {
+    margin-top: 30px;
+
+    .btn-show-all {
+      border-radius: 4px;
+      background-color: #1d2326;
+      width: 100%;
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: 0.18px;
+      text-align: center;
+      color: #ffffff;
+      text-transform: uppercase;
+    }
+  }
+}
+
+.unboxing-item {
+  margin: 15px;
+}
+
+@media (max-width: 813px) {
+  .unboxing-item {
+    margin: 2px;
+  }
+}

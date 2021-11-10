@@ -1,0 +1,17 @@
+<div class="flex-col nf-container">
+  <div class="flex-row flex-row__start w-100">
+    <div class="flex-col flex-col__start nf-content">
+      <h1>{{'PAGE_NOT_FOUND.OOPS' | translate }}</h1>
+      <h3>{{'PAGE_NOT_FOUND.PAGE_NOT_FOUND' | translate }}</h3>
+      <button mat-button class="btn-large btn-linear go-back" [routerLink]="['/']">
+        <mat-icon>double_arrow</mat-icon><span>{{'PAGE_NOT_FOUND.GO_TO_BACK' | translate }}</span>
+      </button>
+    </div>
+  </div>
+
+  <div class="flex-row flex-row__end w-100">
+    <div class="flex-col flex-col__end">
+      <img class="nf-image" alt="Page not found" src="assets/images/not-found.png">
+    </div>
+  </div>
+</div>

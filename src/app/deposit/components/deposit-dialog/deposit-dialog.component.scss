@@ -1,0 +1,23 @@
+@import '../../../../styles/variables.scss';
+
+.dialog-wrapper {
+  background: $colorPrimaryWhite;
+  padding: 0;
+
+  iframe {
+    border: 0;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+@media (max-width: 479px) {
+  .dialog-wrapper {
+    padding: 0 !important;
+
+    iframe {
+      height: calc(100vh - 43px);
+      margin-top: 40px;
+    }
+  }
+}

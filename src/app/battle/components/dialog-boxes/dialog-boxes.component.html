@@ -1,0 +1,40 @@
+<div class="dialog-wrapper dialog-wrapper__dark" #wrapper>
+  <button mat-dialog-close>
+    <mat-icon>close</mat-icon>
+  </button>
+
+  <mat-dialog-content class="select-items" [ngStyle]="{'min-height': platform === 'safari' && (isMobile$ | async) ? 'calc(100vh - 200px)' : 'calc(100vh - 113)'}">
+    <div class="flex-row flex-row__btw m-b-40 boxes-header">
+      <div class="flex-col flex-col__start">
+        <div class="boxes-title">
+          {{'DIALOG_BOXES.CASES_ADDING' | translate }} <span *ngIf="selectedBoxesTotal">${{ selectedBoxesTotal | number:'1.2-2' }}
+            {{'DIALOG_BOXES.SELECTED' | translate }}</span>
+        </div>
+        <div class="boxes-subtitle">{{'DIALOG_BOXES.SELECT_ITEM' | translate }}</div>
+      </div>
+    </div>
+
+    <app-filters class="filter" [showSelected]="false" [showTypeSearch]="false" (filtersChange)="onFiltersChange($event)">
+    </app-filters>
+    <div #boxesList class="boxes-list flex-row flex-row__center" infiniteScroll infiniteScrollDistance="0" [alwaysCallback]="false"
+      [scrollWindow]="false" [infiniteScrollDisabled]="isScrollDisabled" (scrolled)="onScroll()"
+      [ngStyle]="{'min-height': platform === 'safari' && (isMobile$ | async) ? 'calc(100vh - 330px)' : 'unset'}">
+      <app-battle-box *ngFor="let box of boxes" [box]="box" [priceOnTop]="true" [isMultiple]="false" class="box"
+        [isSelected]="selectedBoxesIds.includes(box._id)" (addToSelected)="addToSelectedItems($event)"
+        (removeFromSelected)="removeFromSelectedItems($event)"></app-battle-box>
+        <div *ngIf="!boxes.length">
+          No result found
+        </div>
+      <div class="flex-row flex-row__center w-100 boxes-loading">
+        <mat-spinner *ngIf="isLoading$ | async" mode="indeterminate" class="skinworld-customized">
+        </mat-spinner>
+      </div>
+    </div>
+  </mat-dialog-content>
+
+  <mat-dialog-actions class="footer-actions">
+    <div class="flex-row flex-row__center w-100">
+      <button [disabled]="!selectedBoxes.length" mat-button class="btn-medium btn-linear btn-done" (click)="done()">{{'DIALOG_BOXES.CASES_ADDING' | translate }}</button>
+    </div>
+  </mat-dialog-actions>
+</div>

@@ -1,0 +1,1348 @@
+@import "../../../../styles/partials/index.scss";
+@import "../../../../styles/variables.scss";
+@import "../../../../styles/register.scss";
+
+@include register-component {
+  .giftcard-amount {
+    background-color: from-theme(box-items-background) !important;
+  }
+
+  .deposit {
+    &__bonus-badge {
+      background-color: from-theme(deposit-bonus-badge-color);
+      color: #f47e39;
+
+      .badge-icon {
+        background-image: from-theme(deposit-bonus-badge-icon);
+        background-repeat: no-repeat;
+        width: 12px;
+        height: 12px;
+        position: relative;
+        top: -1px;
+        margin-left: 6px;
+      }
+    }
+
+    &__nav-subtitle {
+      color: from-theme(deposit-nav-subtitle-color);
+
+      &.orange {
+        color: from-theme(deposit-nav-subtitle-orange-color);
+      }
+    }
+
+    &__nav.selected {
+      color: from-theme(color);
+    }
+
+    &__menu-warning-content {
+      border-bottom: solid 1px from-theme(menu-warning-content-border);
+    }
+
+    &__menu {
+      box-shadow: from-theme(deposit-menu-shadow);
+      border: solid 1px from-theme(deposit-menu-border);
+      background-color: from-theme(deposit-menu-background);
+
+      &-footer {
+        // border-top: 1px solid from-theme(deposit-button-background);
+      }
+
+      .round-button {
+        border: solid 1px from-theme(deposit-button-background);
+        background-color: from-theme(deposit-button-background);
+      }
+
+      .giftcard {
+        &-amount {
+          color: from-theme(color);
+        }
+      }
+    }
+
+    &__header {
+      background-color: from-theme(deposit-header-background);
+
+      .go-back {
+        border-right: solid 1px from-theme(deposit-header-border);
+
+        & > span {
+          color: from-theme(deposit-header-color);
+        }
+      }
+
+      .deposit-title {
+        color: from-theme(deposit-header-color);
+      }
+    }
+
+    &__content {
+      border: solid 1px from-theme(deposit-content-border);
+      background-color: from-theme(deposit-content-background);
+
+      &.pay-container {
+        background: transparent;
+        border: none;
+      }
+    }
+
+    &__nav {
+      ::ng-deep {
+        .mat-radio-label {
+          padding: 10px 20px;
+          background: transparent;
+          border-radius: 4px;
+          border: solid 1px from-theme(deposit-label-border-color);
+          background-color: transparent;
+          height: 65px;
+
+          .mat-radio-container {
+            .mat-radio-outer-circle {
+              border-radius: 10px;
+              border: solid 1.5px
+                from-theme(deposit-label-outer-circle-border-color);
+              background-color: from-theme(
+                deposit-label-outer-circle-border-background
+              );
+            }
+          }
+
+          .mat-radio-label-content {
+            padding-left: 20px;
+
+            .deposit__nav-title {
+              margin-right: 0;
+              color: from-theme(deposit-nav-title-color);
+            }
+          }
+        }
+      }
+
+      &.mat-radio-checked {
+        ::ng-deep {
+          .mat-radio-label {
+            border: solid 1px from-theme(deposit-label-active-border-color);
+            background-color: from-theme(deposit-label-active-background-color);
+
+            .mat-radio-label-content {
+              .deposit__nav-title {
+                color: from-theme(deposit-nav-title-active-color);
+              }
+            }
+          }
+        }
+      }
+    }
+
+    &__footer {
+      &.report-problem {
+        border-top: solid 1px from-theme(report-problem-border);
+      }
+
+      & > span {
+        color: #5b6873;
+      }
+    }
+
+    &__menu-title {
+      &.menu-giftcard-title {
+        color: from-theme(deposit-header-color);
+      }
+    }
+
+    .custom-input-field {
+      background-color: from-theme(deposit-custom-input-field-background);
+      color: from-theme(deposit-nav-title-active-color);
+      border: solid 1px from-theme(deposit-input-border);
+
+      &:not(.promocode) {
+        &::-webkit-input-placeholder {
+          color: from-theme(deposit-content-background);
+        }
+
+        &::-moz-placeholder {
+          color: from-theme(deposit-content-background);
+        }
+
+        &:-ms-input-placeholder {
+          color: from-theme(deposit-content-background);
+        }
+
+        &:-moz-placeholder {
+          color: from-theme(deposit-content-background);
+        }
+      }
+    }
+  }
+
+  .deposit-content {
+    ::ng-deep {
+      .mat-expansion-panel {
+        box-shadow: none;
+        border: solid 1px from-theme(deposit-panel-border);
+        background-color: from-theme(deposit-panel-background);
+        border-left-width: 2px;
+
+        .mat-expansion-panel-header {
+          .mat-content {
+            .mat-expansion-panel-header-title {
+              color: from-theme(deposit-panel-header-color);
+
+              .deposit-content__badge {
+                background-color: from-theme(deposit-panel-header-badge-color);
+                color: from-theme(deposit-panel-header-badge-background);
+              }
+
+              .deposit-content__backdrop {
+                opacity: from-theme(deposit-panel-header-opacity);
+              }
+            }
+          }
+        }
+
+        .mat-expansion-panel-content {
+          .mat-expansion-panel-body {
+            & > p {
+              border: solid 1px from-theme(deposit-panel-body-border);
+              background-color: from-theme(deposit-panel-body-background);
+              color: from-theme(deposit-panel-body-color);
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .payment-faq-content {
+    border-left: 1px solid from-theme(deposit-header-border);
+
+    &__icon {
+      background-image: from-theme(deposit-header-faq-icon);
+    }
+
+    &__text {
+      color: from-theme(deposit-header-faq-color);
+    }
+  }
+
+  @media (max-width: 767px) {
+    .deposit {
+      &__header {
+        border-bottom: solid 1px from-theme(deposit-header-border);
+      }
+
+      &__hint {
+        color: from-theme(deposit-hint-color);
+      }
+
+      .custom-input-field {
+        border-radius: 2px;
+        border: solid 1px from-theme(deposit-mobile-custom-input-field-border);
+        background-color: from-theme(
+          deposit-mobile-custom-input-field-background
+        );
+      }
+
+      &__menu {
+        border-top: solid 1px from-theme(deposit-header-border);
+
+        &-content:not(.deposit__menu-giftcard) {
+          border: from-theme(deposit-mobile-menu-content-border);
+          background-color: from-theme(deposit-mobile-menu-content-background);
+        }
+
+        &-giftcard {
+          margin-bottom: 24px;
+        }
+
+        &-footer {
+          border: from-theme(deposit-mobile-menu-content-border);
+          background-color: from-theme(deposit-mobile-menu-content-background);
+          position: relative;
+          top: -1px;
+          border-top: none;
+        }
+
+        .round-button {
+          border: solid 1px from-theme(deposit-mobile-round-button-border);
+          background-color: from-theme(deposit-mobile-round-button-background);
+        }
+      }
+
+      &__footer {
+        border-top: 1px solid from-theme(deposit-panel-body-border);
+
+        &.report-problem {
+          border-top: solid 1px from-theme(deposit-header-border);
+        }
+      }
+    }
+
+    .payment-history {
+      &__button {
+        z-index: 1;
+        position: from-theme(
+          deposit-mobile-payment-history-button-backpositionground
+        );
+        border: from-theme(deposit-mobile-payment-history-button-border);
+        background: from-theme(
+          deposit-mobile-payment-history-button-background
+        );
+
+        &:after {
+          content: from-theme(deposit-mobile-payment-history-button-after);
+          background: linear-gradient(
+            to right,
+            #365059,
+            #181d1f 42%,
+            #181d1f 50%,
+            #181d1f 58%,
+            #365059
+          );
+          height: 39px;
+          position: absolute;
+          top: -2px;
+          bottom: -2px;
+          left: -2px;
+          right: -2px;
+          z-index: -1;
+          border-radius: 20px;
+        }
+      }
+    }
+  }
+}
+
+.deposit__menu .deposit__menu-content div .placeholder-color_gray::placeholder {
+  color: $colorSecondaryLightGray;
+}
+
+.deposit .deposit__menu .placeholder-color_gray::placeholder {
+  color: $colorSecondaryLightGray;
+}
+
+.page-title {
+  font-weight: bold;
+  font-size: 25px;
+}
+
+.info-method-text {
+  font-size: 10px;
+  letter-spacing: 0.33px;
+  color: #f48345;
+  position: absolute;
+  right: 0;
+}
+
+.deposit {
+  padding: 40px;
+
+  &__bonus-badge {
+    height: 25px;
+    border-radius: 12.5px;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.33px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 92px;
+  }
+
+  &__method-content {
+    min-width: 230px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__nav-subtitle {
+    font-size: 10px;
+    letter-spacing: 0.33px;
+    margin-top: 7px;
+  }
+
+  &__nav-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding-right: 40px;
+  }
+
+  &__menu-warning {
+    border-radius: 4px;
+    background-color: #fef7e5;
+    font-size: 14px;
+    font-style: italic;
+    letter-spacing: 0.47px;
+    color: #f48446;
+    flex-direction: row;
+    padding: 12px 60px;
+    margin-bottom: 24px;
+
+    .menu-icon {
+      background-repeat: no-repeat;
+      width: 20px;
+      height: 17px;
+      margin-right: 10px;
+    }
+  }
+
+  &__footer {
+    margin-top: 25px;
+
+    &.report-problem {
+      width: calc(100% + 42px);
+      border-top: solid 1px #dfdfdf;
+      padding-top: 25px;
+    }
+
+    & > span {
+      font-size: 13px;
+      letter-spacing: 0.43px;
+    }
+  }
+
+  &__report-text {
+    font-size: 13px;
+    letter-spacing: 0.2px;
+    color: #5b6873;
+  }
+
+  &__nav {
+    position: relative;
+    cursor: pointer;
+    padding-bottom: 8px;
+
+    ::ng-deep {
+      .mat-radio-label {
+        width: 100%;
+        padding: 8px 40px;
+        border-radius: 2px;
+
+        .mat-radio-container {
+          .mat-radio-outer-circle {
+            height: 13px;
+            width: 13px;
+            top: 3px;
+            background-color: #ffffff;
+            border-width: 1px;
+          }
+
+          .mat-radio-inner-circle {
+            height: 13px;
+            width: 13px;
+            top: 3px;
+            background-color: transparent;
+          }
+        }
+
+        .mat-radio-label-content {
+          padding-left: 15px;
+        }
+      }
+    }
+
+    &-logo {
+      height: 20px;
+      margin-right: 20px;
+    }
+
+    &-title {
+      opacity: 0.4;
+      margin-right: 40px;
+    }
+
+    &.mat-radio-checked {
+      .deposit {
+        &__nav-title {
+          color: #252e35;
+        }
+      }
+    }
+
+    .deposit {
+      &__nav-title {
+        opacity: 1;
+        font-size: 18px;
+        letter-spacing: 0.77px;
+        color: #8399ab;
+      }
+    }
+  }
+
+  &__header {
+    height: 57px;
+    width: 100%;
+    padding: 6px;
+    margin-bottom: 18px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .flex-row {
+      &:last-child {
+        height: 100%;
+        min-width: auto;
+      }
+    }
+
+    .go-back {
+      height: 100%;
+      padding: 0 20px;
+      cursor: pointer;
+
+      &__icon {
+        background-repeat: no-repeat;
+        height: 14px;
+        width: 10px;
+        display: flex;
+        margin-right: 6px;
+      }
+
+      & > span {
+        font-size: 14px;
+        letter-spacing: 0.6px;
+        text-align: center;
+        font-weight: 500;
+      }
+    }
+
+    .deposit-title {
+      transform: rotate(-360deg);
+      font-size: 19px;
+      font-weight: 500;
+      letter-spacing: 1.04px;
+    }
+  }
+
+  &__content {
+    border-radius: 4px;
+    width: 100%;
+  }
+
+  &__menu {
+    position: relative;
+    width: 100%;
+    min-width: 670px;
+    padding: 10px 0;
+    margin-top: 25px;
+    justify-content: space-between;
+    border-radius: 4px;
+    padding: 25px 20px;
+    max-width: 1120px;
+    margin: 0 auto;
+
+    &-button-back {
+      position: absolute;
+      cursor: pointer;
+      top: 22px;
+      left: 10px;
+
+      mat-icon {
+        color: $colorSecondaryOrange;
+      }
+    }
+
+    &-title {
+      margin: 15px 0 25px;
+      font-weight: 500;
+      font-size: 16px;
+      text-align: center;
+
+      &.menu-giftcard-title {
+        font-size: 16px;
+        font-weight: 500;
+        letter-spacing: 0.55px;
+        text-align: center;
+        color: #252e35;
+        text-transform: uppercase;
+      }
+
+      &.success {
+        margin: 15px 0;
+        font-weight: normal;
+        font-size: 22px;
+        line-height: 1.68;
+      }
+    }
+
+    &-content {
+      margin: 0 auto;
+      border-radius: 1px;
+      max-width: initial;
+      padding: 0 15px;
+    }
+
+    &-info {
+      border-radius: 1px;
+      border: solid 0.5px rgba(250, 100, 0, 0.5);
+      background-color: rgba(250, 100, 0, 0.07);
+      color: #828282;
+      padding: 15px 30px;
+    }
+
+    &-footer {
+      width: 100%;
+      text-align: center;
+      padding: 10px 10px 0px;
+    }
+
+    .round-button {
+      width: 36px;
+      height: 36px;
+      border-radius: 100%;
+      border-style: solid;
+      border-width: 1px;
+      color: $colorSecondaryOrange;
+      box-shadow: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      &__minus {
+        background-repeat: no-repeat;
+        width: 10px;
+        height: 2px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      &__plus {
+        background-repeat: no-repeat;
+        width: 10px;
+        height: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .mat-button-wrapper {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      mat-icon {
+        width: 16px;
+        height: 16px;
+        font-size: 16px;
+        font-weight: 700;
+      }
+    }
+
+    .giftcard-amount {
+      font-size: 13px;
+      box-shadow: none;
+      border-radius: 4px !important;
+      border: none !important;
+      position: relative;
+      height: 35px !important;
+      width: 270px !important;
+
+      &__content {
+        position: sticky;
+      }
+
+      &:after {
+        content: "";
+        background: linear-gradient(97deg, #f48836, #f4364c);
+        height: 37px;
+        position: absolute;
+        top: -1px;
+        bottom: -1px;
+        left: -1px;
+        right: -1px;
+        z-index: -1;
+        border-radius: 4px;
+      }
+
+      &__text {
+        background-image: linear-gradient(95deg, #f48836, #f4364c);
+        font-size: 16px;
+        line-height: 1.13;
+        letter-spacing: 0.5px;
+        text-align: center;
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+    }
+
+    .btn-proceed.btn-linear {
+      width: 100%;
+      height: 35px;
+      padding: 0;
+      margin: 0;
+      font-size: 14px !important;
+      margin-bottom: 40px;
+
+      &.pay-button {
+        width: 350px;
+        margin-bottom: 0;
+      }
+
+      &.btn-giftcard {
+        height: 45px;
+        margin-bottom: 0;
+      }
+    }
+
+    &-percent {
+      margin-bottom: 30px;
+
+      h1 {
+        font-size: 19px;
+        margin: 10px 0 0 0;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: normal;
+        letter-spacing: 0.63px;
+      }
+
+      span {
+        font-size: 13px;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: normal;
+        letter-spacing: 0.37px;
+      }
+    }
+
+    .fail-content {
+      margin: 40px auto;
+      width: max-content;
+      align-items: start;
+      font-size: 16px;
+      line-height: 1.31;
+      letter-spacing: 0.49px;
+
+      > a,
+      > span {
+        margin-bottom: 20px;
+      }
+    }
+
+    .fail-option {
+      font-size: 15px;
+      opacity: 0.4;
+    }
+
+    .fail-text-underline {
+      font-weight: 500;
+      text-decoration: underline;
+    }
+
+    .fail-text-yellow {
+      font-weight: 500;
+      color: $colorSecondaryYellow;
+      cursor: pointer;
+    }
+  }
+
+  &__hint {
+    margin: 7px 0;
+    font-size: 10px;
+    letter-spacing: 0.33px;
+    color: #535353;
+
+    &.invalid {
+      color: $colorSecondaryRed;
+    }
+  }
+
+  &__logos {
+    img {
+      height: 15px;
+
+      &:not(:last-child) {
+        margin-right: 14px;
+      }
+    }
+  }
+
+  &__note {
+    font-size: 13px;
+    font-style: italic;
+    color: #76797b;
+    margin-bottom: 10px;
+  }
+
+  &__report {
+    cursor: pointer;
+
+    .report-icon {
+      background-repeat: no-repeat;
+      width: 15px;
+      height: 15px;
+      margin-right: 10px;
+    }
+  }
+
+  .custom-input-field {
+    width: 100%;
+    height: 35px;
+    font-size: 16px;
+    letter-spacing: 0.4px;
+    text-align: center;
+    padding: 0;
+    border-width: 1px;
+    border-radius: 4px;
+    border-style: solid;
+    color: #535353;
+
+    border: solid 1px #8399ab;
+    background-color: #ffffff;
+    font-size: 16px;
+    line-height: 1.13;
+    letter-spacing: 0.4px;
+    text-align: center;
+
+    &.promocode {
+      padding: 0 18px;
+      font-style: italic;
+
+      &.valid {
+        border-color: #59ac02;
+        color: #59ac02;
+        background-image: url(/assets/images/logos/valid.svg);
+        background-repeat: no-repeat;
+        background-position: right 10px center;
+      }
+
+      &.invalid {
+        border-color: $colorSecondaryRed;
+        color: $colorSecondaryRed;
+        font-style: italic;
+      }
+    }
+
+    &.giftcard-code {
+      background-repeat: no-repeat;
+      background-position: 10px center;
+    }
+
+    &.amount {
+      margin: 0 20px;
+      min-width: 0;
+      width: calc(100% - (2 * 36px) - 40px);
+      color: #252e35;
+    }
+  }
+}
+
+.p-r {
+  position: relative;
+}
+
+.promocode-invalid-icon {
+  background-image: url(/assets/images/logos/invalid.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 19px;
+  height: 19px;
+  display: flex;
+  position: absolute;
+  right: 6px;
+  top: 8px;
+  cursor: pointer;
+}
+
+.payment-methods {
+  align-items: initial;
+  width: 100%;
+}
+
+.payment-history {
+  &__content {
+    width: 100%;
+  }
+
+  &__info {
+    border-radius: 1px;
+    border: solid 0.5px rgba(250, 100, 0, 0.5);
+    background-color: rgba(250, 100, 0, 0.07);
+    max-width: 500px;
+    width: 100%;
+    min-width: 500px;
+    padding: 13px 22px;
+    font-size: 12px;
+    line-height: 1.25;
+    letter-spacing: 0.28px;
+    color: #828282;
+    margin-bottom: 18px;
+    text-align: center;
+  }
+
+  &__button {
+    border-radius: 17.5px;
+    box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.05);
+    border: 2px solid #76797b;
+    height: 35px;
+    padding: 0;
+    width: 200px;
+
+    width: 100%;
+    margin-top: 27px;
+
+    span {
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: 0.6px;
+      text-align: center;
+      color: #76797b;
+    }
+  }
+
+  &__button-text {
+    font-size: 14px !important;
+    font-weight: 500;
+    letter-spacing: 0.6px;
+    text-align: center;
+    color: #76797b;
+  }
+}
+
+.deposit-choose-content {
+  max-width: 670px;
+  margin: 25px auto 8px auto;
+  padding: 0 15px;
+}
+
+.payment-faq-content {
+  display: none;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+
+  &__button {
+    border: none;
+    display: flex;
+    align-items: center;
+    background: transparent;
+    box-shadow: none;
+  }
+
+  &__icon {
+    background-repeat: no-repeat;
+    width: 15px;
+    height: 15px;
+    margin-right: 8px;
+    display: flex;
+  }
+
+  &__text {
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.4px;
+    text-align: center;
+    text-transform: uppercase;
+    position: relative;
+    top: 1px;
+  }
+}
+
+:host {
+  ::ng-deep {
+    .mat-fab {
+      .mat-button-wrapper {
+        padding: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 100%;
+      }
+    }
+
+    .mat-spinner circle {
+      stroke: $colorPrimaryWhite !important;
+    }
+  }
+}
+
+.deposit-faq {
+  padding: 0 !important;
+  width: 100%;
+  max-width: 1200px;
+}
+
+:host {
+  ::ng-deep {
+    .mat-expansion-panel {
+      border-radius: 4px;
+      margin-bottom: 10px;
+      border-left-style: solid;
+      border-left-width: 2px;
+      position: relative;
+
+      .mat-expansion-panel-header {
+        &:hover {
+          background: transparent !important;
+        }
+
+        .mat-content {
+          .mat-expansion-panel-header-title {
+            font-size: 18px;
+            font-weight: 500;
+            letter-spacing: 0.77px;
+            align-items: center;
+
+            .deposit-content__badge {
+              height: 24px;
+              width: 24px;
+              border-radius: 4px;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              margin-right: 12px;
+              font-size: 18px;
+              font-weight: bold;
+              letter-spacing: 0.77px;
+              position: relative;
+            }
+
+            .deposit-content__backdrop {
+              width: 75px;
+              -webkit-filter: blur(20px);
+              filter: blur(20px);
+              position: absolute;
+              height: 100%;
+              left: 0;
+              top: 0;
+            }
+          }
+        }
+
+        .mat-expansion-indicator {
+          &:after {
+            color: #979797;
+            padding: 4px;
+          }
+        }
+      }
+
+      .mat-expansion-panel-content {
+        .mat-expansion-panel-body {
+          & > p {
+            border-radius: 4px;
+            margin-top: 0;
+            padding: 20px;
+            font-size: 14px;
+            font-weight: normal;
+            font-stretch: normal;
+            font-style: normal;
+            line-height: normal;
+            letter-spacing: 0.47px;
+            position: relative;
+          }
+        }
+      }
+    }
+  }
+}
+
+:host {
+  ::ng-deep {
+    .mat-expansion-panel {
+      .mat-expansion-panel-header {
+        padding: 0 10px;
+
+        .mat-content {
+          .mat-expansion-panel-header-title {
+            font-size: 12px;
+
+            .deposit-content__badge {
+              font-size: 14px;
+              min-width: 24px;
+            }
+          }
+        }
+
+        .mat-expansion-indicator {
+          position: relative;
+          top: -4px;
+        }
+      }
+
+      .mat-expansion-panel-content {
+        .mat-expansion-panel-body {
+          padding: 0 10px 0 10px;
+
+          .deposit-content__text {
+            font-size: 12px;
+            padding: 10px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 1310px) {
+  .deposit-faq {
+    max-width: 1160px;
+  }
+}
+
+@media (min-width: 813px) {
+  .deposit {
+    &__menu-content {
+      max-width: 300px;
+      background: transparent;
+      border: none;
+    }
+
+    &__header {
+      .flex-row {
+        &:last-child {
+          min-width: 120px;
+        }
+      }
+    }
+  }
+
+  .payment-history {
+    &__button {
+      width: 200px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 27px auto 0 auto;
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  .deposit-faq {
+    padding: 0 20px 40px 20px !important;
+  }
+
+  .payment-faq-content {
+    display: flex;
+
+    &__icon {
+      background-repeat: no-repeat;
+      width: 15px;
+      height: 15px;
+      margin-right: 8px;
+    }
+
+    &__text {
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.4px;
+      text-align: center;
+    }
+  }
+
+  .deposit-title {
+    justify-content: flex-start;
+    width: 100%;
+    padding-left: 30px;
+
+    & > span {
+      transform: rotate(-360deg);
+      font-family: Roboto;
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: 0.76px;
+    }
+  }
+
+  .menu-giftcard-title {
+    margin-top: 14px;
+    display: block !important;
+    margin-bottom: 14px;
+  }
+
+  .payment-methods {
+    margin-bottom: 10px;
+  }
+
+  .payment-history__info {
+    min-width: 200px;
+    font-size: 9px;
+    padding: 10px 12px;
+  }
+
+  .deposit__menu-warning {
+    padding: 12px 10px;
+    font-size: 12px;
+
+    .menu-icon {
+      width: 30px;
+    }
+  }
+
+  .deposit {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+
+    &__menu {
+      min-width: 100%;
+      padding: 0;
+      border-radius: 0;
+
+      .btn-proceed.btn-linear {
+        width: 280px !important;
+      }
+    }
+
+    &__header {
+      background: transparent !important;
+      padding: 0;
+      border-radius: 0;
+
+      .go-back {
+        & > span:not(.go-back__icon) {
+          display: none;
+        }
+      }
+    }
+
+    &__menu-title {
+      display: none;
+    }
+
+    &__content {
+      margin: 0 18px;
+      width: calc(100% - 36px);
+    }
+
+    &__footer {
+      padding: 12px 30px !important;
+
+      & > span {
+        font-size: 8px;
+      }
+    }
+  }
+
+  .info-method-text {
+    position: absolute;
+    top: 53px;
+  }
+
+  :host {
+    ::ng-deep {
+      .mat-expansion-panel {
+        .mat-expansion-panel-header {
+          padding: 0 10px;
+
+          .mat-content {
+            .mat-expansion-panel-header-title {
+              font-size: 12px;
+
+              .deposit-content__badge {
+                font-size: 14px;
+                min-width: 24px;
+              }
+            }
+          }
+
+          .mat-expansion-indicator {
+            position: relative;
+            top: -4px;
+          }
+        }
+
+        .mat-expansion-panel-content {
+          .mat-expansion-panel-body {
+            padding: 0 10px 0 10px;
+
+            .deposit-content__text {
+              font-size: 12px;
+              padding: 10px;
+            }
+          }
+        }
+      }
+
+      .deposit {
+        padding: 40px;
+
+        &__nav {
+          border: none;
+
+          .mat-radio-label {
+            padding: 8px 10px;
+
+            .mat-radio-label-content {
+              .deposit__nav-logo {
+                height: 15px;
+                margin-right: 10px;
+
+                &.gift-image {
+                  display: none;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 600px) {
+  .deposit {
+    &__method-content {
+      min-width: 150px;
+
+      &.small-min-width {
+        min-width: 45px;
+      }
+    }
+
+    &__nav-content {
+      padding-right: 15px;
+    }
+
+    &__bonus-badge {
+      font-size: 8px;
+      font-weight: 500;
+      letter-spacing: 0.27px;
+      width: 75px;
+      height: 20px;
+    }
+
+    &__nav-subtitle {
+      font-size: 8px;
+      letter-spacing: 0.27px;
+      margin-top: 3px;
+    }
+
+    &__nav {
+      ::ng-deep {
+        .mat-radio-label {
+          padding: 10px !important;
+          height: 40px !important;
+
+          .mat-radio-label-content {
+            padding-left: 5px !important;
+
+            .deposit__nav-title {
+              font-size: 13px;
+              letter-spacing: 0.56px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 350px) {
+  .deposit {
+    &.page-container {
+      padding: 40px 5px 0 5px !important;
+    }
+  }
+}

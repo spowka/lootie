@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="14px" height="14px" viewBox="0 0 14 14" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>info-with-circle</title>
+    <defs>
+        <linearGradient x1="0%" y1="0%" x2="100%" y2="100%" id="linearGradient-1">
+            <stop stop-color="#F48836" offset="0%"></stop>
+            <stop stop-color="#F4364C" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Open-Case-1-Open-Menu-(Logged-on)---icons" transform="translate(-80.000000, -612.000000)" fill="url(#linearGradient-1)" fill-rule="nonzero">
+            <g id="Menu">
+                <g id="info-with-circle" transform="translate(80.000000, 612.000000)">
+                    <path d="M7,0.28 C3.2879,0.28 0.2793,3.2886 0.2793,7 C0.2793,10.7121 3.2879,13.7207 7,13.7207 C10.7107,13.7207 13.72,10.7121 13.72,7 C13.72,3.2886 10.7107,0.28 7,0.28 Z M7.6272,2.7062 C8.2824,2.7062 8.4749,3.0863 8.4749,3.521 C8.4749,4.0635 8.0409,4.5654 7.2996,4.5654 C6.6794,4.5654 6.384,4.2539 6.4022,3.738 C6.4022,3.3033 6.7655,2.7062 7.6272,2.7062 Z M5.9486,11.025 C5.5006,11.025 5.1737,10.7527 5.4866,9.5592 L5.9997,7.4417 C6.0886,7.1029 6.1033,6.9671 5.9997,6.9671 C5.866,6.9671 5.2843,7.2009 4.9413,7.4319 L4.718,7.0658 C5.8065,6.1565 7.0581,5.6231 7.5936,5.6231 C8.0416,5.6231 8.1158,6.1523 7.8925,6.9671 L7.3045,9.1931 C7.2002,9.5865 7.245,9.7223 7.3493,9.7223 C7.4837,9.7223 7.9233,9.5599 8.3559,9.219 L8.6093,9.5592 C7.5502,10.6176 6.3959,11.025 5.9486,11.025 Z" id="Shape"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

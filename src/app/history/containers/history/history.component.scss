@@ -1,0 +1,344 @@
+@import '../../../../styles/partials/index.scss';
+@import '../../../../styles/concepts.scss';
+@import '../../../../styles/register.scss';
+@import '../../../../styles/variables.scss';
+
+@include register-component {
+  .navbar-wrap {
+    ::ng-deep {
+      app-navbar {
+        .skinworld-nav {
+          &__link {
+            color: from-theme(history-link-color);
+
+            &.active {
+              color: from-theme(history-link-color-active);
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .page-title {
+    color: from-theme(history-title-color);
+  }
+
+  .page-subtitle {
+    color: #5b6873;
+  }
+
+  .history {
+    &__container {
+      box-shadow: from-theme(history-container-shadow);
+      background-color: from-theme(history-container-background);
+
+      .actions {
+        background-color: from-theme(history-actions-background);
+
+        .go-back {
+          border-right: solid 1px from-theme(history-go-back-border);
+        }
+      }
+    }
+
+    &__content {
+      border: solid 1px from-theme(history-content-border);
+      background-color: from-theme(history-content-background);
+    }
+  }
+
+  .navbar-wrap {
+    background-color: from-theme(history-navbar-wrap-background);
+  }
+
+  @media (max-width: 813px) {
+    .page-title {
+      color: from-theme(mobile-history-page-title-color);
+    }
+
+    .history {
+      &__container {
+        .actions {
+          background-color: transparent;
+
+          border-top: 1px solid from-theme(mobile-history-actions-border-top);
+          border-bottom: 1px solid from-theme(mobile-history-actions-border-bottom);
+
+          .go-back {
+            border-right: solid 1px from-theme(mobile-history-actions-border-bottom);
+          }
+        }
+      }
+    }
+  }
+
+  @media (max-width: 767px) {
+    .navbar-wrap {
+      background-color: transparent !important;
+      border-bottom: 1px solid from-theme(mobile-history-actions-border-bottom);
+
+      ::ng-deep {
+        mat-form-field {
+          .mat-form-field-wrapper {
+            .mat-form-field-flex {
+              .mat-form-field-infix {
+                .mat-select-value {
+                  color: from-theme(mobile-history-mat-select-value-color);
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+#history {
+  max-width: 1500px;
+  min-height: 730px;
+}
+
+.page-title {
+  font-size: 25px;
+  font-weight: bold;
+  letter-spacing: 0.3px;
+  text-align: center;
+  margin-bottom: 7px;
+}
+
+.page-subtitle {
+  font-size: 16px;
+  font-weight: normal;
+  line-height: 1.13;
+  letter-spacing: 0.4px;
+  margin-bottom: 30px;
+  opacity: 1;
+}
+
+.history {
+  &__container {
+    max-width: 1300px;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 4px;
+    padding: 27px 21px;
+
+    .actions {
+      height: 57px;
+      border-radius: 4px;
+      padding: 6px 20px;
+
+      .go-back {
+        cursor: pointer;
+        height: 100%;
+        padding-right: 22px;
+
+        .back-icon {
+          background-repeat: no-repeat;
+          width: 14px;
+          height: 14px;
+          right: 8px;
+          top: 9px;
+          cursor: pointer;
+          margin-right: 7px;
+          display: block;
+        }
+
+        mat-icon {
+          color: $colorSecondaryOrange;
+        }
+      }
+
+      .display-none {
+        display: none;
+      }
+    }
+  }
+
+  &__content {
+    border-radius: 4px;
+    padding: 30px;
+  }
+}
+
+.navbar-wrap {
+  margin-bottom: 20px;
+  border-radius: 1px;
+  height: 50px;
+  padding: 0 22px;
+}
+
+:host {
+  ::ng-deep {
+    .navbar-wrap {
+      app-navbar {
+        .skinworld-nav {
+          height: 100%;
+
+          &__link {
+            padding: 0;
+            padding-bottom: 3px;
+            position: relative;
+            font-size: 16px;
+            line-height: normal;
+            font-weight: 500;
+            letter-spacing: 0.69px;
+            text-transform: uppercase;
+            opacity: 1;
+
+            &.active {
+              font-size: 16px;
+              font-weight: 500;
+              line-height: normal;
+              letter-spacing: 0.69px;
+
+              &:after {
+                content: '';
+                height: 2px;
+                width: 100%;
+                position: absolute;
+                bottom: 0;
+                background: linear-gradient(91deg, #f48836, #f4364c);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 992px) {
+  :host {
+    ::ng-deep {
+      .navbar-wrap {
+        app-navbar {
+          .skinworld-nav {
+            &__link {
+              font-size: 12px;
+
+              &.active {
+                font-size: 12px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 813px) {
+  .page-container {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+
+  .page-title {
+    font-size: 20px !important;
+    font-weight: bold;
+    line-height: 1.1;
+    letter-spacing: normal;
+  }
+
+  .page-subtitle {
+    letter-spacing: normal;
+  }
+
+  #history {
+    width: 100%;
+  }
+
+  .history {
+    &__content {
+      border-radius: 0;
+      border: none !important;
+      padding: 0;
+    }
+
+    &__container {
+      width: 100%;
+      max-width: 100%;
+      border-radius: 0;
+      padding: 0;
+
+      .actions {
+        margin-bottom: 0;
+        background-color: transparent !important;
+        padding: 0;
+        border-radius: 0;
+
+        .go-back {
+          padding-left: 22px;
+
+          & > span {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  .history {
+    &__content {
+      background-color: transparent !important;
+    }
+
+    &__container {
+      .actions {
+        height: 45px;
+      }
+    }
+  }
+
+  .navbar-wrap {
+    height: 45px;
+    background-color: transparent !important;
+    margin-bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    ::ng-deep {
+      mat-form-field {
+        .mat-form-field-wrapper {
+          padding: 0;
+
+          .mat-form-field-flex {
+            background-color: transparent !important;
+
+            .mat-form-field-infix {
+              padding-top: 0;
+              border-top: none;
+
+              .mat-select-value {
+                text-align: center;
+              }
+            }
+
+            .mat-select-arrow {
+              transform: rotate(270deg);
+              background: url('/assets/images/icons/back.svg');
+              border: none;
+              width: 10px;
+              height: 9px;
+              background-repeat: no-repeat;
+              background-position: center center;
+              background-size: 6px;
+              position: relative;
+              top: 7px;
+            }
+          }
+
+          .mat-form-field-underline {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+}

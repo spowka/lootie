@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="15" height="15" viewBox="0 0 15 15">
+    <defs>
+        <linearGradient id="prefix__g" x1="50%" x2="50%" y1="0%" y2="100%">
+            <stop offset="0%" stop-color="#FFF"/>
+            <stop offset="100%" stop-color="#F0F0F0"/>
+        </linearGradient>
+        <filter id="prefix__e" width="114%" height="140%" x="-7%" y="-10%" filterUnits="objectBoundingBox">
+            <feOffset dy="1" in="SourceAlpha" result="shadowOffsetOuter1"/>
+            <feColorMatrix in="shadowOffsetOuter1" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.06 0"/>
+        </filter>
+        <circle id="prefix__a" cx="7.5" cy="7.5" r="7.5"/>
+        <rect id="prefix__c" width="20.714" height="15" x="0" y="0" rx="2"/>
+        <path id="prefix__f" d="M7.347 4.714c.282 0 .51.224.51.5s-.228.5-.51.5c-.282 0-.51-.224-.51-.5s.228-.5.51-.5zm-2.04 0c.28 0 .51.224.51.5s-.23.5-.51.5c-.283 0-.511-.224-.511-.5s.228-.5.51-.5zm-2.042 0c.282 0 .51.224.51.5s-.228.5-.51.5c-.281 0-.51-.224-.51-.5s.229-.5.51-.5zm-2.04 0c.281 0 .51.224.51.5s-.229.5-.51.5c-.282 0-.51-.224-.51-.5s.228-.5.51-.5zm1.02-1c.282 0 .51.224.51.5s-.228.5-.51.5c-.282 0-.51-.224-.51-.5s.228-.5.51-.5zm2.04 0c.282 0 .51.224.51.5s-.228.5-.51.5c-.281 0-.51-.224-.51-.5s.229-.5.51-.5zm2.042 0c.281 0 .51.224.51.5s-.229.5-.51.5c-.282 0-.51-.224-.51-.5s.228-.5.51-.5zm1.02-1c.282 0 .51.224.51.5s-.228.5-.51.5c-.282 0-.51-.224-.51-.5s.228-.5.51-.5zm-2.04 0c.28 0 .51.224.51.5s-.23.5-.51.5c-.283 0-.511-.224-.511-.5s.228-.5.51-.5zm-2.042 0c.282 0 .51.224.51.5s-.228.5-.51.5c-.281 0-.51-.224-.51-.5s.229-.5.51-.5zm-2.04 0c.281 0 .51.224.51.5s-.229.5-.51.5c-.282 0-.51-.224-.51-.5s.228-.5.51-.5zm1.02-1c.282 0 .51.224.51.5s-.228.5-.51.5c-.282 0-.51-.224-.51-.5s.228-.5.51-.5zm2.04 0c.282 0 .51.224.51.5s-.228.5-.51.5c-.281 0-.51-.224-.51-.5s.229-.5.51-.5zm2.042 0c.281 0 .51.224.51.5s-.229.5-.51.5c-.282 0-.51-.224-.51-.5s.228-.5.51-.5zm-5.103-1c.282 0 .51.224.51.5s-.228.5-.51.5c-.281 0-.51-.224-.51-.5s.229-.5.51-.5zm2.041 0c.282 0 .51.224.51.5s-.228.5-.51.5c-.281 0-.51-.224-.51-.5s.229-.5.51-.5zm2.041 0c.282 0 .51.224.51.5s-.228.5-.51.5c-.282 0-.51-.224-.51-.5s.228-.5.51-.5zm2.04 0c.283 0 .511.224.511.5s-.228.5-.51.5c-.282 0-.51-.224-.51-.5s.228-.5.51-.5z"/>
+    </defs>
+    <g fill="none" fill-rule="evenodd">
+        <mask id="prefix__b" fill="#fff">
+            <use xlink:href="#prefix__a"/>
+        </mask>
+        <use fill="#D8D8D8" xlink:href="#prefix__a"/>
+        <g mask="url(#prefix__b)">
+            <g transform="translate(-.714)">
+                <mask id="prefix__d" fill="#fff">
+                    <use xlink:href="#prefix__c"/>
+                </mask>
+                <use fill="#FFF" xlink:href="#prefix__c"/>
+                <path fill="#D02F44" d="M20.714 14v1H0v-1h20.714zm0-2v1H0v-1h20.714zm0-2v1H0v-1h20.714zm0-2v1H0V8h20.714zm0-2v1H0V6h20.714zm0-2v1H0V4h20.714zm0-2v1H0V2h20.714zm0-2v1H0V0h20.714z" mask="url(#prefix__d)"/>
+                <path fill="#46467F" d="M0 0H8.571V7.143H0z" mask="url(#prefix__d)"/>
+                <g mask="url(#prefix__d)">
+                    <use fill="#000" filter="url(#prefix__e)" xlink:href="#prefix__f"/>
+                    <use fill="url(#prefix__g)" xlink:href="#prefix__f"/>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

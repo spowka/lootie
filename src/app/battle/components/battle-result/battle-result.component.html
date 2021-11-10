@@ -1,0 +1,29 @@
+<div *ngIf="round" class="b-screen__result flex-col" [ngClass]="{ 'b-screen__result--winner': round.isWin }">
+
+    <div class="b-screen__result-canvas-overlay">
+      <canvas #canvas class="b-screen__result-canvas"></canvas>
+    </div>
+    <div *ngIf="round.isWin" class="b-screen__result-arrows">
+      <div class="b-screen__result-arrow"></div>
+      <div class="b-screen__result-arrow"></div>
+      <div class="b-screen__result-arrow"></div>
+    </div>
+
+    <div class="b-screen__result-winner" @fadeIn *ngIf="result.rounds.length - 1 === i && round.isWin">Winner!</div>
+    <div class="b-screen__result-price" [countUp]="round.value" [options]="countUpOptions" [reanimateOnClick]="false">
+      0
+    </div>
+    <div class="b-screen__result-total" @fadeIn *ngIf="result.rounds.length - 1 === i && round.isWin">
+      <div class="b-screen__result-total-label">{{'BATTLE.TOTAL_WINNING' | translate }}</div>
+      $ {{ totalWinning | number:'1.2-2' }}
+    </div>
+    
+    <div *ngIf="!round.isWin" class="b-screen__result-arrows">
+      <div class="b-screen__result-arrow"></div>
+      <div class="b-screen__result-arrow"></div>
+      <div class="b-screen__result-arrow"></div>
+    </div>
+
+  <div class="b-screen__result-bottom-line-1"></div>
+  <div class="b-screen__result-bottom-line-2"></div>
+</div>

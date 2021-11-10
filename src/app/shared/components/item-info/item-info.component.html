@@ -1,0 +1,49 @@
+<div class="flex-row flex-row__btw item-content" [ngClass]="{'item-content-multiple': items}">
+  <ng-container *ngIf="item">
+    <div class="flex-row item-info">
+      <div class="item-info__img" [class.glow-effect]="withGlowEffect"
+        [ngStyle]="{'background-image': 'url(' + item.image + ')'}">
+      </div>
+      <div class="flex-col flex-col__start">
+        <span class="item-info__title"> {{ item.name }}</span>
+        <span class="item-info__type" [ngStyle]="{'color': item.color}"> {{ item.tag || item.type }}</span>
+      </div>
+    </div>
+
+    <div class="flex-row flex-row__end item-info">
+      <div *ngIf="showPrice" class="item-info__price">
+        <span *ngIf="currencyCode; else curr">USD</span>
+        <ng-template #curr> $ </ng-template>
+        {{ (item.price || item.value) | number:'1.2-2' }}
+      </div>
+      <mat-icon *ngIf="withDeleteOption" class="item-info__delete" (click)="deleteItem()">delete_outline</mat-icon>
+    </div>
+  </ng-container>
+
+  <ng-container *ngIf="items">
+    <div class="flex-row flex-row__center item-info">
+      <ng-container *ngFor="let item of items; let i = index">
+        <div *ngIf="i < 9" class="item-info__img" [class.glow-effect]="withGlowEffect"
+          [ngClass]="{'multiple': items.length > 1}" [ngStyle]="{'background-image': 'url(' + item.image + ')'}"
+          [matTooltip]="item.name + ' $' + ((item.price || item.value) | number:'1.2-2')" [matTooltipDisabled]="items.length === 1">
+        </div>
+      </ng-container>
+    </div>
+
+    <div class="flex-col flex-col__start" *ngIf="items.length === 1; else itemsCount">
+      <span class="item-info__title"> {{ items[0].name }}</span>
+      <span class="item-info__type" [ngStyle]="{'color': items[0].color}"> {{ items[0].tag }}</span>
+    </div>
+    <ng-template #itemsCount>
+      <div class="upgrade__item-title"><b>{{ items.length }}</b>{{'ITEMS' | translate }}</div>
+    </ng-template>
+
+    <div *ngIf="items.length === 1" class="flex-row flex-row__end item-info">
+      <div *ngIf="showPrice" class="item-info__price">
+        <span *ngIf="currencyCode; else curr">USD</span>
+        <ng-template #curr> $ </ng-template>
+        {{ (items[0].price || items[0].value) | number:'1.2-2' }}
+      </div>
+    </div>
+  </ng-container>
+</div>

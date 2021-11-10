@@ -1,0 +1,49 @@
+<div class="dialog-wrapper dialog-wrapper__light" #wrapper>
+  <button mat-dialog-close>
+    <mat-icon>close</mat-icon>
+  </button>
+
+  <div *ngIf="(unboxing$ | async); else noData" mat-dialog-title class="center">{{'DIALOG_LOOKUP.UNBOXING' | translate }}
+    #{{ (unboxing$ | async).betId }}</div>
+  <ng-template #noData>
+    <div mat-dialog-title class="center">{{'DIALOG_LOOKUP.UNBOXING_NOT_FOUND' | translate }}</div>
+  </ng-template>
+
+
+  <mat-dialog-content class="provably-fair-lookup">
+    <div class="unboxings-content"></div>
+
+    <div class="flex-col pf__input-wrap">
+      <div class="flex-row pf__input-container">
+        <mat-form-field class="skinworld-customized pf__form-field m-b-10">
+          <span matPrefix>{{'DIALOG_LOOKUP.CLIENT_SEED' | translate }} &nbsp;</span>
+          <input type="text" matInput [formControl]="clientSeedControl" #clientSeed>
+        </mat-form-field>
+        <button *ngIf="clientSeedControl.value" mat-button class="btn-round small btn-linear" ngxClipboard
+          [cbContent]="clientSeedControl.value" (cbOnSuccess)="onCopySuccess()" (cbOnError)="onCopyFailure()">
+          <span class="button-icon copy"></span>
+        </button>
+      </div>
+      <div class="flex-row pf__input-container">
+        <mat-form-field class="skinworld-customized pf__form-field m-b-10">
+          <span matPrefix>{{'DIALOG_LOOKUP.SERVER_SEED' | translate }} &nbsp;</span>
+          <input type="text" matInput [formControl]="serverSeedControl" #serverSeed>
+        </mat-form-field>
+        <button *ngIf="serverSeedControl.value" mat-button class="btn-round small btn-linear" ngxClipboard
+          [cbContent]="serverSeedControl.value" (cbOnSuccess)="onCopySuccess()" (cbOnError)="onCopyFailure()">
+          <span class="button-icon copy"></span>
+        </button>
+      </div>
+      <div class="flex-row pf__input-container">
+        <mat-form-field class="skinworld-customized pf__form-field">
+          <span matPrefix>{{'DIALOG_LOOKUP.SERVER_SEED_HASHED' | translate }} &nbsp;</span>
+          <input type="text" matInput [formControl]="serverSeedHashedControl" #serverSeedHashed>
+        </mat-form-field>
+        <button *ngIf="serverSeedHashedControl.value" mat-button class="btn-round small btn-linear" ngxClipboard
+          [cbContent]="serverSeedHashedControl.value" (cbOnSuccess)="onCopySuccess()" (cbOnError)="onCopyFailure()">
+          <span class="button-icon copy"></span>
+        </button>
+      </div>
+    </div>
+  </mat-dialog-content>
+</div>

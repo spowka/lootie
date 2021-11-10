@@ -1,0 +1,107 @@
+@import '../../../../styles/concepts.scss';
+@import '../../../../styles/variables.scss';
+@import '../../../../styles/partials/index.scss';
+
+@include register-component {
+  #unboxings {
+    .page-title {
+      color: from-theme(unboxings-title-color);
+    }
+
+    .page-subtitle {
+      color: from-theme(unboxings-subtitle-color);
+    }
+  }
+
+  .unboxings {
+    &__content {
+      border: solid 1px from-theme(unboxings-list-border);
+      background-color: from-theme(unboxings-list-background);
+    }
+  }
+}
+
+:host {
+  ::ng-deep {
+    .shipping-link {
+      color: #4476a0 !important;
+    }
+  }
+}
+
+.page-container {
+  min-height: calc(100% - 85px);
+}
+
+#unboxings {
+  min-height: calc(100% - 191px);
+  padding: 35px;
+  margin-bottom: 25px;
+
+  .page-title {
+    font-size: 25px;
+    font-weight: bold;
+    letter-spacing: 0.3px;
+    text-align: center;
+    margin-top: 30px;
+  }
+
+  .page-subtitle {
+    font-size: 16px;
+    line-height: 1.19;
+    letter-spacing: 0.21px;
+    text-align: center;
+    opacity: 1;
+    max-width: 725px;
+    margin: 0 auto 25px auto;
+  }
+}
+
+.unboxings {
+  &__content {
+    border-radius: 4px;
+    padding: 10px 20px 20px;
+    max-width: 1300px;
+    margin: 0 auto;
+
+    app-unboxings-instruction {
+      display: flex;
+      justify-content: flex-end;
+      width: 100%;
+      padding: 0 0 12px 0;
+      margin-bottom: 10px;
+      flex-direction: column;
+      align-items: flex-end;
+    }
+  }
+}
+
+:host {
+  ::ng-deep {
+    .unboxings-span-subtitle {
+      font-style: italic;
+      color: #9baebf;
+    }
+  }
+}
+
+@media (max-width: 813px) {
+  #unboxings {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+
+    .page-subtitle {
+      max-width: 90%;
+    }
+  }
+
+  .unboxings {
+    &__content {
+      padding: 0;
+
+      app-unboxings-instruction {
+        padding: 0;
+      }
+    }
+  }
+}

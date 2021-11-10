@@ -1,0 +1,44 @@
+<div class="flex-row hint-live-drop">
+  <span class="btn-linear txt-live-drop"> LIVE DROP</span>
+</div>
+<drag-scroll #nav
+  [@newItemAnimation]="{value: (unboxings$ | async), params: {translate: (isMobile$ | async) ? '60px' : '90px'}}">
+  <div drag-scroll-item *ngFor="let unboxing of (unboxings$ | async); let i = index">
+    <div class="flex-row live-feed" [mdePopoverTriggerFor]="infoPopover"
+      [mdePopoverPositionY]="(isMobile$ | async) ? 'below' : 'above'" mdePopoverTriggerOn="hover"
+      [ngStyle]="{'color': unboxing.item.color}">
+      <ng-container *ngIf="isMobile$ | async; else highResImage">
+        <img class="image" [src]="unboxing.item.thumbnail || unboxing.item.image" *ngIf="unboxing.item.thumbnail || unboxing.item.image" />
+      </ng-container>
+      <ng-template #highResImage>
+        <img class="image" [src]="unboxing.item.image" *ngIf="unboxing.item.image" />
+      </ng-template>
+      <!-- <div class="image" [ngStyle]="{'background-image': 'url(' + (isMobile$ | async) ? (unboxing.item.thumbnail || unboxing.item.image) : unboxing.item.image + ')'}"></div> -->
+      <div class="image-info flex-col flex-col__start">
+        <div class="image-info__price">$ {{ unboxing.item.price | number:'1.2-2' }}</div>
+        <div class="image-info__title">{{ unboxing.item.name }}</div>
+      </div>
+    </div>
+    <mde-popover #infoPopover="mdePopover" [mdePopoverOverlapTrigger]="false" [mdePopoverCloseOnClick]="true" mdePopoverEnterDelay="80" mdePopoverLeaveDelay="80">
+      <mat-card #wrapper [ngStyle]="{color: unboxing.item.color}" class="skinworld-customized">
+        <mat-card-content>
+          <div class="item-popup flex-row flex-row__start item-popup__case"
+            [routerLink]="['/mysterybox/unbox/' + (unboxing.case.slug || unboxing.case.id)]">
+            <div class="flex-row flex-row__btw">
+              <div class="image" [ngStyle]="{'background-image': 'url(' + unboxing.case.image + ')'}" *ngIf="unboxing.case.image"></div>
+              <div class="flex-col flex-col__start item-popup__case-info">
+                <span class="item-popup__case-name">{{ unboxing.case.name }}</span>
+                <span class="item-popup__case-type"
+                  [ngStyle]="{color: unboxing.item.color}">{{ unboxing.item.tag }}</span>
+              </div>
+            </div>
+          </div>
+          <div class="item-popup flex-row flex-row__start item-popup__user" (click)="openUserInfo(unboxing.user)">
+            <div class="user-avatar" [ngStyle]="{'background-image': 'url(' + unboxing.user.image + ')'}" *ngIf="unboxing.user.image"></div>
+            <span>{{ unboxing.user.name }}</span>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </mde-popover>
+  </div>
+</drag-scroll>

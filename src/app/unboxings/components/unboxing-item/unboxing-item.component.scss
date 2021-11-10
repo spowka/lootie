@@ -1,0 +1,241 @@
+@import '../../../../styles/partials/index.scss';
+@import '../../../../styles/concepts.scss';
+@import '../../../../styles/variables.scss';
+
+@include register-component {
+  .unboxing-item-wrapper {
+    background-color: from-theme(battle-list-item-background);
+    color: from-theme(color);
+
+    &:hover {
+      box-shadow: from-theme(unboxing-item-wrapper-shadow);
+      transition: .3s all ease-in-out;
+    }
+
+    &__subtitle {
+      color: #6e6e6e;
+    }
+
+    &__country-label {
+      &::after {
+        border-top: 65px solid from-theme(unboxings-item-wrapper-border);
+      }
+    }
+  }
+}
+
+.unboxing-item-wrapper {
+  position: relative;
+  width: 214px;
+  will-change: transform;
+  border-radius: 4px;
+  padding: 10px;
+  transition: .3s all ease-in-out;
+
+  * {
+    line-height: 1;
+  }
+
+  &:hover {
+    cursor: pointer;
+
+    .unboxing-item-wrapper__content {
+      .unboxing-item-wrapper__img {
+        transition: .3s all ease-in-out;
+      }
+
+      .unboxing-item-wrapper__hover {
+        opacity: 1;
+        transition: .3s all ease-in-out;
+      }
+    }
+  }
+
+  &__title {
+    @extend %text-elipsis;
+    @extend .p-md;
+    height: 18px;
+    line-height: 1.2;
+    margin-bottom: 5px;
+    text-align: center;
+    font-size: 15px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100%;
+  }
+
+  &__subtitle {
+    font-size: 13px;
+    letter-spacing: 0.2px;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100%;
+  }
+
+  &__content {
+    margin-bottom: 13px;
+    position: relative;
+    overflow: hidden;
+    width: 194px;
+    height: 160px;
+    border-radius: 4px;
+  }
+
+  &__country-label {
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 1;
+    padding: 7px;
+
+    &::after {
+      content: '';
+      border-left: 65px solid transparent;
+      position: absolute;
+      top: 0;
+      right: 0;
+      z-index: -1;
+    }
+
+    & > img {
+      width: 28px;
+      height: 20px;
+    }
+  }
+
+  &__hover {
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: .3s all ease-in-out;
+    background: rgba(0, 0, 0, .4);
+  }
+
+  &__img {
+    @extend %bg-image;
+    background-size: cover !important;
+    width: 194px;
+    height: 160px;
+    transition: .3s all ease-in-out;
+    border-radius: 4px 15px 4px 4px;
+  }
+
+  &__video {
+    @extend %bg-image;
+    background-size: cover !important;
+    width: 194px;
+    height: 160px;
+    transition: .3s all ease-in-out;
+    border-radius: 4px 15px 4px 4px;
+  }
+
+  &__box {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 50px;
+    height: 50px;
+    z-index: 1;
+
+    .box-gradient {
+      display: flex;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      -webkit-filter: blur(10px);
+      filter: blur(10px);
+    }
+
+    & > img {
+      width: 50px;
+      height: 50px;
+      position: relative;
+      top: -5px;
+      right: 2px;
+    }
+  }
+}
+
+::ng-deep {
+  .cdk-overlay-pane {
+    max-width: inherit !important;
+  }
+}
+
+.zoom-close-btn {
+  background: #fff;
+  width: 40px !important;
+  height: 40px;
+  max-width: 40px !important;
+  min-width: 40px;
+  margin: 0;
+  padding: 0;
+  border: none;
+  box-shadow: none;
+  color: #64666a !important;
+  position: absolute !important;
+  right: -40px !important;
+  top: -10px !important;
+
+  @media (max-width: 479px) {
+    top: 10px !important;
+    right: 10px !important;
+  }
+}
+
+.unboxings-video {
+  height: 100%;
+  max-height: 90vh;
+  padding-bottom: 80px;
+  display: block;
+}
+
+:host {
+  ::ng-deep {
+    .mat-dialog-container {
+      padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: none;
+
+      & > img {
+        width: 80%;
+        display: block;
+      }
+    }
+  }
+}
+
+@media (max-width: 813px) {
+  .unboxing-item-wrapper {
+    width: 160px;
+
+    &__content {
+      width: 140px;
+    }
+
+    &__img {
+      width: 140px;
+    }
+
+    &__title {
+      font-size: 13px;
+    }
+
+    &__subtitle {
+      font-size: 10px;
+    }
+  }
+}

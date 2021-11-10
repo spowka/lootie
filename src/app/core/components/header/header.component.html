@@ -1,0 +1,164 @@
+<header class="flex-row flex-row__btw header">
+  <div class="header-wrapper flex-row flex-row__btw">
+    <a [routerLink]="['/']">
+      <img class="header-logo" src="/assets/images/icons/new-logo.svg">
+    </a>
+    <div class="header-mains-container">
+      <div class="sub-header-main-content">
+        <nav class="flex-row">
+          <a class="header-nav__sub-item flex-row provably-fair" [routerLink]="['/provably-fair/unboxings']"
+            routerLinkActive="active">
+            {{'HEADER_MENU.PROVABLY_FAIR' | translate }}
+          </a>
+          <a class="header-nav__sub-item flex-row ref" [routerLink]="['/affiliates']" routerLinkActive="active" href="affiliates">
+            {{'HEADER_MENU.REFERRALS' | translate }}
+          </a>
+          <a class="header-nav__sub-item flex-row faq" [routerLink]="['/support']" routerLinkActive="active">
+            {{'HEADER_MENU.FAQ' | translate }}
+          </a>
+          <a class="header-nav__sub-item flex-row authentication" [routerLink]="['/authentication']" routerLinkActive="active">
+            {{'HEADER_MENU.AUTHENTICATION' | translate }}
+          </a>
+          <a class="header-nav__sub-item flex-row info" [routerLink]="['/how-it-works/deposit']"
+            routerLinkActive="active" href='how-it-works/deposit'>
+           <span class="item-icon"></span> {{'HEADER_MENU.HOW_IT_WORKS' | translate }}
+          </a>
+          <a class="header-nav__sub-item flex-row free" [routerLink]="['/mysterybox/free']" routerLinkActive="active">
+            <span class="item-icon"></span> {{'HEADER_MENU.FREE_BOX' | translate }}
+          </a>
+        </nav>
+
+        <div class="languages-chooice-content">
+          <span [class]="'language-icon ' + selectedLanguage"></span>
+          <div>
+            <button mat-button [matMenuTriggerFor]="language" class="btn-outline-white language-button">
+              {{ selectedLanguage | uppercase }}<mat-icon>expand_more</mat-icon>
+            </button>
+            <mat-menu #language="matMenu" class="skinworld-customized languages-selected-menu">
+              <button mat-menu-item *ngFor="let lang of languages" (click)="selectLanguage(lang.id)">
+                <span [class]="'language-icon ' + lang.id"></span>
+                {{ lang.name }}
+              </button>
+            </mat-menu>
+          </div>
+        </div>
+
+        <div class="header-theme-color-change">
+          <button class="header-color-btn" (click)="onChange('light')">
+            <span class="light-theme-icon"></span>
+          </button>
+          <button class="header-color-btn" (click)="onChange('dark')">
+            <span class="dark-theme-icon"></span>
+          </button>
+        </div>
+      </div>
+
+      <nav class="header-nav flex-row">
+        <a class="header-nav__item flex-row cases" [routerLink]="['/']" [routerLinkActiveOptions]="{exact: true}"
+          routerLinkActive="active">
+          <span class="item-icon"></span>
+          <span class="item-text">{{'HEADER.MYSTERY_BOXES' | translate }}</span>
+        </a>
+        <!-- <a class="header-nav__item flex-row upgrade" [routerLink]="['/upgrade']" routerLinkActive="active">
+          <span class="item-icon"></span>upgrade
+        </a> -->
+        <!-- <a class="header-nav__item flex-row rewards" [routerLink]="['/rewards']" routerLinkActive="active">
+          <span class="item-icon"></span>rewards
+        </a> -->
+        <a class="header-nav__item flex-row unboxings" [routerLink]="['/unboxings']" routerLinkActive="active">
+          <span class="item-icon"></span>
+          <span class="item-text">{{'HISTORY.NAVBAR.UNBOXINGS' | translate }}</span>
+        </a>
+        <a class="header-nav__item flex-row partnership" [routerLink]="['/partner']" routerLinkActive="active">
+          <span class="item-icon"></span>
+          <span class="item-text">{{'HEADER_MENU.PARTNERSHIP' | translate }}</span>
+        </a>
+        <!-- <a class="header-nav__item flex-row battle" [routerLink]="['/battle']" routerLinkActive="active">
+          <span class="item-icon"></span>
+          <span class="item-text">{{'HEADER_MENU.MYSTERY_BATTLES' | translate }}</span>
+          <span class="item-badge-new">{{'HEADER_MENU.NEW' | translate }}</span>
+        </a> -->
+      </nav>
+    </div>
+  </div>
+
+  <div class="header-wrapper user-block flex-row flex-row__btw">
+    <button mat-button class="btn-small giveaway-button" [routerLink]="['/giveaway']">
+      {{ 'HEADER.GIVEAWAY' | translate }}
+    </button>
+
+    <ng-container *ngIf="(isLoggedIn$ | async); else loggedOut">
+      <div class="user-block__logged user-info__balance flex-row flex-row__btw">
+        <div class="user-info__balance-icon">
+          <img src="/assets/images/icons/coins.svg" alt="Deposit balance">
+        </div>
+        <span class="user-info__amount" [countUp]="(user$ | async).balance" [options]="countUpOptions"
+          [reanimateOnClick]="false">0</span>
+        <img *ngIf="(isMobile$ | async) || (isTablet$ | async); else desktopDeposit"
+          src="assets\images\icons\add-icon.svg" alt="Add" class="user-info__deposit" [routerLink]="['/deposit']" href="deposit">
+      </div>
+      <div class="user-info flex-row flex-row__btw" [matMenuTriggerFor]="menu" #t="matMenuTrigger"
+        [class.opened]="(isTablet$ | async) && t.menuOpen">
+        <div class="user-info__avatar" [ngStyle]="{'background-image': 'url(' + (user$ | async).profileImageUrl + ')'}">
+        </div>
+        <div *ngIf="!(isTablet$ | async) || ((isTablet$ | async) && t.menuOpen)" class="flex-row flex-row__btw">
+          <span class=" user-info__name">{{ (user$ | async).username }}</span>
+          <mat-icon class="user-info__expand" [@rotatedState]="t.menuOpen ? 'rotated' : 'default'">expand_more
+          </mat-icon>
+        </div>
+      </div>
+    </ng-container>
+
+    <ng-template #loggedOut>
+      <div (click)="login()" class="flex-row flex-row__center user-login">
+        <div class="user-login__icon">
+          <img src="/assets/images/icons/user-logout.svg">
+        </div>
+        <span *ngIf="!(isTablet$ | async)">{{'HEADER.LOGIN' | translate }}</span>
+      </div>
+    </ng-template>
+
+    <ng-template #desktopDeposit>
+      <button mat-button class="btn-small btn-linear user-info__deposit-button" [routerLink]="['/deposit']" href='/deposit'>
+        <mat-icon>add</mat-icon>
+      </button>
+    </ng-template>
+
+
+    <mat-menu #menu="matMenu" class="header-customized user-menu-icons">
+      <button mat-menu-item *ngFor="let item of userMenu" class="flex-row user-menu-items" [routerLink]="[item.link]"
+        routerLinkActive="active">
+        <div class="flex-row user-menu-items__icon {{item.className}}">
+        </div>
+        <span>{{ item.name | translate }}</span>
+      </button> 
+      <button mat-menu-item (click)="logout()" class="flex-row user-menu-items">
+        <div class="flex-row user-menu-items__icon" style="width: 13px; margin-right: 22px;">
+          <img src="/assets/images/icons/exit.svg">
+        </div>
+        <span>{{'HEADER.LOGOUT' | translate }}</span>
+      </button>
+    </mat-menu>
+
+    <ng-template #burgerIconSign>
+      <div class="header-toggle-btn">
+        <div class="burger-icon" [matMenuTriggerFor]="signMenu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+
+      <mat-menu #signMenu="matMenu" class="skinworld-customized header-customized">
+        <button mat-menu-item class="user-menu-items" (click)="signup()">
+          {{'HEADER.SIGN_UP' | translate }}
+        </button>
+        <button mat-menu-item class="user-menu-items" (click)="login()">
+          {{'HEADER.LOGIN' | translate }}
+        </button>
+      </mat-menu>
+    </ng-template>
+  </div>
+</header>
+
+<app-preload-images [images]="preloadingImages"></app-preload-images>

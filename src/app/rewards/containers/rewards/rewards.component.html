@@ -1,0 +1,22 @@
+<div *ngIf="isMobile$ | async" [ngClass]="{ 'slider-container-mobile': (currentUrl$ | async) !== '/' }" class="slider-container">
+  <app-cases-slider></app-cases-slider>
+</div>
+
+<div class="page-container">
+  <div class="page-title center m-b-10">
+    {{'REWARDS.PAGE_TITLE' | translate }}
+  </div>
+
+  <div class="page-subtitle center m-b-40">
+    {{'REWARDS.PAGE_SUB_TITLE' | translate }}
+  </div>
+
+  <div class="flex-row flex-row__center m-b-40">
+    <app-navbar [border]="false" [nav]="navItems"></app-navbar>
+  </div>
+
+  <div class="rewards-list">
+    <app-reward></app-reward>
+  </div>
+
+</div>

@@ -1,0 +1,111 @@
+@import "../../../../styles/partials/index.scss";
+@import "../../../../styles/variables.scss";
+
+@include register-component {
+  .product-box {
+    &__item {
+      box-shadow: from-theme(product-box-item-shadow);
+      background-color: from-theme(product-box-item-background);
+    }
+
+    &__title {
+      color: from-theme(product-box-title-color);
+    }
+
+    &__price {
+      color: #f34747;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .product-box {
+      &__item {
+        box-shadow: from-theme(product-mobile-product-box-shadow);
+      }
+
+      &__box-overflow {
+        background-color: #f34747;
+      }
+    }
+  }
+}
+
+.product-box {
+  &__container {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  &__item {
+    width: 110px;
+    max-width: 110px;
+    height: 120px;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 5px 10px 5px;
+    padding-top: 8px;
+  }
+
+  &__image {
+    width: 66px;
+    max-height: 56px;
+    margin-bottom: 8px;
+    height: 56px;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center center;
+  }
+
+  &__title {
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 1.3;
+    letter-spacing: 0.4px;
+    margin-bottom: 3px;
+  }
+
+  &__price {
+    font-size: 11px;
+    line-height: normal;
+    letter-spacing: normal;
+  }
+}
+
+@media (max-width: 767px) {
+  .product-box {
+    &__item {
+      width: calc(50% - 10px);
+      max-width: inherit;
+      height: 150px;
+      justify-content: center;
+      position: relative;
+    }
+
+    &__box-overflow {
+      width: 122px;
+      height: 68px;
+      opacity: 0.1;
+      -webkit-filter: blur(18px);
+      filter: blur(18px);
+      position: absolute;
+      bottom: 32px;
+      left: 24px;
+    }
+
+    &__title {
+      font-size: 13px;
+      line-height: 1.62;
+      letter-spacing: 0.32px;
+      text-transform: uppercase;
+    }
+
+    &__price {
+      font-size: 11px;
+      font-weight: 500;
+      line-height: 1.18;
+      letter-spacing: 0.27px;
+    }
+  }
+}

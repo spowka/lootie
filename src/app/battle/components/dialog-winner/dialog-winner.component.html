@@ -1,0 +1,53 @@
+<div class="dialog-wrapper dialog-wrapper__dark" #wrapper>
+  <button mat-dialog-close>
+    <mat-icon>close</mat-icon>
+  </button>
+
+  <mat-dialog-content class="dialog-content" *ngIf="(battle$ | async) as battle">
+    <div class="dialog-header">
+      <ng-container *ngIf="isWatcher; else playerHeader">
+        {{'DIALOG_WINNER.VIEWING_BATTLE' | translate }}
+      </ng-container>
+      <ng-template #playerHeader>
+        <ng-container *ngIf="(user$ | async)._id === battle.winner._id; else loseHeader">
+          {{'DIALOG_WINNER.CONGRATULATIONS' | translate }}
+        </ng-container>
+        <ng-template #loseHeader>
+          {{'DIALOG_WINNER.UNFORTUNATELY' | translate }}
+        </ng-template>
+      </ng-template>
+    </div>
+    <div>
+      <div class="total-won">{{'DIALOG_WINNER.TOTAL_WON' | translate }}: ${{ battle.totalWinning | number:'1.2-2' }}!</div>
+      <div class="winner-label">{{'DIALOG_WINNER.WINNER' | translate }}: {{ battle.winner.username }}</div>
+      <div class="winner-image">
+        <img [src]="battle.winner.profileImageUrl">
+      </div>
+      <div class="flex-row flex-row__btw players">
+        <ng-container *ngFor="let session of battle.sessions">
+          <img *ngIf="session.user._id !== battle.winner._id && battle.sessions.length > 2; else allSessions"
+            [src]="session.user.profileImageUrl" class="player-image">
+
+          <ng-template #allSessions>
+            <img [src]="session.user.profileImageUrl" class="player-image">
+          </ng-template>
+        </ng-container>
+      </div>
+    </div>
+  </mat-dialog-content>
+
+  <mat-dialog-actions class="footer-actions">
+    <div class="flex-col flex-col__center">
+      <div *ngIf="(user$ | async)._id === (battle$ | async)?.winner._id"
+        class="flex-row flex-row__center footer-actions__row-1">
+        <button mat-button [routerLink]="['/inventory']" (click)="close()" class="btn-large btn-outline-gray">{{'DIALOG_WINNER.GO_TO_INVENTORY' | translate }}</button>
+        <button mat-button class="btn-large btn-outline-orange" [disabled]="!(inventoryItems$ | async).length" (click)="sellAllItems()">{{'DIALOG_WINNER.SELL_ALL_WINNINGS' | translate }}</button>
+      </div>
+      <div class="flex-row flex-row__center footer-actions__row-2">
+        <button [routerLink]="['/battle']" (click)="close()" mat-button class="btn-large btn-outline-gray">Go To Battles List</button>
+        <button mat-button class="btn-large btn-linear" (click)="createSameBattle()">{{'DIALOG_WINNER.CREATE_SAME_BATTLE' | translate }}
+          ${{ (battle$ | async)?.price | number:'1.2-2' }}</button>
+      </div>
+    </div>
+  </mat-dialog-actions>
+</div>

@@ -1,0 +1,928 @@
+@import '../../../../styles/concepts.scss';
+@import '../../../../styles/variables.scss';
+@import '../../../../styles/register.scss';
+@import '../../../shared/components/navbar/navbar.component.scss';
+
+@include register-component {
+  .item-details {
+    &:not(:last-child) {
+      border-bottom-width: 1px;
+      border-bottom-style: solid;
+      border-bottom-color: from-theme(border-color);
+    }
+
+    &__label {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.37px;
+      color: from-theme(withdraw-nav-color);
+      text-transform: uppercase;
+      margin-bottom: 8px;
+
+      svg {
+        stroke: from-theme(withdraw-nav-color);
+        fill: from-theme(withdraw-nav-color);
+        margin-right: 5px;
+      }
+
+      span {
+        font-size: 10px;
+        letter-spacing: 0.29px;
+        color: from-theme(color);
+        margin-left: 10px;
+      }
+    }
+
+    &__delivery {
+      &-back {
+        border-radius: 2px;
+        background-color: from-theme(withdraw-header-background);
+        padding: 3px 14px;
+      }
+
+      .withdraw-form-field {
+        width: calc(70% - 10px);
+      }
+    }
+
+    &__shipping {
+      width: 100%;
+      padding: 14px 0;
+      margin-top: 10px;
+      border-top: 1px solid from-theme(withdraw-body-border);
+      border-bottom: 3px solid from-theme(withdraw-body-border);
+      align-items: flex-start;
+
+      &-note {
+        font-size: 12px;
+        font-style: italic;
+        line-height: 1.17;
+        letter-spacing: 0.3px;
+        color: #fcd834;
+      }
+
+      &-price {
+        font-size: 17px;
+        font-weight: 500;
+        line-height: 0.94;
+        letter-spacing: 0.2px;
+        text-align: right;
+        color: from-theme(color);
+      }
+    }
+
+    &__delivery-notes {
+      .withdraw-form-field {
+        width: calc(70% - 10px);
+
+        textarea {
+          border: solid 1px from-theme(withdraw-info-input-border);
+          background-color: from-theme(withdraw-info-input-background);
+          border-radius: 4px;
+          padding: 10px 12px;
+          color: from-theme(color);
+          max-width: 100%;
+          font-family: Roboto, sans-serif;
+          font-size: 15px;
+          outline: none;
+          width: 100%;
+        }
+      }
+    }
+  }
+
+  .withdraw-container {
+    padding: 20px;
+    border-radius: 4px;
+    border: solid 1px from-theme(dark-border-color);
+    background-color: from-theme(withdraw-background);
+
+    .withdraw-header {
+      border-radius: 4px;
+      background-color: from-theme(withdraw-header-background);
+      padding-top: 6px;
+      padding-bottom: 6px;
+      margin-bottom: 30px;
+
+      .go-back, .send-ticket {
+        height: 45px;
+        padding-left: 22px;
+        padding-right: 22px;
+        cursor: pointer;
+      }
+
+      .go-back {
+        border-right: 1px solid from-theme(withdraw-header-divider-border);
+
+        &__icon {
+          height: 11px;
+        }
+
+        &__text {
+          margin-left: 6px;
+          text-transform: uppercase;
+        }
+      }
+
+      .send-ticket {
+        border-left: 1px solid from-theme(withdraw-header-divider-border);
+
+        &__icon {
+          height: 22px;
+        }
+
+        &__text {
+          background-image: linear-gradient(100deg, #f48836, #f4364c);
+          font-size: 13px;
+          font-weight: 500;
+          letter-spacing: 0.54px;
+          -webkit-background-clip: text;
+          background-clip: text;
+          -webkit-text-fill-color: transparent;
+          text-transform: uppercase;
+          margin-left: 6px;
+        }
+      }
+    }
+
+    .withdraw-nav {
+      .withdraw-nav-item {
+        cursor: pointer;
+        border-bottom: 2px solid transparent;
+
+        svg {
+          height: 18px;
+          width: 18px;
+          fill: from-theme(withdraw-nav-color);
+
+          path {
+            fill: from-theme(withdraw-nav-color);
+
+            &:first-child {
+              fill: none;
+            }
+          }
+        }
+
+        span {
+          font-weight: 500;
+          letter-spacing: 0.71px;
+          padding-top: 6px;
+          padding-bottom: 6px;
+          color: from-theme(withdraw-nav-color);
+          margin-left: 6px;
+        }
+
+        &:last-child {
+          margin-left: 64px;
+        }
+
+        &.active {
+          border-image-source: linear-gradient(91deg, #f48836, #f4364c);
+          border-image-slice: 0 0 1 0;
+
+          svg {
+            fill: from-theme(withdraw-nav-active-color);
+
+            path {
+              fill: from-theme(withdraw-nav-active-color);
+
+              &:first-child {
+                fill: none;
+              }
+            }
+          }
+
+          span {
+            color: from-theme(withdraw-nav-active-color);
+          }
+        }
+      }
+    }
+
+    .withdraw-body {
+      background-color: from-theme(withdraw-body-background);
+      border-radius: 4px;
+      border: 1px solid from-theme(withdraw-body-border);
+      padding: 30px;
+
+      .withdraw-body__title {
+        height: 50px;
+        font-size: 19px;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 1.04px;
+        border-top-left-radius: 4px;
+        border-top-right-radius: 4px;
+        background-color: from-theme(withdraw-header-background);
+      }
+
+      .withdraw-body__inner {
+        border-radius: 4px;
+        background-color: from-theme(withdraw-background);
+        padding: 20px;
+        display: flex;
+        flex-direction: row;
+      }
+
+      .withdraw-body__title + .withdraw-body__inner {
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+      }
+    }
+
+    .withdraw-faq {
+      border-radius: 4px;
+      background-color: from-theme(withdraw-body-background);
+      padding: 20px 26px;
+      margin-right: 27px;
+      flex-shrink: 0;
+
+      &__title {
+        font-size: 19px;
+        font-weight: bold;
+        letter-spacing: 1.04px;
+        text-align: center;
+        margin-bottom: 24px;
+      }
+
+      &__body {
+        counter-reset: my-awesome-counter;
+        list-style: none;
+        padding-left: 0;
+      }
+
+      &-item {
+        margin: 0 0 32px 0;
+        counter-increment: my-awesome-counter;
+        position: relative;
+        font-size: 13px;
+        font-weight: bold;
+        letter-spacing: 0.32px;
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+
+        ::ng-deep p {
+          font-size: 12px;
+          letter-spacing: 0.4px;
+          color: #5b6873;
+          margin: 8px 0 0 0;
+        }
+
+        &:before {
+          content: counter(my-awesome-counter);
+          font-size: 13px;
+          font-weight: bold;
+          text-align: center;
+          color: from-theme(withdraw-background);
+          background: #fcd834;
+          border-radius: 50%;
+          width: 20px;
+          height: 20px;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          margin-right: 12px;
+        }
+      }
+    }
+
+    .withdraw-body-main {
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+
+    .withdraw-warning {
+      padding: 15px 20px;
+      border-radius: 4px;
+      background-color: from-theme(withdraw-header-background);
+      font-size: 14px;
+      font-style: italic;
+      letter-spacing: 0.47px;
+      color: #f7b500;
+
+      &__icon {
+        margin-right: 10px;
+        height: 20px;
+        display: inline-block;
+        vertical-align: middle;
+      }
+    }
+    .withdraw-select-item {
+      margin-top: 40px;
+      display: flex;
+      justify-content: center;
+
+      &__button {
+        max-width: 300px;
+        width: 100%;
+        height: 50px;
+        border-radius: 25px;
+        border: none;
+        background-image: linear-gradient(98deg, #f48836, #f4364c), linear-gradient(98deg, #f48836, #f4364c);
+        background-origin: border-box;
+        background-clip: content-box, border-box;
+        font-size: 16px;
+        font-weight: 500;
+        letter-spacing: 0.6px;
+        text-align: center;
+        cursor: pointer;
+        color: #fff;
+        text-transform: uppercase;
+      }
+    }
+  }
+
+  ::ng-deep {
+    .withdraw-form-field {
+      .mat-form-field-infix {
+        [matLabel] {
+          color: from-theme(withdraw-nav-color);
+        }
+
+        .mat-select {
+          border: solid 1px from-theme(withdraw-info-input-border);
+          background-color: from-theme(withdraw-info-input-background);
+          border-radius: 4px;
+          padding: 10px 12px;
+
+          .mat-select-value {
+            color: from-theme(color);
+          }
+
+          .mat-select-arrow {
+            color: from-theme(color);
+          }
+        }
+
+        .mat-input-element {
+          border: solid 1px from-theme(withdraw-info-input-border);
+          background-color: from-theme(withdraw-info-input-background);
+          border-radius: 4px;
+          padding: 10px 12px;
+          color: from-theme(color);
+
+          &[readonly="true"] {
+            font-size: 15px;
+            font-style: italic;
+            line-height: 1.2;
+            letter-spacing: 0.38px;
+            padding: 8px 12px;
+          }
+        }
+      }
+    }
+
+    .mat-checkbox-frame {
+      border-color: from-theme(color);
+      opacity: 0.4;
+    }
+
+    .mat-radio-button.skinworld-customized {
+      color: from-theme(color);
+      border-radius: unset;
+      border: none;
+
+      &.mat-radio-checked {
+        background: transparent;
+      }
+
+      .mat-radio-label {
+        padding: 0;
+      }
+    }
+
+    .mat-checkbox.skinworld-customized {
+      color: from-theme(withdraw-terms-label-color);
+
+      .withdraw-content__label .terms {
+        color: from-theme(withdraw-terms-link-color);
+      }
+    }
+  }
+
+  .withdrawal-item {
+    align-items: flex-start;
+    border-bottom: 1px solid #606f7f;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+
+    .item-details__pic {
+      min-width: 128px;
+      min-height: 128px;
+      margin-bottom: 0;
+
+      &::after {
+        min-height: 128px;
+      }
+    }
+
+    &__info {
+      width: calc(100% / 3 * 2);
+
+      .item-details__title {
+        border-bottom: none;
+      }
+
+      .item-details__pic {
+        display: none;
+      }
+    }
+
+    &__tracking-button {
+      .mat-button {
+        border: solid 1px #495b64;
+        background-color: from-theme(withdraw-header-background);
+        border-radius: 25px;
+        font-size: 15px;
+        font-weight: 500;
+        line-height: 1.13;
+        letter-spacing: 0.38px;
+        text-align: center;
+        color: from-theme(color);
+        text-transform: uppercase;
+        padding: 5px 0;
+        margin: 0;
+        width: 100%;
+      }
+    }
+
+    &__stepper {
+      margin-top: 10px;
+
+      .mat-stepper-horizontal {
+        .mat-horizontal-stepper-header {
+          height: 60px;
+          z-index: 2;
+
+          &:first-of-type {
+            .mat-step-label {
+              transform: translateX(0);
+              left: 0;
+              text-align: left;
+            }
+          }
+
+          &:last-of-type {
+            .mat-step-label {
+              left: initial;
+              right: 0;
+              transform: none;
+            }
+
+            .mat-step-icon-state-done {
+              background: linear-gradient(109deg, #f48836, #f4364c);
+            }
+          }
+        }
+
+        .mat-step-label {
+          color: from-theme(withdraw-nav-color);
+          top: 0;
+          max-width: 240px;
+          text-transform: uppercase;
+          font-size: 12px;
+          font-weight: 500;
+          line-height: 1.17;
+          letter-spacing: 0.29px;
+        }
+
+        .mat-step-icon {
+          width: 20px;
+          height: 20px;
+          border: solid 1px from-theme(withdraw-filter-border);
+          background-color: from-theme(withdraw-body-background);
+
+          &.mat-step-icon-state-done {
+            border-color: from-theme(withdraw-body-background);
+          }
+
+          &.mat-step-icon-state-number {
+            .mat-step-icon-content {
+              display: none;
+            }
+          }
+        }
+
+        .mat-step-icon-state-done + .mat-step-label {
+          color: from-theme(color);
+        }
+
+        .mat-stepper-horizontal-line {
+          border-style: solid;
+          border-color: from-theme(withdraw-filter-border);
+          border-width: 1px 0 0;
+          position: relative;
+          z-index: 1;
+
+          &.mat-stepper-horizontal-line--progress {
+            border-style: dashed;
+
+            &::after {
+              content: from-theme(withdraw-delivery-truck);
+              position: absolute;
+              left: calc(50% - 20px);
+              top: -9px;
+              padding: 0 10px;
+              background-color: from-theme(withdraw-background);
+            }
+          }
+
+          &.mat-stepper-horizontal-line--done {
+            border-image-source: linear-gradient(to right, #f48836, #f4364c);
+            border-image-slice: 1;
+          }
+        }
+      }
+    }
+  }
+
+  @media (max-width: 1024px) {
+    .withdraw-container {
+      .withdraw-faq {
+        width: 290px;
+        padding: 20px 10px;
+
+        &-item {
+          font-size: 10px;
+        }
+      }
+
+      .withdraw-body-main {
+        width: calc(100% - 307px);
+      }
+    }
+
+    .withdraw-form-field {
+      width: 100% !important;
+    }
+
+    .item-details {
+      &__address {
+        .add-new-address {
+          margin-left: 0;
+          width: 100%;
+          justify-content: center;
+        }
+      }
+    }
+
+    .withdrawal-item {
+      margin-bottom: 20px;
+      padding-bottom: 20px;
+
+      & > .item-details__pic {
+        display: none;
+      }
+
+      &__info {
+        width: 100%;
+
+        .item-details__pic {
+          display: flex;
+          width: 100%;
+          margin: 10px 0 0;
+        }
+      }
+    }
+  }
+
+  @media(max-width: 767px) {
+    .page-title {
+      font-size: 20px;
+    }
+
+    .page-subtitle {
+      font-size: 14px;
+      margin-bottom: 30px;
+    }
+
+    .withdraw-container {
+      padding: 0;
+      border: none;
+      background: transparent;
+      border-radius: unset;
+
+      .withdraw-header {
+        border-radius: unset;
+        border: none;
+        background: transparent;
+        padding: 0;
+
+        .withdraw-nav {
+          width: 100%;
+        }
+      }
+
+      .withdraw-faq {
+        width: 100%;
+        margin: 0;
+      }
+
+      .withdraw-body {
+        background-color: from-theme(withdraw-background);
+        padding: 0;
+
+        .withdraw-body__inner {
+          background: transparent;
+          border-radius: unset;
+        }
+
+        .withdraw-body__title {
+          background: transparent;
+        }
+
+        .withdraw-body-main {
+          width: 100%;
+        }
+
+        .withdraw-select-item {
+          border-radius: 4px;
+          border: 1px solid from-theme(withdraw-body-border);
+          background-color: from-theme(withdraw-body-background);
+          padding: 18px;
+          min-height: 200px;
+
+          &__button {
+            border-style: solid;
+            border-width: 1px 0;
+            border-color: from-theme(withdraw-filter-border);
+            color: #36ac47;
+            width: 100%;
+            background: transparent;
+            border-image: none;
+            border-radius: unset;
+            max-width: initial;
+          }
+        }
+      }
+
+      .withdraw-faq-nav {
+        border-style: solid;
+        border-color: from-theme(withdraw-header-divider-border);
+        border-width: 1px 0;
+
+        .go-back, .faq {
+          height: 45px;
+          padding-left: 22px;
+          padding-right: 22px;
+          cursor: pointer;
+        }
+
+        .go-back {
+          border-right: 1px solid from-theme(withdraw-header-divider-border);
+
+          &__icon {
+            height: 11px;
+            padding: 0 8px;
+          }
+        }
+
+        .faq {
+          border-left: 1px solid from-theme(withdraw-header-divider-border);
+
+          &__icon {
+            height: 15px;
+            fill: from-theme(color);
+            margin-right: 8px;
+          }
+
+          &__text {
+            font-size: 15px;
+            font-weight: 500;
+            letter-spacing: 1.04px;
+            text-transform: uppercase;
+          }
+        }
+      }
+    }
+
+    .item-details {
+      &__shipping {
+        border: none;
+        flex-direction: column;
+        align-items: flex-end;
+        padding: 0;
+
+        &-note {
+          width: 100%;
+          text-align: right;
+          border-bottom: 3px solid from-theme(withdraw-body-border);
+          padding-bottom: 6px;
+          margin-bottom: 10px;
+          font-size: 11px;
+        }
+      }
+    }
+
+    .withdrawal-loading {
+      right: -20px;
+    }
+
+    .withdrawals-info {
+      width: 100%;
+    }
+
+    .withdrawals-tracking-text {
+      width: unset;
+      padding-left: unset;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      margin-bottom: 20px;
+    }
+  }
+}
+
+.page-title {
+  font-size: 25px;
+  margin-bottom: 16px;
+  font-weight: bold;
+}
+
+.withdrawals-wrapper {
+  position: relative;
+  height: calc(100vh - 505px);
+  min-height: 375px;
+  overflow: auto;
+}
+
+.withdrawal-loading {
+  position: absolute;
+  right: -40px;
+}
+
+#withdraw {
+  max-width: 1210px;
+}
+
+.withdraw-container {
+  .withdraw-faq {
+    width: 330px;
+  }
+
+  .withdraw-body-main {
+    width: calc(100% - 355px);
+  }
+}
+
+.item-details {
+  margin: 0 0 20px;
+
+  &__pic {
+    width: calc(100% / 3 - 30px);
+    align-self: stretch;
+    min-height: 115px;
+    height: auto;
+    margin-bottom: 10px;
+    margin-right: 30px;
+    border-bottom-style: solid;
+    border-bottom-width: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    flex-shrink: 0;
+
+    &::after {
+      content: '';
+      display: block;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      min-height: 115px;
+      filter: blur(10px);
+      background: linear-gradient(to bottom, currentColor 0%, currentColor 100%);
+      opacity: 0.07;
+      pointer-events: none;
+      z-index: 0;
+    }
+  }
+
+  &__section {
+    width: calc(100% / 3 * 2);
+  }
+
+  &__info {
+    width: calc(100% - 125px);
+  }
+
+  &__title {
+    @extend %text-elipsis;
+    letter-spacing: normal;
+    color: $colorSecondaryLightPurple;
+    font-size: 20px;
+    font-weight: 500;
+    letter-spacing: 0.24px;
+    border-bottom: 1px solid #212a2d;
+    line-height: 1.5;
+  }
+
+  &__type {
+    margin-top: 5px;
+    font-size: 15px;
+    font-weight: 500;
+    color: $colorSecondaryLightPurple;
+    text-transform: uppercase;
+  }
+
+  &__img {
+    position: relative;
+    @extend %bg-image;
+    width: 128px;
+    height: 64px;
+  }
+
+  &__delete {
+    width: 18px;
+    height: 18px;
+    font-size: 18px;
+    cursor: pointer;
+    opacity: 0.4;
+  }
+
+  &__options {
+    margin-top: 10px;
+  }
+
+  &__address {
+    align-items: flex-end;
+    cursor: pointer;
+    margin-bottom: 20px;
+
+    svg {
+      margin-right: 10px;
+    }
+
+    .add-new-address {
+      font-size: 12px;
+      font-weight: bold;
+      letter-spacing: 0.4px;
+      color: #0091ff;
+      text-transform: uppercase;
+      margin-left: 24px;
+      margin-bottom: 20px;
+    }
+
+    .withdraw-form-field {
+      width: calc(70% - 10px);
+    }
+  }
+}
+
+.form-group {
+  .withdraw-form-field {
+    width: 100%;
+  }
+}
+
+:host {
+  ::ng-deep {
+    .withdraw-form-field {
+      width: calc(50% - 10px);
+      min-width: 150px;
+      margin-bottom: 10px;
+
+      .mat-form-field-wrapper {
+        padding: 0;
+      }
+
+      .mat-form-field-prefix {
+        margin-right: 10px;
+        color: $colorSecondaryDarkerGray;
+      }
+
+      .mat-form-field-suffix {
+        color: $colorSecondaryDarkerGray;
+      }
+
+      .mat-form-field-infix {
+        padding: 0 !important;
+        border-top: none;
+
+        [matLabel] {
+          font-size: 11px;
+          font-weight: 500;
+          letter-spacing: 0.37px;
+          text-transform: uppercase;
+          margin-bottom: 8px;
+          display: block;
+        }
+
+        .mat-input-element,
+        .mat-select-value-text {
+          font-weight: 500;
+        }
+
+        .mat-select-value {
+          display: table-cell;
+        }
+      }
+    }
+  }
+}

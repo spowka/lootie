@@ -1,0 +1,49 @@
+<div *ngIf="isMobile$ | async" [ngClass]="{ 'slider-container-mobile': (currentUrl$ | async) !== '/'}" class="slider-container">
+  <app-cases-slider></app-cases-slider>
+</div>
+
+<div id="authentication" class="page-container">
+  <div class="page-title m-b-50">
+    {{'AUTHENTICATION.PAGE_TITLE' | translate }}
+  </div>
+
+  <div class="et">
+    <div class="et-content">
+      <div class="p-lg">
+        <div class="et-content__text">
+          {{'AUTHENTICATION.VERIFICATION_HINT' | translate }}.
+        </div>
+        <br><br>
+        <div class="et-content__text subtitle">
+          {{'AUTHENTICATION.VERIFICATION' | translate }}
+        </div>
+        <ul>
+          <li class="et-content__text list">{{'AUTHENTICATION.VERIFICATION_1' | translate }}.
+          </li>
+          <li class="et-content__text list">{{'AUTHENTICATION.VERIFICATION_2' | translate }}.</li>
+          <li class="et-content__text list">{{'AUTHENTICATION.VERIFICATION_3' | translate }}.</li>
+          <li class="et-content__text list">{{'AUTHENTICATION.VERIFICATION_4' | translate }}.</li>
+          <li class="et-content__text list">{{'AUTHENTICATION.VERIFICATION_5' | translate }}.</li>
+        </ul>
+        <br>
+        <div class="et-content__text subtitle">
+          {{'AUTHENTICATION.AUTHENTICATION' | translate }}
+        </div>
+        <br>
+        <div class="et-content__text">
+          {{'AUTHENTICATION.AUTHENTICATION_HINT' | translate }}.
+        </div>
+        <ul>
+          <li class="et-content__text list">{{'AUTHENTICATION.AUTHENTICATION_1' | translate }}.</li>
+          <li class="et-content__text list">{{'AUTHENTICATION.AUTHENTICATION_2' | translate }}.</li>
+          <li class="et-content__text list">{{'AUTHENTICATION.AUTHENTICATION_3' | translate }}.</li>
+        </ul>
+        <br>
+        <div class="et-content__text">
+          {{'AUTHENTICATION.AUTHENTICATION_RESULT_HINT' | translate }}.
+        </div>
+        <br>
+      </div>
+    </div>
+  </div>
+</div>

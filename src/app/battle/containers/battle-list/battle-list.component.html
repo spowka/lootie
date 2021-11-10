@@ -1,0 +1,96 @@
+<div class="slider-container" [ngClass]="{ 'slider-container-mobile': (currentUrl$ | async) !== '/'}" class="slider-container"  [class.opened]="(isChatOpened$ | async)">
+  <app-cases-slider></app-cases-slider>
+</div>
+
+<h1 class="page-title center m-b-20">
+  {{'BATTLE_LIST.TITLE' | translate }}
+</h1>
+
+<div class="subtitle m-b-20 center">
+  {{'BATTLE_LIST.BATTLE_HINT_1' | translate }} <br>
+  {{'BATTLE_LIST.BATTLE_HINT_2' | translate }}
+</div>
+
+<a *ngIf="(isMobile$ | async)" [routerLink]="['/battle/how-to-play']" class="bl__how-to-play-btn">
+  <span class="btn-icon"></span>
+  {{'BATTLE_LIST.HOW_TO_PLAY' | translate }}
+</a>
+
+<div class="create-battle m-b-20 center">
+  <button mat-button class="btn-larg gradient-green" [routerLink]="['/battle/create']">
+    <img src="assets/images/icons/sword-cross.svg">
+    <span>{{'BATTLE_LIST.CREATE_BATTLE' | translate }}</span>
+  </button>
+</div>
+
+<div class="battle-container bl">
+
+  <a *ngIf="!(isMobile$ | async)" [routerLink]="['/battle/how-to-play']" class="bl__how-to-play-btn">
+    <span class="btn-icon"></span>
+    {{'BATTLE_LIST.HOW_TO_PLAY' | translate }}
+  </a>
+
+  <div class="flex-row flex-row__btw bl__header">
+
+    <div class="flex-row">
+      <span class="battle-toggle-text" [ngClass]="{ 'battle-toggle-text--checked': isChecked }">
+        <ng-container *ngIf="!(isMobile$ | async)">{{'BATTLE_LIST.SORT_BY_DATE' | translate }}</ng-container>
+        <ng-container *ngIf="isMobile$ | async">{{'BATTLE_LIST.BY_DATE' | translate }}</ng-container>
+      </span>
+      <div class="battle-toggle-wrapper">
+        <input #inputCheck class="battle-toggle-button" type="checkbox" [(ngModel)]="isChecked"
+          (change)="onChange(inputCheck.checked)">
+        <div class="battle-toggle-after"></div>
+        <div class="battle-toggle-before"></div>
+        <div *ngIf="isChecked" class="battle-toggle-arrow-left"></div>
+        <div *ngIf="!isChecked" class="battle-toggle-arrow-right"></div>
+      </div>
+      <span class="battle-toggle-text" [ngClass]="{ 'battle-toggle-text--checked': !isChecked }">
+        <ng-container *ngIf="!(isMobile$ | async)">{{'BATTLE_LIST.SORT_BY_PRICE' | translate }}</ng-container>
+        <ng-container *ngIf="isMobile$ | async">{{'BATTLE_LIST.BY_PRICE' | translate }}</ng-container>
+      </span>
+    </div>
+
+    <div class="flex-row bl__header-records">
+      <a class="flex-row history" [routerLink]="['/battle/mine']">
+        <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 15 15">
+          <g fill="none" fill-rule="evenodd">
+            <path d="M0 0H15V15H0z" />
+            <path [ngStyle]="{'fill': (theme$ |async) === 'light' ? '#000' : '#FFF'}" fill-rule="nonzero"
+              d="M3.75 7.5L2.12 9.132c.701 2.308 2.847 3.993 5.382 3.993 2.671 0 4.91-1.874 5.48-4.375h1.275c-.59 3.195-3.392 5.625-6.755 5.625-2.868 0-5.329-1.767-6.359-4.267L.002 11.25V7.5h3.75zm3.75.781c1.439 0 2.344.906 2.344 2.344H5.157c0-1.378.832-2.267 2.167-2.34l.177-.004zm0-3.906c.864 0 1.563.7 1.563 1.563 0 .862-.7 1.562-1.562 1.562-.863 0-1.563-.7-1.563-1.563 0-.862.7-1.562 1.563-1.562zm0-3.75c2.868 0 5.329 1.766 6.359 4.267L15 3.75V7.5h-3.75l1.632-1.631C12.18 3.56 10.035 1.875 7.5 1.875c-2.672 0-4.91 1.874-5.481 4.375H.745C1.335 3.054 4.137.625 7.501.625z" />
+          </g>
+        </svg>
+        <ng-container *ngIf="!(isMobile$ | async)">{{'BATTLE_LIST.MY_HISTORY_BATTLES' | translate }}</ng-container>
+        <ng-container *ngIf="isMobile$ | async">{{'BATTLE_LIST.MY_HISTORY' | translate }}</ng-container>
+      </a>
+      <a class="flex-row history" [routerLink]="['/battle/finished']">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="15" viewBox="0 0 16 15">
+          <path [ngStyle]="{'fill': (theme$ |async) === 'light' ? '#000' : '#FFF'}"
+            d="M7.2 3.946v4.037l3.772 2.204.616-1.014L8.4 7.3V3.946M8.396-.002c-2.821 0-5.272 1.518-6.58 3.768L0 1.972v5.132h5.2L2.998 4.93c.967-1.984 3.02-3.354 5.402-3.354 3.315 0 6 2.651 6 5.921 0 3.27-2.685 5.921-6 5.921-2.612 0-4.828-1.649-5.652-3.947H1.074c.878 3.183 3.815 5.526 7.322 5.526 4.2 0 7.604-3.357 7.604-7.5 0-4.142-3.404-7.5-7.604-7.5z" />
+        </svg>
+        <ng-container *ngIf="!(isMobile$ | async)">{{'BATTLE_LIST.HISTORY_BATTLES' | translate }}</ng-container>
+        <ng-container *ngIf="isMobile$ | async">{{'BATTLE_LIST.HISTORY' | translate }}</ng-container>
+      </a>
+    </div>
+  </div>
+
+  <table *ngIf="!(isLoading$ | async)" class="bl__table">
+    <tr>
+      <td class="bl_h__rounds"> {{'BATTLE_LIST.ROUNDS' | translate }} </td>
+      <td class="bl_h__boxes"> {{'BATTLE_LIST.BOXES_SCENARIO' | translate }} </td>
+      <td class="bl_h__cost"> {{'BATTLE_LIST.COST' | translate }} </td>
+      <td class="bl_h__players"> {{'BATTLE_LIST.PLAYERS' | translate }} </td>
+      <td class="bl_h__watch"></td>
+    </tr>
+    <tr @fadeUp app-battle-list-item [battle]="battle" *ngFor="let battle of (battles$ | async); trackBy: identifyItem">
+    </tr>
+  </table>
+
+  <div class="no-battle"
+    *ngIf="!(isLoading$ | async) && (isLoaded$ | async) && (!(battles$ | async) || (battles$ | async).length === 0)">
+    {{'BATTLE_LIST.NO_BATTLE_TO_WATCH' | translate }}
+  </div>
+
+  <mat-spinner *ngIf="isLoading$ | async" mode="indeterminate" class="skinworld-customized">
+  </mat-spinner>
+</div>

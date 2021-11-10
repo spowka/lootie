@@ -1,0 +1,48 @@
+<div class="mobile-modal-section flex-col">
+  <p class="mobile-modal-section__text">
+    {{'LOGIN_DIALOG.PAGE_SUB_TITLE' | translate }}.
+  </p>
+
+  <form [formGroup]="loginForm" (ngSubmit)="login()" class="flex-col login-form">
+    <div class="login-inputs login-inputs-group">
+      <mat-form-field class="height-all email login-form-field">
+        <span matPrefix>E-mail </span>
+        <input matInput type="email" formControlName="email" email>
+      </mat-form-field>
+      <mat-form-field class="height-all login-form-field">
+        <span matPrefix>{{'LOGIN_DIALOG.PASSWORD' | translate }} </span>
+        <input matInput type="password" formControlName="password">
+      </mat-form-field>
+    </div>
+    <div class="flex-row flex-row__btw login-inputs">
+      <mat-checkbox class="skinworld-customized" formControlName="remember">
+        {{'LOGIN_DIALOG.REMEMBER' | translate }}
+      </mat-checkbox>
+      <div class="pointer" (click)="onChangePage(MobileMenu.resetPassword)">
+        {{'LOGIN_DIALOG.FORGOTTEN_PASSWORD' | translate }}?
+      </div>
+    </div>
+  </form>
+
+  <div class="mobile-modal-section__actions mobile-modal-section__submit flex-row">
+    <button type="submit" mat-button class="btn-linear btn-square" [disabled]="loginForm.invalid" (click)="login()">
+      {{'LOGIN_DIALOG.LOGIN' | translate }}
+    </button>
+    <button type="button" mat-button class="btn-outline-gray btn-square" (click)="onChangePage(MobileMenu.signUp)">
+      {{'LOGIN_DIALOG.SIGN_UP' | translate }}
+    </button>
+  </div>
+
+  <p class="mobile-modal-section__text">{{'LOGIN_DIALOG.FOOTER_HINT' | translate }}
+    <span class="skinworld-terms" (click)="goToPage('/tos')">{{'LOGIN_DIALOG.TERMS_PRIVACY' | translate }}</span>.
+  </p>
+
+  <div>
+    <p class="mobile-modal-section__text mobile-modal-section__text-big" (click)="goToPage('/support')">{{'LOGIN_DIALOG.FAQ' | translate }}</p>
+    <p class="mobile-modal-section__text mobile-modal-section__text-big" (click)="goToPage('/tos')">{{'LOGIN_DIALOG.TERMS' | translate }}</p>
+    <p class="mobile-modal-section__text" (click)="goToPage('/how-it-works/deposit')">
+      {{ 'LOGIN_DIALOG.HOW_IT_WORKS' | translate }}
+    </p>
+
+  </div>
+</div>

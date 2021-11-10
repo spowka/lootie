@@ -1,0 +1,142 @@
+@import '../../../../styles/concepts.scss';
+@import '../../../../styles/variables.scss';
+
+.upgrade-info {
+  max-width: 900px;
+
+  .right-double {
+    font-size: 19px;
+    height: 5px;
+    top: -3px;
+    position: relative;
+  }
+
+  &__content {
+    width: calc(100% / 2 - 10px);
+    margin-bottom: 70px;
+
+    h3 {
+      text-transform: uppercase;
+    }
+
+    p {
+      font-family: Roboto;
+      color: $colorSecondaryShuttleGray;
+      font-size: 16px;
+    }
+  }
+
+  &__image {
+    width: 100%;
+  }
+
+  &__image-game {
+    width: 70%;
+  }
+
+  &__icon {
+    width: 75px;
+  }
+
+  &__start-upgrade {
+    .mat-button.btn-linear {
+      min-width: 312px;
+    }
+  }
+
+  &__luck {
+    background-image: url('/assets/images/info/shape.svg');
+    width: 294px;
+    height: 28px;
+    margin: auto;
+    background-repeat: no-repeat;
+    text-align: center;
+    margin-bottom: 50px;
+    color: $colorPrimaryWhite;
+  }
+}
+
+@media (min-width: 767px) {
+
+  .upgrade-info {
+    &__luck {
+
+      &:before,
+      &:after {
+        content: '';
+        display: inline-block;
+        vertical-align: middle;
+        box-sizing: border-box;
+        width: 90%;
+        height: 1px;
+        background: #1abe66;
+      }
+
+      &:before {
+        margin-left: -100%;
+        margin-right: 18px;
+      }
+
+      &:after {
+        margin-right: -100%;
+        margin-left: 18px;
+      }
+    }
+  }
+}
+
+@media (min-width: 767px) and (max-width: 1024px) {
+
+  .upgrade-info {
+    padding: 0 20px;
+
+    &__content {
+      margin-bottom: 30px;
+      height: 100%;
+    }
+
+    &__icon {
+      width: 65px;
+    }
+
+    h2 {
+      margin: 8px 0;
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  .flex-center_mobile {
+    display: flex;
+    justify-content: center;
+
+    .mobile-first {
+      order: 1;
+    }
+
+    .mobile-second {
+      order: 2;
+    }
+  }
+
+  .upgrade-info {
+    width: 100%;
+
+    &__content {
+      margin-bottom: 30px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    &__icon {
+      width: 50px;
+    }
+
+    &__image-game {
+      width: 50%;
+    }
+  }
+}

@@ -1,0 +1,101 @@
+<div *ngIf="isMobile$ | async" [ngClass]="{ 'slider-container-mobile': (currentUrl$ | async) !== '/' }"
+  class="slider-container">
+  <app-cases-slider></app-cases-slider>
+</div>
+
+<div id="inventory-content" class="page-container">
+  <div class="inventory__title">
+    {{'INVENTORY.PAGE_TITLE' | translate }} <span *ngIf="selectedItemsTotal && selectedItemsIds.length > 0">
+      ${{ selectedItemsTotal | number:'1.2-2' }}
+      {{'INVENTORY.PAGE_TITLE_IF' | translate }}</span>
+  </div>
+
+  <div class="inventory__subtitle">
+    {{'INVENTORY.PAGE_SUB_TITLE' | translate }}
+  </div>
+
+  <div class="flex-col inventory__menu">
+
+    <div class="inventory__header">
+      <div class="flex-row go-back" (click)="goBack()">
+        <img class="go-back__icon" src="/assets/images/icons/back.svg"> <span>{{'DAILY_CASE.GO_BACK' | translate }}</span>
+      </div>
+
+      <div class="flex-row flex-row__center buttons-group" *ngIf="!(isMobile$ | async)">
+        <ng-container *ngTemplateOutlet="actionButtons"></ng-container>
+      </div>
+
+      <!-- <div *ngIf="(isMobile$ | async)"></div> -->
+    </div>
+
+    <section class="flex-col flex-col__btw cases-list-wrapper">
+      <app-filters [showSelected]="false" [showSelectAll]="true" [isNoData]="!inventoryItems.length" [isSelectAllSelected]="isSelectAllSelected"
+        (selectAll)="selectAllItems($event)" (filtersChange)="onFiltersChange($event)">
+      </app-filters>
+      <div class="cases-list flex-row flex-row__center" infiniteScroll infiniteScrollDistance="0"
+        [alwaysCallback]="false" [scrollWindow]="false" [infiniteScrollDisabled]="isScrollDisabled"
+        (scrolled)="onScroll()">
+        <app-case-item *ngFor="let inventory of inventoryItems" [item]="inventory.item" [isMobile]="(isMobile$ | async)"
+          [isSelected]="selectedItemsIds.includes(inventory._id)" (addToSelected)="addToSelectedItems($event)"
+          [isLoading]="sellProcess && selectedItems.includes(inventory)"
+          (removeFromSelected)="removeFromSelectedItems($event)" class="case-item">
+        </app-case-item>
+
+        <div class="flex-row flex-row__center spinner">
+          <mat-spinner *ngIf="(isLoading$ | async).data" mode="indeterminate" class="skinworld-customized">
+          </mat-spinner>
+        </div>
+
+        <div *ngIf="!inventoryItems.length && !(isLoading$ | async).data" class="flex-row flex-row__center">
+          {{'NO_DATA' | translate }}
+        </div>
+      </div>
+    </section>
+
+    <section class="bottom-block">
+      <div class="flex-row selected-items">
+        <div class="flex-col flex-col__start selected-items__title">
+          <ng-container *ngIf="selectedItems.length; else noSelected">
+            <span class="selected">selected {{ 'INVENTORY.ITEMS' | translate }}: {{ selectedItems.length }} </span>
+          </ng-container>
+          <ng-template #noSelected>
+            <span class="selected">{{'INVENTORY.NO_SELECTED_ITEMS' | translate }}</span>
+          </ng-template>
+        </div>
+        <div class="flex-row selected-items__images">
+          <div class="selected-items__images-content" *ngFor="let inventory of selectedItems">
+            <!-- <ng-container *ngIf="!(isMobile$ | async); else mobileSelectedItem"> -->
+            <div class="selected-items__img" [ngStyle]="{'background': 'url(' + inventory.item.image + ')'}"></div>
+            <span class="selected-items__desc">{{ inventory.item.name }}</span>
+            <!-- </ng-container> -->
+            <!-- <ng-template #mobileSelectedItem>
+              <div class="selected-items__mobile-info">
+                <div class="selected-items__img" [ngStyle]="{'background': 'url(' + inventory.item.image + ')'}"></div>
+                <div class="selected-items__info">
+                  <span class="selected-items__desc">{{ inventory.item.name }}</span>
+                  <span class="selected-items__tag"
+                    [ngStyle]="{'color': inventory.item.color}">{{ inventory.item.tag }}</span>
+                </div>
+              </div>
+              <span
+                class="selected-items__price">${{ (inventory.item.value || inventory.item.price) | number:'1.2-2'}}</span>
+            </ng-template> -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="flex-row flex-row__center footer-buttons-group" *ngIf="(isMobile$ | async)">
+      <ng-container *ngTemplateOutlet="actionButtons"></ng-container>
+    </div>
+  </div>
+</div>
+
+<ng-template #actionButtons>
+  <button mat-button class="btn-large btn-white sell" [disabled]="!selectedItems.length || (isLoading$ | async).sell" (click)="sell()">
+    <span>{{'INVENTORY.SELL' | translate }}</span>
+  </button>
+  <button [routerLink]="['/withdraw']" mat-button class="btn-large btn-linear withdraw">
+    {{'INVENTORY.WITHDRAW' | translate }}
+  </button>
+</ng-template>

@@ -1,0 +1,20 @@
+<div class="flex-row flex-row__btw m-b-20 battle-header bh">
+
+  <div class="flex-row battle-back-button" (click)="goBack()">
+    <mat-icon>keyboard_arrow_left</mat-icon><span *ngIf="!(isMobile$ | async)">GO BACK</span>
+  </div>
+
+  <div class="flex-row bh__tab">
+    <button mat-button [disabled]="!battleId" class="icon" ngxClipboard
+      [cbContent]="'https://lootie.com/battle/' + battleId" (cbOnSuccess)="onCopySuccess()"
+      (cbOnError)="onCopyFailure()"></button>
+    <div *ngIf="battleId" class="flex-row link">
+      <span>https://lootie.com/battle/{{ battleId }}</span>
+    </div>
+  </div>
+
+  <div class="flex-row bh__provably" (click)="goToProvablyFair()">
+    <img class="icon" src="/assets/images/icons/shield.svg">
+    <span>{{'UPGRADE.PROVABLY_FAIR' | translate}}</span>
+  </div>
+</div>

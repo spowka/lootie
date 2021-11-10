@@ -1,0 +1,188 @@
+@import '../../../../styles/concepts.scss';
+@import '../../../../styles/partials/index.scss';
+
+@include register-component {
+  input.search-field {
+    color: from-theme(text-color);
+    background-image: from-theme(search-icon);
+  }
+  .shop-filters {
+    background-color: from-theme(background-navbar);
+
+    .column {
+      &.is-left,
+      &.is-right {
+        border-color: from-theme(filter-separator);
+      }
+    }
+    .search-input {
+      background-color: from-theme(background-input);
+    }
+  }
+  .shop-filters-mobile {
+    border-color: from-theme(filter-separator);
+
+    .block {
+      border-color: from-theme(filter-separator);
+    }
+    .search-input {
+      background-color: from-theme(background-navbar);
+
+      ::ng-deep .filter-input {
+        background-color: from-theme(background-input);
+      }
+    }
+    ::ng-deep .filter-button {
+      border-right: 1px solid from-theme(filter-separator);
+    }
+  }
+
+  @media (max-width: 1024px) {
+    .shop-filters-mobile {
+      .sort-wrapper {
+        app-filter-toggle {
+          &.active {
+            background-color: from-theme(shop-sidebar-sort-wrapper-background);
+          }
+
+          &:last-child {
+            border-left: solid 1px from-theme(shop-sidebar-sort-wrapper-border);
+          }
+        }
+      }
+    }
+
+    .mobile-toggle-content {
+      app-filter-toggle-content {
+        ::ng-deep {
+          .filter-toggle-content {
+            .content-panel {
+              border: solid 1px from-theme(shop-sidebar-content-panel-border);
+
+              .item {
+                background-color: from-theme(shop-sidebar-content-panel-item) !important;
+
+                .medium {
+                  color: from-theme(shop-sidebar-content-panel-item-medium-color);
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.search-input {
+  display: block;
+  max-width: 300px;
+  margin: 0 auto;
+  border-radius: 2px;
+}
+
+.flex-grow {
+  flex-grow: 1;
+}
+
+.shop-filters {
+  display: flex;
+  align-items: stretch;
+  padding: 6px 20px;
+  border-radius: 4px;
+
+  .column {
+    &.is-left {
+      border-right: 1px solid transparent;
+      padding-right: 25px;
+    }
+    &.is-right {
+      display: flex;
+      align-items: center;
+      border-left: 1px solid transparent;
+      padding-left: 25px;
+    }
+  }
+
+  ::ng-deep .mat-form-field.skinworld-customized .mat-form-field-infix .mat-select-value-text {
+    font-size: 12px;
+  }
+}
+
+.shop-filters-mobile {
+  margin: -20px -20px 0;
+  border-top: 1px solid transparent;
+
+  ::ng-deep .filter-button {
+    display: inline-block;
+    padding: 12px 20px;
+  }
+  .block {
+    border-bottom: 1px solid transparent;
+    height: 48px;
+    display: flex;
+    align-items: center;
+  }
+
+  .sort-wrapper {
+    justify-content: center;
+
+    app-filter-toggle {
+      width: 50%;
+      display: flex;
+      justify-content: center;
+      height: 100%;
+
+      ::ng-deep {
+        .filter-toggle {
+          width: 100%;
+          justify-content: center;
+        }
+      }
+    }
+  }
+
+  .search-wrapper {
+    height: auto;
+
+    .search-input {
+      margin: 20px 25px;
+      border-radius: 4px;
+      padding: 10px;
+      max-width: 100%;
+      width: 100%;
+    }
+  }
+}
+
+@media (max-width: 1024px) {
+  .mobile-toggle-content {
+    app-filter-toggle-content {
+      ::ng-deep {
+        .filter-toggle-content {
+          .content-panel {
+            border-radius: 4px;
+
+            .item {
+              &:first-child {
+                border-top-left-radius: 4px;
+                border-top-right-radius: 4px;
+              }
+
+              &:last-child {
+                border-bottom-left-radius: 4px;
+                border-bottom-right-radius: 4px;
+              }
+
+              .medium {
+                font-size: 16px;
+                line-height: normal;
+                letter-spacing: 0.62px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="10px" height="10px" viewBox="0 0 10 10" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Combined Shape</title>
+    <defs>
+        <linearGradient x1="0%" y1="0%" x2="100%" y2="100%" id="linearGradient-1">
+            <stop stop-color="#F48836" offset="0%"></stop>
+            <stop stop-color="#F4364C" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Deposit-Valid-Code-Dark" transform="translate(-714.000000, -472.000000)" fill="url(#linearGradient-1)">
+            <g id="Group-4" transform="translate(464.000000, 459.000000)">
+                <path d="M255,13 C255.414214,13 255.75,13.3357864 255.75,13.75 L255.75,17.25 L259.25,17.25 C259.664214,17.25 260,17.5857864 260,18 C260,18.4142136 259.664214,18.75 259.25,18.75 L255.75,18.75 L255.75,22.25 C255.75,22.6642136 255.414214,23 255,23 C254.585786,23 254.25,22.6642136 254.25,22.25 L254.25,18.75 L250.75,18.75 C250.335786,18.75 250,18.4142136 250,18 C250,17.5857864 250.335786,17.25 250.75,17.25 L254.25,17.25 L254.25,13.75 C254.25,13.3357864 254.585786,13 255,13 Z" id="Combined-Shape"></path>
+            </g>
+        </g>
+    </g>
+</svg>

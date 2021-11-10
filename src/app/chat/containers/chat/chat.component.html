@@ -1,0 +1,111 @@
+<div class="chat-wrapper" [class.opened]="(isOpened$ | async) && (isDesktop$ | async)">
+  <div class="chat-toggler__wrapper" [class.mobile]="(isMobile$ | async)">
+    <app-chat-toggler></app-chat-toggler>
+  </div>
+
+  <div class="chat-wrap" [class.opened]="(isOpened$ | async)" *ngIf="!(isMobile$ | async) else chatMobile">
+    <div class="chat-container flex-col flex-col__start">
+      <div class="chat-header flex-row flex-row__end">
+        <!-- <div class="flex-row chat-header__title">
+          <div class="counter">{{ onlineUsers$ | async }}</div>
+          <div *ngIf="(onlineUsers$ | async) < 2" class="chat-header__subtitle l-sm">user online</div>
+          <div *ngIf="(onlineUsers$ | async) >= 2" class="chat-header__subtitle l-sm">users online</div>
+        </div> -->
+        <div class="chat-header__close" (click)="closeChat()">
+          <mat-icon class="skinworld-customized">arrow_back_ios</mat-icon>
+        </div>
+      </div>
+      <ng-container *ngTemplateOutlet="chatMessages"></ng-container>
+      <ng-container *ngTemplateOutlet="chatDraftMessage"></ng-container>
+    </div>
+  </div>
+
+  <ng-template #chatMobile>
+    <div [@modalAnimation]="(isOpened$ | async) ? 'opened' : 'leftClosed'">
+      <div class="mobile-modal">
+        <div class="flex-row flex-row__end mobile-modal__header">
+          <!-- <div *ngIf="(onlineUsers$ | async) < 2" class="counter">
+            {{ onlineUsers$ | async }} user online
+          </div>
+          <div *ngIf="(onlineUsers$ | async) >= 2" class="counter">
+            {{ onlineUsers$ | async }} users online
+          </div> -->
+          <div (click)="closeChat()">
+            <mat-icon>close</mat-icon>
+          </div>
+        </div>
+        <ng-container *ngTemplateOutlet="chatMessages"></ng-container>
+        <ng-container *ngTemplateOutlet="chatDraftMessage"></ng-container>
+      </div>
+    </div>
+  </ng-template>
+
+  <ng-template #chatMessages>
+    <div *ngIf="(messages$ | async) as messages"
+      class="chat-messages flex-col flex-col__start">
+      <div class="cm flex-row flex-row__btw" *ngFor="let message of messages">
+        <div class="cm__content">
+          <div class="cm__user-avatar"
+            [ngStyle]="message.sender.profileImageUrl && {'background-image': 'url(' + message.sender.profileImageUrl + ')'}">
+          </div>
+          <div class="cm__info">
+            <div class="cm__user">
+              <span
+                class="cm__user-name">{{ message.sender.name ? message.sender.name : message.sender.username }}</span>
+              <span class="cm__user-time">{{ message.createdAt | date : 'h:mm' }}</span>
+              <mat-icon *ngIf="user?.type === 'ADMIN'" (click)="removeMessage(message._id)">close</mat-icon>
+            </div>
+            <div class="cm__message">
+              <div class="cm__message-text" [innerHtml]="message.text | setEmojy | sanitizeHtml"></div>
+            </div>
+          </div>
+        </div>
+
+        <mat-icon *ngIf="user?.type === 'ADMIN'" class="cm__options" [matMenuTriggerFor]="chatOptions"
+          [matMenuTriggerData]="{userId: message.sender._id}">
+          more_vert
+        </mat-icon>
+      </div>
+    </div>
+  </ng-template>
+
+  <ng-template #chatDraftMessage>
+    <form [formGroup]="chatForm" (ngSubmit)="sendMessage()" class="chat-draft-message flex-col flex-col__btw">
+      <ng-container *ngIf="user; else notLoggedIn">
+        <ng-container *ngIf="!user.chatMuteInfo; else userMuted">
+          <div class="container">
+            <div #text class="textarea" contenteditable="true" (keydown.enter)="sendMessage($event)" (input)="typing()"
+              (focus)="isFocus=true" (blur)="isFocus=false">
+            </div>
+            <textarea formControlName="message"></textarea>
+            <span class="placeholder" *ngIf="!chatForm.value.message && !isFocus">{{'CHAT.ENTER_YOUR_MESSAGE' | translate }}</span>
+            <app-emoji-menu *ngIf="isEmojiMenu" (select)="insertEmoji($event)"></app-emoji-menu>
+          </div>
+          <div class="cdm__send flex-row flex-row__btw">
+            <div class="flex-row rules" (click)="chatRules()"><span class="button-icon bookmark"></span>{{'CHAT.CHAT_RULES' | translate }}</div>
+            <div> <span (click)="isEmojiMenu=!isEmojiMenu" class="button-icon send"> </span>
+              <div class="flex-row send-message" (click)="sendMessage()">{{'CHAT.SEND' | translate }}</div>
+            </div>
+          </div>
+        </ng-container>
+      </ng-container>
+    </form>
+  </ng-template>
+
+  <ng-template #notLoggedIn>
+    <span *ngIf="isOpened$ | async">{{'CHAT.LOG_IN_TO_SEND_MESSAGE' | translate }}.</span>
+  </ng-template>
+
+  <ng-template #userMuted>
+    <span *ngIf="isOpened$ | async">{{ mute.text }}</span>
+  </ng-template>
+
+  <mat-menu #chatOptions="matMenu" class="chat-options">
+    <ng-template matMenuContent let-userId="userId">
+      <button mat-menu-item *ngFor="let opt of muteOptions" (click)="muteUser(userId, opt.duration)">
+        <mat-icon>notifications_off</mat-icon>
+        <span>{{'CHAT.MUTE' | translate }} {{ opt.label }}</span>
+      </button>
+    </ng-template>
+  </mat-menu>
+</div>

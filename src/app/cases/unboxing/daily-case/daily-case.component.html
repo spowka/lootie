@@ -1,0 +1,269 @@
+<div class="slider-container" [ngClass]="{ 'slider-container-mobile': (currentUrl$ | async) !== '/'}"
+  [class.opened]="(isChatOpened$ | async)">
+  <app-cases-slider></app-cases-slider>
+</div>
+
+<div id="daily-case" class="page-container">
+  <section class="items-list__container opening-box-content">
+    <div class="m-b-20 actions">
+      <div class="flex-row">
+        <div class="flex-row go-back" (click)="goBack()">
+          <ng-container *ngIf="(theme$ |async) === 'dark'; else darkButton">
+            <img class="back-icon" src="assets/images/icons/back-light.svg">
+          </ng-container>
+          <ng-template #darkButton>
+            <img class="back-icon" src="assets/images/icons/back.svg">
+          </ng-template>
+        </div>
+      </div>
+
+      <div class="flex-row flex-row__center provably-title" (click)="goToProvablyFair()">
+        <img class="provably-icon" src="/assets/images/icons/shield_orange.svg">
+        <span>{{'DAILY_CASE.PROVABLY_FAIR' | translate }}</span>
+      </div>
+
+      <div class="flex-row flex-row__end sound-title">
+        <span class="sound-desc">{{'SOUND'}}</span>
+        <mat-slide-toggle class="skinworld-customized" [labelPosition]="'before'" [checked]="isAudioPlay"
+          (change)="onToggleAudio($event.checked)" [disabled]="spinnerConfig.disabled">
+        </mat-slide-toggle>
+      </div>
+    </div>
+
+    <div class="flex-row flex-row__center daily-case__container m-b-30">
+      <div *ngIf="!isDaily" class="flex-col">
+        <div class="page-title-small  m-b-10">
+          <div class="case-price"></div>
+          {{ unboxingCase?.name }}
+          <div class="case-price">
+            <span *ngIf="!isFree">${{ (unboxingCase?.price * casesQuantity) | number:'1.2-2' }}</span>
+            <span *ngIf="isFree">{{'DAILY_CASE.FREE' | translate }}</span>
+          </div>
+        </div>
+
+        <div class="page-subtitle-small">
+          {{'DAILY_CASE.PAGE_SUB_TITLE' | translate }}
+        </div>
+      </div>
+
+      <div *ngIf="isDaily" class="flex-col">
+        <div class="page-title-small m-b-10" [innerHTML]="'DAILY_CASE.PAGE_SMALL_TITLE'">
+        </div>
+
+        <div class="page-subtitle-small">
+          {{'DAILY_CASE.PAGE_SUB_TITLE_SMALL' | translate }}
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="isDaily" class="flex-row flex-row__center m-b-40">
+      <app-navbar [border]="false" [nav]="navItems"></app-navbar>
+    </div>
+
+    <section *ngIf="!showWinItems; else winItemsList" class="roulette__container">
+      <div *ngIf="spinner.length; else loading" class="roulette__wrapper" [class.full-height]="casesQuantity > 1">
+        <div *ngIf="!isMobile || casesQuantity === 1; else mobileSpinners">
+          <div class="roulette" *ngFor="let spin of spinner">
+            <div class="spin-overflow-background" *ngIf="!hideOverflow && unboxingCase">
+              <div [class]="'left-side-bg ' + selectedBackground"></div>
+              <img [src]="unboxingCase.image">
+              <div [class]="'right-side-bg ' + selectedBackground"></div>
+            </div>
+            <div class="roulette__wrap" [ngStyle]="spinning ? spin.style : null">
+              <app-spinner-item *ngFor="let item of spin.items; trackBy: itemId" [item]="item" [spinnerView]="true" [isMobile]="isMobile">
+              </app-spinner-item>
+            </div>
+            <img class="spinner-line" src="/assets/images/spinner.png">
+          </div>
+        </div>
+
+        <ng-template #mobileSpinners>
+          <div class="hotizontal-spinners">
+            <div *ngIf="hideOverflow" class="horizontal-spinner-icon left-spinner">
+              <img class="icon-spinner" [src]="'/assets/images/icons/triangle.svg'" />
+            </div>
+            <div class="roulette flex-col__btw">
+              <div class="spin-overflow-background" *ngIf="!hideOverflow && unboxingCase">
+                <div [class]="'left-side-bg ' + selectedBackground"></div>
+                <img *ngFor="let spin of spinner" [src]="unboxingCase.image" [ngStyle]="{
+                  'width': 'calc(100% / ' + spinner.length + ' - 5px)',
+                  'height': 'auto'
+                }">
+                <div [class]="'right-side-bg ' + selectedBackground"></div>
+              </div>
+              <div class="roulette__wrap" *ngFor="let spin of spinner" [ngStyle]="spin.style" [ngClass]="{
+                  'twice-items': spinner.length === 2,
+                  'third-items': spinner.length === 3
+                }">
+                <app-spinner-item *ngFor="let item of spin.items" [item]="item"
+                  [itemWidth]="spinner.length === 3 ? '100px' : '130px'" [spinnerView]="true" [isMobile]="isMobile">
+                </app-spinner-item>
+              </div>
+            </div>
+            <div *ngIf="hideOverflow" class="horizontal-spinner-icon right-spinner">
+              <img class="icon-spinner" [src]="'/assets/images/icons/triangle.svg'" />
+            </div>
+          </div>
+        </ng-template>
+      </div>
+      <div *ngIf="isDaily && user?.depositedValue < 5" class="flex-row flex-row__center deposit-info">
+        <mat-icon>error_outline</mat-icon>
+        <span [innerHTML]="'DAILY_CASE.DEPOSIT_INFO' | translate"></span>
+      </div>
+
+      <div class="flex-col flex-col__center button-actions">
+
+        <ng-container *ngIf="!user || !isFree && user && user.balance < unboxingCase?.price; else regularActions">
+          <div class="flex-col flex-col__center insufficient-funds" *ngIf="user && isOpenInsufficient">
+            <img class="close-insufficient-content" src="/assets/images/icons/close.svg" (click)="closeInsufficient()">
+            <p class="m-b-10">{{'DAILY_CASE.INSUFFICIENT_FUNDS' | translate }}</p>
+            <span [innerHTML]="'DAILY_CASE.INSUFFICIENT_FUNDS_HINT' | translate:{value: (unboxingCase?.price
+              - user?.balance) | number:'1.2-5'}"></span>
+          </div>
+          <div class="flex-row flex-row__center buttons-group-no-balance">
+            <button *ngIf="user; else signInToUnbox" mat-button (click)="addFunds()" class="btn-large gradient-green"
+              [routerLink]="['/deposit']">
+              <img src="assets/images/icons/white_coins.svg">
+              {{'DAILY_CASE.ADD_FUNDS' | translate }}
+            </button>
+            <ng-template #signInToUnbox>
+              <button mat-button class="btn-large btn-linear" (click)="login()">
+                <img src="assets/images/icons/user-white.svg">
+                {{ 'DAILY_CASE.SIGN_IN_TO_UNBOX' | translate }}
+              </button>
+            </ng-template>
+          </div>
+        </ng-container>
+
+        <ng-template #regularActions>
+          <div class="buttons-group">
+            <div class="cases-button" *ngIf="!isFree && !spinnerConfig.disabled && !isDaily && !isMobile">
+              <mat-menu #caseQuantity="matMenu" class="cases-quantity">
+                <button mat-menu-item *ngFor="let case of casesQuantityArr" (click)="onSelectionChange(case)" class="case-button">
+                  {{ case }}
+                </button>
+              </mat-menu>
+              <button mat-button [matMenuTriggerFor]="caseQuantity" #t="matMenuTrigger">
+                <span>{{'DAILY_CASE.BOXES' | translate }}</span> <span class="quantity">{{ casesQuantity }}</span>
+                <mat-icon [@rotatedState]="(t && t.menuOpen) ? 'rotated' : 'default'">expand_more</mat-icon>
+              </button>
+            </div>
+            <button *ngIf="!isDaily || (isDaily && !isDailyExpired); else timer" mat-button [class.free]="isFree"
+              class="btn-large btn-linear ld-ext-right" [class.running]="spinnerConfig.loading || !unboxingCase"
+              [ngClass]="{'display-none': isDepositLow}" [disabled]="!unboxingCase || (isFree && user?.hasFreeboxOpened)" (click)="unbox()">
+              <span *ngIf="!isFree && unboxingCase"> OPEN FOR ${{ (unboxingCase?.price * casesQuantity) | number:'1.2-2' }}</span>
+              <span *ngIf="isFree && unboxingCase">Open for free</span>
+              <span *ngIf="!unboxingCase">Loading</span>
+              <div class="ld ld-ring ld-spin"></div>
+            </button>
+            <div *ngIf="!isFree && !spinnerConfig.disabled && !isDaily && !isMobile" class="empty-field">
+              </div>
+
+            <button *ngIf="spinnerConfig.disabled" mat-button disabled class="btn-large btn-linear ld-ext-right">
+              <div class="opennig-spinners-text">
+                Unboxing
+                <div class="opennig-spinners-dots">
+                  <div class="spin-point"></div>
+                </div>
+              </div>
+            </button>
+
+            <ng-template #timer>
+              <button mat-button class="btn-large btn-linear">
+                <span *ngIf="dailyCase.text">{{'DAILY_CASE.TIME_LEFT' | translate }}: {{ dailyCase.text }}</span>
+              </button>
+            </ng-template>
+          </div>
+        </ng-template>
+      </div>
+
+      <ng-template #loading>
+        <div class="flex-row flex-row__center spinner-loading">
+          <mat-spinner class="skinworld-customized"></mat-spinner>
+        </div>
+      </ng-template>
+    </section>
+  </section>
+
+  <ng-template #winItemsList>
+    <section class="daily-case daily-case__container">
+      <div class="win-items">
+        <div *ngFor="let item of winItems; let i = index;" [ngClass]="{'test-win-item': soldItems.includes(item.userItem._id)}"
+          [class]="'flex-col win-item winners-' + winItems.length">
+          <div class="flex-col daily-case__data m-b-20">
+            <div class="daily-case__data-price m-b-10">${{ item.item?.value | number:'1.2-2' }}
+            </div>
+            <div class="daily-case__img m-b-30">
+              <div class="daily-case__img-item" [ngStyle]="{'background-image': 'url(' + item.item.image + ')'}"></div>
+              <div class="background-filter-item" [ngStyle]="{'background-color': item.item.color}">
+              </div>
+            </div>
+            <div class="daily-case__data-title m-b-10">{{ item.item.name }}</div>
+            <div class="daily-case__data-type" [ngStyle]="{'color': item.item.color}">
+              {{ item.item.tag || item.item.type }}
+            </div>
+
+            <div class="win-case-hover-content" *ngIf="!isMobile">
+              <span class="help-icon" *ngIf="!soldItems.includes(item.userItem._id)"></span>
+              <button mat-button class="btn-linear" [disabled]="soldItems.includes(item.userItem._id)"
+                (click)="sellCase(item)">
+                {{'DAILY_CASE.SELL_FOR' | translate }} ${{ item.item?.value | number:'1.2-2' }}
+              </button>
+            </div>
+          </div>
+          <div class="win-sprite-sheet {{ winItemAnimation }}" *ngIf="winItemAnimationIndex === i"></div>
+        </div>
+      </div>
+      <div class="flex-row flex-row__center win-buttons-actions">
+        <button mat-button *ngIf="!this.isFree" class="btn-large btn-linear" (click)="tryAgain()">{{'DAILY_CASE.TRY_AGAIN' | translate }}
+        </button>
+        <div class="flex-row flex-row__center sell-button-wrapper">
+          <button *ngIf="casesQuantity === 1" mat-button class="btn-large by-one-item"
+            [ngClass]="{'disabled': soldItems.includes(winItems[0].userItem._id)}"
+            [disabled]="soldItems.includes(winItems[0].userItem._id)" (click)="sellCase(winItems[0])">
+            <span class="by-one-item__text">
+              {{'DAILY_CASE.SELL_FOR' | translate }} ${{ winItems[0].item.value | number:'1.2-2' }}
+            </span>
+          </button>
+          <button *ngIf="casesQuantity > 1" mat-button class="btn-large by-one-item"
+            [ngClass]="{'disabled': soldItems.length === casesQuantity}" [disabled]="soldItems.length === casesQuantity"
+            (click)="sellAllCaseItems()">
+            <span class="by-one-item__text">
+              {{'DAILY_CASE.SELL_ALL_FOR' | translate }} ${{ getAllPrice() | number:'1.2-2' }}
+            </span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+  </ng-template>
+
+  <div class="flex-row flex-row__center w-100 items-list__hr" style="height:100px">
+    <div class="flex-row flex-row__center items-list__title">
+      <span class="w-100">{{'DAILY_CASE.ITEMS_LIST' | translate }}</span>
+    </div>
+  </div>
+
+  <section class="case-items" class="items-list__container">
+    <div *ngIf="isMobile" class="flex-row flex-row__start m-b-10">
+      <mat-slide-toggle class="skinworld-customized" [labelPosition]="'before'" (change)="showOdds = $event.checked">
+        {{ showOdds ? 'Hide' : 'View' }} {{'DAILY_CASE.ODDS' | translate }}</mat-slide-toggle>
+    </div>
+    <div class="items-list flex-row flex-row__center" #container>
+      <app-case-item class="case-item" *ngFor="let item of caseItems; let i = index" [isMobile]="isMobile" [item]="item"
+        [withChangedTitle]="true" [showChoosen]="false" [descriptionView]="true"
+        [showOdds]="isMobile && showOdds" (view)="viewDescription($event)" [isImageBackground]="true">
+      </app-case-item>
+    </div>
+  </section>
+</div>
+
+<!-- Preload animation images -->
+<div class="preload-container">
+  <div class="win-sprite-sheet common preload"></div>
+  <div class="win-sprite-sheet uncommon preload"></div>
+  <div class="win-sprite-sheet exotic preload"></div>
+  <div class="win-sprite-sheet epic preload"></div>
+  <div class="win-sprite-sheet rare preload"></div>
+  <div class="win-sprite-sheet legendary preload"></div>
+</div>

@@ -1,0 +1,57 @@
+<div *ngIf="isMobile$ | async" [ngClass]="{ 'slider-container-mobile': (currentUrl$ | async) !== '/'}"
+  class="slider-container">
+  <app-cases-slider></app-cases-slider>
+</div>
+
+<div id="my-cases" class="page-container">
+  <div class="page-title center m-b-10">
+    {{'MY_CASES.PAGE_TITLE' | translate }}
+  </div>
+
+  <div class="page-subtitle center m-b-50">
+    {{'MY_CASES.PAGE_SUB_TITLE' | translate }}
+  </div>
+
+  <div *ngIf="(isMobile$ | async)" class="flex-row flex-row__center m-b-30 my-cases__mobile-btn">
+    <ng-container *ngTemplateOutlet="create"></ng-container>
+  </div>
+
+  <div class="my-cases__container">
+    <div class="my-cases__header">
+      <div class="flex-row go-back" (click)="goBack()">
+        <span class="go-back__icon"></span> <span>{{'DAILY_CASE.GO_BACK' | translate }}</span>
+      </div>
+
+      <div class="flex-row flex-row__center">
+        <div *ngIf="!(isMobile$ | async)">
+          <ng-container *ngTemplateOutlet="create"></ng-container>
+        </div>
+      </div>
+    </div>
+
+    <section class="my-cases__content">
+      <div class="flex-row flex-row__center cases-list" infiniteScroll infiniteScrollDistance="0"
+        [alwaysCallback]="false" [scrollWindow]="false" (scrolled)="onScroll()">
+        <app-case-box *ngFor="let item of myCases; let i = index" [item]="item" [itemIndex]="i" [fullViewMode]="true"
+          (delete)="deleteCase($event)" (copy)="copyCase($event)" (unbox)="unboxCase($event)"
+          class="case-box my-case-box-content">
+        </app-case-box>
+        <div *ngIf='!myCases.length && !(loading$ | async)'>{{'NO_CASES' | translate }}</div>
+      </div>
+    </section>
+
+    <section class="my-cases__stats">
+      <app-claim-and-stats [claimAndStats]="myCasesClaimAndStats" (claim)="onClaimEarnings($event)">
+      </app-claim-and-stats>
+    </section>
+  </div>
+</div>
+
+<ng-template #create>
+  <a [routerLink]="['/mysterybox/create']">
+    <button mat-button class="btn-large btn-linear create">
+      <span class="button-icon add"></span>
+      <span class="button-label">{{'MY_CASES.CREAT_BOX' | translate }}</span>
+    </button>
+  </a>
+</ng-template>

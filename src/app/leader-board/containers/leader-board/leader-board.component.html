@@ -1,0 +1,34 @@
+<div id="leader-board" class="page-container">
+  <div class="leader-board__title center">
+    {{ 'LEADER_BOARD.TITLE' | translate }}
+  </div>
+
+  <div class="leader-board__subtitle center">
+    {{ 'LEADER_BOARD.SUBTITLE' | translate }}
+  </div>
+
+  <section class="leader-board__container">
+    <div class="leader-board__header">
+      <div class="flex-row go-back" (click)="goBack()">
+        <span class="go-back__icon"></span>
+        <span>{{'DAILY_CASE.GO_BACK' | translate }}</span>
+      </div>
+
+      <div class="flex-row flex-row__center"></div>
+
+      <div class="flex-row flex-row__center"></div>
+    </div>
+
+    <app-leaders-wins
+      [leaders]="leadersItems"
+      [endDate]="endDate">
+    </app-leaders-wins>
+
+    <app-leaders-board-info></app-leaders-board-info>
+
+    <app-leaders-list
+      [items]="(leaderBoardMonthlyTopDrop$ | async)">
+    </app-leaders-list>
+
+  </section>
+</div>

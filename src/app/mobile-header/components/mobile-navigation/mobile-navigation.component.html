@@ -1,0 +1,59 @@
+<div class="mobile-modal-section flex-col">
+  <div class="mobile-modal-section__navigation">
+
+   <app-mobile-navigation-item *ngFor="let item of navigationItems" [item]="item"></app-mobile-navigation-item>
+
+    <div class="flex-row flex-row__center mobile-modal-section__text" (click)="logout()">
+      <div class="flex-row flex-row__start mobile-modal-section__wrapper">
+        <div class="mobile-modal-section__icon">
+          <img src="/assets/images/icons/exit.svg">
+        </div>
+        <span class="logout">{{'MOBILE_NAVIGATION.LOGOUT' | translate }}</span>
+      </div>
+    </div>
+    <div class="flex-row flex-row__center mobile-modal-section__text" [routerLink]="['/how-it-works/deposit']"
+      routerLinkActive="active" (click)="close()">
+      <div class="flex-row flex-row__start mobile-modal-section__wrapper">
+        <div class="mobile-modal-section__icon how-it-works"></div>
+        <span>{{'HEADER_MENU.HOW_IT_WORKS' | translate }}</span>
+      </div>
+    </div>
+    <div class="flex-row flex-row__center mobile-modal-section__text" [routerLink]="['/tos']" routerLinkActive="active"
+      (click)="close()">
+      <div class="flex-row flex-row__start mobile-modal-section__wrapper">
+        <span>{{ 'FOOTER.TERMS_SERVICE' | translate }}</span>
+      </div>
+    </div>
+    <div class="flex-row flex-row__center mobile-modal-section__text" [routerLink]="['/support']"
+      routerLinkActive="active" (click)="close()">
+      <div class="flex-row flex-row__start mobile-modal-section__wrapper">
+        <span>{{ 'HEADER_MENU.FAQ' | translate }}</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="mobile-modal-section__actions">
+    <button type="button" mat-button class="btn-linear btn-square" (click)="goToPage('/deposit')">
+      {{'MOBILE_NAVIGATION.DEPOSIT' | translate }}
+    </button>
+    <button type="button" mat-button class="btn-outline-gray btn-square" (click)="goToPage('/withdraw')">
+      {{'MOBILE_NAVIGATION.WITHDRAW' | translate }}
+    </button>
+    <button type="button" mat-button class="btn-outline-green" (click)="goToPage('/mysterybox/create')">
+      <mat-icon>add</mat-icon> {{'MOBILE_NAVIGATION.CREATE_MYSTERY_BOX' | translate }}
+    </button>
+  </div>
+
+  <div class="flex-row mobile-modal-content__footer">
+    <div class="mobile-modal-theme-toggle">
+      <mat-button-toggle-group class="skinworld-customized" [value]="theme$ | async" (change)="onChange($event)">
+        <mat-button-toggle value="light">
+          <span class="theme-light-icon"></span>
+        </mat-button-toggle>
+        <mat-button-toggle value="dark">
+          <span class="theme-dark-icon"></span>
+        </mat-button-toggle>
+      </mat-button-toggle-group>
+    </div>
+  </div>
+</div>

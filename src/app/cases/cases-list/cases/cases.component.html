@@ -1,0 +1,77 @@
+<div class="slider-container" [class.opened]="(isChatOpened$ | async)">
+  <app-cases-slider></app-cases-slider>
+</div>
+
+<div [class.opened]="(isChatOpened$ | async)">
+  <h1 class="page-title center m-b-20">
+    {{'CASES.PAGE_TITLE' | translate }}
+  </h1>
+
+  <div *ngIf="!(isLoggedIn$ | async)" class="page-subtitle center m-b-20">
+    {{'CASES.PAGE_SUB_TITLE' | translate }}
+  </div>
+
+  <ng-container *ngIf="(isLoggedIn$ | async) && !isEnoghtBalance">
+    <div class="page-subtitle center m-b-20">
+      {{'CASES.INFO_FOR_UNBOXING' | translate }}
+    </div>
+
+    <div class="flex-row flex-row__center m-b-30">
+      <a [routerLink]="['/deposit']">
+        <button mat-button class="btn-large btn-linear deposit">{{'CASES.ADD_MONEY' | translate }}</button>
+      </a>
+    </div>
+  </ng-container>
+
+  <div class="flex-row flex-row__center cases-buttons m-b-30" *ngIf="!(isLoggedIn$ | async)">
+    <button mat-button class="btn-large btn-linear login" (click)="login()">{{'CASES.START_UNBOXING' | translate }}<span
+        class="right-double">&#x2794;</span></button>
+    <button mat-button class="btn-large btn-outline-orange mat-button selected" [routerLink]="['/how-it-works/deposit']"
+      routerLinkActive="active">{{'CASES.HOW_IT_WORKS' | translate }}</button>
+  </div>
+
+  <div id="case-content" class="flex-row flex-row__btw m-b-20">
+    <nav class="flex-row flex-row__center" [class.w-100]="!(isLoggedIn$ | async) && (isMobile$ | async)">
+      <ng-container *ngFor="let item of casesNav">
+        <div class="cases-nav flex-row flex-row__center" [class.active]="(caseType$ | async) === item.type"
+          (click)="selectTab(item.type)">
+          <div class="cases-nav__icon {{item.caseName}}">
+          </div>
+          <div *ngIf="!(isMobile$ | async)" class="cases-nav__label">{{ item.title | translate }}</div>
+        </div>
+      </ng-container>
+    </nav>
+
+    <div *ngIf="!(isMobile$ | async) || ((isMobile$ | async) && (isLoggedIn$ | async))" class="cases-actions flex-row">
+      <!--  [class.expanded]="isSearchExpanded" -->
+      <div class="flex-row cases-actions__wrapper expanded">
+        <mat-form-field floatLabel="never" class="skinworld-customized browse-cases-form">
+          <span *ngIf="(isDesktop$ | async); else expandButton" matPrefix class="button-icon search">
+          </span>
+          <ng-template #expandButton>
+            <span matPrefix class="button-icon search" (click)="onExpandSearch()">
+            </span>
+          </ng-template>
+          <div (ngSubmit)="onExpandSearch()">
+            <input type="text" matInput placeholder="Browse Box" [formControl]="browseCases">
+          </div>
+        </mat-form-field>
+        <div *ngIf="isMobile$ | async" class="cases-actions__divider"></div>
+        <a [routerLink]="['/mysterybox/create']">
+          <button mat-button class="btn-large btn-linear create">
+            <span class="button-icon add"></span>
+            <span *ngIf="!(isTablet$ | async) && !(isMobile$ | async)"
+              class="button-label">{{'CASES.CREATE_BOX' | translate }}</span>
+          </button>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <app-cases-list></app-cases-list>
+
+  <!-- <app-brief-instruction></app-brief-instruction> -->
+
+  <app-review-instruction></app-review-instruction>
+
+</div>

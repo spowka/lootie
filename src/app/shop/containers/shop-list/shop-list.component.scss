@@ -1,0 +1,127 @@
+@import '../../../../styles/concepts.scss';
+@import '../../../../styles/register.scss';
+@import '../../../../styles/material-styles.scss';
+
+@include register-component {
+  .page-content {
+    background-color: from-theme(background-panel);
+  }
+
+  .shop-panel {
+    background-color: from-theme(background-container);
+    border-color: from-theme(border-color-1);
+  }
+
+  .shop-sidebar {
+    border-right: solid 1px from-theme(shop-sidebar-border);
+    background-color: from-theme(shop-sidebar-background);
+  }
+
+  app-case-box ::ng-deep .case-wrapper {
+    background-color: from-theme(background-navbar);
+  }
+}
+
+.page-content {
+  margin: 0 auto 40px;
+  padding: 20px;
+  border-radius: 4px;
+  box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.05);
+  max-width: 1960px;
+
+  @media screen and (max-width: 2040px) {
+    margin-top: 0 40px 40px;
+  }
+  @media screen and (max-width: 767px) {
+    margin: 0 0 70px;
+  }
+}
+
+.page-title {
+  font-weight: 500;
+}
+
+.shop-panel {
+  max-width: 1920px;
+  min-height: 300px;
+  border-radius: 4px;
+  border: 1px solid transparent;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  @media screen and (max-width: 767px) {
+    background: none !important;
+    border: none !important;
+    padding: 0;
+    margin: 26px -5px 0;
+  }
+}
+
+.shop-sidebar {
+  border-top-left-radius: 4px;
+  width: 225px;
+  border-bottom-left-radius: 4px;
+}
+
+.shop-items-list {
+  padding: 20px;
+  width: calc(100% - 225px);
+}
+
+.items-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(195px, 195px));
+  justify-content: center;
+  grid-gap: 12px;
+
+  @media screen and (max-width: 479px) {
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    grid-gap: 4px
+  }
+  @media screen and (max-width: 359px) {
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  }
+}
+
+.loading-container {
+  height: 100%;
+}
+
+.pagination {
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+app-case-box ::ng-deep .case-wrapper {
+  width: auto;
+
+  @media screen and (max-width: 767px) {
+    box-shadow: none;
+    height: auto;
+    width: auto;
+
+    .case-wrapper__img {
+      width: 100%;
+      height: 90px;
+      margin: 36px auto 16px;
+    }
+  }
+
+  @media screen and (max-width: 359px) {
+    .case-wrapper__price {
+      width: 100%;
+    }
+  }
+}
+
+@media (max-width: 1024px) {
+  .shop-sidebar {
+    display: none;
+  }
+
+  .shop-items-list {
+    width: 100%;
+  }
+}

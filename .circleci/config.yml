@@ -1,0 +1,150 @@
+version: 2.1
+orbs:
+  aws-cli: circleci/aws-cli@1.3.0
+commands:
+  install_dependencies:
+    steps:
+      # - restore_cache:
+      #     keys:
+      #     - v1-dependencies-{{ .Environment.CACHE_VERSION }}-{{ checksum "package-lock.json" }}
+      #     # fallback to using the latest cache if no exact match is found
+      #     - v1-dependencies-
+      - run:
+          name: Install npm packages
+          command: npm install
+      - run:
+          name: Rebuild node sass
+          command: npm rebuild node-sass --force
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-dependencies-1
+  create_aws_profile:
+    steps:
+      - run:
+          name: Create .aws dir, credentials file and write profile data
+          command: |
+            mkdir -p ~/.aws && \
+            touch ~/.aws/credentials && \
+            echo "[default]" >> ~/.aws/credentials && \
+            echo "aws_access_key_id = ${AWS_ACCESS_KEY_ID}" >> ~/.aws/credentials && \
+            echo "aws_secret_access_key = ${AWS_SECRET_ACCESS_KEY}" >> ~/.aws/credentials && \
+            cat ~/.aws/credentials
+  install_aws_cli:
+    steps:
+      - run:
+          name: Installing aws cli
+          command: aws-cli install
+  build_dev_packages:
+    steps:
+      - run:
+          name: Compile dev source
+          command: npm run build
+  build_qa_packages:
+    steps:
+      - run:
+          name: Compile qa source
+          command: npm run build:qa
+  build_prod_packages:
+    steps:
+      - run:
+          name: Compile prod source
+          command: npm run build:prod
+  zip_packages:
+    steps:
+      - run:
+          name: Zip source
+          command: |
+            find dist/skinworld-app \( -name '*.js' -o -name '*.css' \) -exec gzip --verbose --keep {} \; && \
+            tar -zcvf lootie-frontend.tar.gz dist/
+  # configure_eb_cli:
+  #   steps:
+  #     - run:
+  #         name: Copy eb configurations to eb working folder 
+  #         command: |
+  #           cp -a .ebextensions dist/skinworld-app/.ebextensions
+  #           cp -a .elasticbeanstalk dist/skinworld-app/.elasticbeanstalk
+  deploy_to_dev:
+    steps:
+      - add_ssh_keys:
+          fingerprints:
+            - "f7:00:8f:f3:0e:ee:7a:e1:33:11:a0:9d:dc:ca:42:c7"
+      - run:
+          name: Deploy to dev instance
+          command: |
+            scp -o StrictHostKeyChecking=no lootie-frontend.tar.gz ubuntu@dev-ui.lootie.com:/var/www && \
+            ssh ubuntu@dev-ui.lootie.com tar -xvzf /var/www/lootie-frontend.tar.gz -C /var/www/
+  deploy_to_qa:
+    steps:
+      - add_ssh_keys:
+          fingerprints:
+            - "5a:c2:ae:32:a0:a1:3f:c2:0e:34:43:c9:f3:58:fc:71"
+      - run:
+          name: Deploy to qa instance
+          command: |
+            scp -o StrictHostKeyChecking=no lootie-frontend.tar.gz ubuntu@qa-ui.lootie.com:/var/www && \
+            ssh ubuntu@qa-ui.lootie.com tar -xvzf /var/www/lootie-frontend.tar.gz -C /var/www/
+  deploy_to_prod:
+    steps:
+      - run:
+          name: Deploy to s3
+          working_directory: dist/skinworld-app
+          command: |
+            echo "Removing all files on bucket"
+            aws s3 rm s3://${BUCKET} --recursive
+
+            echo "Attempting to upload site .."
+            aws s3  sync ./ s3://${BUCKET}
+            echo "S3 Upload complete"
+
+            echo "Invalidating cloudfrond distribution to get fresh cache"
+            aws cloudfront create-invalidation --distribution-id=${CF_ID} --paths /
+
+            echo "Deployment complete" 
+  
+jobs:
+  job-build_and_deploy_dev:
+    docker:
+      - image: circleci/node:12.16.0
+    steps:
+      - checkout
+      - install_dependencies
+      - build_dev_packages
+      - zip_packages
+      - deploy_to_dev
+  job-build_and_deploy_qa:
+    docker:
+      - image: circleci/node:12.16.0
+    steps:
+      - checkout
+      - install_dependencies
+      - build_qa_packages
+      - zip_packages
+      - deploy_to_qa
+  job-build_and_deploy_prod:
+    executor: aws-cli/default
+    steps:
+      - checkout
+      - install_dependencies
+      - create_aws_profile
+      - aws-cli/setup
+      - build_prod_packages
+      - zip_packages
+      - deploy_to_prod
+
+workflows:
+  version: 2.1
+  build-and-deploy:
+    jobs:
+      - job-build_and_deploy_dev:
+          filters:
+            branches:
+              only: develop
+      - job-build_and_deploy_qa:
+          filters:
+            branches:
+              only: qa
+      - job-build_and_deploy_prod:
+          filters:
+            branches:
+              only: master

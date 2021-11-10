@@ -1,0 +1,22 @@
+<div class="b-screen__shadow"></div>
+<div class="b-screen__spinner flex-row flex-row__center">
+  <div class="bs__list">
+    <div class="bs__spinner flex-col" [@spinner]="{value: spinnerState, 
+      params: { 
+        stop: 'translateY('+ stop +'px)', 
+        start: 'translateY('+ start +'px)' 
+      }}" (@spinner.done)="onAnimationDone($event)">
+      <div class="bs__item" *ngFor="let item of spinnerItems; let i = index"
+        [class.win-item]="i === spinnerOptions.winItemIndex" [ngStyle]="{color: item.color}">
+        <ng-container *ngIf="i === spinnerOptions.winItemIndex; else boxImages">
+          <img @imageScale class="bs__image" [src]="item.image">
+          <div [@glowEffect]="infoState" class="bs__glow"></div>
+          <span [@labelFade]="infoState">{{ item.name }}</span>
+        </ng-container>
+        <ng-template #boxImages>
+          <img class="bs__image" [src]="item.image">
+        </ng-template>
+      </div>
+    </div>
+  </div>
+</div>

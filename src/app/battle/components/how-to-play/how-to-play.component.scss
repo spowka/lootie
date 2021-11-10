@@ -1,0 +1,426 @@
+@import "../../../../styles/concepts.scss";
+@import "../../../../styles/material-styles.scss";
+@import "../../../../styles/variables.scss";
+@import "../../../../styles/partials/index.scss";
+
+@include register-component {
+  .how-to-play {
+    &__link-item {
+      color: #577a86;
+    }
+
+    &__container {
+      border: solid 1px from-theme(how-to-play-container-border);
+      background-color: from-theme(how-to-play-container-background);
+
+      .actions {
+        background-color: from-theme(how-to-play-actions-background);
+
+        .go-back {
+          border-right-style: solid;
+          border-right-width: 1px;
+          border-color: from-theme(dark-border-color);
+        }
+      }
+    }
+
+    &__title {
+      color: from-theme(how-to-play-title-color);
+
+      &.side-icons {
+        .left-side-icon,
+        .right-side-icon {
+          background-image: linear-gradient(177deg, #f48836, #f4364c);
+        }
+
+        .left-side-icon {
+          &:after {
+            background-image: linear-gradient(
+              to right,
+              rgba(244, 54, 76, 0),
+              #f48836
+            );
+          }
+        }
+
+        .right-side-icon {
+          &:after {
+            background-image: linear-gradient(
+              to right,
+              #f4364c,
+              rgba(244, 136, 54, 0)
+            );
+          }
+        }
+      }
+    }
+
+    &__content {
+      border-bottom: 1px solid from-theme(how-to-play-content-border);
+    }
+
+    &__about-desc {
+      color: #4d6168;
+    }
+
+    &__video-content {
+      background-color: from-theme(how-to-play-video-background);
+
+      .play-icon {
+        border-left: 29px solid from-theme(how-to-play-video-icon-border);
+      }
+    }
+
+    &__item-step {
+      color: from-theme(how-to-play-item-step-color);
+
+      & > span {
+        background-color: #fcd834;
+        color: #181d1f;
+      }
+    }
+
+    &__qa-title {
+      color: from-theme(how-to-play-qa-title-color);
+
+      .qa-point {
+        background-image: linear-gradient(129deg, #f48836, #f4364c);
+
+        &:after {
+          border-top: 5px solid from-theme(how-to-play-qa-point-border);
+        }
+
+        &:before {
+          border-bottom: 5px solid from-theme(how-to-play-qa-point-border);
+        }
+      }
+    }
+
+    &__qa-description {
+      background-color: from-theme(how-to-play-qa-description-background);
+      border-left: solid 2px #fcd834;
+      color: from-theme(how-to-play-qa-description-color);
+    }
+  }
+}
+
+#how-to-play {
+  max-width: 1300px;
+}
+
+.how-to-play {
+  &__link-item {
+    font-size: 18px;
+    line-height: 1.11;
+    letter-spacing: 0.54px;
+    max-width: 850px;
+    margin: 0 auto 10px auto;
+    display: flex;
+  }
+
+  &__container {
+    border-radius: 4px;
+    padding: 20px;
+
+    .actions {
+      border-radius: 4px;
+      height: 57px;
+      margin-bottom: 20px;
+      justify-content: space-between;
+      padding: 6px 20px;
+
+      .title {
+        margin-right: 100px;
+      }
+
+      .flex-col {
+        min-width: 95px;
+      }
+
+      .how-to-play__title {
+        margin-bottom: 0;
+        font-size: 23px;
+        font-weight: 900;
+        letter-spacing: 0.28px;
+        text-align: center;
+      }
+
+      .go-back {
+        cursor: pointer;
+        height: 100%;
+        padding-right: 15px;
+
+        .back-icon {
+          background-image: url(/assets/images/icons/back.svg);
+          background-repeat: no-repeat;
+          width: 14px;
+          height: 14px;
+          right: 8px;
+          top: 9px;
+          cursor: pointer;
+          margin-left: 7px;
+          display: block;
+        }
+      }
+    }
+  }
+
+  &__title {
+    font-size: 23px;
+    font-weight: 900;
+    letter-spacing: 0.68px;
+    text-align: center;
+    margin-bottom: 20px;
+
+    &.side-icons {
+      margin-bottom: 30px;
+      display: flex;
+      align-items: center;
+
+      .left-side-icon,
+      .right-side-icon {
+        height: 17px;
+        width: 1px;
+        position: relative;
+        display: flex;
+        top: -1px;
+
+        &:after {
+          content: "";
+          width: 15px;
+          height: 1px;
+          position: absolute;
+          top: 8px;
+        }
+      }
+
+      .left-side-icon {
+        margin-right: 13px;
+
+        &:after {
+          right: 1px;
+        }
+      }
+
+      .right-side-icon {
+        margin-left: 13px;
+
+        &:after {
+          left: 1px;
+        }
+      }
+    }
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 850px;
+    margin: 0 auto 40px auto;
+    padding-bottom: 40px;
+
+    &.last-content {
+      border-bottom: none !important;
+      padding-bottom: 0;
+      margin-bottom: 0;
+    }
+  }
+
+  &__about-desc {
+    font-size: 13px;
+    line-height: 1.38;
+    letter-spacing: 0.2px;
+    text-align: center;
+    max-width: 630px;
+    margin-bottom: 24px;
+  }
+
+  &__video-content {
+    width: 580px;
+    height: 285px;
+    cursor: pointer;
+
+    .play-icon {
+      width: 0;
+      height: 0;
+      border-top: 28px solid transparent;
+      border-bottom: 28px solid transparent;
+    }
+  }
+
+  &__item-step {
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    line-height: 1.06;
+    letter-spacing: 0.39px;
+    margin-bottom: 20px;
+
+    & > span {
+      width: 15px;
+      height: 15px;
+      font-size: 13px;
+      font-weight: bold;
+      line-height: 1;
+      text-align: center;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 10px;
+    }
+  }
+
+  &__qa-items {
+    margin-bottom: 24px;
+  }
+
+  &__qa-title {
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.13;
+    letter-spacing: 0.39px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    margin-bottom: 12px;
+
+    .qa-point {
+      width: 10px;
+      height: 10px;
+      display: flex;
+      position: relative;
+      margin-right: 8px;
+
+      &:after,
+      &:before {
+        content: "";
+        position: absolute;
+        right: 0;
+        width: 0;
+        height: 0;
+        border-left: 10px solid transparent;
+      }
+
+      &:after {
+        top: -1px;
+      }
+
+      &:before {
+        bottom: -1px;
+      }
+    }
+  }
+
+  &__qa-description {
+    border-radius: 1px;
+    padding: 7px 20px;
+    font-size: 16px;
+    line-height: 1.06;
+    letter-spacing: 0.39px;
+  }
+}
+
+@media (max-width: 767px) {
+  .how-to-play {
+    &__link-item {
+      justify-content: center;
+    }
+
+    &__container {
+      border-radius: 0;
+      padding: 15px;
+
+      .actions {
+        border-radius: 2px;
+        height: 47px;
+        margin-bottom: 20px;
+        justify-content: center;
+
+        .title {
+          margin-right: unset;
+        }
+
+        .how-to-play__title {
+          margin-bottom: 0;
+          font-size: 18px;
+          font-weight: 900;
+          line-height: 1.22;
+          text-align: center;
+        }
+
+        .go-back {
+          display: none;
+        }
+      }
+    }
+
+    &__title {
+      font-size: 15px;
+      font-weight: bold;
+      letter-spacing: 0.64px;
+      margin-bottom: 14px;
+    }
+
+    &__content {
+      margin: 0 auto 26px auto;
+    }
+
+    &__about-desc {
+      line-height: 1.46;
+      letter-spacing: 0.33px;
+      margin-bottom: 14px;
+    }
+
+    &__video-content {
+      width: 260px;
+      height: 150px;
+
+      .play-icon {
+        border-top-width: 15px;
+        border-left-width: 22px !important;
+        border-bottom-width: 15px;
+      }
+    }
+
+    &__item-step {
+      font-size: 12px;
+      line-height: 1.33;
+      letter-spacing: 0.51px;
+      margin-bottom: 12px;
+
+      & > span {
+        width: 13px;
+        height: 13px;
+        min-width: 13px;
+        min-height: 13px;
+        font-size: 10px;
+        line-height: 0.9;
+        margin-right: 7px;
+      }
+    }
+
+    &__qa-items {
+      margin-bottom: 18px;
+    }
+
+    &__qa-title {
+      font-size: 12px;
+      line-height: 1.5;
+      letter-spacing: 0.29px;
+      margin-bottom: 10px;
+
+      .qa-point {
+        min-width: 10px;
+        min-height: 10px;
+      }
+    }
+
+    &__qa-description {
+      font-size: 12px;
+      line-height: 1.42;
+      letter-spacing: 0.51px;
+    }
+  }
+}

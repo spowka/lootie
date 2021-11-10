@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Click Help</title>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Winner-Case--3-Hover" transform="translate(-676.000000, -661.000000)">
+            <g id="Loot-2" transform="translate(473.000000, 440.000000)">
+                <g id="Card-4" transform="translate(16.000000, 14.000000)">
+                    <g id="Click-Help" transform="translate(187.000000, 207.000000)">
+                        <g id="Frame_-_24px">
+                            <rect id="Rectangle" x="0" y="0.001" width="24" height="24"></rect>
+                        </g>
+                        <g id="Filled_Icons" transform="translate(4.000000, 4.000000)" fill="#FFFFFF" fill-rule="nonzero">
+                            <g id="Group">
+                                <path d="M8.407389,8.107972 L8.484,8.121 L15.515,9.879 C15.781,9.946 15.84,10.16 15.646,10.354 L15.646,10.354 L13.707,12.294 L16.414,15.001 L15,16.416 L12.293,13.706 L10.354,15.646 C10.159,15.841 9.945,15.782 9.879,15.515 L9.879,15.515 L8.121,8.485 C8.054,8.219 8.218,8.055 8.484,8.121 Z M6,0.002 C9.309,0.002 12,2.693 12,6.002 L12,6.002 L10,6.002 C10,3.796 8.205,2.002 6,2.002 C3.795,2.002 2,3.796 2,6.002 C2,8.208 3.795,10.002 6,10.002 L6,10.002 L6,12.002 C2.691,12.002 0,9.311 0,6.002 C0,2.693 2.691,0.002 6,0.002 Z" id="Combined-Shape"></path>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

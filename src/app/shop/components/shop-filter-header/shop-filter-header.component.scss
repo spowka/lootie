@@ -1,0 +1,100 @@
+@import '../../../../styles/concepts.scss';
+@import '../../../../styles/partials/index.scss';
+
+@include register-component {
+  .shop-header {
+    &__container {
+      border-bottom: 1px solid from-theme(shop-sidebar-header-border);
+    }
+
+    &__item {
+      background-color: from-theme(shop-sidebar-header-item-background);
+
+      .item-close-icon {
+        background-image: from-theme(shop-sidebar-header-item-close-icon);
+      }
+
+      .item-title {
+        color: from-theme(shop-sidebar-header-item-title-color);
+      }
+    }
+
+    &__actions {
+      & > button {
+        border-image-source: linear-gradient(104deg, #f48836, #f4364c);
+        background-image: linear-gradient(100deg, #f48836, #f4364c);
+      }
+    }
+  }
+}
+
+.shop-header {
+  &__container {
+    padding-top: 8px 0;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+  }
+
+  &__list-items {
+    width: calc(100% - 150px);
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  &__item {
+    height: 30px;
+    border-radius: 2px;
+    margin-right: 10px;
+    padding: 0 8px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+
+    .item-close-icon {
+      margin-left: 4px;
+      cursor: pointer;
+      width: 9px;
+      height: 8px;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+
+    .item-title {
+      font-size: 14px;
+      font-weight: normal;
+      line-height: 1.07;
+      letter-spacing: 0.7px;
+    }
+  }
+
+  &__actions {
+    width: 150px;
+    display: flex;
+    justify-content: flex-end;
+
+    & > button {
+      display: flex;
+      align-items: center;
+      margin: 0;
+      width: 117px;
+      height: 30px;
+      border-radius: 2px;
+      border-style: solid;
+      border-width: 1px;
+      border-image-slice: 1;
+      font-size: 14px;
+      font-weight: normal;
+      line-height: 1.07;
+      letter-spacing: 0.7px;
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+
+      & > img {
+        margin-right: 4px;
+      }
+    }
+  }
+}

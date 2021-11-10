@@ -1,0 +1,17 @@
+<div
+  class="flex-col spinner-item-wrapper spinner"
+  [ngStyle]="{'color': item.color || '#8847ff'}"
+  *ngIf="item"
+>
+  <img *ngIf="isMobile && item.thumbnail; else highResImage" class="case-img" [src]="item.thumbnail">
+
+  <ng-template #highResImage>
+    <img class="case-img" [src]="item.image ? item.image : item.icon">
+  </ng-template>
+
+  <div class="spinner-item-wrapper__data flex-col flex-col__end">
+    <div class="spinner-item-wrapper__data-title">{{ item.name || item.marketName }}</div>
+    <div class="spinner-item-wrapper__data-type">{{ item.tag || item.type }}</div>
+  </div>
+  <div class="spinner-item-wrapper__bottom-border"></div>
+</div>

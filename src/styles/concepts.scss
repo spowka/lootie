@@ -1,0 +1,91 @@
+%text-elipsis {
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+%button-icon {
+  @extend %bg-image;
+  display: inline-block;
+}
+
+/******** @bg-image **********/
+%bg-image {
+  background-size: contain !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  object-fit: contain !important;
+}
+
+%bg-img-filter {
+  filter: grayscale(100%);
+  opacity: .5;
+}
+
+%bg-img-filter-reset {
+  filter: none;
+  opacity: 1;
+}
+
+/******** @label **********/
+%label {
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+.l-md {
+  @extend %label;
+  font-size: 12px;
+  line-height: 1;
+}
+
+.l-sm {
+  @extend %label;
+  font-size: 10px;
+  line-height: 12px;
+}
+
+/******** @heading **********/
+%heading {
+  font-weight: normal;
+  letter-spacing: normal;
+}
+
+.h-lg {
+  @extend %heading;
+  font-size: 28px;
+  line-height: normal;
+}
+
+.h-md {
+  @extend %heading;
+  font-size: 22px;
+  line-height: normal;
+}
+
+/******** @paragraph **********/
+%paragraph {
+  font-weight: normal;
+  letter-spacing: normal;
+}
+
+.p-lg {
+  @extend %paragraph;
+  font-size: 16px;
+  line-height: 1.13;
+}
+
+.p-md {
+  @extend %paragraph;
+  font-size: 14px;
+  line-height: 1.29;
+}
+
+.p-sm {
+  @extend %paragraph;
+  font-size: 12px;
+  line-height: normal;
+}
+
+/******** Colors settings **********/

@@ -1,0 +1,63 @@
+<div *ngIf="isMobile$ | async" [ngClass]="{ 'slider-container-mobile': (currentUrl$ | async) !== '/' }" class="slider-container">
+  <app-cases-slider></app-cases-slider>
+</div>
+<div class="upgrade-info page-container">
+  <div class="page-title center m-b-50">
+    {{'UPGRADE_INFORMATION.PAGE_TITLE' | translate }}
+  </div>
+
+  <div class="flex-row flex-row__btw flex-center_mobile">
+    <div class="upgrade-info__content mobile-second">
+      <img *ngIf="(theme$ |async) === 'light'; else darkUpgrade" class="upgrade-info__image"
+        alt="How it works white"
+        src="assets\images\info\upgrade-white.png">
+      <ng-template #darkUpgrade>
+        <img class="upgrade-info__image" alt="How it works dark" src="assets\images\info\upgrade-dark.png">
+      </ng-template>
+
+    </div>
+
+    <div class="upgrade-info__content mobile-first">
+      <img class="upgrade-info__icon" alt="Track your odds and success rate" src="assets\images\info\rate.png">
+      <h3>{{'UPGRADE_INFORMATION.TRACK_ODDS_AND_SUCCESS' | translate }}</h3>
+      <p>{{'UPGRADE_INFORMATION.ABOUT_TRACK_ODDS_AND_SUCCESS' | translate }}</p>
+    </div>
+  </div>
+
+  <div class="flex-row flex-row__btw flex-center_mobile">
+    <div class="upgrade-info__content">
+      <img class="upgrade-info__icon" alt="Track your odds and success item" src="assets\images\info\item.png">
+      <h3>{{'UPGRADE_INFORMATION.CUSTOM_ITEM_SELECTION' | translate }}</h3>
+      <p>{{'UPGRADE_INFORMATION.ABOUT_CUSTOM_ITEM_SELECTION' | translate }}</p>
+    </div>
+    <div class="upgrade-info__content">
+      <img *ngIf="(theme$ | async) === 'light'; else darkAll" class="upgrade-info__image"
+        alt="All white"
+        src="assets\images\info\all-white.png">
+      <ng-template #darkAll>
+        <img class="upgrade-info__image" alt="All dark" src="assets\images\info\all.png">
+      </ng-template>
+    </div>
+  </div>
+
+  <div class="flex-row flex-row__btw flex-center_mobile">
+    <div class="upgrade-info__content">
+      <img class="upgrade-info__image-game" alt="Full ownership and freedom upgrading" src="assets\images\info\upgrading.svg">
+    </div>
+    <div class="upgrade-info__content">
+      <img class="upgrade-info__icon" alt="Full ownership and freedom game" src="assets\images\info\game.png">
+      <h3>{{'UPGRADE_INFORMATION.FULL_OWNERSHIP_AND_FREEDOM' | translate }}</h3>
+      <p>{{'UPGRADE_INFORMATION.ABOUT_FULL_OWNERSHIP_AND_FREEDOM' | translate }}</p>
+    </div>
+  </div>
+
+  <div class="flex-row flex-row__center upgrade-info__luck">
+    <span class="w-100">{{'UPGRADE_INFORMATION.GOOD_LUCK' | translate }}</span>
+  </div>
+
+  <div class="flex-row flex-row__center upgrade-info__start-upgrade">
+    <a routerLink="/upgrade">
+      <button mat-button class="btn-large btn-linear">{{'UPGRADE_INFORMATION.START_UPGRADE' | translate }}<span class="right-double">&#187;</span></button>
+    </a>
+  </div>
+</div>

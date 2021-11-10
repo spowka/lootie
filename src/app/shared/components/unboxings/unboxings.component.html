@@ -1,0 +1,157 @@
+<div id="unboxings"
+  infiniteScroll
+  infiniteScrollDistance="0"
+  [scrollWindow]="false"
+  [ngClass]="{'unboxings-history__container': isHistory}"
+  (scrolled)="onScroll()">
+
+  <ng-container *ngIf="!(isMobile$ | async); else mobileView">
+    <table class="stripped header-table">
+      <thead>
+        <tr>
+          <td style="max-width: 15%; min-width: 15%; width: 15%; padding: 15px 0;">
+            {{ 'UNBOXINGS_HISTORY.ID' | translate }}
+          </td>
+          <td style="max-width: 100px; min-width: 10%; width: 10%; padding: 15px 0;">
+            {{ 'UNBOXINGS_HISTORY.IMAGE' | translate }}
+          </td>
+          <td style="max-width: 250px; min-width: 25%; width: 25%; padding: 15px 0;">
+            {{ 'UNBOXINGS_HISTORY.NAME' | translate }}
+          </td>
+          <td style="max-width: 100px; min-width: 10%; width: 10%; padding: 15px 0;">
+            {{ 'UNBOXINGS_HISTORY.PRICE' | translate }}
+          </td>
+          <td style="max-width: 15%; min-width: 15%; width: 15%; padding: 15px 0;"></td>
+          <td style="max-width: 25%; min-width: 25%; width: 25%; padding: 15px 0;">
+            {{ 'UNBOXINGS_HISTORY.DATE' | translate }}
+          </td>
+        </tr>
+      </thead>
+    </table>
+
+    <div class="unboxings-content" *ngFor="let unboxing of unboxings">
+      <mat-expansion-panel class="skinworld-customized m-b-20">
+        <mat-expansion-panel-header>
+
+          <table class="stripped">
+            <tbody>
+              <tr>
+                <td style="max-width: 15%; min-width: 15%; width: 15%; padding: 0;" class="unboxing-id">
+                  #{{ unboxing.dice?.betId }}
+                </td>
+                <td style="max-width: 100px; min-width: 10%; width: 10%; padding: 0;">
+                  <img src="{{ unboxing.case.image }}" alt="{{ unboxing.case.name }}" height="35" />
+                </td>
+                <td style="max-width: 150px; min-width: 25%; width: 25%; padding: 0;" class="name">
+                  {{ unboxing.case.name }}
+                </td>
+                <td style="max-width: 100px; min-width: 10%; width: 10%; padding: 0;">
+                  $ {{ (unboxing.case.price * unboxing.winItems.length) | number:'1.2-2'}}
+                </td>
+                <td style="max-width: 15%; min-width: 15%; width: 15%; padding: 0;">
+                  <button class="btn-large btn-linear" (click)="openModalVerify(unboxing._id); $event.stopPropagation()">Verify</button>
+                </td>
+                <ng-container *ngIf="!(isTablet$ | async); else tabletDate">
+                  <td style="max-width: 25%; min-width: 25%; width: 25%; padding: 0;">
+                    <span class="unboxings-history__date-content">{{ unboxing.updatedAt | date: 'h:mm a d MMMM y' }}</span>
+                  </td>
+                </ng-container>
+                <ng-template #tabletDate>
+                  <td style="max-width: 25%; min-width: 25%; width: 25%; padding: 0 0 0 5px;">
+                    <span class="unboxings-history__date-content">{{ unboxing.updatedAt | date: 'h:mm a d LLL y' }}</span>
+                  </td>
+                </ng-template>
+              </tr>
+            </tbody>
+          </table>
+
+        </mat-expansion-panel-header>
+
+        <table class="stripped inner">
+          <tbody>
+            <tr *ngFor="let winItem of unboxing.winItems">
+              <td style="max-width: 15%; min-width: 15%; width: 15%;" class="inner-type"
+                >
+                {{ winItem.type }}
+              </td>
+              <td style="max-width: 10%; min-width: 10%; width: 10%;">
+                <div class="inner-img">
+                  <img src="{{ winItem.image }}" alt="{{ winItem.type }}" />
+                </div>
+              </td>
+              <td class="inner-name" style="max-width: 250px; min-width: 25%; width: 25%;">
+                {{ winItem.name }}
+              </td>
+              <td style="max-width: 10%; min-width: 10%; width: 10%;">
+                ${{ winItem.value | number:'1.2-2' }}
+              </td>
+              <td style="max-width: 15%; min-width: 15%; width: 15%;"></td>
+              <td style="max-width: 25%; min-width: 25%; width: 25%;"></td>
+            </tr>
+          </tbody>
+        </table>
+      </mat-expansion-panel>
+    </div>
+  </ng-container>
+
+  <ng-template #mobileView>
+    <div class="flex-row flex-row__btw m-b-20 header mobile" *ngIf="!isHistory">
+      <div class="flex-row go-back" (click)="goBack()">
+        <span class="back-icon"></span>
+      </div>
+    </div>
+    <mat-expansion-panel class="skinworld-customized m-b-20" *ngIf="!isHistory; else unboxingsMobileList">
+      <mat-expansion-panel-header> <div class="unboxing-title"><span>Unboxing</span></div> </mat-expansion-panel-header>
+
+      <ng-container *ngTemplateOutlet="unboxingsMobileList"></ng-container>
+    </mat-expansion-panel>
+
+  </ng-template>
+
+
+  <div *ngIf="!(_unboxings$ | async) && !(loading$ | async)" class="empty-data">
+    {{'NO_DATA' | translate }}
+  </div>
+  <div class="flex-row flex-row__center loading">
+    <mat-spinner *ngIf="loading$ | async" mode="indeterminate" class="skinworld-customized"></mat-spinner>
+  </div>
+</div>
+
+<ng-template #unboxingsMobileList>
+  <ng-container *ngFor="let unboxing of unboxings">
+    <div *ngFor="let winItem of unboxing.winItems"[ngClass]="{'unboxings-history__item': isHistory}">
+      <table class="stripped inner table">
+        <tbody>
+          <tr class="border-bottom">
+            <td><span class="title">ID:</span> #{{ unboxing.dice.betId }}</td>
+            <td class="align-end"><span class="title">DATE:</span> {{ unboxing.updatedAt | date: 'short' }}</td>
+          </tr>
+          <tr class="border-bottom">
+            <td>
+              <span class="title"> BOX: </span>
+              <div>
+                <img src="{{ unboxing.case.image }}" alt="{{ unboxing.case.name }}" height="20" />
+              </div>
+              <span class="item-name">{{ unboxing.case.name }}</span>
+            </td>
+            <td class="align-end"> <span class="title price-title">PRICE:</span> ${{ unboxing.case.price | number:'1.2-2' }}</td>
+          </tr>
+
+          <tr class="winItem-wrapper">
+            <td class="flex-col flex-col__btw item-col-start">
+              <span class="item-name">{{ winItem.name }}</span>
+              <div class="win-img">
+                <img src="{{ winItem.image }}" alt="{{ winItem.type }}" />
+              </div>
+            </td>
+            <td class="flex-col flex-col__btw item-col-end">
+              <span class="winItem-price">${{ winItem.value | number:'1.2-2' }}</span>
+              <button mat-button class="btn-linear" (click)="openModalVerify(unboxing._id)">VERIFY</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </ng-container>
+</ng-template>
+

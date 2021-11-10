@@ -1,0 +1,111 @@
+<footer class="footer">
+  <div class="footer-wrapper flex-col flex-col__btw">
+    <div class="footer__container flex-row flex-row__btw">
+      <div class="footer__content-items community">
+        <div class="footer__general-title">{{ 'FOOTER.COMMUNITY' | translate }}</div>
+        <div class="footer__item">
+          <a class="footer__nav-link" href="https://www.facebook.com/LootieCom/" target="_blank">
+            <span class="footer__icon facebook"></span> {{ 'FOOTER.FACEBOOK' | translate }}
+          </a>
+        </div>
+        <div class="footer__item">
+          <a class="footer__nav-link" href="https://twitter.com/LootieCom" target="_blank">
+            <span class="footer__icon twitter"></span> {{ 'FOOTER.TWITTER' | translate }}
+          </a>
+        </div>
+        <div class="footer__item">
+          <a class="footer__nav-link" href="https://www.instagram.com/lootiecom" target="_blank">
+            <span class="footer__icon instagram"></span> {{ 'FOOTER.INSTAGRAM' | translate }}
+          </a>
+        </div>
+      </div>
+
+      <div class="footer__content-items info">
+        <div class="footer__general-title">{{ 'FOOTER.INFORMATIONS' | translate }}</div>
+        <div class="footer__item">
+          <a class="footer__nav-link" [routerLink]="['/support']" routerLinkActive="active" href="support">
+            {{ 'FOOTER.FAQ' | translate }}
+          </a>
+        </div>
+        <div class="footer__item">
+          <a class="footer__nav-link" [routerLink]="['/contact-us']" routerLinkActive="active" href="contact-us">
+            {{ 'FOOTER.CONTACT_US' | translate }}
+          </a>
+        </div>
+        <div class="footer__item">
+          <a class="footer__nav-link" [routerLink]="['/shipping-refund']" routerLinkActive="active" href="shipping-refund">
+            {{ 'FOOTER.SHIPPING_REFUND' | translate }}
+          </a>
+        </div>
+        <div class="footer__item">
+          <a class="footer__nav-link" [routerLink]="['/provably-fair/unboxings']" routerLinkActive="active" href="provably-fair/unboxings">
+            {{ 'FOOTER.PROVABLY_FAIR' | translate }}
+          </a>
+        </div>
+      </div>
+
+      <div class="footer__content-items legal">
+        <div class="footer__general-title">{{ 'FOOTER.LEGAL' | translate }}</div>
+        <div class="footer__item">
+          <a class="footer__nav-link" [routerLink]="['/authentication']" routerLinkActive="active" href="authentication">
+            {{ 'FOOTER.AUTHENTICATIO' | translate }}
+          </a>
+        </div>
+        <div class="footer__item">
+          <a class="footer__nav-link" [routerLink]="['/tos']" routerLinkActive="active" href="tos">
+            {{ 'FOOTER.TERMS_SERVICE' | translate }}
+          </a>
+        </div>
+        <div class="footer__item">
+          <a class="footer__nav-link" [routerLink]="['/privacy']" routerLinkActive="active" href="privacy">
+            {{ 'FOOTER.PRIVACY' | translate }}
+          </a>
+        </div>
+      </div>
+
+      <div class="footer__content-items sponsors-images">
+        <div class="footer__general-title m-b-20">{{ 'FOOTER.PAYMENT_OPTION' | translate }}</div>
+        <div class="footer__item">
+          <a class="footer__pay-image visa" href="https://usa.visa.com/" target="_blank"></a>
+          <a class="footer__pay-image mastercard" href="https://www.mastercard.us" target="_blank"></a>
+        </div>
+        <div class="footer__item">
+          <a class="footer__pay-image paypal" href="https://www.paypal.com" target="_blank"></a>
+          <a class="footer__pay-image coinbase" href="https://www.coinbase.com/" target="_blank"></a>
+          <a class="footer__pay-image bitcoin" href="https://bitcoin.org" target="_blank"></a>
+          <a class="footer__pay-image steam" href="https://store.steampowered.com/" target="_blank"></a>
+        </div>
+        <div class="footer__item">
+          <a class="footer__pay-image g2apay" href="https://pay.g2a.com/" target="_blank"></a>
+          <a class="footer__pay-image payop" href="https://payop.com/" target="_blank"></a>
+        </div>
+      </div>
+
+      <div class="footer__mobile-languages show-mobile">
+        <ng-container *ngTemplateOutlet="languages"></ng-container>
+      </div>
+    </div>
+
+    <div class="footer__container flex-row flex-row__btw footer-action-content">
+      <div class="footer__actions">
+        <div class="hide-mobile">
+          <ng-container *ngTemplateOutlet="languages"></ng-container>
+        </div>
+      </div>
+      <p class="footer__rights">{{ 'FOOTER.RIGHTS' | translate }}</p>
+    </div>
+  </div>
+</footer>
+
+<ng-template #languages>
+  <div class="mobile-modal-theme-toggle">
+    <mat-button-toggle-group class="skinworld-customized" [value]="theme$ | async" (change)="onChange($event)">
+      <mat-button-toggle value="light">
+        <span class="theme-light-icon"></span>
+      </mat-button-toggle>
+      <mat-button-toggle value="dark">
+        <span class="theme-dark-icon"></span>
+      </mat-button-toggle>
+    </mat-button-toggle-group>
+  </div>
+</ng-template>

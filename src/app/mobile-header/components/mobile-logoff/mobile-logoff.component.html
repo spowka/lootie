@@ -1,0 +1,57 @@
+<div class="mobile-modal-section flex-col">
+  <h3 class="mobile-modal-section__title">
+    {{ 'LOGIN_DIALOG.TITLE' | translate }}
+  </h3>
+  <p class="mobile-modal-section__subtitle">
+    {{ 'LOGIN_DIALOG.SUBTITLE' | translate }}
+  </p>
+
+  <div class="mobile-modal-section__actions flex-col">
+    <button type="button" mat-button class="btn-square btn-google" (click)="googleLogin()">
+      <img class="button-icon google" src="/assets/images/icons/google-logo.svg">
+      <span>{{'LOGIN_DIALOG.LOGIN_WITH_GOOGLE' | translate }}</span>
+    </button>
+    <button type="button" mat-button class="btn-square btn-facebook" (click)="facebookLogin()">
+      <img class="button-icon facebook" src="/assets/images/icons/facebook.svg">
+      <span>{{'LOGIN_DIALOG.LOGIN_WITH_FACEBOOK' | translate }}</span>
+    </button>
+  </div>
+
+  <p class="mobile-modal-section__text mobile-modal-section__text-underline">{{'LOGIN_DIALOG.OR' | translate }}</p>
+
+  <div class="mobile-modal-section__actions mobile-modal-section__normal-login flex-row">
+    <button type="submit" mat-button class="btn-linear btn-square" (click)="openAuthDialog('login')">
+      <img class="button-icon login" src="/assets/images/icons/icon-user.svg">
+      <span class="">{{'LOGIN_DIALOG.LOGIN' | translate }}</span>
+    </button>
+    <button type="button" mat-button class="btn-outline-gray btn-square" (click)="openAuthDialog('register')">
+      {{'LOGIN_DIALOG.SIGN_UP' | translate }}
+    </button>
+  </div>
+
+  <p class="mobile-modal-section__text-info">{{'LOGIN_DIALOG.FOOTER_HINT' | translate }}</p>
+  <span class="mobile-modal-section__text-terms"
+    (click)="goToPage('/tos')">{{'LOGIN_DIALOG.TERMS_PRIVACY' | translate }}</span>
+
+  <div class="mobile-modal-section__footer-links">
+    <p class="mobile-modal-section__footer-link-item" (click)="goToPage('/how-it-works/deposit')">
+      {{ 'LOGIN_DIALOG.HOW_IT_WORKS' | translate }}
+    </p>
+
+    <p class="mobile-modal-section__footer-link-item" (click)="goToPage('/support')">
+      {{ 'LOGIN_DIALOG.FAQ' | translate }}</p>
+  </div>
+
+  <div class="flex-row mobile-modal-content__footer m-b-30">
+    <div class="mobile-modal-theme-toggle">
+      <mat-button-toggle-group class="skinworld-customized" [value]="theme$ | async" (change)="onChange($event)">
+        <mat-button-toggle value="light">
+          <span class="theme-light-icon"></span>
+        </mat-button-toggle>
+        <mat-button-toggle value="dark">
+          <span class="theme-dark-icon"></span>
+        </mat-button-toggle>
+      </mat-button-toggle-group>
+    </div>
+  </div>
+</div>

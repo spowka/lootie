@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="9px" height="14px" viewBox="0 0 9 14" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Path 207</title>
+    <defs>
+        <linearGradient x1="37.5%" y1="0%" x2="62.5%" y2="100%" id="linearGradient-1">
+            <stop stop-color="#F48836" offset="0%"></stop>
+            <stop stop-color="#F4364C" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Deposit-Balance+FAQ-(Mobile)" transform="translate(-27.000000, -293.000000)" stroke="url(#linearGradient-1)" stroke-width="2">
+            <g id="Payment-Form" transform="translate(0.000000, 276.000000)">
+                <g id="Cancel" transform="translate(29.000000, 18.000000)">
+                    <polyline id="Path-207" points="6.02941176 0 0.0294117647 6 6.02941176 12"></polyline>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

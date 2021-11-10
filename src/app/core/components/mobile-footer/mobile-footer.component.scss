@@ -1,0 +1,113 @@
+@import '../../../../styles/variables.scss';
+
+$footer-height: 60px;
+
+%footer-menu-icon {
+  display: inline-block;
+  width: 14px;
+  height: 13px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.footer {
+  position: relative;
+  z-index: 997;
+  height: $footer-height;
+  padding: 0 22px;
+  background-color: $colorPrimaryGray;
+  color: rgba($colorPrimaryWhite, 0.4);
+  box-shadow: $shadow40;
+}
+
+.footer-nav {
+  width: 100%;
+
+  .item-icon {
+    @extend %footer-menu-icon;
+  }
+
+  &__item {
+    position: relative;
+    text-transform: uppercase;
+    padding: 16.5px 10px;
+    color: rgba($colorPrimaryWhite, 0.4);
+    font-size: 12px;
+    font-weight: normal;
+    letter-spacing: 0.5px;
+    transition: .3s color ease-in-out;
+
+    .item-label {
+      display: none;
+    }
+
+    &.cases {
+      .item-icon {
+      }
+    }
+
+    &.upgrade {
+      .item-icon {
+      }
+    }
+
+    &.help {
+      .item-icon {
+      }
+    }
+
+    &.rewards {
+      .item-icon {
+      }
+    }
+
+    &.active {
+      color: $colorPrimaryWhite;
+
+      &:after {
+        content: '';
+        position: absolute;
+        left: 0;
+        right: 0;
+        display: inline-block;
+        height: 2px;
+        border-bottom: 2px solid;
+        border-image: $colorPrimaryGradient;
+        border-image-slice: 1;
+        bottom: 0;
+        border-left: 0px;
+        border-right: 0px;
+        border-top: 0px;
+      }
+
+      &.cases {
+        .item-icon {
+        }
+      }
+
+      &.upgrade {
+        .item-icon {
+        }
+      }
+
+      &.inventory {
+        .item-icon {
+        }
+      }
+
+      &.rewards {
+        .item-icon {
+        }
+      }
+
+      .item-label {
+        display: block;
+      }
+
+      .item-icon {
+        margin-right: 16px;
+      }
+    }
+  }
+}

@@ -1,0 +1,48 @@
+<div class="dialog-wrapper dialog-wrapper__light" #wrapper>
+  <button mat-dialog-close>
+    <mat-icon>close</mat-icon>
+  </button>
+
+  <div mat-dialog-title class="center">{{'DIALOG_UNBOXING.UNBOXING' | translate }}</div>
+
+  <mat-dialog-content class="case-unboxing">
+    <div class="unboxings-content">
+      <app-item-info [item]="unboxingItem" [withGlowEffect]="true"></app-item-info>
+    </div>
+
+    <form class="flex-col pf pf__input-wrap" [formGroup]="unboxingForm" (ngSubmit)="unbox()">
+      <div class="pf__slider-title m-b-20">
+        <span>{{'DIALOG_UNBOXING.SELECT_BOXES' | translate }}</span>
+        <span class="text-muted">{{'DIALOG_UNBOXING.COUNT' | translate }}: {{ unboxingForm.value.count }}</span>
+      </div>
+      <mat-slider class="pf__form-slider m-b-10" [max]="10" [min]="1" [step]="1" [thumbLabel]="true"
+        formControlName="count">
+      </mat-slider>
+
+      <mat-form-field class="skinworld-customized pf__form-field m-b-30">
+        <span matPrefix>{{'DIALOG_UNBOXING.CLIENT_SEED' | translate }} &nbsp;</span>
+        <input type="text" matInput formControlName="seed">
+      </mat-form-field>
+
+      <div class="dice-list" *ngIf="(unboxedItem$ | async)?.length">
+        <ng-container *ngFor="let item of (unboxedItem$ | async)">
+          <mat-form-field *ngFor="let dice of item.dices" class="skinworld-customized pf__form-field m-b-10">
+            <span matPrefix>{{'DIALOG_UNBOXING.DICE_SEED' | translate }} &nbsp;</span>
+            <input type="text" matInput [disabled]="true" [value]="dice.seed">
+          </mat-form-field>
+        </ng-container>
+      </div>
+
+      <div class="pf__actions flex-row">
+        <button type="submit" mat-button class="btn-large btn-linear"
+          [disabled]="unboxingForm.invalid || unboxingForm.disabled">
+          {{'DIALOG_UNBOXING.UNBOX' | translate }}
+        </button>
+        <button type="button" mat-button class="btn-large btn-outline-gray" (click)="onGenerateSeed()"
+          [disabled]="unboxingForm.disabled">
+          {{'DIALOG_UNBOXING.NEW_SEED' | translate }}
+        </button>
+      </div>
+    </form>
+  </mat-dialog-content>
+</div>

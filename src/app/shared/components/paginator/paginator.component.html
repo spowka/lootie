@@ -1,0 +1,20 @@
+<div class="paginator">
+  <mat-icon [class.disabled]="page === 1" (click)="previousPage()">
+    chevron_left
+  </mat-icon>
+  <ng-container *ngFor="let p of pages">
+    <span *ngIf="p === -1; else pnumber">...</span>
+    <ng-template #pnumber>
+      <button
+        class="page-button"
+        [class.selected]="p === page"
+        (click)="selectPage(p)"
+      >
+        {{ p }}
+      </button>
+    </ng-template>
+  </ng-container>
+  <mat-icon [class.disabled]="page === totalPages" (click)="nextPage()">
+    chevron_right
+  </mat-icon>
+</div>

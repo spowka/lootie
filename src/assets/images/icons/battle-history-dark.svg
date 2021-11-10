@@ -1,0 +1,10 @@
+<svg width="34" height="34" viewBox="0 0 34 34"
+  xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient spreadMethod="pad" y2="0.5" x2="1" y1="0.5" x1="0" id="svg_11">
+      <stop offset="0" stop-color="#212a2d" />
+      <stop offset="1" stop-color="#212a2d" />
+    </linearGradient>
+  </defs>
+  <path stroke="url(#svg_11)" fill="#181d1f" transform="rotate(90 17,17.000001907348636) " id="svg_8" d="m0.641302,17l7.010871,-14.021746l18.695655,0l7.010869,14.021746l-7.010869,14.021746l-18.695655,0l-7.010871,-14.021746z" />
+</svg>

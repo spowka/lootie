@@ -1,0 +1,43 @@
+<div class="leader-item__container"
+  *ngIf="leaderItem"
+  [ngStyle]="{'color': leaderItem.item.color || '#8847ff'}">
+  <div class="leader-item__top-background"></div>
+
+  <div class="leader-item__content">
+    <div class="leader-item__counter border-right">
+      <span>{{ leaderItem.ranking }}</span>
+    </div>
+
+    <div class="leader-item__user border-right" *ngIf="leaderItem.user; else userNotFound">
+      <img [src]="leaderItem.user.profileImageUrl">
+      <span>{{ leaderItem.user?.username }}</span>
+    </div>
+
+    <ng-template #userNotFound>
+      <div class="leader-item__user border-right">
+        <img [src]="'/assets/images/profile/male-1.svg'">
+      </div>
+    </ng-template>
+
+    <div class="leader-item__points border-right">
+      <span class="points-count">{{ leaderItem.points }}</span>
+      <span class="points-dot"></span>
+      <span class="points-title">Points</span>
+    </div>
+
+    <div class="leader-item__cost">
+      <span>$</span> {{ leaderItem.item.value | number:'1.2-2' }}
+    </div>
+
+    <div class="leader-item__box">
+      <div class="box-leader-bg"></div>
+      <div class="box-leader-content">
+        <img [src]="leaderItem.item.image">
+        <span>{{ leaderItem.item.name }}</span>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="leader-item__bottom-background"></div>
+</div>

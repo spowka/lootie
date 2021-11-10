@@ -1,0 +1,63 @@
+<div class="flex-col case-wrapper"
+  (click)="selectItem()"
+  [ngStyle]="{
+    'color': item.color || '#8847ff',
+    'width': itemWidth,
+    'border-color': (showChoosen && isSelected) ? item.color || '#8847ff' : 'transparent'
+  }"
+  [ngClass]="{'active-case': (!(showTitle || showFooter) && isSelected && isSelectedImg),
+              'active-item': (showChoosen && isSelected) || isCreateCase,
+              'small': smallView,
+              'background-case-image': isImageBackground || isCreateCase,
+              'spinner': spinnerView }"
+  *ngIf="item">
+  <div *ngIf="(!(showTitle || showFooter) && isSelected && isSelectedImg) || isCreateCase" class="flex-row flex-row__center case-wrapper__active">
+    <mat-icon *ngIf="!isCreateCase" class="check-icon">check</mat-icon>
+    <div *ngIf="isCreateCase" class="selected-createCase">Selected</div>
+  </div>
+  <div class="case-wrapper__checkmark flex-row flex-row__center" [ngStyle]="{'color': isCreateCase ? '#fff' : 'rgba(243, 71, 71, 1)'}" *ngIf="showChoosen && isSelected">
+    <mat-icon>done</mat-icon>
+  </div>
+  <div class="case-wrapper__backdrop" *ngIf="showChoosen && isSelected">
+    <div class="case-wrapper__select-background"></div>
+    <div class="case-wrapper__backdrop-btn" *ngIf="isInventory">
+      Selected
+    </div>
+  </div>
+  <div *ngIf="showTitle && !withChangedTitle" class="case-wrapper__price m-b-10">
+    ${{ (item.value || item.price) | number:'1.2-2'}}
+  </div>
+  <div *ngIf="showTitle && withChangedTitle" class="case-wrapper__price m-b-10" [ngClass]="{'odd-visible': showOdds}">
+    <span class="odd">
+      {{'CASE_ITEM.RANGE' | translate }} <br *ngIf="isMobile$ | async">{{ item.rangeStart | number:'1.0-5' }} ~
+      {{ item.rangeEnd | number:'1.0-5' }}
+    </span>
+    <span *ngIf="!(isMobile$ | async)" class="odd">{{'CASE_ITEM.ODDS' | translate }} {{ item.odd | number:'1.0-5' }}%</span>
+    <span class="value">${{ (item.value || item.price) | number:'1.2-2'}}</span>
+  </div>
+
+  <img *ngIf="(isMobile$ | async) && item.thumbnail; else highResImage" class="case-img" [src]="item.thumbnail">
+
+  <ng-template #highResImage>
+    <img class="case-img" [src]="item.image ? item.image : item.icon">
+  </ng-template>
+
+  <div *ngIf="showFooter && showOdds && (isMobile$ | async); else showName"
+    class="case-wrapper__data small-height flex-col flex-col__end">
+    <span class="odd-mobile">{{'CASE_ITEM.ODDS' | translate }} {{ item.odd | number:'1.0-5' }}%</span>
+  </div>
+
+  <ng-template #showName>
+    <div *ngIf="showFooter" class="case-wrapper__data flex-col flex-col__end">
+      <div class="case-wrapper__data-title">{{ item.name || item.marketName }}</div>
+      <div class="case-wrapper__data-type">{{ item.tag || item.type }}</div>
+    </div>
+  </ng-template>
+  <div *ngIf="showFooter" class="case-wrapper__bottom-border"></div>
+  <ng-container *ngIf="isLoading">
+    <div class="case-wrapper__loading-background"></div>
+    <mat-spinner class="case-wrapper__loading-spinner"></mat-spinner>
+  </ng-container>
+  <button *ngIf="descriptionView && (isLoggedIn$ | async)" mat-button class="btn-medium btn-linear case-wrapper__view"
+    (click)="viewDescription()">{{'CASE_ITEM.VIEW' | translate }}</button>
+</div>

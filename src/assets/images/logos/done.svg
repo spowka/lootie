@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="154px" height="154px" viewBox="0 0 154 154" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 63.1 (92452) - https://sketch.com -->
+    <title>done</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="74.469001%" y1="100%" x2="50%" y2="0%" id="linearGradient-1">
+            <stop stop-color="#60B31E" offset="0%"></stop>
+            <stop stop-color="#D5FF32" offset="100%"></stop>
+        </linearGradient>
+        <path d="M93.6378185,16.0657097 C83.7116015,6.13949282 69.9986605,3.97001656e-13 54.8517641,3.97001656e-13 C24.5579713,3.97001656e-13 -7.94003311e-13,24.5579713 -7.94003311e-13,54.8517641 C-7.94003311e-13,85.1455569 24.5579713,109.703528 54.8517641,109.703528 C85.1455569,109.703528 109.703528,85.1455569 109.703528,54.8517641 C109.703528,51.1886001 109.344443,47.6093049 108.659551,44.1471583" id="path-2"></path>
+        <filter x="-34.2%" y="-25.1%" width="168.4%" height="168.4%" filterUnits="objectBoundingBox" id="filter-3">
+            <feMorphology radius="2.5" operator="dilate" in="SourceAlpha" result="shadowSpreadOuter1"></feMorphology>
+            <feOffset dx="0" dy="10" in="shadowSpreadOuter1" result="shadowOffsetOuter1"></feOffset>
+            <feMorphology radius="2.5" operator="erode" in="SourceAlpha" result="shadowInner"></feMorphology>
+            <feOffset dx="0" dy="10" in="shadowInner" result="shadowInner"></feOffset>
+            <feComposite in="shadowOffsetOuter1" in2="shadowInner" operator="out" result="shadowOffsetOuter1"></feComposite>
+            <feGaussianBlur stdDeviation="10" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.1 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+        <linearGradient x1="74.469001%" y1="73.3236095%" x2="50%" y2="26.6763905%" id="linearGradient-4">
+            <stop stop-color="#60B31E" offset="0%"></stop>
+            <stop stop-color="#D5FF32" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Balance-Successfully-" transform="translate(-433.000000, -433.000000)">
+            <g id="done" transform="translate(455.690476, 445.000000)">
+                <g id="Path" stroke-linecap="square">
+                    <use fill="black" fill-opacity="1" filter="url(#filter-3)" xlink:href="#path-2"></use>
+                    <use stroke="url(#linearGradient-1)" stroke-width="5" xlink:href="#path-2"></use>
+                </g>
+                <polyline id="Path-208" stroke="url(#linearGradient-4)" stroke-width="5" points="28.2349662 43.5025578 54.9791481 72.3120816 112.598196 14.6930339"></polyline>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,224 @@
+@import "../../../../../styles/partials/index.scss";
+@import "../../../../../styles/concepts.scss";
+@import "../../../../../styles/variables.scss";
+
+@include register-component {
+  .dialog-section {
+    &__actions {
+      .btn-square {
+        color: #ffffff;
+      }
+    }
+  }
+
+  .pointer {
+    color: from-theme(auth-pointer-color);
+  }
+
+  .social-actions {
+    .login {
+      border: solid 1px from-theme(auth-social-actions-border);
+      background-color: from-theme(auth-social-actions-background);
+    }
+
+    &__title {
+      color: #4d6168;
+    }
+  }
+
+  ::ng-deep {
+    .login-form-field {
+      .mat-form-field-wrapper {
+        .mat-form-field-flex {
+          .mat-form-field-prefix {
+            color: from-theme(account-form-group-prefix-color);
+            opacity: 1;
+          }
+
+          .mat-form-field-infix {
+            .mat-input-element {
+              color: #82969d !important;
+              border: solid 1px from-theme(auth-mat-input-element-border);
+              background: from-theme(auth-mat-input-element-background) !important;
+
+              &:active,
+              &:focus {
+                border: solid 1px from-theme(auth-mat-input-element-border-active);
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .login-inputs {
+      .mat-checkbox-label {
+        color: from-theme(auth-mat-checkbox-label-color);
+      }
+    }
+  }
+
+}
+
+.dialog-section {
+  width: 100%;
+  padding: 0 15px;
+
+  &__content {
+    width: 100%;
+
+    .login-inputs {
+      width: 100%;
+    }
+  }
+
+  &__actions {
+    width: 100%;
+
+    .btn-square {
+      width: 100%;
+      margin: 0;
+      font-size: 16px !important;
+      font-weight: bold;
+      line-height: 1.06;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+  }
+}
+
+.pointer {
+  font-size: 12px;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: 0.11px;
+}
+
+.social-actions {
+  .login {
+    width: 88px;
+    height: 40px;
+    border-radius: 100px;
+    padding: 0;
+    min-width: 88px;
+    margin: 0 15px;
+  }
+
+  .button-icon {
+    @extend %button-icon;
+
+    &.google {
+      width: 24px;
+      height: 24px;
+      background-image: url("/assets/images/icons/google2.svg");
+    }
+
+    &.facebook {
+      width: 24px;
+      height: 24px;
+      background-image: url("/assets/images/icons/facebook2.svg");
+    }
+  }
+
+  &__title {
+    font-size: 14px;
+    line-height: normal;
+    letter-spacing: 0.13px;
+    margin-bottom: 12px;
+  }
+}
+
+::ng-deep {
+  .login-form-field {
+    width: 100%;
+
+    .mat-form-field-wrapper {
+      padding-bottom: 20px;
+
+      .mat-form-field-subscript-wrapper {
+        position: relative;
+      }
+
+      .mat-form-field-flex {
+        display: flex;
+        flex-direction: column;
+
+        .mat-form-field-prefix {
+          margin: 0 0 6px 0;
+          font-size: 11px;
+          font-weight: bold;
+          letter-spacing: 0.22px;
+        }
+
+        .mat-form-field-infix {
+          width: 100%;
+
+          .mat-input-element {
+            padding: 11px 10px;
+            font-size: 15px;
+            line-height: normal;
+            letter-spacing: 0.15px;
+            border-radius: 4px;
+          }
+        }
+      }
+    }
+  }
+
+  .login-inputs {
+    .mat-checkbox-label {
+      font-size: 12px;
+      line-height: normal;
+      letter-spacing: 0.11px;
+    }
+  }
+}
+
+@media(max-width: 1024px) and (min-width: 767px) {
+  .dialog-section {
+    &__actions {
+      .start-unboxing {
+        padding: 0 10px;
+      }
+    }
+  }
+  .social-actions {
+    .login {
+      margin: 10px 12px;
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  .dialog-section {
+    padding: 0 10px;
+
+    &__actions {
+      .btn-square {
+        font-size: 14px !important;
+        height: 40px;
+      }
+    }
+  }
+
+  .pointer {
+    font-size: 17px;
+    font-weight: 500;
+    letter-spacing: 0.26px;
+  }
+
+  .social-actions {
+    margin-bottom: 45px;
+
+    .login {
+      width: 130px;
+      margin: 0px 12px;
+      box-shadow: none;
+    }
+
+    &__title {
+      font-size: 13px;
+      margin-bottom: 20px;
+    }
+  }
+}

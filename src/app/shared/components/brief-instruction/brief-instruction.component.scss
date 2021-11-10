@@ -1,0 +1,99 @@
+@import '../../../../styles/variables.scss';
+@import '../../../../styles/partials/index.scss';
+
+@include register-component {
+  .brief-instruction {
+    &__box {
+      background-color: from-theme(background);
+    }
+  }
+}
+
+.brief-instruction {
+  max-width: 930px;
+  margin-left: auto;
+  margin-right: auto;
+
+  &__count {
+    opacity: 0.5;
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: $colorSecondaryTurquoise;
+  }
+
+  &__divider {
+    width: 41px;
+    height: 1px;
+    margin-top: 25px;
+    border-style: solid;
+    border-width: 1px;
+    border-image-source: linear-gradient(91deg, rgba(244, 54, 76, 0), #F48836);
+    border-image-slice: 1;
+  }
+
+  &__box {
+    width: 130px;
+    height: 120px;
+    border-radius: 2px;
+    padding: 10px 10px;
+
+    img {
+      height: 50px;
+      object-fit: contain;
+      margin-bottom: 14px;
+    }
+
+    span {
+      font-family: Roboto;
+      font-size: 14px;
+      font-weight: normal;
+      font-stretch: normal;
+      font-style: normal;
+      line-height: normal;
+      letter-spacing: normal;
+      text-align: center;
+    }
+  }
+
+  &__title {
+    max-width: 930px;
+    color: $colorSecondaryShuttleGray;
+    font-family: Roboto;
+    font-size: 16px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: 0.2px;
+    text-align: center;
+    background-image: url('/assets/images/brief-instruction/title-line.svg');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    margin: 30px auto;
+  }
+}
+
+@media (max-width: 767px) {
+  .brief-instruction {
+    justify-content: center;
+
+    &__wrapper {
+      margin: 10px;
+
+      &:not(:last-child) {
+        margin-right: 10px;
+      }
+    }
+
+    &__divider {
+      display: none;
+    }
+
+    &__title {
+      transform: scale(1.8);
+      font-size: 9px;
+    }
+  }
+}

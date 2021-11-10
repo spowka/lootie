@@ -1,0 +1,106 @@
+@import '../../../../styles/partials/index.scss';
+@import '../../../../styles/variables.scss';
+
+@include register-component {
+  .dialog-wrapper {
+    .footer-actions {
+      background-color: from-theme(battle-dialog-footer);
+    }
+  }
+}
+
+.select-items {
+  margin: 0 -28px;
+  padding: 0 28px;
+}
+
+.boxes-title {
+  font-size: 22px;
+  margin-bottom: 15px;
+
+  span {
+    margin-left: 10px;
+    color: $colorSecondaryRed;
+  }
+}
+
+.boxes-subtitle {
+  font-size: 13px;
+  line-height: 1;
+  letter-spacing: 0.2px;
+  color: #5b6873;
+}
+
+.boxes-list {
+  width: 100%;
+  min-height: 215px;
+  max-height: 400px;
+  padding: 0 7.5px;
+  overflow: auto;
+
+  .box {
+    height: 200px;
+    width: 180px;
+    margin: 7.5px;
+  }
+}
+
+.boxes-loading {
+  min-height: 30px;
+}
+
+.footer-actions {
+  margin: 0 -28px -28px;
+
+  .btn-done {
+    width: 184px;
+    min-width: 184px;
+    height: 45px;
+  }
+}
+
+@media (max-width: 480px) {
+  ::ng-deep {
+    .mat-dialog-container button[mat-dialog-close] {
+      right: 0!important;
+      top: 0!important;
+    }
+  }
+  
+  .dialog-wrapper {
+    overflow-x: hidden;
+
+    .boxes-list {
+      overflow: auto;
+    }
+
+  }
+}
+
+@media (max-width: 767px) {
+  .dialog-wrapper {
+    .mat-dialog-content {
+
+      .filter {
+        ::ng-deep {
+          .filters-wrap .search-wrap {
+            width: 50% !important;
+            margin-bottom: 0;
+          }
+        }
+      }
+
+    }
+  }
+
+  .boxes-list {
+    padding: 0;
+
+    .box {
+      height: 160px;
+      min-width: 120px;
+      max-width: 130px;
+      flex: 1;
+    }
+  }
+}

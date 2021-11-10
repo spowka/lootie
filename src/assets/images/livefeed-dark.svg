@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="95px" height="55px" viewBox="0 0 95 55" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>BG</title>
+    <defs>
+        <linearGradient x1="0%" y1="33.7611285%" x2="100%" y2="66.2388715%" id="linearGradient-1">
+            <stop stop-color="#121617" offset="0%"></stop>
+            <stop stop-color="#121618" offset="100%"></stop>
+        </linearGradient>
+        <rect id="path-2" x="0.0799222726" y="0.920077727" width="93" height="53"></rect>
+        <radialGradient cx="1.27530259%" cy="0%" fx="1.27530259%" fy="0%" r="277.481883%" gradientTransform="translate(0.012753,0.000000),scale(0.382878,1.000000),rotate(21.682292),translate(-0.012753,-0.000000)" id="radialGradient-4">
+            <stop stop-color="#181D1F" offset="0%"></stop>
+            <stop stop-color="#0C0F0F" offset="100%"></stop>
+        </radialGradient>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Main-Page-(Dark)-Laptop-Hover" transform="translate(1.000000, -111.000000)">
+            <g id="BG" transform="translate(-0.079922, 111.079922)">
+                <mask id="mask-3" fill="white">
+                    <use xlink:href="#path-2"></use>
+                </mask>
+                <use id="Mask" fill="url(#linearGradient-1)" xlink:href="#path-2"></use>
+                <polygon fill="url(#radialGradient-4)" mask="url(#mask-3)" transform="translate(175.079922, 65.000000) rotate(-270.000000) translate(-175.079922, -65.000000) " points="-1392 -535 1742.15984 -535 1729 665 -1392 665"></polygon>
+            </g>
+        </g>
+    </g>
+</svg>

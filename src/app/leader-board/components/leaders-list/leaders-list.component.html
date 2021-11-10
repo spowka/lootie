@@ -1,0 +1,23 @@
+<section class="leaders-list__container"
+  *ngIf="items && items.topdrops && items.topdrops.length > 0">
+  <div class="leaders-list__top-background"></div>
+
+  <div class="leaders-list__content">
+    <div class="left-border"></div>
+
+    <app-leader-item
+      *ngFor="let item of items.topdrops"
+      [leaderItem]="item">
+    </app-leader-item>
+
+    <div class="right-border"></div>
+  </div>
+
+  <div class="leaders-list__bottom-background"></div>
+
+  <!-- <div class="leaders-list__actions">
+    <button class="btn btn__load-more">
+      {{ 'LEADER_BOARD.LOAD_MORE' | translate }}
+    </button>
+  </div> -->
+</section>

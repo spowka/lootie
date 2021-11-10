@@ -1,0 +1,41 @@
+<div class="flex-row flex-row__btw container">
+  <div class="flex-row flex-row__btw summary">
+    <div class="flex-col flex-col__start">
+      <span class="summary__label m-b-10"> {{'AFFILIATES_CLAIM_STATS.TOTAL_REFERRALS' | translate }}</span>
+      <span class="summary__value">{{ (referralInfo$ | async)?.personal.totalReferrals  }}</span>
+    </div>
+    <div class="flex-col flex-col__start">
+      <span class="summary__label m-b-10"> {{'AFFILIATES_CLAIM_STATS.COMMISSIONS_CUT' | translate }}</span>
+      <span class="summary__value">{{ ((user$ | async)?.extraReferralCut || (referralInfo$ | async)?.personal.commisionCut) * 100 | number:'1.0' }}%</span>
+    </div>
+    <div class="flex-col flex-col__start">
+      <span class="summary__label m-b-10"> {{'AFFILIATES_CLAIM_STATS.ALL_EARNINGS' | translate }}</span>
+      <span class="summary__value">${{ (referralInfo$ | async)?.personal.allEarnings | number:'1.2-2' }}</span>
+    </div>
+    <div class="flex-col flex-col__start">
+      <span class="summary__label m-b-10"> {{'AFFILIATES_CLAIM_STATS.TOTAL_DEPOSITS' | translate }}</span>
+      <span class="summary__value">${{ ((user$ | async)?.referralDeposited || 0) | number:'1.2-2' }}</span>
+    </div>
+    <div class="flex-col flex-col__start">
+      <span class="summary__label m-b-10"> {{'AFFILIATES_CLAIM_STATS.REFERRALS_RECEIVES' | translate }}</span>
+      <span class="summary__value">{{'AFFILIATES_CLAIM_STATS.FREE_BOX' | translate }}</span>
+    </div>
+  </div>
+  <div class="flex-row flex-row__btw summary claim">
+    <div>
+      <span class="summary__label"> {{'AFFILIATES_CLAIM_STATS.AVAILABLE_EARNINGS' | translate }}</span>
+      <span class="summary__value">${{ (referralInfo$ | async)?.personal.availableEarnings | number:'1.2-2' }}</span>
+    </div>
+    <button mat-button *ngIf="(isMobile$ | async) || (isDesktop$ | async)" class="btn-large btn-linear" (click)="claimEarnings()"
+      [disabled]="!(referralInfo$ | async)?.personal.availableEarnings">
+      {{'AFFILIATES_CLAIM_STATS.CLAIM_EARNINGS' | translate }}
+    </button>
+  </div>
+</div>
+
+<div class="flex-row flex-row__end">
+  <button mat-button *ngIf="!(isMobile$ | async) && !(isDesktop$ | async)" class="btn-large btn-linear" (click)="claimEarnings()"
+    [disabled]="!(referralInfo$ | async)?.personal.availableEarnings">
+    {{'AFFILIATES_CLAIM_STATS.CLAIM_EARNINGS' | translate }}
+  </button>
+</div>

@@ -1,0 +1,31 @@
+<div class="auth__dialog-wrapper flex-row forgot-form mat-mode">
+  <div class="auth__close">
+    <span class="close-icon" (click)="close()"></span>
+  </div>
+
+  <div class="auth__left-side">
+    <div class="auth__header-tabs" *ngIf="mode !== 'forgot-password'">
+      <div class="auth__header-item" *ngFor="let item of loginHeaderItems"
+        [ngClass]="{'active': item.value === mode}" (click)="changeMode(item.value)">
+        <span>{{ item.name }}</span>
+      </div>
+    </div>
+    <div class="auth__content">
+      <app-sign-up-dialog (changeMode)="changeMode($event)" *ngIf="mode === 'register'"></app-sign-up-dialog>
+      <app-login-dialog (changeMode)="changeMode($event)" *ngIf="mode === 'login'"></app-login-dialog>
+      <app-forgot-password-dialog (changeMode)="changeMode($event)" *ngIf="mode === 'forgot-password'"></app-forgot-password-dialog>
+    </div>
+  </div>
+
+  <div class="auth__right-side">
+    <div class="auth__welcome-container">
+      <div class="auth__welcome-image"></div>
+      <h3 class="auth__welcome-title">{{ 'AUTH_DIALOG.WELCOME' | translate }}</h3>
+      <p class="auth__welcome-description">{{ 'AUTH_DIALOG.BEST_GAME' | translate }}</p>
+    </div>
+
+    <div class="auth__welcome-image-dice"></div>
+
+    <p class="auth__total">{{ 'AUTH_DIALOG.TOTAL' | translate }} <span>{{ '212 736 01' }}</span></p>
+  </div>
+</div>

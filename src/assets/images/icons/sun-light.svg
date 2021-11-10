@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="14px" height="14px" viewBox="0 0 14 14" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>sun</title>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+        <g id="Main-Page-(Light)-Desktop" transform="translate(-1769.000000, -2125.000000)" stroke="#252E35" stroke-width="1.2">
+            <g id="Theme" transform="translate(1763.000000, 2120.000000)">
+                <g id="sun" transform="translate(7.000000, 6.000000)">
+                    <circle id="Oval" cx="6" cy="6" r="2.72727273"></circle>
+                    <line x1="6" y1="0" x2="6" y2="1.09090909" id="Path"></line>
+                    <line x1="6" y1="10.9090909" x2="6" y2="12" id="Path"></line>
+                    <line x1="1.75636364" y1="1.75636364" x2="2.53090909" y2="2.53090909" id="Path"></line>
+                    <line x1="9.46909091" y1="9.46909091" x2="10.2436364" y2="10.2436364" id="Path"></line>
+                    <line x1="0" y1="6" x2="1.09090909" y2="6" id="Path"></line>
+                    <line x1="10.9090909" y1="6" x2="12" y2="6" id="Path"></line>
+                    <line x1="1.75636364" y1="10.2436364" x2="2.53090909" y2="9.46909091" id="Path"></line>
+                    <line x1="9.46909091" y1="2.53090909" x2="10.2436364" y2="1.75636364" id="Path"></line>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

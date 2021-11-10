@@ -1,0 +1,113 @@
+@import '../../../../styles/partials/index.scss';
+@import '../../../../styles/concepts.scss';
+@import '../../../../styles/variables.scss';
+
+.skinworld-nav {
+  &__link {
+    position: relative;
+    transition: .3s all ease-in-out;
+    padding: 22px 0 8px;
+    margin-right: 30px;
+    opacity: 0.4;
+    cursor: pointer;
+
+    img {
+      margin-right: 10px;
+    }
+
+    &.active {
+      opacity: 1;
+    }
+
+    &.uppercase {
+      @extend .l-md;
+      text-transform: uppercase;
+      margin-right: 75px;
+
+      &:last-child {
+        margin: 0;
+      }
+    }
+
+    &.with-border {
+      &:after {
+        content: '';
+        position: absolute;
+        left: 0;
+        right: 0;
+        display: inline-block;
+        height: 2px;
+        border-bottom: 2px solid;
+        border-image: $colorPrimaryGradient;
+        border-image-slice: 1;
+        bottom: 0;
+        border-left: 0px;
+        border-right: 0px;
+        border-top: 0px;
+      }
+    }
+  }
+}
+
+:host {
+  ::ng-deep {
+    mat-form-field {
+      @extend .l-md;
+      text-transform: uppercase;
+
+      .mat-form-field-underline {
+        background-color: hexToRGBA($colorPrimaryGray, .2);
+      }
+
+      .mat-select-arrow {
+        color: hexToRGBA($colorPrimaryGray, .2);
+      }
+    }
+  }
+}
+
+.border-nav {
+  padding: 0 30px;
+  border-radius: 4px;
+  box-shadow: 0px 0px 0px 2px $colorSecondaryDarkBorder inset;
+  justify-content: center;
+
+  .skinworld-nav__link {
+    padding: 7px 0;
+  }
+}
+
+@media (max-width: 1220px) {
+  .skinworld-nav {
+    &__link {
+      margin-right: 30px;
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  :host {
+    display: block;
+  }
+
+  .mat-form-field {
+    width: 100%;
+  }
+}
+
+@media (max-width: 479px) {
+  :host {
+    width: 100%;
+  }
+
+  .skinworld-nav {
+    &__link.uppercase {
+      margin-right: 0;
+      padding: 11px 10px 8px;
+    }
+  }
+
+  .border-nav {
+    justify-content: space-around;
+  }
+}

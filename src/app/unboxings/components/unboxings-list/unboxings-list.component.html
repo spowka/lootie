@@ -1,0 +1,12 @@
+<div class="flex-row flex-row__center unboxings-list">
+  <app-unboxing-item
+    class="unboxing-item"
+    *ngFor="let box of unboxingsItems"
+    [item]="box"
+    [isImage]="(box.type === 'image') ? true : false">
+  </app-unboxing-item>
+
+  <div class="flex-row flex-row__center w-100 m-b-10 unboxings-list__load">
+    <button mat-button class="btn-show-all" (click)="showAllUnboxing()"> {{'UNBOXINGS.LOAD_ALL' | translate }}</button>
+  </div>
+</div>

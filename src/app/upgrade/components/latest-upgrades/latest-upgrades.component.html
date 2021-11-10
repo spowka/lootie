@@ -1,0 +1,86 @@
+<div *ngIf="(isLaptop$ | async) || (isDesktop$ | async)" class="latest-upgrades-wrap">
+  <div class="title m-b-20">{{'LATEST_UPGRADE' | translate }}</div>
+  <ng-container *ngTemplateOutlet="upgradesList"></ng-container>
+</div>
+
+<div *ngIf="(isTablet$ | async)" class="latest-upgrades-wrap" [class.opened]="(isLatestUpgradesOpened$ | async)">
+  <div class="latest-upgrades-container flex-col flex-col__start" *ngIf="(isTablet$ | async); else upgradesList">
+    <div class="latest-upgrades-header flex-row flex-row__btw">
+      <div class="latest-upgrades-header__close" (click)="closeLatestUpgrades()">
+        <mat-icon class="skinworld-customized">arrow_forward_ios</mat-icon>
+      </div>
+      <div class="flex-row latest-upgrades-header__title">
+        <div class="latest-upgrades-header__subtitle l-sm">{{'LATEST_UPGRADE' | translate }}</div>
+      </div>
+    </div>
+    <ng-container *ngTemplateOutlet="upgradesList"></ng-container>
+  </div>
+</div>
+
+<div *ngIf="(isMobile$ | async)" class="latest-upgrades-wrap mobile"
+  [@modalAnimation]="(isLatestUpgradesOpened$ | async) ? 'opened' : 'rightClosed'">
+  <div class="mobile-modal">
+    <div class="mobile-modal__header">
+      <div class="title">
+        {{'LATEST_UPGRADE' | translate }}
+      </div>
+      <div (click)="closeLatestUpgrades()">
+        <mat-icon>close</mat-icon>
+      </div>
+    </div>
+    <ng-container *ngTemplateOutlet="upgradesList"></ng-container>
+  </div>
+</div>
+
+<ng-template #upgradesList>
+  <drag-scroll #nav class="lu-list">
+    <div [@newItemAnimation]="'in'" drag-scroll-item class="lu-container flex-col flex-col__start"
+      *ngFor="let upgrade of (latestUpgrades$ | async)">
+      <div class="flex-row flex-row__btw lu__user">
+        <div class=" flex-row">
+          <img class="lu__user-avatar" [src]="upgrade.user.profileImageUrl">
+          <div class="lu__user-name">{{ upgrade.user.username || upgrade.user.name }}</div>
+        </div>
+        <div class="lu__time">{{ upgrade.createdAt || upgrade.timestamp | date: 'h:mm' }}</div>
+      </div>
+      <hr>
+      <div class="flex-row lu__items">
+        <div class="lu__item flex-col flex-col__btw" [ngStyle]="{'color': upgrade.sourceItems[0].color || '#8847ff'}">
+          <span class="lu__item-label">${{ upgrade.sourceItems | sum: 'value' | number: '1.2-2' }}</span>
+          <div class="lu__item-images flex-row flex-row__center">
+            <ng-container *ngFor="let source of upgrade.sourceItems; let i = index;">
+                <img *ngIf="i < 9" class="lu__item-image" [src]="source.thumbnail || source.image"
+                 [ngClass]="{'multiple': upgrade.sourceItems.length > 1}">
+            </ng-container>
+          </div>
+          <div *ngIf="upgrade.sourceItems.length === 1; else sourceItemsCount" class="flex-col">
+            <div class="lu__item-title">{{ upgrade.sourceItems[0].name }}</div>
+            <div class="lu__item-type">{{ upgrade.sourceItems[0].type }}</div>
+          </div>
+          <ng-template #sourceItemsCount>
+            <div class="lu__item-title"><b>{{ upgrade.sourceItems.length }}</b>{{'ITEMS' | translate }}</div>
+          </ng-template>
+          <div class="lu__item-bottom-border ng-star-inserted"></div>
+        </div>
+        <div class="lu__item flex-col flex-col__btw" [ngStyle]="{'color': upgrade.targetItems[0].color || '#8847ff'}">
+          <span class="lu__item-label">${{ upgrade.targetItems | sum: 'value' | number: '1.2-2' }}</span>
+          <div class="lu__item-images flex-row flex-row__center">
+            <ng-container *ngFor="let target of upgrade.targetItems; let i = index;">
+                <img *ngIf="i < 9" class="lu__item-image" [src]="target.image" [ngClass]="{'multiple': upgrade.targetItems.length > 1}">
+            </ng-container>
+          </div>
+          <div *ngIf="upgrade.targetItems.length === 1; else targetItemsCount" class="flex-col">
+            <div class="lu__item-title">{{ upgrade.targetItems[0].name }}</div>
+            <div class="lu__item-type">{{ upgrade.targetItems[0].type }}</div>
+          </div>
+          <ng-template #targetItemsCount>
+            <div class="lu__item-title"><b>{{ upgrade.targetItems.length }}</b>{{'ITEMS' | translate }}</div>
+          </ng-template>
+          <div class="lu__item-bottom-border ng-star-inserted"></div>
+        </div>
+      </div>
+    </div>
+  </drag-scroll>
+</ng-template>
+
+<app-latest-upgrades-toggler *ngIf="(isMobile$ | async) || (isTablet$ | async)"></app-latest-upgrades-toggler>

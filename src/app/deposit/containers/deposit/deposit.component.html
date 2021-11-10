@@ -1,0 +1,367 @@
+<div *ngIf="isMobile$ | async" [ngClass]="{ 'slider-container-mobile': (currentUrl$ | async) !== '/' }"
+  class="slider-container">
+  <app-cases-slider></app-cases-slider>
+</div>
+
+<div class="deposit page-container">
+  <div *ngIf="paymentOption === 'payop_fail' || paymentOption === 'g2a_fail'; else pageTitle"
+    class="page-title center m-b-10">
+    {{ (paymentOption === 'g2a_fail' ? 'DEPOSIT.G2A_FAILD_PAYMENT_TITLE' : 'DEPOSIT.PAYOP_FAILD_PAYMENT_TITLE') | translate }}
+  </div>
+
+  <ng-template #pageTitle>
+    <div class="page-title center m-b-10">
+      {{ (!isPaymentFAQ ? 'DEPOSIT.PAGE_TITLE' : 'FOOTER.FAQ') | translate }}
+    </div>
+    <div class="page-subtitle center m-b-20">
+      {{ 'DEPOSIT.PAGE_SUB_TITLE' | translate }}
+    </div>
+  </ng-template>
+
+  <div *ngIf="(isMobile$ | async) && paymentOption === PaymentMethods.giftcards">
+    <app-deposit-instruction></app-deposit-instruction>
+  </div>
+
+  <div class="flex-col deposit__menu">
+
+    <div class="deposit__header">
+      <div class="flex-row go-back" (click)="goBack()">
+        <img class="go-back__icon" src="/assets/images/icons/back.svg"> <span>{{'DAILY_CASE.GO_BACK' | translate }}</span>
+      </div>
+
+      <div class="flex-row flex-row__center deposit-title" *ngIf="!isPaymentFAQ">
+        <span>{{ depositTitle | translate }}</span>
+      </div>
+
+      <div class="flex-row flex-row__center" *ngIf="!isPaymentFAQ">
+        <div class="payment-faq-content">
+          <button class="payment-faq-content__button" (click)="openFAQ(true)">
+            <span class="payment-faq-content__icon"></span>
+            <span class="payment-faq-content__text">{{ 'HEADER_MENU.FAQ' | translate }}</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="!isPaymentFAQ; else faqContainer" class="deposit__content"
+      [ngClass]="{'pay-container': paymentOption && paymentOption !== 'main'}">
+      <ng-container [ngSwitch]="paymentOption">
+        <!-- MENU -->
+        <ng-container *ngSwitchDefault>
+          <div class="flex-col deposit-choose-content">
+            <div *ngIf="(isMobile$ | async)" class="deposit__menu-title m-b-30">
+              {{'DEPOSIT.PAYMENT_METHODS' | translate }}</div>
+            <mat-radio-group class="payment-methods flex-col" [(ngModel)]="selectedMethod">
+              <mat-radio-button class="deposit-customized deposit__nav m-b-10" *ngFor="let method of paymentMethods"
+                [checked]="selectedMethod === method.value" [value]="method.value">
+                <div class="deposit__method-content"
+                  [ngClass]="{'small-min-width': method.value === PaymentMethods.g2a}">
+                  <div class="deposit__nav-content">
+                    <span class="deposit__nav-title">{{ method.title }}</span>
+                    <span class="deposit__bonus-badge"
+                      *ngIf="method.bonus">
+                      {{ method.bonus }}
+                      <span class="badge-icon"
+                        [matTooltip]="method.bonusInformation">
+                      </span>
+                    </span>
+                  </div>
+                  <span class="deposit__nav-subtitle" *ngIf="method.subtitle"
+                    [ngClass]="{'orange': method.value === PaymentMethods.payop}">
+                    {{ method.subtitle }}
+                  </span>
+                </div>
+                <img class="deposit__nav-logo"
+                  [ngClass]="{'gift-image': method.value === PaymentMethods.g2a && i === 1}"
+                  *ngFor="let logo of method.logos; let i = index" [src]="logo" />
+              </mat-radio-button>
+            </mat-radio-group>
+          </div>
+        </ng-container>
+
+        <!-- G2A -->
+        <ng-container *ngSwitchCase="PaymentMethods.g2a">
+          <ng-container *ngTemplateOutlet="g2aAndCard"></ng-container>
+        </ng-container>
+
+        <!-- CREDIT-->
+        <ng-container *ngSwitchCase="PaymentMethods.credit">
+          <ng-container *ngTemplateOutlet="g2aAndCard"></ng-container>
+        </ng-container>
+
+        <!-- COINTBASE -->
+        <ng-container *ngSwitchCase="PaymentMethods.coinbase">
+          <div class="flex-col flex-col__center deposit__menu-content">
+
+            <ng-container *ngTemplateOutlet="paymentInput"></ng-container>
+
+            <button mat-button class="btn-large btn-linear btn-proceed" (click)="proceedDeposit()"
+              [disabled]="promocodeStatus === 'invalid' || (isLoading$ | async) || amount < amountList[0]">
+              <span *ngIf="!(isLoading$ | async); else loadingSpinner">
+                {{'DEPOSIT.PROCEED_DEPOSIT' | translate }}
+              </span>
+              <ng-template #loadingSpinner>
+                <div class="flex-row flex-row__center">
+                  <mat-spinner mode="indeterminate" class="skinworld-customized"></mat-spinner>
+                </div>
+              </ng-template>
+            </button>
+
+            <ng-container *ngTemplateOutlet="paymentPromocode"></ng-container>
+
+            <ng-container *ngTemplateOutlet="paymentLogos"></ng-container>
+
+            <ng-container *ngTemplateOutlet="paymentHistory"></ng-container>
+          </div>
+          <!--
+          <div class="flex-col flex-col__center deposit__menu-footer">
+            <ng-container *ngTemplateOutlet="paymentReport"></ng-container>
+          </div> -->
+        </ng-container>
+
+        <!-- GIFTCARDS -->
+        <ng-container *ngSwitchCase="PaymentMethods.giftcards">
+          <div class="flex-col flex-col__center deposit__menu-content">
+            <ng-container *ngTemplateOutlet="paymentInput"></ng-container>
+
+            <div class="giftcard-amount__content">
+              <button (click)="onOpenGiftCard()"
+                class="flex-col flex-col__center giftcard-amount w-100 m-b-20 custom-input-field">
+                <span class="giftcard-amount__text"
+                  [innerHTML]="'DEPOSIT.GET_AMOUNT' | translate:{value: amount | number:'1.2-2'}"></span>
+              </button>
+            </div>
+
+            <ng-container *ngTemplateOutlet="paymentLogos"></ng-container>
+          </div>
+
+          <div class="flex-col flex-col__center deposit__menu-footer">
+            <div class="flex-col flex-col__center deposit__menu-warning-content">
+              <div class="flex-col flex-col__center deposit__menu-warning">
+                <img class="menu-icon" src="/assets/images/icons/warning.svg">
+                <span>{{ 'DEPOSIT.FRAUDULENT' | translate }}</span>
+              </div>
+            </div>
+            <div class="flex-col flex-col__center deposit__menu-content deposit__menu-giftcard">
+              <div class="deposit__menu-title menu-giftcard-title">{{ 'DEPOSIT.GIRF_CARD' | translate }}</div>
+              <div class="flex-col flex-col__center w-100">
+                <div class="flex-col flex-col__center m-b-20 p-r">
+                  <input type="text" maxlength="50" class="custom-input-field promocode giftcard-code"
+                    placeholder="{{'DEPOSIT.PLACEHOLDER_GIFTCARD' | translate }}" [(ngModel)]="promocode">
+                    <span *ngIf="promocodeStatus === 'invalid'" (click)="clearPromocode()" class="promocode-invalid-icon"></span>
+                  <!-- <span *ngIf="promocodeStatus === 'invalid'" class="deposit__hint invalid">This promotion code is wrong or
+                  invalid</span> -->
+                </div>
+                <button mat-button class="btn-large btn-linear btn-proceed btn-giftcard" (click)="proceedDeposit()"
+                  [disabled]="(isLoading$ | async) || !promocode || promocode.trim().length === 0 || amount < amountList[0]">
+                  <span *ngIf="!(isLoading$ | async); else loadingSpinner">
+                    {{'DEPOSIT.APPLY_GIFTCARD' | translate }}
+                  </span>
+                  <ng-template #loadingSpinner>
+                    <div class="flex-row flex-row__center">
+                      <mat-spinner mode="indeterminate" class="skinworld-customized"></mat-spinner>
+                    </div>
+                  </ng-template>
+                </button>
+              </div>
+            </div>
+          </div>
+        </ng-container>
+
+        <!-- PAYOP -->
+        <ng-container *ngSwitchCase="PaymentMethods.payop">
+          <div class="flex-col flex-col__center deposit__menu-content">
+
+            <ng-container *ngTemplateOutlet="paymentInput"></ng-container>
+
+            <button mat-button class="btn-large btn-linear btn-proceed" (click)="proceedDeposit()"
+              [disabled]="promocodeStatus === 'invalid' || (isLoading$ | async) || amount < amountList[0]">
+              <span *ngIf="!(isLoading$ | async); else loadingSpinner">
+                {{'DEPOSIT.PROCEED_DEPOSIT' | translate }}
+              </span>
+              <ng-template #loadingSpinner>
+                <div class="flex-row flex-row__center">
+                  <mat-spinner mode="indeterminate" class="skinworld-customized"></mat-spinner>
+                </div>
+              </ng-template>
+            </button>
+
+            <ng-container *ngTemplateOutlet="paymentPromocode"></ng-container>
+
+            <ng-container *ngTemplateOutlet="paymentLogos"></ng-container>
+
+            <ng-container *ngTemplateOutlet="paymentHistory"></ng-container>
+          </div>
+          <!--
+          <div class="flex-col flex-col__center deposit__menu-footer">
+            <ng-container *ngTemplateOutlet="paymentReport"></ng-container>
+          </div> -->
+        </ng-container>
+
+        <!-- DONE -->
+        <ng-container *ngSwitchCase="'success'">
+          <div class="flex-col flex-col__center deposit__menu-content m-b-10">
+            <div class="deposit__menu-title success center" [innerHTML]="'DEPOSIT.SUCCESSFULY_CREDITED' | translate">
+            </div>
+            <img src="assets/images/logos/done.svg" />
+            <button mat-button class="btn-large btn-linear btn-proceed"
+              [routerLink]="['/']">{{'DEPOSIT.START_UNBOXING' | translate }}</button>
+          </div>
+        </ng-container>
+
+        <!-- G2A FAILED -->
+        <ng-container *ngSwitchCase="'g2a_fail'">
+          <div class="flex-col fail-content">
+            <span class="fail-option m-b-10">{{'DEPOSIT.FAILD_PAYMENT_OPTIONS' | translate }}</span>
+            <a href="https://supporthub.g2a.com/marketplace/en/payments/my-paymenttransaction-failed-what-should-i-do">
+              - <span class="fail-text-underline">{{'DEPOSIT.G2A_FAILD_PAYMENT_OPTION_1' | translate }}</span>
+            </a>
+            <a [routerLink]="['/history/deposits']">{{'DEPOSIT.G2A_FAILD_PAYMENT_OPTION_2' | translate }}</a>
+            <a [routerLink]="['/contact-us']">{{'DEPOSIT.FAILD_PAYMENT_OPTION_3' | translate }}</a>
+            <a class="fail-text-yellow" (click)="goBack()">- {{'DEPOSIT.FAILD_PAYMENT_OPTION_4' | translate }}</a>
+          </div>
+        </ng-container>
+
+        <!-- PAYOP FAILED -->
+        <ng-container *ngSwitchCase="'payop_fail'">
+          <div class="flex-col fail-content">
+            <span class="fail-option m-b-10">{{'DEPOSIT.FAILD_PAYMENT_OPTIONS' | translate }}</span>
+            <a href="https://mail.google.com/mail/u/0/?view=cm&fs=1&tf=1&source=mailto&to=sales@payop.com">
+              - <span class="fail-text-underline">{{'DEPOSIT.PAYOP_FAILD_PAYMENT_OPTION_1' | translate }}</span>
+            </a>
+            <a [routerLink]="['/history/deposits']">{{'DEPOSIT.FAILD_PAYMENT_OPTION_2' | translate }}</a>
+            <a [routerLink]="['/contact-us']">{{'DEPOSIT.FAILD_PAYMENT_OPTION_3' | translate }}</a>
+            <a class="fail-text-yellow" (click)="goBack()">- {{'DEPOSIT.FAILD_PAYMENT_OPTION_4' | translate }}</a>
+          </div>
+        </ng-container>
+      </ng-container>
+    </div>
+
+    <div *ngIf="!isPaymentFAQ" class="deposit__footer"
+      [ngClass]="{'report-problem': paymentOption && paymentOption !== 'main'}">
+      <button *ngIf="!paymentOption || paymentOption === 'main'; else paymentReport" mat-button
+        class="btn-large btn-linear btn-proceed pay-button"
+        (click)="startPayment()">{{'DEPOSIT.PAY' | translate }}</button>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="!(isMobile$ | async) && paymentOption === PaymentMethods.giftcards">
+  <app-deposit-instruction></app-deposit-instruction>
+</div>
+
+<ng-template #faqContainer>
+  <div class="deposit-faq page-container">
+
+    <div class="deposit-faq__container">
+      <div class="deposit-content" *ngFor="let item of faqItems; let i = index">
+        <mat-expansion-panel class="skinworld-customized" [ngStyle]="{'border-left-color': item.color}">
+          <mat-expansion-panel-header [collapsedHeight]="(isMobile$ | async) ? '50px' : '75px'"
+            [expandedHeight]="(isMobile$ | async) ? '50px' : '75px'">
+            <mat-panel-title class="p-lg forSearch">
+              <div class="deposit-content__backdrop" [ngStyle]="{'background-color': item.color}"></div>
+              <span class="deposit-content__badge">{{ i + 1 }}</span>
+              {{ item.title | translate }}
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <p class="p-lg deposit-content__text" [innerHTML]="item.description | translate"></p>
+        </mat-expansion-panel>
+      </div>
+    </div>
+
+  </div>
+</ng-template>
+
+<ng-template #paymentInput>
+  <div class="flex-col flex-col__center w-100 m-b-20 m-t-20">
+    <div class="flex-row flex-row__btw w-100">
+      <button mat-fab class="flex-row flex-row__center round-button increase" (click)="onChangeAmount(false)">
+        <img class="round-button__minus" src="/assets/images/icons/minus.svg">
+      </button>
+
+      <input type="text" maxlength="50" class="flex-row flex-row__center custom-input-field amount"
+        placeholder="{{'DEPOSIT.AMOUNT' | translate }}" [ngModel]="amount | currency:'USD':'symbol':'1.0'"
+        [disabled]="paymentOption === PaymentMethods.giftcards"
+        (ngModelChange)="amount = currencyInputChanged($event)" />
+
+      <button mat-fab class="flex-row flex-row__center round-button decrease"
+        (click)="onChangeAmount(true)">
+        <img class="round-button__plus" src="/assets/images/icons/plus.svg">
+      </button>
+    </div>
+
+    <span *ngIf="amount < amountList[0]" class="deposit__hint">{{'DEPOSIT.DEPOSIT_HINT_1' | translate:{value: amountList[0]} }}</span>
+  </div>
+</ng-template>
+
+<ng-template #paymentPromocode>
+  <div class="flex-col flex-col__center w-100 m-b-20">
+    <div class="p-r">
+      <input type="text"
+        maxlength="50"
+        class="custom-input-field promocode {{ promocodeStatus }}"
+        placeholder="{{'DEPOSIT.PROMOCODE' | translate }}"
+        [(ngModel)]="promocode"
+        (ngModelChange)="onValidatePromocode(); promocode = $event.toUpperCase()" />
+      <span *ngIf="promocodeStatus === 'invalid'" (click)="clearPromocode()" class="promocode-invalid-icon"></span>
+    </div>
+    <span *ngIf="promocodeStatus === 'invalid'"
+      class="deposit__hint invalid">
+      {{'DEPOSIT.CODE_INVALID' | translate }}
+    </span>
+
+    <span class="deposit__hint">{{'DEPOSIT.COUPON' | translate }}</span>
+  </div>
+</ng-template>
+
+<ng-template #paymentLogos>
+  <div *ngIf="promocodeStatus === 'valid'" class="flex-col flex-col__center deposit__menu-percent">
+    <span>{{'DEPOSIT.WILL_GET' | translate }}</span>
+    <h1>${{(amount + (amount * 10) / 100) | number:'1.2-2'}}</h1>
+  </div>
+</ng-template>
+
+<ng-template #paymentReport>
+  <div class="deposit__report flex-row flex-row__center" (click)="sendTicket()">
+    <img class="report-icon" src="/assets/images/icons/ic-report-problem-light.svg">
+    <span class="deposit__report-text">{{'DEPOSIT.REPORT_PROBLEM' | translate }}</span>
+  </div>
+</ng-template>
+
+<ng-template #paymentHistory>
+  <div class="flex-col flex-col__center payment-history__content">
+
+    <div *ngIf="this.selectedMethod !== PaymentMethods.coinbase" class="payment-history__info">
+      {{ 'DEPOSIT.DEPOSIT_NOTE' | translate }}
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #g2aAndCard>
+  <div class="flex-col flex-col__center deposit__menu-content">
+
+    <ng-container *ngTemplateOutlet="paymentInput"></ng-container>
+
+    <button mat-button class="btn-large btn-linear btn-proceed" (click)="proceedDeposit()"
+      [disabled]="promocodeStatus === 'invalid' || (isLoading$ | async) || amount < amountList[0]">
+      <span *ngIf="!(isLoading$ | async); else loadingSpinner">
+        {{'DEPOSIT.PROCEED_DEPOSIT' | translate }}
+      </span>
+      <ng-template #loadingSpinner>
+        <div class="flex-row flex-row__center">
+          <mat-spinner mode="indeterminate" class="skinworld-customized"></mat-spinner>
+        </div>
+      </ng-template>
+    </button>
+
+    <ng-container *ngTemplateOutlet="paymentPromocode"></ng-container>
+
+    <ng-container *ngTemplateOutlet="paymentLogos"></ng-container>
+
+    <ng-container *ngTemplateOutlet="paymentHistory"></ng-container>
+  </div>
+
+  <button mat-button class="btn-large payment-history__button" [routerLink]="['/history/deposits']">
+    <span>{{'DEPOSIT.PAYMENT_HISTORY' | translate }}</span>
+  </button>
+</ng-template>

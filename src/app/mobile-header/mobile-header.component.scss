@@ -1,0 +1,675 @@
+@import "../../styles/concepts.scss";
+@import "../../styles/variables.scss";
+@import "../../styles/partials/index.scss";
+
+@include register-component {
+  .header-mobile {
+    background-color: from-theme(background-header);
+    color: from-theme(color);
+    box-shadow: from-theme(header-shadow);
+  }
+
+  .user-info {
+    background-color: from-theme(dark-background);
+  }
+
+  .user-info__amount {
+    color: from-theme(mobile-header-balance-color);
+  }
+
+  .user-login {
+    &__icon {
+      background-image: from-theme(header-menu-open-icon);
+    }
+  }
+
+  .header-toggler {
+    &__icon {
+      background-image: from-theme(header-menu-close-icon);
+    }
+  }
+
+  .user-info__deposit-button {
+    .mat-icon {
+      color: from-theme(mobile-header-balance-icon-color);
+    }
+  }
+
+  .header-nav {
+    &__sub-item {
+      flex-direction: column;
+      position: relative;
+
+      .item-badge-new {
+        position: absolute;
+        top: -5px;
+        right: -10px;
+        border-radius: 1px;
+        font-size: 8px;
+        font-weight: bold;
+        line-height: 1;
+        letter-spacing: 0.19px;
+        padding: 2px 3px;
+        color: #ffffff;
+        background-color: #fd2a04;
+      }
+
+      .item-icon {
+        @extend %header-menu-icon;
+      }
+
+      &.free {
+        color: from-theme(header-free-box-color);
+
+        .item-icon {
+          background-image: from-theme(header-free-box-icon);
+        }
+      }
+
+      &.battles {
+        color: from-theme(border-color);
+
+        .item-icon {
+          background-image: url("/assets/images/icons/sword.svg");
+        }
+      }
+
+      &.partnership {
+        color: from-theme(border-color);
+
+        .item-icon {
+          background-image: url("/assets/images/icons/handshake.svg");
+        }
+      }
+
+      &.unboxings {
+        color: from-theme(border-color);
+
+        .item-icon {
+          background-image: url("/assets/images/icons/unboxings.svg");
+          width: 22px;
+        }
+      }
+
+      &.boxes {
+        color: from-theme(border-color);
+
+        .item-icon {
+          background-image: url("/assets/images/icons/box-icon.svg");
+        }
+      }
+
+
+      &.active,
+      &:hover {
+        color: $colorSecondaryOrange;
+
+        &.free {
+          color: from-theme(header-free-box-color);
+
+          .item-icon {
+            background-image: from-theme(
+              "/assets/images/icons/free-box-hover.svg"
+            );
+          }
+        }
+
+        &.battles {
+          .item-icon {
+            background-image: url("/assets/images/header/sword-cross-active.svg");
+          }
+        }
+
+        &.partnership {
+          .item-icon {
+            background-image: url("/assets/images/icons/handshake-hover.svg");
+          }
+        }
+
+        &.unboxings {
+          .item-icon {
+            background-image: url("/assets/images/header/photocamera-active.svg") !important;
+          }
+        }
+
+        &.boxes {
+          .item-icon {
+            background-image: url("/assets/images/icons/cases-hover.svg");
+          }
+        }
+      }
+    }
+  }
+
+  .user-info {
+    background-color: from-theme(dark-background);
+    height: 100%;
+    padding: 0 30px 0 10px;
+
+    &__balance {
+      border: 1px solid from-theme(mobile-header-balance-border);
+      background-color: from-theme(mobile-header-balance-background);
+    }
+  }
+
+  .user-login {
+    background-color: from-theme(dark-background);
+  }
+
+  .user-menu-items {
+    &:hover {
+      background-color: from-theme(background);
+    }
+  }
+}
+
+$header-top-height-mobile: 55px;
+
+.header-mobile {
+  position: relative;
+  height: $header-top-height-mobile;
+  align-items: center;
+  overflow: auto;
+  z-index: 1000;
+  padding-left: 5px;
+  box-shadow: $shadow10;
+  background-color: #101315;
+  color: #fff;
+  overflow: hidden;
+
+  &__logo {
+    @extend %bg-image;
+    width: 55px;
+    height: 55px;
+  }
+
+  &__content {
+    position: absolute;
+    z-index: 999;
+    width: 85%;
+    max-width: 400px;
+    height: calc(100vh - 55px);
+    will-change: right;
+    right: 0;
+
+    &::after {
+      content: "";
+      background-color: rgba(0, 0, 0, 0.65);
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: -900px;
+      right: 0;
+      z-index: -1;
+    }
+  }
+
+  &.opened {
+    box-shadow: none;
+  }
+
+  .giveaway-button {
+    border-radius: 4px;
+    letter-spacing: 4px;
+    width: 94%;
+    border: 1px solid transparent;
+    background: linear-gradient(103deg, #f48836, #f4364c);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-right: 17px;
+    border-image-source: linear-gradient(107deg, #f48836, #f4364c 100%);
+    border-image-slice: 1;
+    border-radius: 1px;
+    box-shadow: none;
+
+    & > span {
+      background-image: linear-gradient(105deg, #f48836, #f4364c);
+      font-size: 13px;
+      line-height: 1.38;
+      letter-spacing: 0.74px;
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+  }
+}
+
+.header-wrapper {
+  height: 100%;
+}
+
+%header-menu-icon {
+  width: 24px;
+  height: 22px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.user-info {
+  cursor: pointer;
+
+  &__balance {
+    padding: 3px 2px 3px 5px;
+    border-radius: 2px;
+
+    &-icon {
+      width: 13px;
+      height: 13px;
+
+      img {
+        height: 100%;
+        width: 100%;
+      }
+    }
+  }
+}
+
+.user-info__deposit-button {
+  min-width: 22px;
+  width: 22px;
+  height: 22px;
+  border-radius: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  position: relative;
+  margin: 0 3px;
+
+  .mat-icon {
+    height: 22px;
+    width: 22px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-size: 22px;
+  }
+}
+
+.mat-button-wrapper {
+  height: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.user-info__amount {
+  margin: 0 8px;
+  letter-spacing: 0.51px;
+  font-size: 12px;
+}
+
+.header-nav {
+  &__sub-item {
+    font-size: 8px;
+    text-transform: uppercase;
+    font-weight: 300;
+    border-bottom: 2px solid transparent;
+    justify-content: center;
+    padding: 0 10px;
+
+    &.active,
+    &:hover {
+      color: $colorSecondaryOrange;
+    }
+
+    &.active {
+      border: none !important;
+      border-bottom: 2px solid !important;
+      border-image-source: linear-gradient(to right, #f48836, #f4364c);
+      border-image-slice: 1;
+
+      .item-badge-new {
+        top: -2px !important;
+      }
+    }
+  }
+}
+
+.header-nav {
+  margin-left: 50px;
+
+  .item-icon {
+    @extend %header-menu-icon;
+    margin-right: 10px;
+  }
+
+  &__item {
+    position: relative;
+    font-size: 13px;
+    font-weight: 300;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    text-transform: uppercase;
+    color: $colorSecondaryLightGray;
+    letter-spacing: 0.5px;
+    transition: 200ms color ease-in-out;
+
+    &:not(:last-child) {
+      margin-right: 40px;
+    }
+
+    &.cases {
+      .item-icon {
+        background-image: url("/assets/images/icons/cases.png");
+      }
+    }
+
+    &.upgrade {
+      .item-icon {
+        background-image: url("/assets/images/icons//upgrade.png");
+      }
+    }
+
+    &.help {
+      .item-icon {
+        background-image: url("/assets/images/icons/help.png");
+      }
+    }
+
+    &.rewards {
+      .item-icon {
+        background-image: url("/assets/images/icons/free-box.svg");
+      }
+    }
+
+    &.battle {
+      .item-icon {
+        background-image: url("/assets/images/icons/sword.svg");
+      }
+    }
+
+    &.partnership {
+      .item-icon {
+        background-image: url("/assets/images/icons/handshake.svg");
+      }
+    }
+
+    &.active {
+      color: $colorSecondaryOrange;
+
+      &.cases {
+        .item-icon {
+          background-image: url("/assets/images/icons/cases-hover.svg");
+        }
+      }
+
+      &.upgrade {
+        .item-icon {
+          background-image: url("/assets/images/icons/upgrade-hover.svg");
+        }
+      }
+
+      &.help {
+        .item-icon {
+          background-image: url("/assets/images/icons/help-hover.svg");
+        }
+      }
+
+      &.rewards {
+        .item-icon {
+          background-image: url("/assets/images/icons/free-box-hover.svg");
+        }
+      }
+
+      &.battle {
+        .item-icon {
+          background-image: url("/assets/images/icons/sword-hover.svg");
+        }
+      }
+
+      &.partnership {
+        .item-icon {
+          background-image: url("/assets/images/icons/handshake-hover.svg");
+        }
+      }
+    }
+  }
+}
+
+.user-login {
+  position: relative;
+  height: 55px;
+  width: 55px;
+  align-items: center;
+  color: $colorSecondaryRed;
+
+  &__icon {
+    @extend %bg-image;
+    color: $colorSecondaryBrightRed;
+    width: 25px;
+    height: 18px;
+  }
+
+  &__icon-user {
+    @extend %bg-image;
+    width: 15px;
+    height: 15px;
+
+    ::ng-deep {
+      & > svg {
+        overflow: initial;
+      }
+    }
+  }
+}
+
+.header-toggler {
+  position: relative;
+  height: 55px;
+  width: 55px;
+  align-items: center;
+
+  &__icon {
+    @extend %bg-image;
+    color: $colorSecondaryBrightRed;
+    width: 20px;
+    height: 20px;
+  }
+}
+
+.log-out-info {
+  flex-direction: column;
+  justify-content: center;
+
+  .mb-2 {
+    margin-bottom: 2px;
+  }
+
+  .user-login {
+    &__sing-in {
+      text-transform: uppercase;
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.36px;
+      color: #ee6363;
+    }
+  }
+}
+
+.user-block {
+  button {
+    width: 100px !important;
+    padding: 10px 0;
+    margin-top: 4px;
+    font-weight: 400;
+
+    &.login {
+      margin-right: 0 !important;
+    }
+  }
+
+  .menu-tablet {
+    width: 300px;
+  }
+
+  .user-info {
+    height: 55px;
+    position: relative;
+    padding: 0 10px;
+
+    &__avatar {
+      @extend %bg-image;
+      width: 35px;
+      height: 35px;
+      border-radius: 5px;
+      background-image: $colorPrimaryGradient;
+      cursor: pointer;
+    }
+
+    &.opened {
+      width: 100%;
+    }
+  }
+}
+
+.user-menu-items {
+  border-radius: 0px;
+  box-shadow: none;
+}
+
+@media (min-width: 767px) and (max-width: 1024px) {
+  .header-nav {
+    &__sub-item {
+      font-size: 9px;
+
+      .item-icon {
+        margin-bottom: 7px;
+      }
+    }
+  }
+
+  .tablet-header-content {
+    flex-direction: row-reverse;
+    flex-wrap: inherit;
+    width: calc(100% - 140px);
+    padding: 10px 0;
+
+    .giveaway-button {
+      width: auto;
+      padding: 0;
+      border: none;
+      font-size: 10px;
+      line-height: 1.2;
+      letter-spacing: 0.57px;
+      font-weight: 500;
+      color: #f4364c;
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  .tablet-header-content {
+    flex-direction: row;
+    position: absolute;
+    right: 60px;
+
+    .giveaway-button {
+      display: none;
+    }
+
+    .battles,
+    .unboxings,
+    .partnership,
+    .boxes {
+      display: none;
+    }
+  }
+}
+
+@media (min-width: 561px) and (max-width: 660px) {
+  .header-mobile {
+    &__logo {
+      margin-right: 8px;
+    }
+  }
+
+  .header-nav {
+    margin-left: 10px;
+
+    &__item {
+      font-size: 12px;
+
+      &:not(:last-child) {
+        margin-right: 16px;
+      }
+
+      .item-icon {
+        width: 20px;
+        height: 20px;
+      }
+    }
+  }
+}
+
+@media (min-width: 345px) and (max-width: 560px) {
+  .header-nav {
+    margin-left: 0px;
+
+    &__item {
+      font-size: 10px;
+
+      &:not(:last-child) {
+        margin-right: 14px;
+      }
+
+      .item-icon {
+        width: 18px;
+        height: 18px;
+      }
+
+      .header-nav_title {
+        display: none;
+      }
+    }
+  }
+}
+
+@media (min-width: 320px) and (max-width: 345px) {
+  .header-nav {
+    margin-left: 0px;
+
+    &__item {
+      font-size: 10px;
+
+      &:not(:last-child) {
+        margin-right: 9px;
+      }
+
+      .item-icon {
+        width: 17px;
+        height: 17px;
+      }
+
+      .header-nav_title {
+        display: none;
+      }
+    }
+  }
+}
+
+@media (orientation: landscape) {
+  .header-mobile {
+    &__content {
+      overflow: auto;
+    }
+  }
+}
+
+@media (orientation: portrait) {
+  .header-mobile {
+    &__content {
+      min-height: 508px;
+    }
+  }
+}
+
+@media (max-width: 360px) {
+  .header-mobile {
+    &__content {
+      width: 95%;
+    }
+  }
+}

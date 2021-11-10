@@ -1,0 +1,145 @@
+<div class="flex-row flex-row__btw filters-wrap m-b-20">
+  <div
+    class="search-wrap"
+    [ngStyle]="{'width': (isMobile$ | async) ? '100%' : 'initial', 'margin-bottom': (isMobile$ | async) ? '10px' : '0'}"
+  >
+    <input [formControl]="searchControl" type="text" class="search-field" placeholder="Search items...">
+    <mat-icon *ngIf="searchControl.dirty && searchControl.value" (click)="clear()">close</mat-icon>
+  </div>
+
+  <div *ngIf="!(isMobile$ | async); else mobileView" class="flex-row select-all">
+    <mat-checkbox *ngIf="fullViewMode && showSelectAll" [disabled]="isNoData" [checked]="isSelectAllSelected" class="skinworld-customized"
+      (change)="onSelectAll($event)">
+      <span class="l-md">{{'FILTERS.SELECT_ALL' | translate }}</span>
+    </mat-checkbox>
+    <div class="flex-row selected" *ngIf="fullViewMode && showSelected">
+      <mat-icon *ngIf="!isCreateCase" class="check-icon">check</mat-icon>
+      <img *ngIf="isCreateCase" class="check-img" src="/assets/images/icons/Selected.svg">
+      <span>{{ selectedCount }} {{'FILTERS.SELECTED' | translate }}</span>
+    </div>
+
+    <mat-form-field class="skinworld-customized filter-form-field" [ngClass]="{'createCase-tag': isCreateCase}" *ngIf="fullViewMode && showTagSearch">
+      <span matPrefix [ngStyle]="{'margin-top': isCreateCase ? '7px' : 'unset'}">{{'FILTERS.TAG' | translate }}</span>
+      <mat-select class="skinworld-customized" [formControl]="tagSearchControl">
+        <mat-option *ngFor="let filter of tagFilters" [value]="filter">
+          {{ filter }}
+        </mat-option>
+      </mat-select>
+      
+    </mat-form-field>
+
+    <mat-form-field class="skinworld-customized filter-form-field" *ngIf="fullViewMode">
+      <span matPrefix [ngStyle]="{'margin-top': '7px', 'padding-right': '10px', 'margin-left': '15px'}">{{'FILTERS.PRICE' | translate }}</span>
+      <mat-select class="skinworld-customized" [formControl]="sortControl">
+        <mat-option *ngFor="let filter of priceFilters" [value]="filter">
+          {{ filter }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="skinworld-customized filter-form-field box-type" *ngIf="showTypeSearch && fullViewMode">
+      <span matPrefix>Class Case</span>
+      <mat-select class="skinworld-customized" [formControl]="typeControl">
+        <mat-option *ngFor="let filter of caseTypes" [value]="filter">
+          {{ filter }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+</div>
+
+<ng-template #mobileView>
+  <div class="flex-row selected-wrapper">
+    <mat-checkbox *ngIf="fullViewMode && showSelectAll" [checked]="isSelectAllSelected" class="skinworld-customized"
+      (change)="onSelectAll($event)">
+      <span class="l-md">{{'FILTERS.SELECT_ALL' | translate }}</span>
+    </mat-checkbox>
+    <div class="flex-row selected" *ngIf="fullViewMode && showSelected">
+      <mat-icon *ngIf="!isCreateCase" class="check-icon">check</mat-icon>
+      <img *ngIf="isCreateCase" class="check-img" src="/assets/images/icons/Selected.svg">
+      <span>{{ selectedCount }} {{'FILTERS.SELECTED' | translate }}</span>
+    </div>
+  </div>
+
+  <mat-form-field class="skinworld-customized filter-form-field tag" *ngIf="fullViewMode && showTagSearch">
+    <span matPrefix>{{'FILTERS.TAG' | translate }}</span>
+    <mat-select (openedChange)="openedChange($event)" class="skinworld-customized" [formControl]="tagSearchControl">
+      <mat-option *ngFor="let filter of tagFilters" [value]="filter">
+        {{ filter }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field class="skinworld-customized filter-form-field" *ngIf="fullViewMode">
+    <span matPrefix>{{'FILTERS.PRICE' | translate }}</span>
+    <mat-select (openedChange)="openedChange($event)" class="skinworld-customized" [formControl]="sortControl">
+      <mat-option *ngFor="let filter of priceFilters" [value]="filter">
+        {{ filter }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+</ng-template>
+
+<ng-template #filterMobile>
+
+  <button class="mobile-modal__toggle" mat-icon-button (click)="openSearchModal($event)">
+    <mat-icon>search</mat-icon>
+  </button>
+
+  <button class="mobile-modal__toggle" mat-icon-button (click)="openSortModal($event)">
+    <mat-icon>filter_list</mat-icon>
+  </button>
+
+  <!-- Mobile Modals -->
+
+  <div [@modalAnimation]="searchModalState">
+    <div class="mobile-modal">
+      <div class="mobile-modal__header">
+        <div class="burger-icon active" (click)="closeSearchModal()">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        {{'FILTERS.SEARCH' | translate }}
+      </div>
+      <div class="mobile-modal__body">
+        <div class="search-wrap">
+          <input [formControl]="searchControl" type="text" class="search-field" placeholder="Search items...">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div [@modalAnimation]="sortModalState">
+    <div class="mobile-modal">
+      <div class="mobile-modal__header">
+        <div class="burger-icon active" (click)="closeSortModal()">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        {{'FILTERS.FILTER' | translate }}
+      </div>
+      <div class="mobile-modal__body">
+        <div class="container filter-content">
+          <ul class="l-md text-primary-gray text-uppercase sort-by">
+            <li class="title">{{'FILTERS.SORT_BY' | translate }}</li>
+            <li>{{'FILTERS.FEATURED' | translate }}</li>
+            <li class="active">{{'FILTERS.ANY_PRICE' | translate }}
+              <span>
+                <mat-icon>done</mat-icon>
+              </span>
+            </li>
+            <li>{{'FILTERS.MOST_POPULAR' | translate }}</li>
+            <li class="title">{{'FILTERS.PRICE_LOWERCASE' | translate }}</li>
+            <li>{{'FILTERS.LOW' | translate }}</li>
+            <li>{{'FILTERS.HIGH' | translate }}</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile Modals -->
+</ng-template>

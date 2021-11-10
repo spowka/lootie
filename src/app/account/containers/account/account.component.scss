@@ -1,0 +1,693 @@
+@import "../../../../styles/concepts.scss";
+@import "../../../../styles/variables.scss";
+@import "../../../../styles/register.scss";
+
+@include register-component {
+  .form-group {
+    &__prefix {
+      color: from-theme(account-form-group-prefix-color);
+    }
+
+    .mat-form-field {
+      border: solid 1px from-theme(account-form-group-mat-form-field-border);
+      background-color: from-theme(
+        account-form-group-mat-form-field-background
+      );
+
+      ::ng-deep {
+        .mat-select-arrow {
+          color: from-theme(account-form-group-placeholder-color);
+          opacity: 1;
+        }
+
+        .mat-form-field-wrapper {
+          .mat-form-field-flex {
+            .mat-form-field-infix {
+              .mat-select-placeholder {
+                color: from-theme(account-form-group-placeholder-color);
+                opacity: 1;
+                font-weight: 500;
+              }
+
+              .mat-input-element {
+                color: from-theme(account-form-group-mat-input-element-color);
+
+                &::placeholder {
+                  color: from-theme(account-form-group-placeholder-color);
+                  opacity: 1;
+                }
+
+                &::-webkit-input-placeholder {
+                  color: from-theme(account-form-group-placeholder-color);
+                }
+
+                &:-ms-input-placeholder {
+                  color: from-theme(account-form-group-placeholder-color);
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  #account-content {
+    background-color: from-theme(account-content-background);
+    box-shadow: from-theme(account-content-shadow);
+  }
+
+  .shipping-address {
+    border: solid 1px from-theme(account-shipping-address-border);
+    background-color: from-theme(account-shipping-address-background);
+  }
+
+  .profile-info {
+    background-color: from-theme(account-profile-info-background);
+  }
+
+  .user-info {
+    border-right: solid 1px from-theme(account-user-info-border);
+
+    &__name {
+      color: from-theme(account-user-info-name-color);
+    }
+
+    &__since {
+      color: #4d6168;
+    }
+  }
+
+  .user {
+    &__action {
+      .title {
+        color: #4d6168;
+      }
+
+      .value {
+        color: from-theme(account-user-value-color);
+      }
+    }
+  }
+
+  .shipping-info {
+    & > span {
+      color: from-theme(account-shipping-info-color);
+    }
+  }
+
+  .btn-save {
+    .btn-large {
+      // text-transform: uppercase;
+      padding: 0;
+      // border: solid 1.5px #5b6873;
+      // background-image: from-theme(account-btn-save-background);
+      // color: from-theme(account-btn-save-color);
+    }
+  }
+
+  .withdrawals-info {
+    border-color: from-theme(border-color);
+  }
+
+  ::ng-deep {
+    .mat-step-header[ng-reflect-state="number"] {
+      .mat-step-icon {
+        color: from-theme(background);
+        background-color: from-theme(background);
+        border: 2px solid from-theme(border-color);
+      }
+    }
+
+    .mat-select-arrow-wrapper {
+      .mat-select-arrow {
+        color: from-theme(account-form-group-mat-input-element-color);
+      }
+    }
+
+    .account-form-field {
+      .mat-form-field-infix {
+        .mat-input-element,
+        .mat-select-value-text {
+          color: from-theme(account-form-group-mat-input-element-color);
+        }
+      }
+    }
+  }
+
+  @media (max-width: 767px) {
+    .shipping-address {
+      .shipping-info {
+        & > span {
+          color: from-theme(account-mobile-shipping-info-color) !important;
+        }
+      }
+
+      .form-group {
+        &__prefix {
+          color: from-theme(account-mobile-form-group-prefix-color);
+        }
+      }
+    }
+
+    .btn-save {
+      .btn-large {
+        color: from-theme(account-mobile-btn-save-color);
+      }
+    }
+
+    .profile-info {
+      .user-info {
+        border: solid 1px from-theme(account-mobile-profile-info-border);
+        background-color: from-theme(account-mobile-profile-info-background);
+      }
+    }
+
+    .user {
+      &__actions {
+        border-bottom: solid 1px from-theme(account-mobile-user-actions-border);
+      }
+
+      &__action {
+        &:first-child {
+          border-right: solid 1px from-theme(account-mobile-user-actions-border);
+        }
+      }
+    }
+  }
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+#account-content {
+  max-width: 1300px;
+  border-radius: 4px;
+  margin-top: 40px;
+  padding: 30px 20px;
+  margin-bottom: 30px;
+}
+
+.profile-info {
+  border-radius: 4px;
+  padding: 12px 22px;
+}
+
+.shipping-address {
+  border-radius: 4px;
+  padding: 24px;
+}
+
+.user-info {
+  flex-grow: 1;
+  margin-right: 45px;
+
+  &__info {
+    max-width: calc(100% - 125px);
+  }
+
+  &__name {
+    font-size: 17px;
+    letter-spacing: 0.73px;
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  &__since {
+    margin-top: 9px;
+    font-size: 12px;
+    letter-spacing: 0.51px;
+  }
+
+  &__img {
+    @extend %bg-image;
+    width: 65px;
+    height: 65px;
+    margin-right: 18px;
+    border-radius: 4px;
+    background-image: $colorPrimaryGradient;
+    cursor: pointer;
+  }
+}
+
+.user {
+  &__actions {
+    flex-grow: 1;
+  }
+
+  &__action {
+    .title {
+      font-size: 13px;
+      letter-spacing: 0.2px;
+      text-align: right;
+    }
+
+    .value {
+      font-size: 17px;
+      font-weight: 500;
+      margin-bottom: 4px;
+    }
+  }
+
+  &__sign-out {
+    flex-grow: 1;
+
+    .btn-linear {
+      font-size: 16px !important;
+      font-weight: 500;
+      letter-spacing: 0.69px;
+      text-align: center;
+      color: #ffffff;
+    }
+  }
+}
+
+.shipping-info {
+  margin: 0 auto 28px auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  & > span {
+    font-size: 18px;
+    font-weight: 500;
+    letter-spacing: 0.75px;
+    text-align: center;
+    opacity: 1;
+    text-transform: uppercase;
+  }
+}
+
+.btn-save {
+  .btn-large {
+    border-radius: 25px;
+    font-size: 18px !important;
+    // font-weight: bold;
+    text-align: center;
+    width: 250px;
+  }
+}
+
+.user-images {
+  margin: -8px 0;
+  height: 277px;
+
+  &__image {
+    width: calc(100% / 3);
+    height: auto;
+    padding: 10px;
+    cursor: pointer;
+  }
+}
+
+.form-group {
+  width: 300px;
+  max-width: 300px;
+  margin-bottom: 24px;
+
+  .invalid {
+    left: 0;
+  }
+
+  &__prefix {
+    font-size: 10px;
+    font-weight: bold;
+    letter-spacing: 0.33px;
+    margin-bottom: 2px;
+    display: flex;
+    text-transform: uppercase;
+  }
+
+  &__container {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 690px;
+    margin: 0 auto 20px auto;
+    justify-content: space-between;
+  }
+
+  .mat-form-field {
+    border-radius: 4px;
+
+    ::ng-deep {
+      .mat-form-field-wrapper {
+        padding: 0 13px;
+
+        .mat-form-field-flex {
+          height: 38px;
+          padding: 0;
+          background: transparent;
+
+          .mat-form-field-infix {
+            padding: 0 !important;
+          }
+        }
+      }
+    }
+  }
+}
+
+:host {
+  ::ng-deep {
+    .mat-select-arrow-wrapper {
+      position: relative;
+      top: 8px;
+    }
+
+    .account-form-field {
+      width: 100%;
+      margin: 5px 0;
+      background-color: $colorPrimaryWhite;
+      border-radius: 27.5px;
+      box-shadow: $shadow5;
+
+      &.address,
+      &.country {
+        flex-grow: 4;
+      }
+
+      &.code,
+      &.city {
+        flex-grow: 0;
+      }
+
+      .mat-form-field-infix {
+        padding: 1.4em 0 !important;
+        border-top: none;
+
+        .mat-select-value {
+          display: table-cell;
+        }
+
+        .mat-input-element,
+        .mat-select-value-text {
+          @extend %text-elipsis;
+          font-weight: 500;
+        }
+      }
+    }
+
+    .mat-stepper-horizontal {
+      margin-top: 15px;
+    }
+
+    .mat-horizontal-stepper-header {
+      pointer-events: none !important;
+    }
+
+    .mat-step-header .mat-step-label {
+      color: inherit;
+    }
+  }
+}
+
+.withdrawals-tracking-text {
+  width: calc(100% - 400px);
+  padding-left: 25px;
+}
+
+.trade-urls {
+  &__title {
+    opacity: 0.4;
+  }
+}
+
+.button-icon {
+  @extend %button-icon;
+  width: 18px;
+  height: 18px;
+  margin-right: 11px;
+
+  &.stream {
+    background-image: url("/assets/images/icons/twitch.svg");
+  }
+}
+
+.withdrawals-info {
+  width: 400px;
+  padding-right: 25px;
+  border-right: 1px solid;
+}
+
+drag-scroll {
+  width: calc(100% - 400px);
+}
+
+.withdrawals-stepper {
+  padding-left: 25px;
+}
+
+@media (min-width: 813px) and (max-width: 1366px) {
+  section {
+    padding: 20px;
+    border-radius: 4px;
+    margin-bottom: 30px;
+
+    .section-title {
+      &.shipping-info,
+      &.withdrawal-info {
+        margin: 0;
+        font-size: 16px;
+        border-bottom: 1px solid;
+        padding-bottom: 20px;
+        margin-bottom: 20px;
+
+        &:before,
+        &:after {
+          content: none;
+        }
+      }
+
+      &.shipping-url {
+        span {
+          font-size: 16px;
+        }
+      }
+    }
+
+    .mat-form-field {
+      box-shadow: none;
+      border: 2px solid $colorSecondaryLightBorder;
+
+      ::ng-deep {
+        .mat-form-field-prefix {
+          opacity: 1;
+          color: #adadad;
+        }
+
+        .mat-form-field-infix {
+          .mat-select-trigger {
+            .mat-select-arrow-wrapper {
+              .mat-select-arrow {
+                color: #adadad;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 813px) and (max-width: 899px) {
+  section.shipping-address {
+    .withdrawals-wrapper {
+      drag-scroll {
+        .withdrawals-stepper {
+          width: 410px;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 479px) {
+  .user {
+    &__action {
+      flex-direction: column;
+      display: flex;
+    }
+
+    &__sign-out {
+      justify-content: center;
+    }
+  }
+
+  .trade-urls {
+    margin-top: 20px;
+    justify-content: center;
+
+    &__title {
+      margin-bottom: 30px;
+    }
+  }
+}
+
+@media (max-width: 767px) and (orientation: landscape) {
+  .user {
+    &__action {
+      margin-top: 10px;
+      margin-bottom: 10px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    &__actions {
+      margin-left: 8px;
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  #account-content {
+    padding: 12px 15px !important;
+  }
+
+  .shipping-address {
+    background-color: transparent !important;
+    border: none !important;
+    padding: 0;
+    margin-bottom: 30px;
+
+    .shipping-info {
+      & > span {
+        font-size: 14px;
+        font-weight: bold;
+        letter-spacing: 0.58px;
+      }
+    }
+
+    .form-group {
+      width: 100%;
+      max-width: 100%;
+
+      &__container {
+        flex-direction: column;
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  .btn-save {
+    .btn-large {
+      font-size: 14px !important;
+      font-weight: 500;
+      height: 40px;
+    }
+  }
+
+  .profile-info {
+    background-color: transparent !important;
+    padding: 0;
+
+    .user-info {
+      margin-right: 0;
+      height: 75px;
+      border-radius: 2px;
+      border-right: none;
+      padding: 10px;
+      width: 100%;
+      position: relative;
+
+      &__img {
+        width: 55px;
+        height: 55px;
+      }
+
+      .btn-large {
+        position: absolute;
+        right: 10px;
+        background-image: url("/assets/images/icons/button.svg");
+        background-size: auto !important;
+        background-position: center -12px !important;
+        background-repeat: no-repeat !important;
+        object-fit: contain !important;
+        width: 40px;
+        max-width: 40px;
+        min-width: 40px;
+        height: 40px;
+        padding: 0;
+      }
+    }
+  }
+
+  .user {
+    &__actions {
+      margin-top: 12px;
+      padding-bottom: 12px;
+    }
+
+    &__action {
+      margin-bottom: 0;
+      width: 50%;
+    }
+  }
+
+  .withdrawals-wrapper {
+    flex-direction: column;
+    align-items: flex-start;
+    border-bottom: 1px solid #d1d1d3;
+  }
+
+  .withdrawals-info {
+    width: 100%;
+    border-right: none;
+    padding-right: 0px;
+  }
+
+  .withdrawals-stepper {
+    padding-left: 0px;
+  }
+
+  drag-scroll {
+    margin-bottom: 35px;
+    width: 100%;
+
+    .withdrawals-stepper {
+      width: 380px;
+    }
+  }
+
+  .withdrawals-tracking-text {
+    width: 100%;
+    padding: 0;
+    margin-bottom: 35px;
+  }
+
+  ::ng-deep {
+    .mat-select-panel {
+      .mat-option-text {
+        font-size: 12px;
+      }
+    }
+  }
+}
+
+@media (max-height: 500px) {
+  ::ng-deep {
+    .mat-select-panel {
+      max-height: 200px !important;
+    }
+  }
+}
+
+@media (min-width: 415px) and (max-width: 767px) {
+  .user__sign-out {
+    button {
+      margin-top: 10px;
+    }
+  }
+
+  .withdrawals-wrapper {
+    drag-scroll {
+      .withdrawals-stepper {
+        width: 100%;
+      }
+    }
+  }
+}

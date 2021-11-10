@@ -1,0 +1,364 @@
+@import "../../../../styles/partials/index.scss";
+@import "../../../../styles/variables.scss";
+@import "../../../../styles/register.scss";
+
+@include register-component {
+  .free-box {
+    &__nav.selected {
+      color: from-theme(color);
+    }
+
+    &__menu {
+      background-color: from-theme(background);
+      border: 1px solid from-theme(deposit-button-background);
+
+      &-footer {
+        border-top: 1px solid from-theme(deposit-button-background);
+      }
+
+      .round-button {
+        background-color: from-theme(deposit-button-background);
+        border-color: from-theme(deposit-button-border);
+      }
+
+      .giftcard {
+        &-amount {
+          color: from-theme(color);
+        }
+
+        &-code {
+          background-image: from-theme(giftcard-icon);
+        }
+      }
+    }
+
+    .custom-input-field {
+      background-color: from-theme(background);
+      border-color: from-theme(deposit-input-border);
+
+      &:not(.promocode) {
+        &::-webkit-input-placeholder {
+          color: from-theme(color);
+        }
+
+        &::-moz-placeholder {
+          color: from-theme(color);
+        }
+
+        &:-ms-input-placeholder {
+          color: from-theme(color);
+        }
+
+        &:-moz-placeholder {
+          color: from-theme(color);
+        }
+      }
+    }
+  }
+}
+
+.free-box__menu
+  .free-box__menu-content
+  div
+  .placeholder-color_gray::placeholder {
+  color: $colorSecondaryLightGray;
+}
+
+.free-box .free-box__menu .placeholder-color_gray::placeholder {
+  color: $colorSecondaryLightGray;
+}
+
+.free-box {
+  max-width: 670px;
+
+  &__nav {
+    position: relative;
+    cursor: pointer;
+
+    &-logo {
+      height: 20px;
+      margin-right: 20px;
+    }
+
+    &-title {
+      opacity: 0.4;
+      margin-right: 40px;
+    }
+
+    &.mat-radio-checked {
+      .free-box {
+        &__nav-title {
+          opacity: 1;
+        }
+      }
+    }
+  }
+
+  &__menu {
+    position: relative;
+    width: 100%;
+    min-width: 670px;
+    padding: 10px 0;
+    margin-top: 25px;
+    justify-content: space-between;
+    box-shadow: $shadow5;
+
+    &-button-back {
+      position: absolute;
+      cursor: pointer;
+      top: 22px;
+      left: 10px;
+
+      mat-icon {
+        color: $colorSecondaryOrange;
+      }
+    }
+
+    &-title {
+      margin: 15px 0 25px;
+      font-weight: 500;
+      font-size: 16px;
+      text-align: center;
+
+      &.success {
+        margin: 15px 0;
+        font-weight: normal;
+        font-size: 22px;
+        line-height: 1.68;
+      }
+    }
+
+    &-content {
+      max-width: 270px;
+    }
+
+    &-info {
+      border-radius: 1px;
+      border: solid 0.5px rgba(250, 100, 0, 0.5);
+      background-color: rgba(250, 100, 0, 0.07);
+      color: #828282;
+      padding: 15px 30px;
+    }
+
+    &-footer {
+      width: 100%;
+      text-align: center;
+      padding: 10px 10px 0px;
+    }
+
+    .round-button {
+      width: 36px;
+      height: 36px;
+      border-radius: 100%;
+      border-style: solid;
+      border-width: 1px;
+      color: $colorSecondaryOrange;
+      box-shadow: none;
+
+      mat-icon {
+        width: 16px;
+        height: 16px;
+        font-size: 16px;
+        font-weight: 700;
+      }
+    }
+
+    .giftcard-amount {
+      font-size: 13px;
+      box-shadow: none;
+      border-radius: 4px !important;
+      border: 1px solid #f48836 !important;
+      -webkit-background-clip: text !important;
+      color: #f48836 !important;
+    }
+
+    .btn-proceed.btn-linear {
+      width: 100%;
+      height: 35px;
+      padding: 0;
+      margin: 0;
+      margin-bottom: 25px;
+
+      &.pay-button {
+        width: 160px;
+      }
+    }
+
+    &-percent {
+      margin-bottom: 30px;
+
+      h1 {
+        font-size: 19px;
+        margin: 10px 0 0 0;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: normal;
+        letter-spacing: 0.63px;
+      }
+
+      span {
+        font-size: 13px;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: normal;
+        letter-spacing: 0.37px;
+      }
+    }
+
+    .fail-content {
+      margin: 40px auto;
+      align-items: start;
+      font-size: 16px;
+      line-height: 1.31;
+      letter-spacing: 0.49px;
+
+      > a,
+      > span {
+        margin-bottom: 20px;
+      }
+    }
+
+    .fail-option {
+      font-size: 15px;
+      opacity: 0.4;
+    }
+
+    .fail-text-underline {
+      font-weight: 500;
+      text-decoration: underline;
+    }
+
+    .fail-text-yellow {
+      font-weight: 500;
+      color: $colorSecondaryYellow;
+      cursor: pointer;
+    }
+  }
+
+  &__hint {
+    font-size: 10px;
+    color: #76797b;
+    margin: 7px 0;
+
+    &.invalid {
+      color: $colorSecondaryRed;
+    }
+  }
+
+  &__logos {
+    img {
+      height: 15px;
+
+      &:not(:last-child) {
+        margin-right: 14px;
+      }
+    }
+  }
+
+  &__note {
+    font-size: 13px;
+    font-style: italic;
+    color: #76797b;
+    margin-bottom: 10px;
+  }
+
+  &__report {
+    cursor: pointer;
+
+    mat-icon {
+      width: 15px;
+      height: 15px;
+      font-size: 15px;
+      color: $colorSecondaryOrange;
+      margin-right: 10px;
+    }
+  }
+
+  .custom-input-field {
+    width: 100%;
+    height: 37px;
+    font-size: 16px;
+    letter-spacing: 0.4px;
+    text-align: center;
+    padding: 0;
+    border-width: 1px;
+    border-radius: 4px;
+    border-style: solid;
+
+    &.promocode {
+      padding: 0 36px;
+
+      &:disabled {
+        background-color: #707070;
+      }
+
+      &.valid {
+        border-color: #9ded48;
+        color: #9ded48;
+        background-image: url(/assets/images/logos/valid.svg);
+        background-repeat: no-repeat;
+        background-position: right 10px center;
+      }
+
+      &.invalid {
+        border-color: $colorSecondaryRed;
+        color: $colorPrimaryWhite;
+        font-style: italic;
+        background-image: url(/assets/images/logos/invalid.svg);
+        background-repeat: no-repeat;
+        background-position: right 10px center;
+      }
+    }
+
+    &.giftcard-code {
+      background-repeat: no-repeat;
+      background-position: 10px center;
+    }
+
+    &.amount {
+      margin: 0 20px;
+      min-width: 0;
+      width: calc(100% - (2 * 36px) - 40px);
+    }
+  }
+}
+
+.payment-methods {
+  align-items: initial;
+}
+
+:host {
+  ::ng-deep {
+    .mat-fab {
+      .mat-button-wrapper {
+        padding: 0;
+      }
+    }
+
+    .mat-spinner circle {
+      stroke: $colorPrimaryWhite !important;
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  .free-box {
+    &__menu {
+      margin-left: -20px;
+      margin-right: -20px;
+      min-width: 320px;
+      width: calc(100% + 40px);
+
+      .btn-proceed.btn-linear.pay-button {
+        width: 100%;
+      }
+    }
+
+    &__nav-logo {
+      height: 14px;
+      margin-right: 10px;
+    }
+  }
+}

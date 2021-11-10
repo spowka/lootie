@@ -1,0 +1,21 @@
+@import '../../../../styles/partials/index.scss';
+
+@include register-component {
+  .rule {
+    border-color: from-theme(border-color);
+  }
+}
+
+.game-rules {
+  max-width: 420px;
+  opacity: 0.4;
+
+  .rule {
+    padding: 14px 0;
+    width: 100%;
+
+    &:not(:last-child) {
+      border-bottom: 1px solid;
+    }
+  }
+}

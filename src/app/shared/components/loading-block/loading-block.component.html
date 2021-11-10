@@ -1,0 +1,6 @@
+<div class="wrapper flex-row flex-row__center">
+  <img *ngIf="(theme$ |async) === 'light'; else darkLoading" class="loading" alt="Loading..." src="/assets/images/loader.gif" />
+  <ng-template #darkLoading>
+    <img class="loading" alt="Loading..." src="/assets/images/loader-dark.gif">
+  </ng-template>
+</div>

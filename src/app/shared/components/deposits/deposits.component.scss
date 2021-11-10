@@ -1,0 +1,193 @@
+@import '../../../../styles/partials/index.scss';
+@import '../../../../styles/concepts.scss';
+@import '../../../../styles/register.scss';
+@import '../../../../styles/variables.scss';
+
+@include register-component {
+  #deposits {
+    tr td a {
+      border-bottom: 1px dashed currentColor;
+    }
+
+    .stripped {
+      thead {
+        tr {
+          td {
+            color: #5b6873;
+            border-bottom: solid 1px from-theme(deposits-thead-border);
+          }
+        }
+      }
+
+      tbody {
+        tr {
+          &:hover {
+            &:nth-child(even) {
+              background-color: from-theme(deposits-body-tr-even) !important;
+            }
+          }
+
+          &:nth-child(even) {
+            background-color: from-theme(deposits-body-tr-even);
+          }
+
+          td {
+            color: from-theme(deposits-body-td-color);
+          }
+        }
+      }
+    }
+  }
+
+  .deposits-mobile {
+    &__item {
+      background-color: from-theme(mobile-deposits-history-item-background);
+    }
+
+    &__item-content {
+      border-bottom: solid 1px from-theme(mobile-deposits-history-item-content-border);
+
+      &:first-child {
+        background-color: from-theme(mobile-deposits-history-item-content-background);
+      }
+    }
+
+    &__label {
+      color: from-theme(mobile-deposits-history-label-color);
+    }
+
+    &__value {
+      color: from-theme(mobile-deposits-history-value-color);
+    }
+  }
+}
+
+#deposits {
+  overflow: auto;
+  display: block;
+  max-height: 516px;
+
+  tr td a {
+    border-bottom: 1px dashed currentColor;
+  }
+
+  .stripped {
+    &.header-table {
+      margin-bottom: 14px;
+    }
+
+    thead {
+      tr {
+        td {
+          padding: 13px 14px;
+          font-size: 12px;
+          font-weight: bold;
+          line-height: normal;
+          letter-spacing: normal;
+          text-transform: uppercase;
+        }
+      }
+    }
+
+    tbody {
+      tr {
+        &:hover {
+          background-color: transparent !important;
+          box-shadow: none;
+        }
+
+        td {
+          padding: 13px 14px;
+          font-size: 16px;
+          font-weight: normal;
+          line-height: normal;
+          letter-spacing: normal;
+          opacity: 1;
+          border-radius: 0;
+
+          div {
+            font-size: 14px;
+          }
+
+          &:nth-child(2) {
+            min-width: 150px;
+          }
+
+          &:last-child {
+            text-align: left;
+          }
+        }
+      }
+    }
+  }
+}
+
+.empty-data {
+  padding-top: 14px;
+  text-align: center;
+  opacity: .4;
+}
+
+.deposits-mobile {
+  &__container {
+    padding: 15px;
+  }
+
+  &__item {
+    border-radius: 4px;
+    padding: 10px;
+    margin-bottom: 20px;
+  }
+
+  &__item-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    height: 47px;
+
+    &:first-child {
+      border-bottom: none !important;
+      height: 37px;
+    }
+
+    &:last-child {
+      border-bottom: none !important;
+    }
+  }
+
+  &__label {
+    font-size: 11px;
+    font-weight: bold;
+    line-height: normal;
+    letter-spacing: 0.39px;
+    text-transform: uppercase;
+  }
+
+  &__value {
+    font-size: 13px;
+    font-weight: normal;
+    line-height: 1.15;
+    letter-spacing: normal;
+
+    &.bold-text {
+      font-weight: 500;
+    }
+  }
+}
+
+@media (min-width: 813px) {
+  #deposits {
+    .mat-spinner {
+      width: 25px !important;
+      height: 25px !important;
+    }
+
+    mat-spinner.skinworld-customized ::ng-deep {
+      svg {
+        width: 25px !important;
+        height: 25px !important;
+      }
+    }
+  }
+}

@@ -1,0 +1,92 @@
+<section class="leaders-wins__container">
+  <div class="leaders-wins__content">
+    <div class="leaders-wins__information">
+      <div class="leaders-wins__case-info">
+        <p>0</p>
+        <span>{{ 'LEADER_BOARD.POINTS' | translate }}</span>
+      </div>
+
+      <div class="leaders-wins__date" *ngIf="timeToDo">
+        <div class="leaders-wins__date-item">
+          <p>{{ timeToDo.days }}</p>
+          <span>{{ 'LEADER_BOARD.DAYS' | translate }}</span>
+        </div>
+        <div class="leaders-wins__date-item">
+          <p>{{ timeToDo.hours }}</p>
+          <span>{{ 'LEADER_BOARD.HOURS' | translate }}</span>
+        </div>
+        <div class="leaders-wins__date-item">
+          <p>{{ timeToDo.minutes }}</p>
+          <span>{{ 'LEADER_BOARD.MINUTES' | translate }}</span>
+        </div>
+        <div class="leaders-wins__date-item">
+          <p>{{ timeToDo.seconds }}</p>
+          <span>{{ 'LEADER_BOARD.SECONDS' | translate }}</span>
+        </div>
+      </div>
+
+      <div class="leaders-wins__case-info text-right">
+        <p>#0</p>
+        <span>{{ 'LEADER_BOARD.RANKING' | translate }}</span>
+      </div>
+    </div>
+
+    <div class="leaders-wins__users-wins">
+      <div class="leaders-wins__title">
+        <span>{{ 'LEADER_BOARD.MOVES_TITLE' | translate }}</span>
+        <img [src]="'/assets/images/icons/star-flag.svg'">
+      </div>
+
+      <div class="leaders-wins__list">
+
+        <div class="leaders-wins__item"
+          *ngFor="let item of leaders"
+          [ngClass]="{
+            'first-place': item.ranking === 1,
+            'second-place': item.ranking === 2,
+            'third-place': item.ranking === 3
+          }"
+          [ngStyle]="{'color': item.item.color || '#8847ff'}">
+          <div class="header-item-img"></div>
+
+          <div class="item-content">
+            <div class="item-bg"></div>
+            <div class="item-color-bg"></div>
+
+            <div class="place-number">
+              <span>{{ item.ranking }}</span>
+              <div class="place-text">
+                <p>nd</p>
+                <span>place</span>
+              </div>
+            </div>
+
+            <div class="user-image">
+              <img [src]="item.user.profileImageUrl">
+            </div>
+
+            <div class="user-name">
+              {{ item.user.username }}
+            </div>
+
+            <div class="user-points">
+              <p>{{ item.points }}</p>
+              <span>points</span>
+            </div>
+
+            <div class="case-user-item">
+              <div class="case-image">
+                <img [src]="item.item.image">
+              </div>
+              <div class="case-name">{{ item.item.name }}</div>
+              <div class="case-price">${{ item.item.value | number:'1.2-2' }}</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="leaders-wins__bottom-background"></div>
+</section>

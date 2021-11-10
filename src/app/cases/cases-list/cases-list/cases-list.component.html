@@ -1,0 +1,33 @@
+<div class="cases-list" >
+  <div class="dnd-placeholder" [class.dragging]="dragging" #dndPlaceholderRef [style.width.px]="dndWidth" [style.height.px]="dndHeight">
+    <div class="dnd-placeholder__inner"></div>
+  </div>
+  <div class="dnd-item-container" *ngFor="let item of cases; let i = index; trackBy: getItemId"
+       appDraggable
+       (drag)="onDrag($event)"
+       (drop)="onDrop($event)"
+       (dragStart)="onDragStart($event)"
+  >
+    <div class="dnd-handle" #draggableHandler>
+      <svg fill="currentColor" viewBox="0 0 24 24" width="24px">
+        <path d="M10 9h4V6h3l-5-5-5 5h3v3zm-1 1H6V7l-5 5 5 5v-3h3v-4zm14 2l-5-5v3h-3v4h3v3l5-5zm-9 3h-4v3H7l5 5 5-5h-3v-3z"></path>
+        <path d="M0 0h24v24H0z" fill="none"></path>
+      </svg>
+    </div>
+    <app-case-box
+      [item]="item"
+      [itemIndex]="i"
+      [caseType]="this.caseType"
+      [canEdit]="isAdmin$ | async"
+      (unbox)="unboxCase($event)"
+      (edit)="editCase($event)" class="case-box">
+    </app-case-box>
+  </div>
+</div>
+<div class="no-results" *ngIf="cases.length === 0 && (loaded$ | async)">No result to show</div>
+<div *ngIf="(loaded$ | async) && total > cases.length" class="flex-row flex-row__center w-100 m-b-30">
+  <button mat-button class="btn-large btn-linear" (click)="onLoad()"> {{'LOAD_MORE' | translate }}</button>
+</div>
+<div class="flex-row flex-row__center spinner-wrapper" *ngIf="loading$ | async">
+  <mat-spinner mode="indeterminate" class="skinworld-customized"></mat-spinner>
+</div>

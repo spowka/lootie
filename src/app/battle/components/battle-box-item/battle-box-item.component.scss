@@ -1,0 +1,90 @@
+@import '../../../../styles/partials/index.scss';
+@import '../../../../styles/variables.scss';
+
+@include register-component {
+  .bi {
+    background-color: from-theme(battle-background);
+
+    &__price {
+      color: from-theme(text-color);
+    }
+  }
+}
+
+.bi {
+  width: 100%;
+  height: 100%;
+  border-radius: 4px;
+  padding: 22px 10px 15px;
+  box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.05);
+  border-bottom: 4px solid currentColor;
+
+  &__wrapper:not(:last-child) {
+    margin-bottom: 10px;
+  }
+
+  &__img {
+    width: 100%;
+    height: 95px;
+    object-fit: contain;
+  }
+
+  &__title {
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin-bottom: 5px;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.25;
+    letter-spacing: 0.93px;
+    text-align: center;
+  }
+
+  &__price {
+    position: relative;
+
+    &.highlight {
+      color: $colorSecondaryBrightRed !important;
+    }
+  }
+
+  &__price-animate {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    opacity: 0;
+    color: $colorSecondaryBrightRed;
+  }
+
+  &__price-animate,
+  &__price {
+    font-size: 17px;
+    font-weight: 500;
+    line-height: normal;
+    letter-spacing: normal;
+  }
+}
+
+@media (max-width: 767px) {
+  .bi {
+    &__price {
+      font-size: 13px;
+    }
+  }
+}
+
+@media (max-width: 1024px) {
+  .bi {
+    padding: 15px 10px 10px;
+
+    &__title {
+      font-size: 12px;
+    }
+
+    &__img {
+      height: 60px;
+    }
+  }
+}

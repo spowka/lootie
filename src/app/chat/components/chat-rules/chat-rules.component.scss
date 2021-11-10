@@ -1,0 +1,45 @@
+@import '../../../../styles/partials/index.scss';
+@import '../../../../styles/concepts.scss';
+
+@include register-component {
+
+  .dialog-wrapper {
+    padding: 14px 40px 40px;
+    background: from-theme(background-dialog);
+  }
+
+  .title {
+    color: from-theme(text-color);
+  }
+
+  .line {
+    background-color: from-theme(text-color);
+  }
+
+  .text {
+    color: from-theme(text-color);
+  }
+}
+
+
+.title {
+  font-family: Roboto;
+  font-size: 18px;
+  text-align: center;
+  margin-top: 11px;
+  margin-bottom: 33px;
+}
+
+.line {
+  height: 1px;
+  opacity: 0.1;
+}
+
+.text {
+  font-family: Roboto;
+  font-size: 14px;
+  line-height: 1.93;
+  margin-top: 12px;
+  opacity: 0.4;
+  margin-bottom: 10px;
+}

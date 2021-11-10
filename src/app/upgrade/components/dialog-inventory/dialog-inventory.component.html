@@ -1,0 +1,69 @@
+<div class="dialog-wrapper dialog-wrapper__light" #wrapper>
+  <button mat-dialog-close>
+    <mat-icon>close</mat-icon>
+  </button>
+
+  <mat-dialog-content class="select-items">
+    <div *ngIf="!(isLandscape$ | async); else viewLandscape" class="flex-row flex-row__btw m-b-40 inventory-header">
+      <div class="flex-col flex-col__start">
+        <div class="inventory-title">
+          {{'DIALOG_INVENTORY.PAGE_TITLE' | translate }}<span *ngIf="selectedItemsTotal">${{ selectedItemsTotal | number:'1.2-2' }} {{'DIALOG_INVENTORY.SELECTED' | translate }}</span>
+        </div>
+        <div class="inventory-subtitle">
+          {{'DIALOG_INVENTORY.PAGE_SUB_TITLE' | translate }}
+        </div>
+      </div>
+      <div class="flex-row flex-row__end buttons-group">
+        <div class="flex-row flex-row__center loading-spinner">
+          <mat-spinner *ngIf="isLoading$ | async" mode="indeterminate" class="skinworld-customized"></mat-spinner>
+        </div>
+        <button mat-button class="btn-large btn-linear" [disabled]="!selectedItems.length"
+          (click)="selectItems()"> {{'DIALOG_INVENTORY.SELECT' | translate }} {{ selectedItems.length }}
+          {{'DIALOG_INVENTORY.ITEMS' | translate }}
+        </button>
+      </div>
+    </div>
+
+    <ng-template #viewLandscape>
+      <div class="flex-row flex-row__btw">
+        <div class="flex-col flex-col__start">
+          <div class="inventory-title">
+            {{'DIALOG_INVENTORY.PAGE_TITLE' | translate }}y <span *ngIf="selectedItemsTotal">${{ selectedItemsTotal | number:'1.2-2' }} {{'DIALOG_INVENTORY.SELECTED' | translate }}</span>
+          </div>
+          <div class="inventory-subtitle">
+            {{'DIALOG_INVENTORY.PAGE_SUB_TITLE' | translate }}
+          </div>
+        </div>
+        <button mat-button class="btn-large btn-linear" [disabled]="!selectedItems.length"
+          (click)="selectItems()">Select {{ selectedItems.length }}
+          {{'DIALOG_INVENTORY.ITEMS' | translate }}
+        </button>
+      </div>
+    </ng-template>
+
+    <app-filters [showSelected]="false" [showSelectAll]="true" [isSelectAllSelected]="isSelectAllSelected"
+      (selectAll)="selectAllItems($event)" (filtersChange)="onFiltersChange($event)">
+    </app-filters>
+    <div class="cases-list flex-row flex-row__center" infiniteScroll infiniteScrollDistance="0" [alwaysCallback]="false"
+      [scrollWindow]="false" [infiniteScrollDisabled]="isScrollDisabled" (scrolled)="onScroll()">
+      <app-case-item *ngFor="let inventory of inventoryItems" [isMobile]="(isMobile$ | async)" [item]="inventory.item"
+        [isSelected]="selectedItemsIds.includes(inventory._id)" (addToSelected)="addToSelectedItems($event)"
+        (removeFromSelected)="removeFromSelectedItems($event)" class="case-item">
+      </app-case-item>
+    </div>
+  </mat-dialog-content>
+
+
+  <mat-dialog-actions class="footer-actions">
+    <div class="flex-row selected-items">
+      <div class="flex-col flex-col__start">
+        <span class="selected">{{'DIALOG_INVENTORY.SELECTED' | translate }}</span>
+        <span>{{ selectedItems.length }} {{'DIALOG_INVENTORY.ITEMS' | translate }}</span>
+      </div>
+      <div class="flex-row selected-items__images">
+        <div class="selected-items__img" *ngFor="let inventory of selectedItems"
+          [ngStyle]="{'background': 'url(' + inventory.item.image + ')'}"></div>
+      </div>
+    </div>
+  </mat-dialog-actions>
+</div>

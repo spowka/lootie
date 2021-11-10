@@ -1,0 +1,44 @@
+#contact-us {
+  max-width: 900px;
+  text-align: center;
+
+  button {
+    border: none;
+    padding: 2px 12px;
+  }
+}
+
+.inline {
+  display: inline;
+}
+
+.cu {
+  max-height: calc(100vh - 320px);
+  overflow: auto;
+  padding-right: 16px;
+}
+
+.cu-content {
+  width: 100%;
+  margin-bottom: 32px;
+
+  &__text {
+    line-height: 2;
+    opacity: 0.4;
+
+    span {
+      display: block;
+      margin-bottom: 28px;
+    }
+  }
+
+  .blue-link {
+    color: #1b95e0;
+  }
+}
+
+@media (max-width: 767px) and (orientation: landscape) {
+  .cu {
+    max-height: unset;
+  }
+}

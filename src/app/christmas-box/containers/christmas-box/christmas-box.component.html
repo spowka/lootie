@@ -1,0 +1,126 @@
+<div class="calendar__container">
+    <div class="calendar__header">
+        <img src="assets/images/christmas-calendar/header.png">
+    </div>
+
+    <div class="calendar__content">
+        <div class="calendar__background">
+            <img class="calendar__big-toys left-side" [src]="'assets/images/christmas-calendar/toys/deco-2.png'">
+            <img class="calendar__big-toys right-side" [src]="'assets/images/christmas-calendar/toys/deco-1.png'">
+            <img class="calendar__big-toys garland" [src]="'assets/images/christmas-calendar/gurland.png'">
+
+            <div class="calendar__items-list five-elems">
+                <div class="calendar__item"
+                    *ngFor="let box of calendarItems | slice:0:5"
+                    [ngClass]="{
+                        'opened': box.id < dayNow,
+                        'opening': box.id === dayNow
+                    }">
+                    <img [src]="getBoxImage(box)">
+                    <div class="calendar__platform">
+                        <img [src]="'assets/images/christmas-calendar/holder.png'">
+                        <img class="toy-image"
+                            *ngIf="calendarToys[box.id]"
+                            [ngStyle]="{
+                                'left': calendarToys[box.id].left
+                            }"
+                            [src]="calendarToys[box.id].toyUrl">
+                    </div>
+                </div>
+            </div>
+
+            <div class="calendar__items-list four-elems">
+                <div class="calendar__item"
+                    *ngFor="let box of calendarItems | slice:5:9"
+                    [ngClass]="{
+                        'opened': box.id < dayNow,
+                        'opening': box.id === dayNow
+                    }">
+                    <img [src]="getBoxImage(box)">
+                    <div class="calendar__platform">
+                        <img [src]="'assets/images/christmas-calendar/holder.png'">
+                        <img class="toy-image"
+                            *ngIf="calendarToys[box.id]"
+                            [ngStyle]="{
+                                'left': calendarToys[box.id].left
+                            }"
+                            [src]="calendarToys[box.id].toyUrl">
+                    </div>
+                </div>
+            </div>
+
+            <div class="calendar__items-list five-elems">
+                <div class="calendar__item"
+                    *ngFor="let box of calendarItems | slice:9:14"
+                    [ngClass]="{
+                        'opened': box.id < dayNow,
+                        'opening': box.id === dayNow
+                    }">
+                    <img [src]="getBoxImage(box)">
+                    <div class="calendar__platform">
+                        <img [src]="'assets/images/christmas-calendar/holder.png'">
+                        <img class="toy-image"
+                            *ngIf="calendarToys[box.id]"
+                            [ngStyle]="{
+                                'left': calendarToys[box.id].left
+                            }"
+                            [src]="calendarToys[box.id].toyUrl">
+                    </div>
+                </div>
+            </div>
+
+            <div class="calendar__items-list four-elems">
+                <div class="calendar__item"
+                    *ngFor="let box of calendarItems | slice:14:18"
+                    [ngClass]="{
+                        'opened': box.id < dayNow,
+                        'opening': box.id === dayNow
+                    }">
+                    <img [src]="getBoxImage(box)">
+                    <div class="calendar__platform">
+                        <img [src]="'assets/images/christmas-calendar/holder.png'">
+                        <img class="toy-image"
+                            *ngIf="calendarToys[box.id]"
+                            [ngStyle]="{
+                                'left': calendarToys[box.id].left
+                            }"
+                            [src]="calendarToys[box.id].toyUrl">
+                    </div>
+                </div>
+            </div>
+
+            <div class="calendar__items-list five-elems">
+                <div class="calendar__item"
+                    *ngFor="let box of calendarItems | slice:18:23"
+                    [ngClass]="{
+                        'opened': box.id < dayNow,
+                        'opening': box.id === dayNow
+                    }">
+                    <img [src]="getBoxImage(box)">
+                    <div class="calendar__platform">
+                        <img [src]="'assets/images/christmas-calendar/holder.png'">
+                        <img class="toy-image"
+                            *ngIf="calendarToys[box.id]"
+                            [ngStyle]="{
+                                'left': calendarToys[box.id].left
+                            }"
+                            [src]="calendarToys[box.id].toyUrl">
+                    </div>
+                </div>
+            </div>
+
+            <div class="calendar__items-list last-elem">
+                <div class="calendar__item"
+                    [ngClass]="{
+                        'opened': calendarItems[calendarItems.length - 1].id < dayNow,
+                        'opening': calendarItems[calendarItems.length - 1].id === dayNow
+                    }">
+                    <img [src]="getBoxImage(calendarItems[calendarItems.length - 1])">
+                    <div class="calendar__platform">
+                        <img [src]="'assets/images/christmas-calendar/holder.png'">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

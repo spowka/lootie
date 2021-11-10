@@ -1,0 +1,103 @@
+<div class="slider-container" [ngClass]="{ 'slider-container-mobile': (currentUrl$ | async) !== '/'}" class="slider-container" [class.opened]="(isChatOpened$ | async)">
+  <app-cases-slider></app-cases-slider>
+</div>
+
+<h1 class="page-title center m-b-20">
+  {{'BATTLE_WAITING.CASE_BATTLE' | translate }}:
+</h1>
+
+<div *ngIf="!(isMobile$ | async)" class="subtitle m-b-20 center">
+  {{'BATTLE_WAITING.WAITING_PLAYER' | translate }}
+</div>
+
+<app-battle-countdown *ngIf="(isMobile$ | async) && (battle$ | async) as battle" [createdAt]="battle.createdAt">
+</app-battle-countdown>
+
+<div class="battle-container bw">
+  <app-battle-header [battleId]="'pending/' + (battle$ | async)?._id" (provablyFair)="goToProvablyFair()">
+  </app-battle-header>
+
+  <app-battle-countdown *ngIf="!(isMobile$ | async) && (battle$ | async) as battle" [createdAt]="battle.createdAt">
+  </app-battle-countdown>
+
+  <div class="flex-row flex-row__btw bw__navbar">
+    <div class="flex-row flex-row__center">{{'BATTLE_WAITING.TOTAL_COST' | translate }}: <span>${{ (battle$ | async)?.price | number:'1.2-2' }}</span>
+    </div>
+    <div class="flex-row flex-row__center">{{'BATTLE_WAITING.ROUNDS' | translate }}: <span>{{ (battle$ | async)?.totalRounds }}</span></div>
+    <div class="flex-row flex-row__center">{{'BATTLE_WAITING.PLAYERS' | translate }}: <span>{{ (battle$ | async)?.userCount }}</span></div>
+  </div>
+
+  <div class="flex-row flex-row__btw m-b-20 players-{{ (battle$ | async)?.userCount }}">
+    <div class="flex-col battle-wrapper bw__status" *ngFor="let session of sessions">
+      <div class="flex-col flex-col__center bw__status-container">
+        <ng-container *ngIf="session; else joinSession">
+
+          <ng-container *ngIf="(battle$ | async)?.sessions.length < (battle$ | async)?.userCount">
+            <ng-container *ngIf="session.ready; else startNowLabel">
+              <div @fadeInOut class="ready-start" >
+                {{'BATTLE_WAITING.READY' | translate }}<ng-container *ngIf="!(isMobile$ | async)"> to start</ng-container>!
+              </div>
+            </ng-container>
+
+            <ng-template #startNowLabel>
+              <button @fadeInOut mat-button
+                *ngIf="(user$ | async)._id === session.user._id && (battle$ | async)?.sessions.length > 1"
+                [disabled]="isLoading$ | async" class="start-battle" (click)="startNow()">
+                <span class="label-text">{{'BATTLE_WAITING.START' | translate }}</span>
+                <span class="label-text desktop" *ngIf="!(isMobile$ | async)"> {{'BATTLE_WAITING.NOW' | translate }}</span>!
+              </button>
+            </ng-template>
+          </ng-container>
+
+          <div class="img-containter">
+            <img src="assets/images/ready.png">
+          </div>
+
+          <ng-container
+            *ngIf="(battle$ | async)?.sessions.length < (battle$ | async)?.userCount && (user$ | async)._id === session.user._id && !(isLoading$ | async)">
+            <ng-container *ngIf="(user$ | async)._id === (battle$ | async)?.creator; else playerQuit">
+              <button @fadeInOut mat-button class="cancel-battle" (click)="cancelBattle()">
+                <span class="label-text">{{'BATTLE_WAITING.CANCEL' | translate }}</span>
+                <span class="label-text desktop" *ngIf="!(isMobile$ | async)">{{'BATTLE_WAITING.BATTLE' | translate }}</span>
+              </button>
+            </ng-container>
+
+            <ng-template #playerQuit>
+              <button @fadeInOut mat-button class="btn-outline-gray quit-button" (click)="quitBattle()">{{'BATTLE_WAITING.QUIT' | translate }}</button>
+            </ng-template>
+          </ng-container>
+
+        </ng-container>
+
+        <ng-template #joinSession>
+          <div class="bw__status-label">{{'BATTLE_WAITING.WAITING' | translate }} <br class="break-word"> {{'BATTLE_WAITING.PLAYER' | translate }}</div>
+          <div class="img-containter">
+            <div class="bw__loading"></div>
+          </div>
+          <button @fadeInOut *ngIf="!isJoined && !(isLoading$ | async)" mat-button class="btn-outline-gray"
+            (click)="joinBattle()">{{'BATTLE_WAITING.JOIN' | translate }}</button>
+        </ng-template>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="flex-row flex-row__btw m-b-40 players-{{ (battle$ | async)?.userCount }}">
+    <div class="flex-row flex-row__center battle-wrapper bw__players" *ngFor="let session of sessions">
+      <ng-container *ngIf="session; else emptySession">
+        <img [src]="session.user.profileImageUrl">
+        <span>{{ session.user.username }}</span>
+      </ng-container>
+
+      <ng-template #emptySession>
+        <div class="bw__players-empty">?</div>
+      </ng-template>
+    </div>
+  </div>
+</div>
+
+<div class="flex-row flex-row__btw client-seed players-{{ (battle$ | async)?.userCount }}">
+  <div *ngFor="let session of sessions" class="bw__players">
+    <span *ngIf="session">{{'BATTLE_WAITING.CLIIENT_SEED' | translate }}: {{ session.seed }}</span>
+  </div>
+</div>

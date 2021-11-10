@@ -1,0 +1,115 @@
+@import '../../../../styles/partials/index.scss';
+@import '../../../../styles/concepts.scss';
+@import '../../../../styles/variables.scss';
+
+@include register-component {
+  .spinner-item-wrapper {
+    background: from-theme(background);
+    color: from-theme(color);
+
+    &__data-title {
+      color: from-theme(text-color);
+    }
+  }
+}
+
+.spinner-item-wrapper {
+  position: relative;
+  max-width: 160px;
+  max-height: 200px;
+  background-color: $colorPrimaryWhite;
+  box-shadow: $shadow5;
+  border-radius: 4px;
+  border: 2px solid transparent;
+  transition: .3s all ease-in-out;
+  padding: 17px 0 19px;
+  cursor: pointer;
+  margin: 0 8px;
+  height: 100%;
+
+  &::after {
+    content: '';
+    display: block;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 30%;
+    -webkit-filter: blur(20px);
+    filter: blur(20px);
+    background: currentColor;
+    opacity: .08;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  * {
+    line-height: 1;
+  }
+
+  &.spinner {
+    width: 160px;
+    box-shadow: none;
+  }
+
+  .case-img {
+    @extend %bg-image;
+    width: 100px;
+    height: 84px;
+  }
+
+  &__data {
+    width: 100%;
+    min-height: 50px;
+    padding: 0 5px;
+    color: inherit;
+    text-align: center;
+  }
+
+  &__data-title {
+    @extend %text-elipsis;
+    @extend .p-md;
+    padding: 0 10px;
+    margin-bottom: 10px;
+    color: $colorSecondaryDarkGray;
+  }
+
+  &__data-type {
+    @extend .l-md;
+    @extend %text-elipsis;
+    text-transform: uppercase;
+  }
+
+  &__bottom-border {
+    height: 2px;
+    background: currentColor;
+    position: absolute;
+    left: -1px;
+    bottom: -2px;
+    right: -1px;
+    transition: .1s all ease-in-out;
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+  }
+}
+
+@media (max-width: 767px) {
+  .spinner-item-wrapper {
+    padding: 10px 0;
+
+    &__data {
+      &-title {
+        font-size: 12px;
+
+        &-type {
+          font-size: 11px;
+        }
+      }
+    }
+
+    .case-img {
+      width: 60px;
+      height: 60px;
+    }
+  }
+}

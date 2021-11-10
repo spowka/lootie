@@ -1,0 +1,82 @@
+<div id="how-to-play" class="page-container">
+  <section class="how-to-play__container">
+    <div class="flex-row flex-row__btw m-b-20 actions">
+      <div class="flex-row go-back" (click)="goBack()">
+        <span class="back-icon"></span>
+        <span>{{'DAILY_CASE.GO_BACK' | translate }}</span>
+      </div>
+
+      <div class="flex-row flex-row__center title">
+        <span class="how-to-play__title">{{ 'HOW_TO_PLAY.TITLE' | translate }}</span>
+      </div>
+
+      <div class="flex-row flex-row__center"></div>
+    </div>
+
+    <div class="how-to-play__content">
+      <span class="how-to-play__title side-icons">
+        <span class="left-side-icon"></span>
+        {{ 'HOW_TO_PLAY.ABOUT' | translate }}
+        <span class="right-side-icon"></span>
+      </span>
+      <span class="how-to-play__about-desc">
+        {{ 'HOW_TO_PLAY.ABOUT_DESCRIPTION' | translate }}
+      </span>
+
+      <div class="how-to-play__video-content flex-col">
+        <span class="play-icon"></span>
+      </div>
+    </div>
+
+    <div class="how-to-play__content">
+      <span class="how-to-play__title side-icons">
+        <span class="left-side-icon"></span>
+        {{ 'HOW_TO_PLAY.CREATE_BATTLE_TITLE' | translate }}
+        <span class="right-side-icon"></span>
+      </span>
+
+      <div class="how-to-play__steps-items">
+        <div class="how-to-play__item-step" *ngFor="let item of howToCreateBattle.items; let i = index">
+          <span>{{ i + 1 }}</span> {{ item | translate }}
+        </div>
+      </div>
+    </div>
+
+    <div class="how-to-play__content">
+      <span class="how-to-play__title side-icons">
+        <span class="left-side-icon"></span>
+        {{ 'HOW_TO_PLAY.WINNER_CHOSEN_TITLE' | translate }}
+        <span class="right-side-icon"></span>
+      </span>
+
+      <div class="how-to-play__steps-items">
+        <div class="how-to-play__item-step" *ngFor="let item of howToWinnerChosen.items; let i = index">
+          {{ item | translate }}
+        </div>
+      </div>
+    </div>
+
+    <div class="how-to-play__content last-content">
+      <span class="how-to-play__title side-icons">
+        <span class="left-side-icon"></span>
+        {{ 'HOW_TO_PLAY.QA' | translate }}
+        <span class="right-side-icon"></span>
+      </span>
+
+      <div class="how-to-play__qa-content">
+        <div class="how-to-play__qa-items" *ngFor="let qa of qaItems">
+          <div class="how-to-play__qa-title">
+            <span class="qa-point"></span>
+            {{ qa.title | translate }}
+          </div>
+          <div class="how-to-play__qa-description">
+            {{ qa.description | translate }}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <span class="how-to-play__link-item">{{ 'HOW_TO_PLAY.ENJOY' | translate }}</span>
+
+  </section>
+</div>

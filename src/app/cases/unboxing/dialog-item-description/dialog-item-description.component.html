@@ -1,0 +1,72 @@
+<div class="dialog-wrapper dialog-wrapper__light" #wrapper>
+  <button mat-dialog-close>
+    <mat-icon>close</mat-icon>
+  </button>
+
+  <mat-dialog-content class="item-description">
+    <div *ngIf="!(loaded$ | async)" class="flex-row flex-row__center">
+      <mat-spinner mode="indeterminate" class="skinworld-customized"></mat-spinner>
+    </div>
+
+    <ng-container *ngIf="(loaded$ | async) && (item$ | async) as item">
+      <div class="flex-col flex-col__center item-description__header">
+        <img src="{{ item.image }}" alt="{{ item.name }}">
+        <span class="item-description__name">{{ item.name }}</span>
+        <span class="item-description__type" [ngStyle]="{'color': item.color}">{{ item.tag || item.type }}</span>
+      </div>
+
+      <div class="flex-col flex-col_center m-b-50 item-description__section">
+        <div class="flex-row item-description__subheader">
+          <mat-icon>whatshot</mat-icon>
+          <span>{{'DIALOG_ITEM_DESCRIPTION.DESCRIPTION' | translate }}</span>
+        </div>
+        <hr>
+        <span *ngIf="item.descriptionText && item.descriptionBullets; else noDesc" class="m-b-20">{{ item.descriptionText }}</span>
+        <span *ngIf="item.descriptionBullets">{{ item.descriptionBullets?.join(' | ') }}</span>
+
+        <ng-template #noDesc>
+          <span>{{'DIALOG_ITEM_DESCRIPTION.NO_DESCRIPTION' | translate }}</span>
+        </ng-template>
+      </div>
+
+      <div *ngIf="item.type !== 'STEAM'" class="flex-col flex-col_center m-b-50 item-description__section">
+        <div class="flex-row flex-row__center item-description__subheader">
+          <mat-icon>directions_boat</mat-icon>
+          <span>{{'DIALOG_ITEM_DESCRIPTION.SHIPPING_INFO' | translate }}</span>
+        </div>
+        <hr>
+        <div *ngIf="item.shippingInfo; else noShip" class="item-description__shipping-info">
+          <span>{{ shippingInfo }}</span>
+        </div>
+
+        <ng-template #noShip>
+          <span>{{'DIALOG_ITEM_DESCRIPTION.NO_SHIPPING_INFO' | translate }}</span>
+        </ng-template>
+      </div>
+
+      <div *ngIf="item.type !== 'STEAM'" class="flex-col flex-col_center m-b-50 item-description__section">
+        <div class="flex-row flex-row__center item-description__subheader">
+          <mat-icon>all_inbox</mat-icon>
+          <span>{{'DIALOG_ITEM_DESCRIPTION.VARIANTS' | translate }}</span>
+        </div>
+        <hr>
+        <div *ngIf="item.availableVariants?.length" class="flex-row flex-row__btw item-description__variants-container">
+          <div class="item-description__variants flex-col flex-col__center"
+            *ngFor="let variant of item.availableVariants">
+            <img src="{{ variant.image || item.image }}" alt="{{ variant.name || item.name }}" (error)="img.src=item.image" #img>
+            <span class="item-description__variants-name" matTooltip="{{ variant.name || item.name }}">
+              {{ variant.name || item.name }}
+            </span>
+            <span *ngFor="let prop of variant.props | keyvalue" class="item-description__variants-name"
+              matTooltip="{{ prop.key }} : {{ prop.value }}">
+              <b>{{ prop.key }}</b> : {{ prop.value }}
+            </span>
+            <hr>
+            <span class="item-description__variants-price">${{ variant.value | number:'1.2-2' }}</span>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+
+  </mat-dialog-content>
+</div>

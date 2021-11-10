@@ -1,0 +1,8 @@
+<div class="filter-toggle" (click)="toggle()">
+  <div class="label">{{label}}</div>
+  <div class="value">{{value}}</div>
+  <div class="arrow">
+    <mat-icon *ngIf="!expanded">expand_more</mat-icon>
+    <mat-icon *ngIf="expanded">expand_less</mat-icon>
+  </div>
+</div>

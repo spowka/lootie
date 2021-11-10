@@ -1,0 +1,43 @@
+#authentication {
+  max-width: 900px;
+
+  button {
+    margin: 0 7px;
+  }
+}
+
+.et {
+  overflow: auto;
+  padding-right: 16px;
+}
+
+.et-content {
+  width: 100%;
+  margin-bottom: 32px;
+
+  &__text {
+    line-height: 1.5;
+    opacity: 0.6;
+
+    span {
+      display: block;
+      margin-bottom: 28px;
+    }
+
+    &.subtitle {
+      opacity: 1;
+      font-weight: 500;
+    }
+
+    &.list {
+      padding: 5px 0;
+    }
+  }
+}
+
+@media (max-width: 479px) {
+  .et {
+    max-height: none;
+    padding: 0;
+  }
+}

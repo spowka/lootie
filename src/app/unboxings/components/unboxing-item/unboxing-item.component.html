@@ -1,0 +1,39 @@
+<div class="flex-col unboxing-item-wrapper" [ngStyle]="{'color': color}" (click)="toggleZoom(true)">
+  <div class="unboxing-item-wrapper__content">
+    <div class="unboxing-item-wrapper__country-label">
+      <img [src]="item.countryImage">
+    </div>
+
+    <div class="unboxing-item-wrapper__img"
+      [ngStyle]="{'background-image': isImage ? bkgImageUrl : 'url(' + item.videoPreview + ')'}">
+    </div>
+
+    <div class="unboxing-item-wrapper__box">
+      <span class="box-gradient"
+        [ngStyle]="{'background-image': 'linear-gradient(320deg, ' + color + ' 104%, rgba(78, 193, 227, 0) 13%)'}">
+      </span>
+      <img [src]="item.boxImage">
+    </div>
+
+    <div class="unboxing-item-wrapper__hover">
+      <img *ngIf="isImage; else videoIcon" [src]="'assets/images/icons/zoom-in.svg'">
+      <ng-template #videoIcon>
+        <img [src]="'assets/images/icons/youtube.svg'">
+      </ng-template>
+    </div>
+  </div>
+  <div class="unboxing-item-wrapper__title">{{ item.itemName }}</div>
+  <div class="unboxing-item-wrapper__subtitle">{{ item.boxName }}</div>
+</div>
+
+<ng-template #zoomImage>
+  <div class="zoom-in-content">
+    <button mat-button mat-dialog-close class="zoom-close-btn" *ngIf="(isMobile$ | async)">
+      <mat-icon>close</mat-icon>
+    </button>
+    <img *ngIf="isImage; else video" [src]="imageUrl">
+    <ng-template #video>
+      <video id="video" class="w-100 unboxings-video"  controls autoplay [src]="videoUrl"></video>
+    </ng-template>
+  </div>
+</ng-template>

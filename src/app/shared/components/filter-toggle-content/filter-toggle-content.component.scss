@@ -1,0 +1,56 @@
+@import '../../../../styles/partials/index.scss';
+
+@include register-component {
+  .filter-toggle-content {
+    .content-panel {
+      background-color: from-theme(background-navbar);
+      border: 1px solid from-theme(border-color-1);
+      color: from-theme(color);
+
+      ::ng-deep {
+        .item {
+          border-bottom: 1px solid from-theme(border-color-1);
+          background-color: from-theme(background-input);
+
+          &:last-child {
+            border-bottom: none;
+          }
+        }
+      }
+    }
+  }
+}
+
+.filter-toggle-content {
+  padding: 0 15px;
+  overflow: hidden;
+  height: 0;
+  transition: all 500ms ease-in-out;
+
+  &.expanded {
+    height: auto;
+    padding-top: 30px;
+    padding-bottom: 30px;
+  }
+
+  .content-panel {
+    border-radius: 4px;
+    font-size: 16px;
+
+    ::ng-deep {
+      .item {
+        padding: 15px 27px;
+        cursor: pointer;
+      }
+      .size-sm {
+        font-size: 12px;
+      }
+      .opacity-half {
+        opacity: 0.4;
+      }
+      .medium {
+        font-weight: 500;
+      }
+    }
+  }
+}

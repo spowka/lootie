@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="183" height="244" viewBox="0 0 183 244">
+    <g fill="none" fill-rule="evenodd" opacity=".5" transform="rotate(-180 91 121.5)">
+        <path fill="#131719" stroke="#F06072" d="M102 167H109V174H102z" transform="rotate(-30 105.5 170.5)"/>
+        <path fill="#131719" stroke="#FDC403" d="M117.444 11.358L125.02 11.358 121.957 18.934 114.381 18.934z" transform="rotate(15 119.7 15.146)"/>
+        <path fill="#131719" stroke="#F06072" d="M82.02 114.358L91.02 114.358 87.381 123.358 78.381 123.358z" transform="rotate(-134 84.7 118.858)"/>
+        <path fill="#131719" stroke="#4FC1E3" d="M67.639 15L76.639 15 73 24 64 24z" transform="rotate(-99 70.32 19.5)"/>
+        <path stroke="#8847FF" d="M59.639 153L68.639 153 65 162 56 162z" transform="rotate(63 62.32 157.5)"/>
+        <path fill="#131719" stroke="#4FC1E3" d="M12.381 151.358H21.381V160.358H12.381z" transform="rotate(7 16.88 155.858)"/>
+        <path fill="#131719" stroke="#FDC403" d="M2 2H11V11H2z" transform="rotate(22 6.5 6.5)"/>
+        <path fill="#131719" stroke="#19BD66" d="M69 71L74 80 64 80z"/>
+        <path fill="#131719" stroke="#F06072" d="M34.5 185L40 194.9 29 194.9z" transform="rotate(-25 34.5 189.95)"/>
+        <path fill="#131719" stroke="#FDC403" d="M135 87L140 96 130 96z" transform="rotate(-66 135 91.5)"/>
+        <circle cx="118.381" cy="133.358" r="5" fill="#131719" stroke="#4FC1E3"/>
+        <circle cx="6" cy="75" r="4" fill="#131719" stroke="#F06072"/>
+        <circle cx="152.381" cy="55.358" r="6" fill="#131719" stroke="#8AC6DD"/>
+        <path stroke="#8847FF" d="M175.5 26.25L172.267 27.95 172.885 24.35 170.269 21.8 173.884 21.275 175.5 18 177.116 21.275 180.731 21.8 178.115 24.35 178.733 27.95z"/>
+        <path fill="#131719" stroke="#FDC403" d="M9 237L5.473 238.854 6.147 234.927 3.294 232.146 7.237 231.573 9 228 10.763 231.573 14.706 232.146 11.853 234.927 12.527 238.854z" transform="rotate(-36 9 234)"/>
+        <path fill="#131719" stroke="#4FC1E3" stroke-linejoin="round" d="M81 193.5L78.061 195.045 78.622 191.773 76.245 189.455 79.531 188.977 81 186 82.469 188.977 85.755 189.455 83.378 191.773 83.939 195.045z"/>
+        <path fill="#131719" stroke="#FDC403" d="M35.5 34L40.263 36.75 40.263 42.25 35.5 45 30.737 42.25 30.737 36.75z"/>
+        <path fill="#131719" stroke="#8847FF" d="M71.5 225L76.263 227.75 76.263 233.25 71.5 236 66.737 233.25 66.737 227.75z" transform="rotate(-13 71.5 230.5)"/>
+        <path fill="#131719" stroke="#F06072" d="M101.5 49L106.263 51.75 106.263 57.25 101.5 60 96.737 57.25 96.737 51.75z" transform="rotate(-13 101.5 54.5)"/>
+        <path fill="#131719" stroke="#FDC403" d="M24.5 109L29.263 111.75 29.263 117.25 24.5 120 19.737 117.25 19.737 111.75z" transform="rotate(-15 24.5 114.5)"/>
+    </g>
+</svg>

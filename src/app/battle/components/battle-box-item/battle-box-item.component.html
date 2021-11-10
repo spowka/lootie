@@ -1,0 +1,13 @@
+<div  class="flex-col flex-col__btw bi" [ngStyle]="{'color': item.color || '#f4364c'}">
+  <div class="bi__wrapper">
+    <img class="bi__img" [src]="item.image">
+  </div>
+
+  <div class="bi__wrapper flex-col w-100">
+    <div class="bi__title">{{ item.name }}</div>
+    <div class="bi__price" [class.highlight]="animate">
+      <div *ngIf="animate" @fadeUp class="bi__price-animate">${{ item.value | number: '1.2-2' }}</div>
+      ${{ item.value | number: '1.2-2' }}
+    </div>
+  </div>
+</div>

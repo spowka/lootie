@@ -1,0 +1,56 @@
+<div *ngIf="isMobile$ | async" [ngClass]="{ 'slider-container-mobile': (currentUrl$ | async) !== '/' }"
+  class="slider-container">
+  <app-cases-slider></app-cases-slider>
+</div>
+
+<div id="support" class="page-container">
+  <div class="page-title center m-b-10">
+    {{'SUPPORT.PAGE_TITLE' | translate }}
+  </div>
+
+  <div class="page-subtitle center">
+    {{'SUPPORT.PAGE_SUB_TITLE' | translate }}
+  </div>
+
+  <div class="support">
+    <div class="support__header">
+      <div class="flex-row go-back" (click)="goBack()">
+        <img class="go-back__icon" src="/assets/images/icons/back.svg"> <span class="go-back__text">{{'DAILY_CASE.GO_BACK' | translate }}</span>
+      </div>
+
+      <div class="flex-row flex-row__center send-ticket" (click)="sendTicket()">
+        <img class="send-ticket__icon" src="/assets/images/icons/ic-report-24-px.svg"> <span
+          class="send-ticket__text">{{'SUPPORT.SEND_TICKET' | translate }}</span>
+      </div>
+    </div>
+
+    <div class="support__container">
+
+      <div class="support-content">
+        <mat-expansion-panel class="skinworld-customized" *ngFor="let item of supportItems; let i = index"
+          [ngStyle]="{'border-color': item.color}">
+          <mat-expansion-panel-header [collapsedHeight]="(isMobile$ | async) ? '50px' : '73px'"
+            [expandedHeight]="(isMobile$ | async) ? '50px' : '73px'">
+            <mat-panel-title class="p-lg forSearch">
+              <div class="support__backdrop" [ngStyle]="{'background-color': item.color}"></div>
+              <span class="support__badge">{{ i + 1 }}</span>
+              {{ item.title | translate }}
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <div class="p-lg support__text">
+            <span *ngFor="let desc of item.descriptions">
+              <a [class]="desc.class ? desc.class : ''" *ngIf="desc.type === 'link' && !desc.isLink" [href]="desc.href"
+                [innerHTML]="desc.text | translate"> </a>
+              <a [class]="desc.class ? desc.class : ''" *ngIf="desc.type === 'link' && desc.isLink"
+                [routerLink]="[desc.href]" [innerHTML]="desc.text | translate"> </a>
+              <span [class]="desc.class ? desc.class : ''" *ngIf="desc.type === 'text'"
+                [innerHTML]="desc.text | translate"> </span>
+            </span>
+          </div>
+        </mat-expansion-panel>
+      </div>
+
+    </div>
+
+  </div>
+</div>

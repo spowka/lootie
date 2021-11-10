@@ -1,0 +1,43 @@
+@import '../../../../styles/partials/index.scss';
+
+@include register-component {
+  .value {
+    color: from-theme(color);
+  }
+  .arrow {
+    background-image: from-theme(primary-gradient);
+  }
+}
+
+.filter-toggle {
+  display: flex;
+  align-items: center;
+  justify-contents: center;
+}
+
+.label {
+  font-size: 12px;
+  margin-right: 8px;
+  opacity: 0.4;
+  text-transform: uppercase;
+}
+
+.value {
+  text-transform: uppercase;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.arrow {
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: flex;
+
+  .mat-icon {
+    width: 20px;
+    height: 20px;
+    font-size: 20px;
+    margin-left: 4px;
+  }
+}

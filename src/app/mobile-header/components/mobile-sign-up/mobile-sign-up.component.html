@@ -1,0 +1,56 @@
+<div class="mobile-modal-section flex-col">
+  <p class="mobile-modal-section__text">
+    {{'SIGN_UP_DIALOG.PAGE_SUB_TITLE' | translate }}.
+  </p>
+
+  <form [formGroup]="signUpForm" (ngSubmit)="signUp()" class="flex-col login-form">
+    <div class="login-inputs input-section">
+      <mat-form-field class="height-all m-b login-form-field">
+        <span matPrefix>{{'SIGN_UP_DIALOG.USERNAME' | translate }} </span>
+        <input matInput type="text" formControlName="username">
+        <mat-error *ngIf="signUpForm.controls['username'].errors && signUpForm.controls['username'].errors.pattern">
+          {{'SIGN_UP_DIALOG.SPACE_ERROR' | translate }}
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="height-all m-b login-form-field">
+        <span matPrefix>{{'SIGN_UP_DIALOG.E_MAIL' | translate }}</span>
+        <input matInput type="email" formControlName="email">
+        <mat-error *ngIf="signUpForm.controls['email'].errors">
+          {{'SIGN_UP_DIALOG.E_MAIL_INVALID' | translate }}
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="height-all m-b login-form-field">
+        <span matPrefix>{{'SIGN_UP_DIALOG.PASSWORD' | translate }}</span>
+        <input matInput type="password" formControlName="password">
+        <mat-error *ngIf="signUpForm.controls['password'].errors && signUpForm.controls['password'].errors.minlength">
+          {{'SIGN_UP_DIALOG.PASSWORD_INVALID_MOBILE' | translate }}
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="height-all login-form-field">
+        <span matPrefix>{{'SIGN_UP_DIALOG.REPEAT_PASSWORD' | translate }}</span>
+        <input matInput type="password" formControlName="passwordConfirm" [errorStateMatcher]="matcher">
+        <mat-error *ngIf="signUpForm.hasError('notSame')">
+          {{'SIGN_UP_DIALOG.PASSWORD_ERROR' | translate }}
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <!-- <div class="login-inputs subscribe">
+      <mat-checkbox class="skinworld-customized" formControlName="subscribeToNewsletter">
+        Subscribe to newsletter and get $0.50
+      </mat-checkbox>
+    </div> -->
+  </form>
+
+  <div class="mobile-modal-section__actions mobile-modal-section__submit flex-row">
+    <button type="submit" mat-button class="btn-linear btn-square" [disabled]="signUpForm.invalid" (click)="signUp()">
+      {{'SIGN_UP_DIALOG.SIGN_UP' | translate }}
+    </button>
+    <button type="button" mat-button class="btn-outline-gray btn-square" (click)="onChangePage(MobileMenu.logIn)">
+      {{'SIGN_UP_DIALOG.LOGIN' | translate }}
+    </button>
+  </div>
+
+  <p class="mobile-modal-section__text">{{'SIGN_UP_DIALOG.FOOTER_HINT' | translate }}
+    <span class="skinworld-terms" (click)="goToPage('/tos')">{{'SIGN_UP_DIALOG.TERMS_PRIVACY' | translate }}</span>.
+  </p>
+</div>

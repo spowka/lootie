@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 61.2 (89653) - https://sketch.com -->
+    <title>Help</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Deposit-Balance" transform="translate(-374.000000, -28.000000)">
+            <g id="Header-dark-2">
+                <g id="Topbar">
+                    <g id="Help" transform="translate(375.000000, 29.000000)">
+                        <circle id="Oval" fill="#76797B" fill-rule="nonzero" transform="translate(6.782396, 10.005432) rotate(-24.520000) translate(-6.782396, -10.005432) " cx="6.78239571" cy="10.0054315" r="1"></circle>
+                        <path d="M5.13333333,4.45618716 C5.34069307,3.77006833 6.01688947,3.27400961 6.82016298,3.21872635 C7.62343649,3.16344309 8.37882404,3.56097667 8.7045417,4.21040781 C9.03025937,4.85983894 8.85536176,5.61971337 8.26824468,6.10597943 L6.75818879,7.03982411 L6.75818879,7.88028432" id="Path" stroke="#76797B" stroke-linecap="round"></path>
+                        <path d="M14,7 C14,10.8659932 10.8659932,14 7,14 C3.13400675,14 0,10.8659932 0,7 C0,3.13400675 3.13400675,0 7,0 C10.8659932,0 14,3.13400675 14,7 Z" id="Path" stroke="#76797B" stroke-linecap="round" stroke-linejoin="round"></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

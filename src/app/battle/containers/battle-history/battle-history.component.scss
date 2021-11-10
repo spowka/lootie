@@ -1,0 +1,288 @@
+@import '../../../../styles/partials/index.scss';
+@import '../../../../styles/concepts.scss';
+@import '../../../../styles/variables.scss';
+@import '../../../../styles/register.scss';
+
+@include register-component {
+  .bl__header {
+    border-bottom: 1px solid from-theme(battle-toggle-border);
+    color: from-theme(text-color);
+
+    .history {
+      border-color: from-theme(battle-toggle-border);
+    }
+  }
+
+  .bl__table {
+    tr:not(:first-child) {
+      background-color: from-theme(battle-list-item-background);
+    }
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+.bl {
+  &__header {
+    width: 100%;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+    font-size: 12px;
+    letter-spacing: 0.2px;
+    text-align: left;
+    text-transform: uppercase;
+
+    @media screen and (max-width: 767px) {
+      padding-bottom: 0;
+      margin-bottom: 0;
+      padding-left: 20px;
+    }
+
+    @media screen and (max-width: 767px) {
+      padding-left: 10px;
+    }
+
+    &-records {
+
+      img,
+      svg {
+        width: 16px;
+        margin-right: 8px;
+      }
+
+      .history {
+        cursor: pointer;
+
+        &+.history {
+          &::before {
+            width: 1px;
+            height: 45px;
+            background-color: #2d3334;
+            content: '';
+            margin: 0 30px;
+          }
+        }
+
+        @media screen and (max-width: 767px) {
+          flex-direction: column;
+          font-size: 12px;
+          padding: 12px 16px 10px;
+          border-left-width: 1px;
+          border-left-style: solid;
+          min-width: 160px;
+
+          &::before {
+            display: none;
+          }
+
+          svg {
+            margin-right: 0;
+            margin-bottom: 4px;
+          }
+        }
+
+        @media screen and (max-width: 767px) {
+          font-size: 8px;
+          padding: 10px 10px 8px;
+          min-width: 70px;
+
+          svg {
+            margin-bottom: 2px;
+          }
+        }
+      }
+    }
+  }
+
+  &__table {
+    width: 100%;
+
+    .battles-list {
+      max-height: 350px;
+      overflow: auto;
+    }
+
+    &,
+    tbody {
+      display: block;
+    }
+
+    tr {
+      display: flex;
+      overflow: hidden;
+
+      &:not(:last-child) {
+        margin-bottom: 25px;
+      }
+
+      &:first-child {
+        margin-bottom: 12px;
+      }
+    }
+
+    @media (min-width: 767px) and (max-width: 1024px) {
+      tr {
+        td {
+          padding: 0!important;
+        }
+      }
+    }
+
+
+    tr {
+      font-size: 13px;
+      letter-spacing: 0.2px;
+      border-radius: 4px;
+
+      td {
+        padding: 0 20px;
+        text-align: center;
+        text-transform: uppercase;
+
+        &.float-left {
+          text-align: left;
+        }
+      }
+
+      &:first-child {
+        td {
+          color: #535353;
+        }
+      }
+    }
+
+    @media screen and (max-width: 767px) {
+      border-spacing: initial;
+      padding: 24px 20px;
+
+      tr {
+        display: flex;
+        flex-wrap: wrap;
+        padding: 0px 16px;
+
+        &:first-child {
+          display: none;
+        }
+
+        &:not(:last-child) {
+          margin-bottom: 16px;
+        }
+      }
+    }
+
+    @media screen and (max-width: 767px) {
+      padding: 16px 10px;
+
+      tr {
+        padding: 0px 10px;
+
+        &:not(:last-child) {
+          margin-bottom: 10px;
+        }
+      }
+    }
+
+    // tr[app-battle-list-item] {
+    //   animation: fadeIn ease 2s;
+    // }
+  }
+
+  &_h {
+    &__rounds {
+      width: 113px;
+    }
+
+    &__cost,
+    &__winning {
+      width: 160px;
+    }
+
+    &__watch {
+      width: 280px;
+    }
+
+    &__boxes {
+      flex-grow: 1;
+      text-align: left !important;
+      padding-left: 20px !important;
+    }
+
+    &__players {
+      width: 170px;
+    }
+
+    @media (min-width: 767px) and (max-width: 1024px) {
+      &__rounds {
+        min-width: 80px;
+      }
+
+      &__boxes {
+        min-width: 230px;
+        width: 985px;
+      }
+
+      &__cost,
+      &__winning {
+       min-width: 85px;
+      }
+
+      &__players {
+        min-width: 80px;
+      }
+
+      &__watch {
+       min-width: 110px;
+       max-width: 110px;
+      }
+    }
+
+    @media (min-width: 1023px) and (max-width: 1365px) {
+      &__rounds {
+        width: 80px;
+      }
+
+      &__cost,
+      &__winning {
+        width: 120px;
+      }
+
+      &__players {
+        width: 150px;
+      }
+
+      &__watch {
+        width: 220px;
+      }
+    }
+  }
+}
+
+.page-title {
+  margin-top: 90px;
+
+  @media screen and (max-width: 767px) {
+    margin-top: 25px;
+  }
+}
+
+.no-battle {
+  padding: 100px 0;
+  color: #535353;
+  text-transform: uppercase;
+  font-size: 20px;
+  text-align: center;
+}
+
+@media (max-width: 767px) {
+  .battle-back-button {
+    width: 50px;
+  }
+}

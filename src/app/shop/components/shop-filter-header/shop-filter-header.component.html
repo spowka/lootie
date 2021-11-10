@@ -1,0 +1,21 @@
+<div class="shop-header__container"
+  *ngIf="
+    filters.mKey ||
+    filters.priceFrom">
+  <div class="shop-header__list-items">
+    <div *ngFor="let key of objectKeys(filters)">
+      <div class="shop-header__item" *ngIf="filters[key]">
+        <span class="item-title">{{ filters[key] | titlecase }}</span>
+        <span class="item-close-icon" (click)="deleteFilterItem(key)">
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="shop-header__actions">
+    <button (click)="deleteAllSidebarFilters()">
+      <img [src]="'/assets/images/icons/clean-filter.svg'">
+      <span>{{ 'SHOP.CLEAR_FILTERS' | translate }}</span>
+    </button>
+  </div>
+</div>

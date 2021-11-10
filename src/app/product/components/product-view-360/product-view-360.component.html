@@ -1,0 +1,19 @@
+<section class="view__container">
+  <div class="view__image-preview">
+    <img [src]="previewImage">
+    <div class="view__backdrop-preview-image"></div>
+    <div class="view__icon"></div>
+  </div>
+
+  <div class="slider-bar" (mousedown)="onMouseDown($event)" (click)="onClick($event)" #sliderBar>
+    <div class="slider-bar__movable-thumb-dot"></div>
+    <div class="slider-bar__filled"></div>
+  </div>
+
+  <div class="view__slides">
+    <div class="view__slide" *ngFor="let image of images">
+      <img [src]="image">
+      <div class="view__backdrop-slide"></div>
+    </div>
+  </div>
+</section>

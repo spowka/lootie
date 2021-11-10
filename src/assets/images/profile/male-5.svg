@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="100px" height="100px" viewBox="0 0 100 100" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 61.2 (89653) - https://sketch.com -->
+    <title>Grey 2</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="User-pic" transform="translate(-151.000000, -674.000000)">
+            <g id="Grey-2" transform="translate(151.000000, 674.000000)">
+                <rect id="Rectangle-Copy-16" fill="#D6D6D6" x="0" y="0" width="100" height="100"></rect>
+                <rect id="Rectangle-Copy-20" fill="#2C2C2C" x="8" y="8" width="36" height="36"></rect>
+                <rect id="Rectangle-Copy-21" fill="#2C2C2C" x="56" y="56" width="36" height="36"></rect>
+                <rect id="Rectangle" fill="#2C2C2C" transform="translate(50.000000, 50.000000) rotate(45.000000) translate(-50.000000, -50.000000) " x="46" y="20" width="8" height="60"></rect>
+            </g>
+        </g>
+    </g>
+</svg>

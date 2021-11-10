@@ -1,0 +1,176 @@
+@import "../../../../styles/variables";
+@import "../../../../styles/register.scss";
+
+@include register-component {
+  @media(max-width: 767px) {
+    .ntfs-wrapper {
+      .mobile {
+        background: from-theme(mobile-toast-background);
+
+        .ntfs-message {
+          color: from-theme(mobile-toast-text-color);
+        }
+      }
+    }
+  }
+  .toast-success-custom {
+
+    .ntfs-type-icon {
+      background-image: from-theme(notification-success-icon);
+    }
+
+    &.ntfs-wrapper {
+      background-color: from-theme(notification-success-background);
+    }
+
+    .ntfs-type-icon-background {
+      background: from-theme(notification-success-icon-bg);
+    }
+
+    .ntfs-close-icon {
+      color: from-theme(auth-welcome-title-color);
+    }
+
+    .ntfs-message-box {
+
+      .title {
+        color: from-theme(notification-success-title)
+      }
+    }
+
+  }
+
+  .toast-error-custom {
+    .ntfs-type-icon {
+      background-image: from-theme(notification-error-icon);
+    }
+
+    &.ntfs-wrapper {
+      background: from-theme(notification-success-background);
+    }
+
+    .ntfs-type-icon-background {
+      background: from-theme(notification-error-icon-bg);
+    }
+
+    .ntfs-close-icon {
+      color: from-theme(auth-welcome-title-color);
+    }
+
+    .ntfs-message-box {
+      .title {
+        color: from-theme(notification-error-title)
+      }
+    }
+  }
+}
+
+.ntfs-wrapper {
+  display: flex;
+  min-height: 70px;
+  width: 100%;
+  position: relative;
+  border-radius: 6px;
+  box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.1);
+  margin-bottom: 10px;
+
+  .no-wrap {
+    flex-wrap: unset;
+    height: 100%;
+  }
+
+  .ntfs-type-icon-background {
+    min-width: 70px;
+    height: 100%;
+    align-items: center;
+  }
+
+  .ntfs-type-icon {
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 25px;
+    height: 25px;
+  }
+
+  .ntfs-message-box {
+    padding: 10px 15px;
+
+    .title {
+      width: 87px;
+      height: 19px;
+      font-size: 14px;
+      font-weight: bold;
+      letter-spacing: 0.72px;
+    }
+  }
+
+  .ntfs-message {
+    padding: 0;
+    max-width: 100%;
+    word-break: break-all;
+    font-size: 16px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.5;
+    letter-spacing: normal;
+    color: #4d6168;
+    word-break: break-word;
+
+    strong {
+      font-weight: 500;
+    }
+  }
+
+  .ntfs-close-icon {
+    cursor: pointer;
+    margin-right: 15px;
+    position: absolute;
+    pointer-events: auto;
+    top: 10px;
+    right: 0;
+  }
+}
+
+@media(max-width: 767px) {
+  .toast-error-custom {
+    .ntfs-type-icon {
+      background-image: url("/assets/images/icons/notification-mobile-error.svg");
+    }
+  }
+
+  .ntfs-wrapper {
+    margin-right: 15px;
+    .ntfs-message-box {
+      padding: 13px 15px;
+
+      .title {
+        display: none;
+      }
+    }
+
+    .ntfs-message {
+      font-size: 12px;
+    }
+
+    .ntfs-type-icon-background {
+      background: none!important;
+      height: unset;
+      margin-top: 10px;
+    }
+
+    .mobile {
+     flex-direction: column;
+      width: 100%;
+      min-height: 88px;
+    }
+
+    .ntfs-close-icon {
+      position: absolute;
+      top: 5px;
+      right: 5px;
+      margin-right: unset;
+    }
+  }
+}

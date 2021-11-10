@@ -1,0 +1,50 @@
+@import "../../../../styles/partials/index.scss";
+@import "../../../../styles/variables.scss";
+
+
+@include register-component {
+  .paginator {
+    color: from-theme(paginator-color);
+  }
+  .page-button {
+    color: from-theme(paginator-color);
+    background-color: from-theme(paginator-button-background);
+
+    &:hover {
+      color: from-theme(color);
+    }
+    &.selected {
+      background-image: from-theme(primary-gradient);
+      color: #fff;
+    }
+  }
+  .mat-icon {
+    color: from-theme(paginator-color);
+
+    &:hover:not(.disabled) {
+      color: from-theme(color);
+    }
+  }
+}
+
+.paginator {
+  display: flex;
+  justify-content: center;
+}
+.page-button {
+  margin: 0 4px;
+  border: none;
+  border-radius: 4px;
+
+  @media screen and (max-width: 767px) {
+    min-width: 30px;
+    margin: 0 7px;
+  }
+}
+.mat-icon {
+  cursor: pointer;
+
+  &.disabled {
+    cursor: default;
+  }
+}

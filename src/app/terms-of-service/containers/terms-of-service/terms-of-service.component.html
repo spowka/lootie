@@ -1,0 +1,207 @@
+<div *ngIf="isMobile$ | async" [ngClass]="{ 'slider-container-mobile': (currentUrl$ | async) !== '/' }" class="slider-container">
+  <app-cases-slider></app-cases-slider>
+</div>
+
+
+<div id="terms" class="page-container">
+  <div class="page-title center m-b-10">
+    {{'TERMS_OF_SERVICE.PAGE_TITLE' | translate }}
+  </div>
+
+  <div class="page-subtitle center m-b-20">
+    {{'TERMS_OF_SERVICE.PAGE_SUB_TITLE' | translate }}
+  </div>
+
+  <div class="flex-row flex-row__center m-b-50 tos-actions" *ngIf="(isAuthenticated$ | async) && !(user$ | async)?.tosApproved">
+    <button mat-button class="btn-large btn-white" (click)="decline()">{{'TERMS_OF_SERVICE.DECLINE' | translate }}</button>
+    <button mat-button class="btn-large btn-linear" (click)="accept()">{{'TERMS_OF_SERVICE.ACCEPT' | translate }}</button>
+  </div>
+
+  <div class="tos">
+    <div class="tos-content">
+      <div class="p-lg">
+        {{'TERMS_OF_SERVICE.INREODUCTION_TITLE' | translate }}
+      </div>
+      <hr>
+      <div class="p-lg tos-content__text" [innerHTML]="'TERMS_OF_SERVICE.INREODUCTION' | translate">
+      </div>
+    </div>
+    <div class="tos-content">
+      <div class="p-lg">
+        {{'TERMS_OF_SERVICE.COMPLIANCE_TITLE' | translate }}
+      </div>
+      <hr>
+      <div class="p-lg tos-content__text">
+        {{'TERMS_OF_SERVICE.COMPLIANCE' | translate }}
+      </div>
+    </div>
+    <div class="tos-content">
+      <div class="p-lg">
+        {{'TERMS_OF_SERVICE.MIN_AGE_REQUIREMENT' | translate }}
+      </div>
+      <hr>
+      <div class="p-lg tos-content__text">
+        {{'TERMS_OF_SERVICE.ABOUT_MIN_AGE_REQUIREMENT' | translate }}
+      </div>
+    </div>
+    <div class="tos-content">
+      <div class="p-lg">
+        {{'TERMS_OF_SERVICE.CHANGEING_OUR_TERMS' | translate }}
+      </div>
+      <hr>
+      <div class="p-lg tos-content__text">
+        {{'TERMS_OF_SERVICE.ABOUT_CHANGEING_OUR_TERMS' | translate }}
+      </div>
+    </div>
+    <div class="tos-content">
+      <div class="p-lg">
+        {{'TERMS_OF_SERVICE.SERVICES' | translate }}
+      </div>
+      <hr>
+      <div class="p-lg tos-content__text">
+        {{'TERMS_OF_SERVICE.ABOUT_SERVICES' | translate }}
+      </div>
+    </div>
+    <div class="tos-content">
+      <div class="p-lg">
+        {{'TERMS_OF_SERVICE.LOOTBOXES' | translate }}
+      </div>
+      <hr>
+      <div class="p-lg tos-content__text">
+        {{'TERMS_OF_SERVICE.ABOUT_LOOTBOXES' | translate }}
+      </div>
+    </div>
+    <div class="tos-content">
+      <div class="p-lg">
+        {{'TERMS_OF_SERVICE.PRIVACY_POLICY_DOCUMENT' | translate }}
+      </div>
+      <hr>
+      <div class="p-lg tos-content__text">
+        {{'TERMS_OF_SERVICE.ABOUT_PRIVACY_POLICY_DOCUMENT' | translate }}
+      </div>
+    </div>
+    <div class="tos-content">
+      <div class="p-lg">
+        {{'TERMS_OF_SERVICE.REGISTERING' | translate }}
+      </div>
+      <hr>
+      <div class="p-lg tos-content__text">
+        {{'TERMS_OF_SERVICE.ABOUT_REGISTERING' | translate }}
+      </div>
+    </div>
+    <div class="tos-content">
+      <div class="p-lg">
+        {{'TERMS_OF_SERVICE.CONTENT' | translate }}
+      </div>
+      <hr>
+      <div class="p-lg tos-content__text">
+        {{'TERMS_OF_SERVICE.ABOUT_CONTENT' | translate }}
+      </div>
+    </div>
+    <div class="tos-content">
+      <div class="p-lg">
+        {{'TERMS_OF_SERVICE.LICENSE' | translate }}
+      </div>
+      <hr>
+      <div class="p-lg tos-content__text">
+        {{'TERMS_OF_SERVICE.ABOUT_LICENSE' | translate }}
+      </div>
+    </div>
+    <div class="tos-content">
+      <div class="p-lg">
+        {{'TERMS_OF_SERVICE.RULE_OF_CONDUCT' | translate }}
+      </div>
+      <hr>
+      <div class="p-lg tos-content__text" [innerHTML]="'TERMS_OF_SERVICE.RULES' | translate">
+      </div>
+    </div>
+    <div class="tos-content">
+      <div class="p-lg">
+        {{'TERMS_OF_SERVICE.TERMINATION_AND_ACCESS' | translate }}
+      </div>
+      <hr>
+      <div class="p-lg tos-content__text">
+        {{'TERMS_OF_SERVICE.ABOUT_TERMINATION_AND_ACCESS' | translate }}
+      </div>
+    </div>
+    <div class="tos-content">
+      <div class="p-lg">
+        {{'TERMS_OF_SERVICE.INDEMITY' | translate }}
+      </div>
+      <hr>
+      <div class="p-lg tos-content__text">
+        {{'TERMS_OF_SERVICE.ABOUT_INDEMITY' | translate }}
+      </div>
+    </div>
+    <div class="tos-content">
+        <div class="p-lg">
+          {{'TERMS_OF_SERVICE.COUNTERFEIT' | translate }}
+        </div>
+        <hr>
+        <div class="p-lg tos-content__text">
+          {{'TERMS_OF_SERVICE.ABOUT_COUNTERFEIT_1' | translate }}
+        </div>
+        <br>
+        <div class="p-lg tos-content__text">
+          {{'TERMS_OF_SERVICE.ABOUT_COUNTERFEIT_2' | translate }}
+        </div>
+      </div>
+    <div class="tos-content">
+        <div class="p-lg">
+          {{'TERMS_OF_SERVICE.LOOTIE_WALLET' | translate }}
+        </div>
+        <hr>
+        <div class="p-lg tos-content__text">
+          {{'TERMS_OF_SERVICE.ABOUT_LOOTIE_WALLET' | translate }}
+        </div>
+      </div>
+    <div class="tos-content">
+      <div class="p-lg">
+        {{'TERMS_OF_SERVICE.STATUE_LIMITATION' | translate }}
+      </div>
+      <hr>
+      <div class="p-lg tos-content__text">
+        {{'TERMS_OF_SERVICE.ABOUT_LIMITATION' | translate }}
+      </div>
+    </div>
+    <div class="tos-content">
+      <div class="p-lg">
+        {{'TERMS_OF_SERVICE.DISCLAIMER' | translate }}
+      </div>
+      <hr>
+      <div class="p-lg tos-content__text">
+        {{'TERMS_OF_SERVICE.ABOUT_DISCLAIMER' | translate }}
+      </div>
+    </div>
+    <div class="tos-content">
+      <div class="p-lg">
+        {{'TERMS_OF_SERVICE.GOVERNING_LAWS' | translate }}
+      </div>
+      <hr>
+      <div class="p-lg tos-content__text">
+        {{'TERMS_OF_SERVICE.ABOUT_GOVERNING_LAWS' | translate }}
+      </div>
+    </div>
+    <div class="tos-content">
+      <div class="p-lg">
+        {{'TERMS_OF_SERVICE.FINAL_PROVISIONS' | translate }}
+      </div>
+      <hr>
+      <div class="p-lg tos-content__text">
+        {{'TERMS_OF_SERVICE.ABOUT_FINAL_PROVISIONS' | translate }}
+      </div>
+    </div>
+    <div class="tos-content">
+      <div class="p-lg">
+        {{'TERMS_OF_SERVICE.CONTACT' | translate }}
+      </div>
+      <hr>
+      <div class="p-lg">
+        <div class="tos-content__text">
+          {{'TERMS_OF_SERVICE.ABOUT_CONTACT' | translate }}
+        </div>
+        <a class="link" href="mailto:support@lootie.com" target="_top">support@lootie.com.</a>
+      </div>
+    </div>
+  </div>
+</div>

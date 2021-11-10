@@ -1,0 +1,197 @@
+<div id="deposits" infiniteScroll infiniteScrollDistance="0" [scrollWindow]="false" (scrolled)="onScroll()">
+  <table class="stripped header-table" *ngIf="!(isMobile$ | async); else mobileDepositHistory">
+    <thead>
+      <tr>
+        <td>
+          {{'DEPOSITS.TRANSACTION_ID' | translate }}
+        </td>
+        <td>
+          {{'DEPOSITS.PAYMENT_METHOD' | translate }}
+        </td>
+        <td>
+          {{'DEPOSITS.STATUS' | translate }}
+        </td>
+        <td>
+          {{'DEPOSITS.COMMENT' | translate }}
+        </td>
+        <td>
+          {{'DEPOSITS.AMOUNT' | translate }}
+        </td>
+        <td>
+          {{'DEPOSITS.DATE' | translate }}
+        </td>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let deposit of deposits">
+        <td>#{{ deposit._id }}</td>
+        <td>{{ deposit.subType | replace: '_':' ' }}</td>
+        <td>{{ deposit.status | capitalizeFirst }}</td>
+        <td>
+          <ng-container *ngIf="deposit.extId; else paymentExpired">
+            <div *ngIf="deposit.subType === 'G2A'">
+              <span *ngIf="deposit.status === 'PENDING'">
+                {{'WITHDRAW.STATUS_PENDING' | translate }}&nbsp;
+                <a href="https://checkout.pay.g2a.com/index/gateway?token={{ deposit.extId }}" target="_blank">
+                  {{ 'WITHDRAW.PAYMENT_REDIRECT' | translate }}
+                </a>
+              </span>
+
+              <span *ngIf="deposit.status === 'COMPLETED' || deposit.status === 'FAILED'">
+                {{ 'WITHDRAW.STATUS_COMPLETED' | translate:{value: deposit.extId} }}&nbsp;
+                <a *ngIf="deposit.status === 'FAILED'" href="https://supporthub.g2a.com/marketplace/en/payments/my-paymenttransaction-failed-what-should-i-do" target="_blank">{{ 'WITHDRAW.G2A_SUPPORT' | translate }}</a>
+              </span>
+            </div>
+            <div *ngIf="deposit.subType === 'PAYOP'">
+              <span *ngIf="deposit.status === 'PENDING'">
+                {{'WITHDRAW.STATUS_PENDING' | translate }}&nbsp;
+                <a href="https://payop.com/en/payment/{{ deposit.extId }}" target="_blank">
+                  {{ 'WITHDRAW.PAYMENT_REDIRECT' | translate }}
+                </a>
+              </span>
+
+              <span *ngIf="deposit.status === 'COMPLETED' || deposit.status === 'FAILED'">
+                {{ 'WITHDRAW.STATUS_COMPLETED' | translate:{value: deposit.extId} }}&nbsp;
+              </span>
+            </div>
+            <div *ngIf="deposit.subType === 'GIFTCARD'">
+              <span *ngIf="deposit.status === 'PENDING'">
+                {{'WITHDRAW.STATUS_PENDING' | translate }}&nbsp;
+              </span>
+
+              <span *ngIf="deposit.status === 'COMPLETED' || deposit.status === 'FAILED'">
+                {{ 'WITHDRAW.CODE_COMPLETED' | translate:{value: deposit.extId} }}&nbsp;
+              </span>
+            </div>
+            <div *ngIf="deposit.subType === 'COINBASE'">
+              <span *ngIf="deposit.status === 'PENDING'">
+                {{'WITHDRAW.STATUS_PENDING' | translate }}&nbsp;
+                <a href="https://commerce.coinbase.com/charges/{{ deposit.extId }}" target="_blank">
+                  {{ 'WITHDRAW.PAYMENT_REDIRECT' | translate }}
+                </a>
+              </span>
+
+              <span *ngIf="deposit.status === 'COMPLETED' || deposit.status === 'FAILED'">
+                {{ 'WITHDRAW.STATUS_COMPLETED' | translate:{value: deposit.extId} }}&nbsp;
+              </span>
+            </div>
+          </ng-container>
+        </td>
+        <td>$ {{ deposit.value | number:'1.2-2' }}</td>
+        <td>{{ deposit.createdAt | date: 'h:mm a d MMMM y' }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <ng-template #mobileDepositHistory>
+    <div class="deposits-mobile__container">
+      <div class="deposits-mobile__item" *ngFor="let deposit of deposits">
+        <div class="deposits-mobile__item-content">
+          <div class="deposits-mobile__label">
+            {{'DEPOSITS.TRANSACTION_ID' | translate }}
+          </div>
+          <div class="deposits-mobile__value bold-text">
+            #{{ deposit._id }}
+          </div>
+        </div>
+
+        <div class="deposits-mobile__item-content">
+          <div class="deposits-mobile__label">
+            {{'DEPOSITS.PAYMENT_METHOD' | translate }}
+          </div>
+          <div class="deposits-mobile__value">
+            {{ deposit.subType | replace: '_':' ' }}
+          </div>
+        </div>
+
+        <div class="deposits-mobile__item-content">
+          <div class="deposits-mobile__label">
+            {{'DEPOSITS.STATUS' | translate }}
+          </div>
+          <div class="deposits-mobile__value">
+            {{ deposit.status | capitalizeFirst }}
+          </div>
+        </div>
+
+        <div class="deposits-mobile__item-content">
+          <div class="deposits-mobile__label">
+            {{'DEPOSITS.COMMENT' | translate }}
+          </div>
+          <div class="deposits-mobile__value">
+            <ng-container *ngIf="deposit.extId; else paymentExpired">
+              <div *ngIf="deposit.subType === 'G2A'">
+                <span *ngIf="deposit.status === 'PENDING'">
+                  {{'WITHDRAW.STATUS_PENDING' | translate }}&nbsp;
+                  <a href="https://checkout.pay.g2a.com/index/gateway?token={{ deposit.extId }}" target="_blank">
+                    {{ 'WITHDRAW.PAYMENT_REDIRECT' | translate }}
+                  </a>
+                </span>
+
+                <span *ngIf="deposit.status === 'COMPLETED' || deposit.status === 'FAILED'">
+                  {{ 'WITHDRAW.STATUS_COMPLETED' | translate:{value: deposit.extId} }}&nbsp;
+                  <a *ngIf="deposit.status === 'FAILED'"
+                    href="https://supporthub.g2a.com/marketplace/en/payments/my-paymenttransaction-failed-what-should-i-do"
+                    target="_blank">{{ 'WITHDRAW.G2A_SUPPORT' | translate }}</a>
+                </span>
+              </div>
+              <div *ngIf="deposit.subType === 'GIFTCARD'">
+                <span *ngIf="deposit.status === 'PENDING'">
+                  {{'WITHDRAW.STATUS_PENDING' | translate }}&nbsp;
+                </span>
+
+                <span *ngIf="deposit.status === 'COMPLETED' || deposit.status === 'FAILED'">
+                  {{ 'WITHDRAW.CODE_COMPLETED' | translate:{value: deposit.extId} }}&nbsp;
+                </span>
+              </div>
+              <div *ngIf="deposit.subType === 'COINBASE'">
+                <span *ngIf="deposit.status === 'PENDING'">
+                  {{'WITHDRAW.STATUS_PENDING' | translate }}&nbsp;
+                  <a href="https://commerce.coinbase.com/charges/{{ deposit.extId }}" target="_blank">
+                    {{ 'WITHDRAW.PAYMENT_REDIRECT' | translate }}
+                  </a>
+                </span>
+
+                <span *ngIf="deposit.status === 'COMPLETED' || deposit.status === 'FAILED'">
+                  {{ 'WITHDRAW.STATUS_COMPLETED' | translate:{value: deposit.extId} }}&nbsp;
+                </span>
+              </div>
+            </ng-container>
+          </div>
+        </div>
+
+        <div class="deposits-mobile__item-content">
+          <div class="deposits-mobile__label">
+            {{'DEPOSITS.AMOUNT' | translate }}
+          </div>
+          <div class="deposits-mobile__value">
+            $ {{ deposit.value | number:'1.2-2' }}
+          </div>
+        </div>
+
+        <div class="deposits-mobile__item-content">
+          <div class="deposits-mobile__label">
+            {{'DEPOSITS.DATE' | translate }}
+          </div>
+          <div class="deposits-mobile__value">
+            {{ deposit.createdAt | date: 'h:mm a d MMMM y' }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+
+  <ng-template #paymentExpired>
+    <span>
+      {{'WITHDRAW.STATUS_EXPIRED' | translate }}&nbsp;
+      <a [routerLink]="['/deposit']">{{ 'WITHDRAW.RETRY_HERE' | translate }}</a>
+    </span>
+  </ng-template>
+  <div *ngIf="!deposits.length && !(loading$ | async) && !loadingData" class="empty-data">
+    {{'NO_DATA' | translate }}
+  </div>
+  <div class="flex-row flex-row__center loading">
+    <mat-spinner *ngIf="loading$ | async" mode="indeterminate" class="skinworld-customized"></mat-spinner>
+  </div>
+</div>
+

@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="203" height="236" viewBox="0 0 203 236">
+    <g fill="none" fill-rule="evenodd" opacity=".6" transform="translate(0 1.745)">
+        <path fill="#4FC1E3" d="M96.5 126.255L101 145.255 92 145.255z" transform="rotate(-103 96.5 135.755)"/>
+        <path fill="#F06072" d="M188.5 217.255L193 236.255 184 236.255z" transform="rotate(-106 188.5 226.755)"/>
+        <path fill="#4FC1E3" d="M124.5 17.255L129 36.255 120 36.255z" transform="rotate(-134 124.5 26.755)"/>
+        <path fill="#4FC1E3" d="M179.5 165.255L184 184.255 175 184.255z" transform="rotate(-54 179.5 174.755)"/>
+        <path fill="#F06072" d="M117.5 61.255L122 80.255 113 80.255z" transform="rotate(-67 117.5 70.755)"/>
+        <path fill="#F06072" d="M49.5 208.255L54 227.255 45 227.255z" transform="rotate(-122 49.5 217.755)"/>
+        <path fill="#FCD834" d="M172 197.255L178 206.255 166 206.255z" transform="rotate(-150 172 201.755)"/>
+        <path fill="#8847FF" d="M174 90.255L180 99.255 168 99.255z" transform="rotate(99 174 94.755)"/>
+        <path fill="#4FC1E3" d="M8 215.255L14 224.255 2 224.255z" transform="rotate(125 8 219.755)"/>
+        <path fill="#8847FF" d="M55 141.255L61 150.255 49 150.255z" transform="rotate(61 55 145.755)"/>
+        <circle cx="137" cy="106.255" r="5" fill="#FCD834" transform="rotate(-180 137 106.255)"/>
+        <circle cx="100" cy="15.255" r="5" fill="#FCD834" transform="rotate(-180 100 15.255)"/>
+        <circle cx="84" cy="72.255" r="5" fill="#19BD66" transform="rotate(-180 84 72.255)"/>
+        <circle cx="191" cy="19.255" r="5" fill="#FCD834" transform="rotate(-180 191 19.255)"/>
+        <circle cx="85" cy="196.255" r="5" fill="#8847FF" transform="rotate(-180 85 196.255)"/>
+        <path fill="#19BD66" d="M118 157.255H133V160.255H118z" transform="rotate(-180 125.5 158.755)"/>
+        <path fill="#FCD834" d="M93 221.255H108V224.255H93z" transform="rotate(-147 100.5 222.755)"/>
+        <path fill="#F06072" d="M188 112.255H203V115.255H188z" transform="rotate(-136 195.5 113.755)"/>
+        <path fill="#FCD834" d="M53 120.255H68V123.255H53z" transform="rotate(64 60.5 121.755)"/>
+        <path fill="#F06072" d="M141 170.255H156V173.255H141z" transform="rotate(139 148.5 171.755)"/>
+        <path fill="#FCD834" d="M153 39.255H168V42.255H153z" transform="rotate(139 160.5 40.755)"/>
+        <path fill="#F06072" d="M30 173.255H45V176.255H30z" transform="rotate(159 37.5 174.755)"/>
+        <path fill="#F06072" d="M147 127.255H150V130.255H147z" transform="rotate(-180 148.5 128.755)"/>
+        <path fill="#8847FF" d="M117 182.255H120V185.255H117z" transform="rotate(168 118.5 183.755)"/>
+        <path fill="#FCD834" d="M100 43.255H103V46.255H100z" transform="rotate(166 101.5 44.755)"/>
+        <path fill="#19BD66" d="M190 45.255H193V48.255H190z" transform="rotate(140 191.5 46.755)"/>
+        <path fill="#FCD834" d="M195 152.255H198V155.255H195z" transform="rotate(154 196.5 153.755)"/>
+        <path fill="#4FC1E3" d="M143 78.255H146V81.255H143z" transform="rotate(154 144.5 79.755)"/>
+        <path stroke="#8847FF" d="M172.097 143.255L177.759 139 181.554 143.255 188 139" transform="rotate(-180 180.048 141.128)"/>
+        <path stroke="#19BD66" d="M187.097 81.255L192.759 77 196.554 81.255 203 77" transform="rotate(-129 195.048 79.128)"/>
+        <path stroke="#8847FF" d="M76 99.511L81.662 95.255 85.457 99.511 91.903 95.255" transform="rotate(163 83.952 97.383)"/>
+        <path stroke="#4FC1E3" d="M128.097 218.255L133.759 214 137.554 218.255 144 214" transform="rotate(-128 136.048 216.128)"/>
+        <path stroke="#FCD834" d="M15 194.511L20.662 190.255 24.457 194.511 30.903 190.255" transform="rotate(-174 22.952 192.383)"/>
+        <path stroke="#FCD834" d="M67 174.511L72.662 170.255 76.457 174.511 82.903 170.255" transform="rotate(-78 74.952 172.383)"/>
+        <path stroke="#8847FF" d="M72 35.511L77.662 31.255 81.457 35.511 87.903 31.255" transform="rotate(123 79.952 33.383)"/>
+        <path stroke="#F06072" d="M139.097 10.255L144.759 6 148.554 10.255 155 6" transform="rotate(-123 147.048 8.128)"/>
+    </g>
+</svg>

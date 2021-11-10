@@ -1,0 +1,119 @@
+@import '../../../../styles/variables.scss';
+@import '../../../../styles/partials/index.scss';
+
+@include register-component {
+  .review-instruction {
+    background-color: from-theme(review-instruction-background);
+  
+    &__img {
+      &.sneakers {
+        background-image: from-theme(sneakers-icon);
+      }
+
+      &.sell {
+        background-image: from-theme(sell-icon);
+      }
+
+      &.shipping {
+        background-image: from-theme(shipping-icon);
+      }
+    }
+
+    &__title {
+      color: from-theme(review-instruction-title-color);
+    }
+
+    &__description {
+      color: from-theme(review-instruction-description-color);
+    }
+  }
+}
+
+.review-instruction {
+  border-radius: 2px;
+  padding: 40px;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 100px;
+  box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.05);
+  max-width: 1900px;
+  
+  @media (max-width: 1923px) {
+    max-width: 1660px;
+  }
+
+  @media (max-width: 1683px) {
+    max-width: 1420px;
+  }
+
+  @media (max-width: 1443px) {
+    max-width: 1180px;
+  }
+
+  @media (max-width: 1203px) {
+    max-width: 940px;
+  }
+  
+  @media (max-width: 963px) {
+    max-width: 700px;
+  }
+
+  &__wrapper {
+    flex: 1
+  }
+
+  &__content {
+    width: 80%;
+  }
+
+  &__img {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
+  &__title {
+    font-size: 16px;
+    font-weight: 900;
+    line-height: 1.13;
+    letter-spacing: 0.69px;
+    text-align: center;
+  }
+  
+  &__description {
+    font-size: 14px;
+    line-height: 1.29;
+    letter-spacing: 0.6px;
+    text-align: center;
+  }
+}
+
+
+@media (max-width: 767px) {
+  .review-instruction {
+    flex-direction: column;
+    max-width: calc(100% - 30px);
+
+    .flex-col {
+      width: 100%;
+    }
+
+    &__content {
+      width: 100%;
+      margin-bottom: 30px;
+    }
+
+    &__title {
+      font-size: 15px;
+    }
+
+    &__description {
+      font-size: 12px;
+    }
+  }
+}

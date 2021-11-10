@@ -1,0 +1,14 @@
+.loader-routing-bar {
+  position: fixed;
+  top: 0;
+  z-index: 1001;
+  width: 100%;
+}
+
+.progress-line {
+  height: 4px;
+  width: 0;
+  transition: width 350ms;
+  //animation: processLoad 1s linear infinite;
+  background: linear-gradient(109deg, #f48836, #f4364c);
+}

@@ -1,0 +1,48 @@
+/******** Colors **********/
+
+/* primary colors */
+$colorPrimaryGray: #23282c; // @gray
+$colorPrimaryWhite: #fff; // @white
+$colorPrimaryBlack: #000; // @black
+$colorPrimaryGradient: linear-gradient(109deg, #f48836, #f4364c); // @gradient
+
+/* secondary colors */
+$colorSecondaryYellow: #f8e71c;
+$colorSecondaryRed: #f44747; // @red
+$colorSecondaryBrightRed: #f34747; // @bright-red
+$colorSecondaryBrightOrange: #f46236;
+$colorSecondaryOrange: #f48836; // @orange
+$colorSecondaryPurple: #7289da; // @purple
+$colorSecondaryLightPurple: #9d63d2; // @light-purple
+$colorSecondaryDarkPurple: #6441a4; // @dark-purple
+$colorSecondaryPink: #ff00df; // @pink
+$colorSecondaryGreen: #1abe66; // @green
+$colorSecondaryTurquoise: #50c1e3; // @turquoise
+$colorSecondaryTeal: #09baa6; // @teal
+$colorSecondaryDarkerGray: #b1b2b3;
+$colorSecondaryLightGray: #B8B8B8; // @light-gray b1b2b3
+$colorSecondaryShuttleGray: #5B6873;
+$colorSecondaryWhite: #f2f2f2;
+$colorSecondoryGray: #6e6e6e;
+$colorSecondaryDarkGray: #181d21;
+$colorSecondaryBlue: #1da1f2;
+$colorSecondaryDarkBlue: #3b5998;
+$colorSecondaryDarkBorder: #76797b;
+$colorSecondaryLightBorder: #d1d1d3;
+$colorSecondaryDarkTooltip: #545454;
+$colorSecondaryLightTooltip: #d7d7d7;
+
+/******** Colors **********/
+
+/******** Gradients **********/
+$gradientRed: linear-gradient(to bottom, #f4364c 0%, #f4364c, 100%); // @red
+$gradientOrange: linear-gradient(to bottom, #f48836 0%, #f48836, 100%); // @orange
+$gradientPurple: linear-gradient(to bottom, #7289da 0%, #7289da, 100%); // @purple
+$gradientGreen: linear-gradient(to right, #60b31e 2%, #a4c913); // @green
+$gradientTurquoise: linear-gradient(to bottom, #50c1e3 0%, #50c1e3, 100%); // @turquoise
+
+/******** Shadows **********/
+$shadow5: 0px 10px 20px rgba(0, 0 , 0, .05); // @shadow5
+$shadow10: 0px 10px 20px rgba(0 ,0 ,0 , .1); // @shadow10
+$shadow20: 0px 10px 20px rgba( 0, 0, 0, .2); // @shadow20
+$shadow40: 0 20px 40px 0 rgba(0, 0, 0, 0.4); // @shadow40

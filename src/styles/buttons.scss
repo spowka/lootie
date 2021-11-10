@@ -1,0 +1,140 @@
+@import './variables';
+@import './concepts';
+
+/******** Buttons settings **********/
+button,
+button[mat-button] {
+  outline: 0;
+  border-radius: 25px;
+  background: 0;
+  margin: 0 5px;
+  cursor: pointer;
+  transition: .3s all ease-in-out;
+  box-shadow: $shadow10;
+
+  &:focus {
+    outline: 0;
+  }
+}
+
+button[disabled],
+button[mat-button][disabled] {
+  background: rgba($colorPrimaryWhite, 0.5);
+}
+
+.btn-large,
+.btn-large[mat-button] {
+  @extend .l-md;
+  min-width: 170px;
+  font-size: 13px !important;
+  height: 45px;
+  padding: 15px 25px;
+}
+
+.btn-medium,
+.btn-medium[mat-button] {
+  @extend .l-md;
+  height: 34px;
+  padding: 10px 25px;
+}
+
+.btn-white,
+.btn-white[mat-button] {
+  color: $colorSecondaryDarkGray;
+  background: $colorPrimaryWhite;
+}
+
+.btn-outline-white,
+.btn-outline-white[mat-button] {
+  color: $colorPrimaryWhite;
+  border: 2px solid rgba($colorPrimaryWhite, 0.2);
+
+  &:hover {
+    border-color: $colorPrimaryWhite;
+  }
+
+  &:active {
+    background: $colorPrimaryWhite;
+    color: $colorPrimaryGray;
+    border-color: $colorPrimaryWhite;
+  }
+}
+
+.btn-outline-orange,
+.btn-outline-orange[mat-button] {
+  border: 2px solid $colorSecondaryOrange;
+
+  &:active {
+    background: $colorPrimaryWhite;
+    color: $colorPrimaryGray;
+    border-color: $colorSecondaryOrange;
+  }
+}
+
+.btn-round,
+.btn-round[mat-button] {
+  width: 45px;
+  min-width: 45px;
+  height: 45px;
+  padding: 0;
+  margin: 0 4px;
+  border-radius: 50% !important;
+
+  &.small {
+    width: 37px;
+    min-width: 37px;
+    height: 37px;
+    z-index: 100;
+  }
+}
+
+.btn-linear,
+.btn-linear[mat-button] {
+  background: $colorPrimaryGradient;
+  color: $colorPrimaryWhite;
+}
+
+.btn-linear[disabled],
+.btn-linear[mat-button][disabled] {
+  background: $colorPrimaryGradient;
+  color: $colorPrimaryWhite;
+  opacity: 0.5;
+}
+
+.btn-blue,
+.btn-blue[mat-button] {
+  color: $colorPrimaryWhite;
+  background: $colorSecondaryBlue;
+}
+
+.btn-darkblue,
+.btn-darkblue[mat-button] {
+  color: $colorPrimaryWhite;
+  background: $colorSecondaryDarkBlue;
+}
+
+.btn-purple,
+.btn-purple[mat-button] {
+  color: $colorPrimaryWhite;
+  background: $colorSecondaryPurple;
+}
+
+.btn-darkpurple,
+.btn-darkpurple[mat-button] {
+  color: $colorPrimaryWhite;
+  background: $colorSecondaryDarkPurple;
+}
+
+.btn-no-border,
+.btn-no-border[mat-button] {
+  background: transparent;
+  box-shadow: none;
+  text-transform: uppercase;
+  opacity: 0.4;
+}
+
+.btn-black,
+.btn-black[mat-button] {
+  color: $colorPrimaryWhite;
+  background: $colorPrimaryBlack;
+}

@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <title>
+    Open Mystery Boxes at Lootie | Unbox Authentic Products | Provably fair
+    odds
+  </title>
+  <base href="/" />
+  <meta property="og:description"
+    content="Open or create mystery boxes on the world's biggest mystery box platform. Lootie has a 100% win guarantee and provably fair odds. Unbox authentic products today" />
+  <meta name="description"
+    content="Open or create your own mystery boxes on the world's biggest mystery box platform. Lootie has a 100% win guarantee and provably fair odds. Unbox authentic products today" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <link rel="icon" type="image/x-icon" href="favicon.ico?any=param" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css" />
+  <style>
+    #loading {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      height: 180px;
+      width: 180px;
+      transform: translate(-50%, -50%) scale(0.5);
+    }
+    .body-light {
+      background-color: #fff;
+    }
+    .body-dark {
+      background-color: #181d20;
+    }
+  </style>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAfcjqVMclEYBPDVORGcIaFv1-aCUSfdsM&libraries=places"
+    async defer></script>
+
+  <script defer src="https://cdn.seon.io/js/v4/agent.js"></script>
+</head>
+
+<body class="sw-theme-dark">
+  <app-root>
+    <img id="loading" alt="Loading..." src="./assets/images/loading-dark.gif" />
+  </app-root>
+
+  <script>
+    var body = document.body;
+    var loading = document.getElementById("loading");
+    var theme = localStorage.getItem("theme");
+
+    if(theme === 'light') {
+      body.classList.add("body-light");
+      loading.setAttribute("src", "./assets/images/loader.gif");
+    } else {
+      body.classList.add("body-dark");
+      loading.setAttribute("src", "./assets/images/loader-dark.gif");
+    }
+  </script>
+
+  <!-- Segment's Analytics -->
+  <script>
+    !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","debug","page","once","off","on","addSourceMiddleware","addIntegrationMiddleware","setAnonymousId","addDestinationMiddleware"];analytics.factory=function(e){return function(){var t=Array.prototype.slice.call(arguments);t.unshift(e);analytics.push(t);return analytics}};for(var e=0;e<analytics.methods.length;e++){var key=analytics.methods[e];analytics[key]=analytics.factory(key)}analytics.load=function(key,e){var t=document.createElement("script");t.type="text/javascript";t.async=!0;t.src="https://cdn.segment.com/analytics.js/v1/" + key + "/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(t,n);analytics._loadOptions=e};analytics.SNIPPET_VERSION="4.13.1";
+    analytics.load("Q3XJyjcNPNTOd6bC5ZTUDVndOLVQz5vv");
+    }}();
+  </script>
+  <!-- End Segment's Analytics -->
+
+  <style>
+    .async-hide {
+      opacity: 0 !important
+    }
+
+  </style>
+
+  <!-- Zendesk settings -->
+  <script>
+    window.zESettings = {
+      webWidget: {
+        color: {
+          theme: '#f48836',
+          button: '#f48836',
+          header: '#272A30',
+          launcher: '#f48836',
+          launcherText: '#fff'
+        },
+        offset: {
+          vertical: '40px',
+          mobile: {
+            vertical: '0px'
+          }
+        }
+      }
+    };
+  </script>
+
+  <!-- Checking support localStorage -->
+  <script>
+     if (typeof localStorage === 'undefined' || !(localStorage in window)) {
+      window.localStorage = {
+        state: {},
+        setItem: function (k, v) {
+          this.state[k] = v;
+        },
+        getItem: function (k) {
+          return this.state[k];
+        },
+        removeItem: function (k) {
+          delete this.state[k]
+        }
+      }
+    }
+  </script>
+
+  <!-- Server time sync -->
+  <script>
+    var timeID = null;
+    var retries = 0;
+
+    function syncTime() {
+      var xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+          localStorage.setItem('svt', this.response.data);
+        }
+        var timestamp = Date.now();
+        timeID = setInterval(function () {
+          if (retries > 5) {
+            return;
+          }
+          var t = localStorage.getItem('svt');
+          if (t === undefined) {
+            clearInterval(timeID);
+            syncTime();
+            retries++;
+          } else {
+            localStorage.setItem('svt', Number(t) + Date.now() - timestamp);
+            timestamp = Date.now();
+          }
+        }, 1000);
+      };
+      xhttp.responseType = 'json';
+      xhttp.open("GET", 'https://api.lootie.com/v1/time', true);
+      xhttp.send();
+    }
+
+    window.addEventListener("beforeunload", function (e) {
+      clearInterval(timeID);
+    });
+    localStorage.removeItem('svt');
+    syncTime();
+
+  </script>
+  <!-- End Server time sync -->
+
+  <script>
+    window.uuidv4 = function () {
+      return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+        var r = Math.random() * 16 | 0,
+          v = c == 'x' ? r : (r & 0x3 | 0x8);
+        return v.toString(16);
+      });
+    }
+    window.refreshSessionId = function () {
+      const sessionId = window.uuidv4();
+      localStorage.setItem('sessionId', sessionId);
+      return sessionId;
+    }
+    window.getSession = function () {
+      const session_id = localStorage.getItem('sessionId') || refreshSessionId();
+
+      if (!window.seon) {
+        setTimeout(getSession, 1000);
+        return;
+      }
+
+      window.seon.config({
+        session_id,
+        audio_fingerprint: true,
+        canvas_fingerprint: true,
+        webgl_fingerprint: true,
+        onSuccess: function (message) {
+          console.log('Configuration success');
+        },
+        onError: function (message) {
+          console.log('Configuration failure');
+        }
+      });
+      window.seon.getBase64Session(function (data) {
+        if (data) {
+          localStorage.setItem('session', data);
+          console.log('Session retrieve success');
+        } else {
+          console.log('Session retrieve failure.');
+        }
+      });
+    }
+    window.addEventListener('DOMContentLoaded', getSession);
+
+  </script>
+</body>
+
+</html>

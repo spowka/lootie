@@ -1,0 +1,112 @@
+<div class="shop-sidebar__container" *ngIf="filters">
+  <mat-expansion-panel
+    class="skinworld-customized"
+    [expanded]="true">
+
+    <mat-expansion-panel-header
+      [collapsedHeight]="'50px'"
+      [expandedHeight]="'50px'">
+      <span>Categories</span>
+    </mat-expansion-panel-header>
+
+    <div class="shop-sidebar__filter-item">
+      <div class="shop-sidebar__list-type">
+        <p *ngFor="let key of objectKeys(filters.categories)"
+          [ngClass]="{'active': getFilterState(key, 'mKey')}"
+          (click)="selectedSubCategories(key, filters.categories[key], 'mKey')">
+          {{ key | titlecase }}
+        </p>
+      </div>
+    </div>
+  </mat-expansion-panel>
+
+  <mat-expansion-panel
+    class="skinworld-customized"
+    *ngIf="subCategories && subCategories.length > 0"
+    [expanded]="true">
+
+    <mat-expansion-panel-header
+      [collapsedHeight]="'50px'"
+      [expandedHeight]="'50px'">
+      <span>Brand</span>
+    </mat-expansion-panel-header>
+
+    <div class="shop-sidebar__filter-item">
+      <div class="shop-sidebar__list-type">
+        <p *ngFor="let category of subCategories"
+          [ngClass]="{'active': getFilterState(category.title, 'pKey')}"
+          (click)="selectedSubItems(category, 'pKey')">
+          {{ category.title | titlecase }}
+        </p>
+      </div>
+    </div>
+  </mat-expansion-panel>
+
+  <mat-expansion-panel
+    *ngIf="subItemsCategories && subItemsCategories.length > 0"
+    class="skinworld-customized"
+    [expanded]="true">
+
+    <mat-expansion-panel-header
+      [collapsedHeight]="'50px'"
+      [expandedHeight]="'50px'">
+      <span>Items</span>
+    </mat-expansion-panel-header>
+
+    <div class="shop-sidebar__filter-item">
+      <div class="shop-sidebar__list-type">
+        <p *ngFor="let item of subItemsCategories"
+          [ngClass]="{'active': getFilterState(item, 'sKey')}"
+          (click)="selectFilterItem(item, 'sKey')">
+          {{ item | titlecase }}
+        </p>
+      </div>
+    </div>
+  </mat-expansion-panel>
+
+  <mat-expansion-panel
+    class="skinworld-customized"
+     *ngIf="filters.genders && filters.genders.length > 0"
+    [expanded]="true">
+
+    <mat-expansion-panel-header
+      [collapsedHeight]="'50px'"
+      [expandedHeight]="'50px'">
+      <span>Genders</span>
+    </mat-expansion-panel-header>
+
+    <div class="shop-sidebar__filter-item">
+      <div class="shop-sidebar__checkbox-type">
+        <mat-checkbox class="skinworld-customized"
+          *ngFor="let gender of filters.genders"
+          [checked]="getFilterState(gender, 'gender')"
+          (change)="selectFilterItem(gender, 'gender')">
+          <span class="checkbox-filter-item">{{ gender | titlecase }}</span>
+        </mat-checkbox>
+      </div>
+    </div>
+  </mat-expansion-panel>
+
+  <mat-expansion-panel
+    class="skinworld-customized"
+    *ngIf="filters.sizes && filters.sizes.length > 0"
+    [expanded]="true">
+
+    <mat-expansion-panel-header
+      [collapsedHeight]="'50px'"
+      [expandedHeight]="'50px'">
+      <span>Sizes</span>
+    </mat-expansion-panel-header>
+
+    <div class="shop-sidebar__filter-item">
+      <div class="shop-sidebar__sizes-type">
+        <div class="size-item"
+          *ngFor="let size of filters.sizes"
+          [ngClass]="{'active': getFilterState(size, 'sizes')}"
+          (click)="selectFilterItem(size, 'sizes')">
+          <span>{{ size }}</span>
+        </div>
+      </div>
+    </div>
+  </mat-expansion-panel>
+</div>

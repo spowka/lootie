@@ -1,0 +1,77 @@
+<header class="header-mobile flex-row flex-row__btw" [class.opened]="isHeaderNavbarOpened$ | async">
+  <div class="header-wrapper flex-row flex-row__btw">
+    <a [routerLink]="['/']">
+        <img class="header-mobile__logo" src="/assets/images/icons/new-logo.svg">
+    </a>
+  </div>
+
+  <div class="header-wrapper flex-row flex-row__btw" [ngClass]="{'tablet-header-content': (isLoggedIn$ | async)}">
+    <ng-container *ngIf="!(isLoggedIn$ | async)">
+      <div class="user-block log-out-info">
+        <div (click)="toggleHeaderNavbar()" class="flex-row flex-row__center mb-8"
+          [ngClass]="{'active': (isHeaderNavbarOpened$ | async) }">
+          <div class="user-login__icon-user">
+            <img src="/assets/images/icons/header-user.svg" alt="Toggle header">
+          </div>
+        </div>
+        <span class="user-login__sing-in">sign in</span>
+      </div>
+    </ng-container>
+
+    <ng-container *ngIf="(isLoggedIn$ | async)">
+      <div class="user-block__logged user-info__balance flex-row flex-row__btw">
+        <div class="user-info__balance-icon">
+          <img src="/assets/images/icons/coins.svg" alt="Deposit balance">
+        </div>
+        <span class="user-info__amount">${{ (user$ | async).balance | number:'1.2-2' }}</span>
+        <button mat-button class="btn-small btn-linear user-info__deposit-button" [routerLink]="['/deposit']">
+          <mat-icon>add</mat-icon>
+        </button>
+      </div>
+
+      <button mat-button class="btn-small giveaway-button" [routerLink]="['/giveaway']">
+        {{'HEADER.GIVEAWAY' | translate }}
+      </button>
+
+      <a class="header-nav__sub-item flex-row free" [routerLink]="['/mysterybox/free']" routerLinkActive="active">
+        <span class="item-icon"></span> {{'HEADER_MENU.FREE_BOX' | translate }}
+      </a>
+      <!-- <a class="header-nav__sub-item flex-row battles" [routerLink]="['/battle']" routerLinkActive="active">
+        <span class="item-icon"></span> {{'HEADER_MENU.MYSTERY_BATTLES' | translate }}
+        <span class="item-badge-new">{{'HEADER_MENU.NEW' | translate }}</span>
+      </a> -->
+      <a class="header-nav__sub-item flex-row unboxings" [routerLink]="['/unboxings']" routerLinkActive="active">
+        <span class="item-icon"></span> {{'HISTORY.NAVBAR.UNBOXINGS' | translate }}
+      </a>
+      <a class="header-nav__sub-item flex-row partnership" [routerLink]="['/partner']" routerLinkActive="active">
+        <span class="item-icon"></span> {{'HEADER_MENU.PARTNERSHIP' | translate }}
+      </a>
+      <a class="header-nav__sub-item flex-row boxes" [routerLink]="['/']" [routerLinkActiveOptions]="{exact: true}"
+        routerLinkActive="active">
+        <span class="item-icon"></span> {{'HEADER_MENU.MYSTERY_BOXES' | translate }}
+        </a>
+    </ng-container>
+  </div>
+
+  <div class="header-wrapper user-block flex-row flex-row__btw">
+    <ng-container *ngIf="!(isHeaderNavbarOpened$ | async); else menuOpened">
+      <div (click)="toggleHeaderNavbar()" class="flex-row flex-row__center user-login"
+        [ngClass]="{'active': (isHeaderNavbarOpened$ | async) }">
+        <div class="user-login__icon" alt="Toggle header"></div>
+      </div>
+    </ng-container>
+
+    <ng-template #menuOpened>
+      <div (click)="toggleHeaderNavbar()" class="flex-row flex-row__center user-login header-toggler">
+        <div class="header-toggler__icon" alt="Toggle header"></div>
+      </div>
+    </ng-template>
+  </div>
+</header>
+
+
+<ng-container *ngIf="(isHeaderNavbarOpened$ | async) as isHeaderNavbarOpened">
+  <div [@mobileMenuAnimation]="isHeaderNavbarOpened ? 'opened' : ''" class="header-mobile__content">
+    <app-mobile-menu></app-mobile-menu>
+  </div>
+</ng-container>

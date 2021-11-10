@@ -1,0 +1,3 @@
+<span *ngFor="let item of emoji" (click)=click(item.name)>
+  <img [src]="item.small" alt="{{ item.name }}">
+</span>

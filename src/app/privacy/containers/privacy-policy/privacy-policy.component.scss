@@ -1,0 +1,41 @@
+#privacy {
+  max-width: 900px;
+
+  button {
+    margin: 0 7px;
+  }
+}
+
+.pp {
+  max-height: calc(100vh - 320px);
+  overflow: auto;
+  padding-right: 16px;
+}
+
+.pp-content {
+  width: 100%;
+  margin-bottom: 32px;
+
+  &__text {
+    line-height: 1.25;
+    opacity: 0.4;
+
+    span {
+      display: block;
+      margin-bottom: 28px;
+    }
+  }
+}
+
+@media (max-width: 479px) {
+  .pp {
+    max-height: none;
+    padding: 0;
+  }
+}
+
+@media (orientation: landscape) {
+  .pp {
+    max-height: 100%;
+  }
+}

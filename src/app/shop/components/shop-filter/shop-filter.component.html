@@ -1,0 +1,74 @@
+<div class="shop-filters hide-mobile">
+  <div class="column is-left">
+    <app-filter-button
+      text="Go back"
+      icon="keyboard_arrow_left"
+    ></app-filter-button>
+  </div>
+  <div class="flex-grow column">
+    <app-filter-input
+      class="search-input"
+      icon="search"
+      placeholder="Search items..."
+      [value]="_filters.search"
+      (valueChange)="updateSearch($event)"
+    ></app-filter-input>
+  </div>
+  <div class="column is-right">
+    <app-filter-dropdown
+      label="SORT:"
+      [options]="sortOptions"
+      [value]="currentSort.value"
+      (valueChange)="updateSort($event)"
+    ></app-filter-dropdown>
+  </div>
+</div>
+
+<div class="shop-filters-mobile show-mobile">
+  <div class="block goback">
+    <app-filter-button
+      icon="keyboard_arrow_left"
+    ></app-filter-button>
+  </div>
+  <div class="block search-wrapper">
+    <app-filter-input
+      class="search-input"
+      icon="search"
+      placeholder="Search items..."
+      [value]="_filters.search"
+      (valueChange)="updateSearch($event)"
+    ></app-filter-input>
+  </div>
+  <div class="block sort-wrapper">
+    <app-filter-toggle
+      [ngClass]="{'active': filterSidebarExpanded}"
+      label="Filter:"
+      [value]="getSelectedFilters()"
+      [expanded]="filterSidebarExpanded"
+      (onToggle)="toggleFilter('filterSidebarExpanded', 'filterExpanded', $event)"
+    ></app-filter-toggle>
+
+    <app-filter-toggle
+      [ngClass]="{'active': filterExpanded}"
+      label="Sort:"
+      [value]="currentSort.label"
+      [expanded]="filterExpanded"
+      (onToggle)="toggleFilter('filterExpanded', 'filterSidebarExpanded', $event)"
+    ></app-filter-toggle>
+  </div>
+  <div class="mobile-toggle-content">
+    <app-filter-toggle-content [expanded]="filterSidebarExpanded">
+      <app-shop-filter-sidebar
+        [sidebarFilters]="_filters"
+        (onFiltersChange)="filtersChanges($event)">
+      </app-shop-filter-sidebar>
+    </app-filter-toggle-content>
+
+    <app-filter-toggle-content [expanded]="filterExpanded">
+      <div class="item" (click)="updateSort(opt.value)" *ngFor="let opt of sortOptions">
+        <div class="medium">{{ opt.label }}</div>
+        <div class="size-sm opacity-half m-t-10" *ngIf="opt.description">{{ opt.description }}</div>
+      </div>
+    </app-filter-toggle-content>
+  </div>
+</div>

@@ -1,0 +1,35 @@
+<div class="flex-row flex-row__btw claim-stats">
+  <div class="flex-row claim-stats__info">
+    <span class="claim-stats__title">{{'MY_CASES.CLAIM' | translate }} &amp; {{'MY_CASES.STATS' | translate }}</span>
+    <div class="claim-stats__summary">
+      <span class="claim-stats__summary-label">{{'CLAIM_AND_STATS.AVAILABLE_EARNINGS' | translate }}:</span>
+      <span class="claim-stats__summary-value" [countUp]="(user$ | async)?.caseEarnings" [options]="countUpOptions"
+        [reanimateOnClick]="false">0</span>
+    </div>
+  </div>
+
+  <div class="flex-row claim-stats__values">
+    <div class="flex-row flex-row__btw summary">
+      <div class="flex-col flex-col__start" *ngFor="let item of claimAndStats">
+        <ng-container *ngIf="(_myCases$ | async).length" >
+          <span class="claim-stats__value">{{ item.value | translate }}</span>
+          <span class="claim-stats__label m-b-10">{{ item.title | translate }}</span>
+        </ng-container>
+      </div>
+    </div>
+    <div class="flex-row flex-row__btw claim-stats__actions" *ngIf="!(isMobile$ | async)">
+      <ng-container *ngTemplateOutlet="claim"></ng-container>
+    </div>
+  </div>
+</div>
+
+<div class="flex-row flex-row__btw claim-stats__mobile-actions" *ngIf="(isMobile$ | async)">
+  <ng-container *ngTemplateOutlet="claim"></ng-container>
+</div>
+
+<ng-template #claim>
+  <button type="button" mat-button class="btn-large btn-linear" [disabled]="!(user$ | async)?.caseEarnings"
+    (click)="claimEarnings()">
+    {{'CLAIM_AND_STATS.CLAIM_EARNINGS' | translate }}
+  </button>
+</ng-template>

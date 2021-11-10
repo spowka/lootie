@@ -1,0 +1,122 @@
+<div id="transactions"
+  infiniteScroll
+  infiniteScrollDistance="0"
+  (scrolled)="onScroll()"
+  [scrollWindow]="false">
+
+  <table class="stripped" *ngIf="!(isMobile$ | async); else mobileTransactionsHistory">
+    <thead>
+      <tr>
+        <td>
+          {{'TRANSACTIONS.WHEN' | translate }}
+        </td>
+        <td>
+          {{'TRANSACTIONS.TYPE' | translate }}
+        </td>
+        <td>
+          {{'TRANSACTIONS.BALANCE_CHANGE' | translate }}
+        </td>
+        <td>
+          {{'TRANSACTIONS.REFERENCE' | translate }}
+        </td>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let transaction of transactions">
+        <td>
+          {{ transaction.createdAt | date: 'dd/MM/y h:mm:ss a ' }}
+        </td>
+        <td>
+          {{ transaction.transactionType | replace: '_':' ' }}
+        </td>
+        <td>
+          <div class="transactions__balance-change">
+            <span class="transactions__balance">${{ transaction?.value | number:'1.2-2' }}</span>
+            <!-- <span class="transactions__balance">${{ transaction?.balance | number:'1.2-2' }}</span>
+
+            <span class="transactions__operation plus"
+              *ngIf="transaction?.operation === 'plus'; else minusOperation">
+              + ${{ transaction.value }}
+            </span>
+
+            <ng-template #minusOperation>
+              <span class="transactions__operation minus">
+                - ${{ transaction.value }}
+              </span>
+            </ng-template>
+
+            <span class="transactions__total">= ${{ transaction?.total }}</span> -->
+          </div>
+        </td>
+        <td>
+          <!-- {{ transaction?.reference }} -->
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <ng-template #mobileTransactionsHistory>
+    <div class="transactions-mobile__container">
+      <div class="transactions-mobile__item" *ngFor="let transaction of transactions">
+        <div class="transactions-mobile__item-content">
+          <div class="transactions-mobile__label">
+            {{'TRANSACTIONS.DATE' | translate }}
+          </div>
+          <div class="transactions-mobile__value bold-text">
+            {{ transaction.createdAt | date: 'dd/MM/y h:mm:ss a ' }}
+          </div>
+        </div>
+
+        <div class="transactions-mobile__item-content">
+          <div class="transactions-mobile__label">
+            {{'TRANSACTIONS.TYPE' | translate }}
+          </div>
+          <div class="transactions-mobile__value">
+            {{ transaction.transactionType | replace: '_':' ' }}
+          </div>
+        </div>
+
+        <div class="transactions-mobile__item-content">
+          <div class="transactions-mobile__label">
+            {{'TRANSACTIONS.BALANCE_CHANGE' | translate }}
+          </div>
+          <div class="transactions-mobile__value">
+            <div class="transactions__balance-change">
+              <span class="transactions__balance">${{ transaction?.value | number:'1.2-2' }}</span>
+              <!-- <span class="transactions__balance">${{ transaction?.balance }}</span>
+
+              <span class="transactions__operation plus" *ngIf="transaction?.operation === 'plus'; else minusOperation">
+                + ${{ transaction.value }}
+              </span>
+
+              <ng-template #minusOperation>
+                <span class="transactions__operation minus">
+                  - ${{ transaction.value }}
+                </span>
+              </ng-template>
+
+              <span class="transactions__total">= ${{ transaction?.total }}</span> -->
+            </div>
+          </div>
+        </div>
+
+        <div class="transactions-mobile__item-content">
+          <div class="transactions-mobile__label">
+            {{'TRANSACTIONS.REFERENCE' | translate }}
+          </div>
+          <!-- <div class="transactions-mobile__value">
+            {{ transaction?.reference }}
+          </div> -->
+        </div>
+
+      </div>
+    </div>
+  </ng-template>
+  <div class="empty-data" *ngIf="!transactions.length && !(loading$ | async) && !loadingData">
+    {{'NO_DATA' | translate }}
+  </div>
+  <div class="flex-row flex-row__center loading">
+    <mat-spinner *ngIf="loading$ | async" mode="indeterminate" class="skinworld-customized"></mat-spinner>
+  </div>
+</div>

@@ -1,0 +1,120 @@
+@import '../../../../styles/partials/index.scss';
+@import '../../../../styles/concepts.scss';
+@import '../../../../styles/variables.scss';
+
+@include register-component {
+  .reward-content {
+    background: from-theme(background);
+    color: from-theme(color);
+  }
+
+  .reward-input-wrapper {
+    border-color: from-theme(border-color);
+
+    input.reward-input-field {
+      color: from-theme(color);
+    }
+  }
+}
+
+.reward-content {
+  align-items: center;
+  width: 240px;
+  height: 300px;
+  margin: 10px;
+  border-radius: 4px;
+  background: $colorPrimaryWhite;
+  box-shadow: $shadow5;
+  text-align: center;
+
+  &__title {
+    width: 100%;
+    padding: 18px 0;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    opacity: 0.4;
+    text-transform: uppercase;
+  }
+
+  &__data {
+    height: calc(100% - 52px);
+    padding: 0 20px 30px;
+  }
+
+  &__text {
+    @extend .p-lg;
+    height: 113px;
+    line-height: 1.38;
+  }
+
+  &__buttons:not(.claim-email) {
+    button {
+      &:first-child {
+        margin-bottom: 7px;
+      }
+
+      &:last-child {
+        margin-top: 7px;
+      }
+    }
+
+  }
+}
+
+button {
+  width: 170px;
+}
+
+hr {
+  margin: 0;
+  opacity: .1;
+}
+
+.reward-input-wrapper {
+  width: 170px;
+  padding: 11.5px 10px;
+  border: 1px solid $colorSecondaryLightBorder;
+  border-radius: 25px;
+  margin: 0 auto 7px;
+
+  input.reward-input-field {
+    width: 150px;
+    border: 0;
+    outline: 0;
+    @extend .p-md;
+    @extend %text-elipsis;
+    background-color: transparent;
+  }
+}
+
+.button-icon {
+  @extend %button-icon;
+  margin-right: 15px;
+
+  &.twitter {
+    width: 16.4px;
+    height: 15px;
+  }
+
+  &.facebook {
+    width: 8.9px;
+    height: 15px;
+  }
+
+  &.discord {
+    width: 18px;
+    height: 15px;
+  }
+}
+
+@media(max-width: 479px) {
+  .reward-content {
+    width: 100%;
+
+    &__text {
+      width: 200px;
+      margin: auto;
+    }
+  }
+}

@@ -1,0 +1,259 @@
+@import "../../../../styles/partials/index.scss";
+@import "../../../../styles/concepts.scss";
+
+@include register-component {
+  .auth {
+    &__dialog-wrapper {
+      box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.15);
+      background-color: from-theme(auth-dialog-wrapper-background);
+      border: solid 1px #212a2d;
+    }
+
+    &__welcome-title {
+      color: from-theme(auth-welcome-title-color);
+    }
+
+    &__welcome-description {
+      color: from-theme(auth-welcome-description-color);
+    }
+
+    &__total {
+      color: from-theme(auth-total-color);
+    }
+
+    &__header-tabs {
+      border-bottom: 1px solid from-theme(auth-header-tabs-border);
+    }
+
+    &__header-item {
+      color: #4d6168;
+
+      &.active {
+        color: from-theme(auth-header-item-active-color);
+      }
+    }
+
+    &__right-side {
+      background-image: from-theme(auth-right-side-image);
+    }
+
+    &__welcome-image {
+      background-image: url("/assets/images/icons/new-logo.png");
+    }
+
+    &__welcome-image-dice {
+      background-image: from-theme(auth-welcome-image-dice);
+    }
+
+    &__close {
+      .close-icon {
+        background-image: from-theme(login-close-icon);
+      }
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  .auth {
+    &__dialog-wrapper {
+      box-shadow: from-theme(auth-mobile-dialog-wrapper-shadow);
+      border: solid 1px from-theme(auth-mobile-dialog-wrapper-border);
+    }
+  }
+}
+
+
+.auth {
+  &__dialog-wrapper {
+    width: 100%;
+    max-width: 850px;
+    margin: 0 auto;
+    align-items: inherit;
+  }
+
+  &__close {
+    position: absolute;
+    top: -30px;
+    right: 2px;
+
+    .close-icon {
+      width: 20px;
+      height: 20px;
+      display: block;
+      cursor: pointer;
+    }
+  }
+
+  &__welcome-image-dice {
+    width: 115px;
+    height: 90px;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+  }
+
+  &__left-side {
+    width: 45%;
+    height: 100%;
+    padding: 40px;
+  }
+
+  &__header-tabs {
+    display: flex;
+    align-items: center;
+    margin-bottom: 32px;
+  }
+
+  &__header-item {
+    font-size: 17px;
+    letter-spacing: 0.17px;
+    padding: 0 4px 10px 4px;
+    margin-right: 24px;
+    position: relative;
+    cursor: pointer;
+
+    &.active {
+      font-weight: 500;
+
+      &:after {
+        content: '';
+        width: 100%;
+        height: 3px;
+        bottom: -2px;
+        background-image: linear-gradient(91deg, #f48836, #f4364c);
+        display: flex;
+        position: absolute;
+        left: 0;
+        right: 0;
+      }
+    }
+  }
+
+  &__right-side {
+    width: 55%;
+    padding: 20px 20px 0 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    position: relative;
+  }
+
+  &__welcome-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 60px;
+  }
+
+  &__welcome-image {
+    width: 138px;
+    height: 142px;
+    background-size: cover;
+  }
+
+  &__welcome-title {
+    font-size: 25px;
+    font-weight: 300;
+    letter-spacing: 0.25px;
+    margin: 15px 0 8px 0;
+  }
+
+  &__welcome-description {
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.14px;
+    margin: 0;
+  }
+
+  &__total {
+    display: none;
+    font-size: 13px;
+    font-weight: normal;
+    line-height: 1.24;
+    letter-spacing: 0.44px;
+    text-align: center;
+
+    &>span {
+      font-weight: 500;
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  ::ng-deep {
+    .auth-dialog-container .mat-dialog-container {
+      box-shadow: none;
+    }
+  }
+
+  .auth {
+    &__dialog-wrapper {
+      height: auto;
+      max-width: 600px;
+      width: 90%;
+      margin: 65px auto 60px auto;
+      border-radius: 2px;
+    }
+
+    &__close {
+      display: flex;
+      justify-content: flex-end;
+      width: 100%;
+      position: absolute;
+      right: 32px;
+      top: 32px;
+    }
+
+    &__header-tabs {
+      justify-content: space-between;
+    }
+
+    &__header-item {
+      margin: 0;
+      width: 100px;
+      text-align: center;
+    }
+
+    &__left-side {
+      width: 100%;
+      padding: 0 0 40px 0;
+      max-width: 335px;
+      margin: 0 auto;
+
+      app-login-dialog {
+        ::ng-deep {
+          .social-actions {
+            margin-top: 6px;
+            justify-content: space-between;
+
+            .login {
+              width: 150px;
+              margin: 0;
+            }
+          }
+        }
+      }
+    }
+
+    &__header-tabs {
+      margin: 0 25px 32px 25px;
+      padding-top: 25px;
+    }
+
+    &__right-side {
+      display: none;
+    }
+  }
+}
+
+@media(max-height: 700px) {
+  .auth__close {
+    top: 0px;
+    right: 15px;
+    z-index: 1;
+  }
+}

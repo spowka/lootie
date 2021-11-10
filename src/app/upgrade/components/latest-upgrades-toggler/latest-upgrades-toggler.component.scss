@@ -1,0 +1,32 @@
+@import '../../../../styles/variables.scss';
+@import '../../../../styles/concepts.scss';
+
+.latest-upgrade-toggler {
+  position: absolute;
+  top: 30px;
+  right: 0px;
+  width: 48px;
+  height: 76px;
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+  background: $colorPrimaryGradient;
+  z-index: 1;
+  cursor: pointer;
+
+  .button-icon {
+    @extend %button-icon;
+    position: relative;
+    width: 24px;
+    height: 22px;
+
+    &.chat {
+      background-image: url('/assets/images/icons/upgrade.svg');
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  .latest-upgrade-toggler {
+    height: 66px;
+  }
+}

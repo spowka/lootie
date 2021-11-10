@@ -1,0 +1,480 @@
+@import '../../../../styles/partials/index.scss';
+@import '../../../../styles/concepts.scss';
+@import '../../../../styles/variables.scss';
+@import '../../../../styles/register.scss';
+
+@include register-component {
+  td:not(:last-child) {
+    &::after {
+      background-color: from-theme(battle-border);
+    }
+
+    @media screen and (max-width: 767px) {
+      border-bottom: 1px solid from-theme(battle-border);
+    }
+  }
+
+  .bl {
+
+    &__cost,
+    &__players,
+    &__winning {
+      color: from-theme(text-color);
+    }
+
+    &__boxes {
+      .boxes .box-wrapper .box-label {
+        color: from-theme(text-color);
+      }
+    }
+
+    &__rounds .active-round .indicator-totalRounds {
+      background-image: from-theme(battle-indicator);
+    }
+
+    &__rounds {
+      .active-round {
+        .indicator-totalRounds {
+
+          &.running {
+            background-image: from-theme(battle-indicator-gradient);
+          }
+        }
+      }
+    }
+  }
+}
+
+:host td {
+  position: relative;
+  text-align: center;
+  display: inline-flex;
+  align-items: center;
+
+  &:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    height: calc(100% - 40px);
+    right: 0;
+    top: 0;
+    margin: 20px 0;
+    width: 1px;
+  }
+}
+
+@media(min-width: 767px) {
+  :host td {
+    &:not(.bl__boxes) {
+      flex-shrink: 0;
+      padding: 0px;
+      justify-content: center;
+    }
+  }
+}
+
+.bl {
+  &__rounds {
+    width: 113px;
+
+    .active-round {
+      p {
+        margin: 0;
+        font-size: 10px;
+        letter-spacing: 0.43px;
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-image: $colorPrimaryGradient;
+      }
+
+      .indicator-totalRounds {
+        height: 34px;
+        width: 34px;
+        position: relative;
+
+        &.running {
+          margin: 0 auto 4px;
+        }
+
+        span {
+          font-weight: 400;
+        }
+      }
+    }
+  }
+
+  &__boxes {
+    width: 100%;
+    position: relative;
+    flex-grow: 1;
+    overflow: hidden;
+    padding: 0 15px;
+
+    .boxes {
+      height: 100%;
+      flex-grow: 1;
+      flex-wrap: nowrap;
+      display: flex;
+      flex-shrink: 0;
+      align-items: center;
+
+      mat-icon {
+        height: 20px;
+        width: 20px;
+        font-size: 20px;
+        color: #323d42;
+        margin: 0 10px;
+      }
+
+      .box-wrapper {
+        position: relative;
+        height: 100%;
+        width: 95px;
+        flex: 0 0 auto;
+        border-bottom: 2px solid currentColor;
+
+        &:not(:last-child) {
+          margin-right: 1px;
+        }
+
+        &::before {
+          content: "";
+          position: absolute;
+          left: 0;
+          top: 0;
+          height: 100%;
+          width: 100%;
+          background-image: linear-gradient(to bottom, transparent, currentColor);
+          opacity: .1;
+        }
+
+        .box-image {
+          position: relative;
+          width: 70px;
+          height: 70px;
+
+          img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+          }
+        }
+
+        .box-count {
+          width: 18px;
+          height: 18px;
+          left: 0px;
+          bottom: 0px;
+          position: absolute;
+          padding: 2px;
+          border-radius: 50%;
+          background: $colorPrimaryGradient;
+          color: $colorPrimaryWhite;
+        }
+
+        .box-label {
+          position: relative;
+          margin-top: 5px;
+          font-size: 11px;
+          line-height: 1.27;
+          height: 13px;
+          text-overflow: ellipsis;
+          overflow: hidden;
+          white-space: nowrap;
+          width: 100%;
+          padding: 0 5px;
+        }
+      }
+    }
+  }
+
+  &__cost,
+  &__winning {
+    width: 160px;
+  }
+
+  &__players {
+    width: 170px;
+    padding: 0;
+    flex-direction: column;
+
+    img {
+      width: 22px;
+      height: 22px;
+      margin: 5px;
+      border-radius: 4px;
+
+      &.winner {
+        border: 2px solid #19bd66;
+        transform: scale(1.4);
+      }
+    }
+  }
+
+  &__watch {
+    width: 280px;
+
+    button {
+      max-width: 100%;
+      width: 100%;
+      font-size: 16px;
+      font-weight: 300;
+      height: 35px;
+    }
+
+    .btn-outline-orange {
+      color: transparent;
+      background-image: linear-gradient(109deg, #f48836, #f4364c);
+      -webkit-background-clip: text;
+    }
+
+    .btn-tablet {
+      display: none;
+    }
+  }
+
+  &__cost,
+  &__players,
+  &__winning {
+    font-size: 18px;
+  }
+
+  &__running {
+    margin: 0;
+    position: absolute;
+    right: 0;
+    top: 10px;
+    z-index: 1;
+    letter-spacing: 0.43px;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-image: $colorPrimaryGradient;
+  }
+}
+
+@media(min-width: 767px) and (max-width: 1024px) {
+  .bl {
+    &__boxes {
+      min-width: 220px;
+    }
+
+    &__rounds {
+      width: 60px;
+    }
+
+    &__cost,
+    &__winning,
+    &__players {
+      width: 80px !important;
+   }
+
+    &__watch {
+      width: 110px !important;
+
+      button {
+        span {
+          font-size: 12px;
+        }
+      }
+
+      .btn-tablet {
+        display: block;
+      }
+
+      .btn-desktop {
+        display: none;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1365px) {
+  :host td {
+    padding: 10px;
+
+    &:not(:last-child) {
+      padding: 24px 0 10px;
+    }
+
+    &:last-child {
+      padding: 10px 0;
+    }
+  }
+
+  .bl {
+    &__rounds {
+      width: 80px;
+    }
+
+    &__rounds,
+    &__cost,
+    &__players,
+    &__winning {
+      font-size: 14px;
+    }
+
+    &__cost,
+    &__winning {
+      width: 120px;
+    }
+
+    &__players {
+      width: 150px;
+
+      img {
+        width: 14px;
+        height: 14px;
+        margin: 4px;
+
+        &.winner {
+          transform: scale(1.3);
+        }
+      }
+    }
+
+    &__watch {
+      width: 220px;
+    }
+  }
+}
+
+
+@media screen and (max-width: 767px) {
+  :host td {
+    display: inline-flex;
+    align-items: center;
+
+    &::after {
+      display: none;
+    }
+
+    &:not(:last-child) {
+      padding: 36px 0 16px;
+    }
+
+    &:last-child {
+      padding: 16px 0;
+    }
+  }
+
+  .bl {
+    &__rounds {
+      order: 1;
+      width: 70px;
+
+      svg {
+        width: 20px;
+        height: 20px;
+      }
+
+      p {
+        font-size: 8px;
+      }
+    }
+
+    &__cost {
+      order: 2;
+    }
+
+    &__winning {
+      order: 3;
+    }
+
+    &__cost,
+    &__winning {
+      flex-grow: 1;
+      min-height: 55px;
+      justify-content: center;
+
+      .bl__label {
+        text-align: center;
+      }
+    }
+
+    &__boxes {
+      order: 5;
+      width: 100%;
+
+      .boxes {
+        mat-icon {
+          height: 8px;
+          width: 8px;
+          font-size: 8px;
+          margin: 0 6px;
+        }
+
+        .box-wrapper {
+          width: 80px;
+          height: 90px;
+
+          img {
+            width: 100%;
+            height: 100%;
+          }
+
+          .box-count {
+            width: 15px;
+            height: 15px;
+            font-size: 10px;
+          }
+        }
+      }
+
+      .bl__label {
+        text-align: left;
+      }
+    }
+
+    &__players {
+      order: 4;
+      text-align: right;
+      justify-content: flex-end;
+      width: 70px;
+      flex-direction: row;
+
+      img {
+        width: 12px;
+        height: 12px;
+        margin: 2.5px;
+
+        &:last-child {
+          margin-right: 0;
+        }
+      }
+
+      .bl__label {
+        text-align: right;
+      }
+    }
+
+    &__watch {
+      order: 6;
+      width: 100%;
+
+      button {
+        width: 100%;
+        font-size: 14px;
+        font-weight: 500;
+        margin: 0;
+      }
+    }
+
+    &__label {
+      font-size: 8px;
+      top: 10px;
+      color: #535353;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+      position: absolute;
+      width: 100%;
+      text-align: left;
+      z-index: 1;
+    }
+
+    &__running {
+      top: 10px;
+      font-size: 8px;
+    }
+  }
+}

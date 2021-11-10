@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="23px" height="23px" viewBox="0 0 23 23" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>FAQ</title>
+    <defs>
+        <linearGradient x1="16.1091581%" y1="0%" x2="83.8908419%" y2="100%" id="linearGradient-1">
+            <stop stop-color="#F48836" offset="0%"></stop>
+            <stop stop-color="#F4364C" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Open-Case-1-Open-Menu-(Logged-on)---icons" transform="translate(-78.000000, -166.000000)">
+            <g id="Menu">
+                <g id="FAQ" transform="translate(78.000000, 166.000000)">
+                    <g id="UPGRADE">
+                        <rect id="bound" x="0" y="0" width="23" height="23"></rect>
+                        <path d="M13.8259407,6.78572182 L17.948588,6.78572182 C18.403963,6.78572182 18.7731175,7.15487623 18.7731175,7.61025129 L18.7731175,14.2064871 C18.7731175,14.6618621 18.403963,15.0310165 17.948588,15.0310165 L13.8259407,15.0310165 L13.8259407,18.8966895 C13.8259407,19.0607824 13.7607219,19.2181474 13.6446454,19.3341332 C13.4030518,19.5755379 13.0115044,19.5753847 12.7700998,19.3337913 L4.78095324,11.3383948 C4.53954867,11.0968012 4.53970189,10.7052538 4.78129547,10.4638492 L12.7704419,2.48095324 C12.8863999,2.36508594 13.0436183,2.3 13.2075436,2.3 C13.5490749,2.3 13.8259407,2.57686581 13.8259407,2.91839711 L13.8259407,6.78572182 Z" id="Shape-path" stroke="url(#linearGradient-1)" stroke-width="1.4" fill-rule="nonzero" transform="translate(11.686559, 10.907543) rotate(-270.000000) translate(-11.686559, -10.907543) "></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

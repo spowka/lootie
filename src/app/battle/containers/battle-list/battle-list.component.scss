@@ -1,0 +1,353 @@
+@import "../../../../styles/partials/index.scss";
+@import "../../../../styles/concepts.scss";
+@import "../../../../styles/variables.scss";
+@import "../../../../styles/register.scss";
+
+@include register-component {
+  .bl__how-to-play-btn {
+    border: 1px solid from-theme(battle-toggle-border);
+    background: from-theme(battle-background);
+    color: from-theme(how-to-play-btn-color);
+
+    .btn-icon {
+      background-image: from-theme(how-to-play-btn-icon);
+    }
+  }
+
+  .bl__header {
+    border-bottom: 1px solid from-theme(battle-toggle-border);
+    color: from-theme(text-color);
+
+    .history {
+      border-color: from-theme(battle-toggle-border);
+    }
+  }
+
+  .battle-toggle-text {
+    color: #6e6e6e;
+
+    &.battle-toggle-text--checked {
+      color: from-theme(text-color);
+    }
+  }
+
+  .battle-toggle {
+
+    &-wrapper,
+    &-after,
+    &-before {
+      border-color: from-theme(battle-toggle-border);
+      background-color: from-theme(battle-toggle-background);
+    }
+  }
+
+  .bl__table {
+    tr:not(:first-child) {
+      background-color: from-theme(battle-list-item-background);
+    }
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+.bl {
+  position: relative;
+
+  &__header {
+    width: 100%;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+    font-size: 12px;
+    letter-spacing: 0.2px;
+    text-align: left;
+    text-transform: uppercase;
+
+    @media screen and (max-width: 767px) {
+      padding-left: 10px;
+    }
+
+    &-records {
+
+      img,
+      svg {
+        width: 16px;
+        margin-right: 8px;
+      }
+
+      .history {
+        cursor: pointer;
+
+        &+.history {
+          &::before {
+            width: 1px;
+            height: 45px;
+            background-color: #2d3334;
+            content: "";
+            margin: 0 30px;
+          }
+        }
+
+        @media screen and (max-width: 767px) {
+          flex-direction: column;
+          font-size: 12px;
+          padding: 12px 16px 10px;
+          border-left-width: 1px;
+          border-left-style: solid;
+          min-width: 160px;
+
+          &::before {
+            display: none;
+          }
+
+          svg {
+            margin-right: 0;
+            margin-bottom: 4px;
+          }
+        }
+
+        @media screen and (max-width: 767px) {
+          font-size: 8px;
+          padding: 10px 10px 8px;
+          min-width: 60px;
+
+          svg {
+            margin-bottom: 2px;
+          }
+        }
+      }
+    }
+  }
+
+  &__table {
+    width: 100%;
+
+    &,
+    tbody {
+      display: block;
+    }
+
+    tr {
+      display: flex;
+      overflow: hidden;
+
+      &:not(:last-child) {
+        margin-bottom: 25px;
+      }
+
+      &:first-child {
+        margin-bottom: 12px;
+      }
+    }
+
+    tr {
+      font-size: 13px;
+      letter-spacing: 0.2px;
+      border-radius: 4px;
+
+      td {
+        padding: 0 20px;
+        text-align: center;
+        text-transform: uppercase;
+
+        &.float-left {
+          text-align: left;
+        }
+      }
+
+      &:first-child {
+        td {
+          color: #535353;
+        }
+      }
+    }
+
+    @media screen and (max-width: 767px) {
+      border-spacing: initial;
+      padding: 24px 20px;
+
+      tr {
+        display: flex;
+        flex-wrap: wrap;
+        padding: 0px 16px;
+
+        &:first-child {
+          display: none;
+        }
+
+        &:not(:last-child) {
+          margin-bottom: 16px;
+        }
+      }
+    }
+
+    @media screen and (max-width: 767px) {
+      padding: 16px 10px;
+
+      tr {
+        padding: 0px 10px;
+
+        &:not(:last-child) {
+          margin-bottom: 10px;
+        }
+      }
+    }
+
+    // tr[app-battle-list-item] {
+    //   animation: fadeIn ease 2s;
+    // }
+  }
+
+  &_h {
+    &__rounds {
+      width: 113px;
+    }
+
+    &__cost {
+      width: 160px;
+    }
+
+    &__watch {
+      width: 280px;
+    }
+
+    &__boxes {
+      flex-grow: 1;
+      text-align: left !important;
+      padding-left: 20px !important;
+    }
+
+    &__players {
+      width: 170px;
+    }
+
+    @media screen and (max-width: 1365px) {
+      &__rounds {
+        width: 80px;
+      }
+
+      &__cost {
+        width: 120px;
+      }
+
+      &__players {
+        width: 150px;
+      }
+
+      &__watch {
+        width: 220px;
+      }
+    }
+
+    @media (min-width: 767px) and (max-width: 1024px) {
+      &__rounds {
+        width: 80px;
+      }
+
+      &__cost {
+        width: 80px;
+      }
+
+      &__players {
+        width: 80px;
+      }
+
+      &__watch {
+        width: 110px;
+      }
+    }
+  }
+}
+
+.page-title {
+  margin-top: 90px;
+
+  @media screen and (max-width: 767px) {
+    margin-top: 25px;
+  }
+}
+
+.create-battle {
+
+  img,
+  svg {
+    width: 16px;
+    margin-right: 8px;
+  }
+
+  button {
+    width: 180px;
+    color: $colorPrimaryBlack;
+  }
+}
+
+.subtitle {
+  line-height: 1.19;
+  letter-spacing: 0.21px;
+  text-align: center;
+  color: #5b6873;
+}
+
+@media screen and (max-width: 767px) {
+  .battle-container {
+    padding: 0;
+  }
+}
+
+.no-battle {
+  padding: 100px 0;
+  color: #535353;
+  text-transform: uppercase;
+  font-size: 20px;
+  text-align: center;
+}
+
+.bl__how-to-play-btn {
+  border-radius: 2px;
+  font-size: 16px;
+  line-height: 1.13;
+  text-align: center;
+  padding: 8px 20px;
+  position: absolute;
+  top: -48px;
+  right: 0;
+  display: flex;
+  align-items: center;
+
+  .btn-icon {
+    display: flex;
+    margin-right: 8px;
+    width: 15px;
+    height: 15px;
+    background-repeat: no-repeat;
+  }
+}
+
+@media (max-width: 767px) {
+  .bl__how-to-play-btn {
+    position: relative;
+    top: 0;
+    right: 0;
+    background: none !important;
+    border: none !important;
+    width: fit-content;
+    margin: 0 auto 32px auto;
+  }
+}
+
+@media (max-width: 350px) {
+  .battle-toggle-text {
+    font-size: 9px;
+  }
+
+  .battle-toggle-wrapper {
+    margin: 0 14px;
+  }
+}

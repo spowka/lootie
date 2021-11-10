@@ -1,0 +1,144 @@
+@media (max-width: 1700px) {
+  .battle-container {
+    margin: 0 auto 40px;
+    width: calc(100% - 40px);
+  }
+}
+
+@media (max-width: 1310px) {
+  .page-container {
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+  }
+}
+
+@media (max-width: 1024px) {
+  main {
+    height: calc(100vh - 55px) !important;
+  }
+}
+
+@media (min-width: 813px) and (max-width: 1024px) {
+  .zEWidget-launcher {
+    height: 50px !important;
+    bottom: 100px !important;
+  }
+}
+
+@media (min-width: 813px) {
+  .mde-popover-direction-arrow {
+    display: none !important;
+  }
+}
+
+@media (max-width: 767px) {
+  .page-container {
+    padding-top: 20px !important;
+  }
+
+  .zEWidget-launcher {
+    height: 50px !important;
+  }
+
+  mat-card.skinworld-customized {
+    top: 0;
+
+    &:before {
+      content: none;
+    }
+
+    &:after {
+      content: none;
+    }
+
+    mat-card-content {
+      &:after {
+        content: none;
+      }
+    }
+  }
+
+  .battle-container {
+    padding: 10px;
+  }
+
+  .battle-header {
+    width: calc(100% + 20px);
+    height: 47px;
+    margin: -10px;
+    margin-bottom: 0;
+    padding: 0;
+    border-bottom: 1px solid;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+
+  .battle-back-button {
+    justify-content: center;
+    height: 100%;
+    padding-right: 0;
+
+    mat-icon {
+      font-size: 30px;
+      width: 30px;
+      height: 30px;
+    }
+  }
+}
+
+@media (max-width: 479px) {
+  .page-container {
+    padding-top: 40px !important;
+  }
+
+  .page-title {
+    font-size: 18px !important;
+  }
+
+  .page-subtitle {
+    font-size: 14px !important;
+    margin-bottom: 25px !important;
+    line-height: 1.43 !important;
+  }
+
+  .cases-list {
+    .case-box {
+      margin: 5px 5px !important;
+    }
+  }
+
+  .cdk-overlay-pane {
+    max-width: none !important;
+  }
+
+  .dialog-wrapper {
+    min-height: 100%;
+    padding: 14px !important;
+    height: auto !important;
+    margin-bottom: 60px;
+  }
+
+  .mat-dialog-container {
+    width: 100vw !important;
+    height: 100vh !important;
+    border-radius: 0px !important;
+
+    button[mat-dialog-close] {
+      right: 10px;
+      top: 10px;
+      margin: 0;
+      padding: 0;
+      border: none;
+      box-shadow: none;
+      color: #64666a;
+      z-index: 1;
+    }
+  }
+
+  .mat-dialog-content {
+    margin: 0 !important;
+    padding: 0 !important;
+    max-height: none !important;
+    min-width: 0 !important;
+  }
+}

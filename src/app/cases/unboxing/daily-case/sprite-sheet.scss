@@ -1,0 +1,161 @@
+.win-sprite-sheet {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  z-index: 999;
+  animation-delay: 300ms;
+  width: 640px;
+  height: 360px;
+  transform-origin: -50% 30.8%;
+  transform: scale(2) translateX(-75%);
+
+  &.exotic {
+    background-image: url('/assets/animations/unboxing/exotic1.png');
+    animation:
+      exoticPlayX 150ms steps(5) 7,
+      exoticPlayY 1050ms steps(7);
+  }
+
+  &.uncommon {
+    background-image: url('/assets/animations/unboxing/uncommon1.png');
+    animation:
+      uncommonPlayX 200ms steps(3) 4,
+      uncommonPlayY 800ms steps(4);
+  }
+
+  &.epic {
+    background-image: url('/assets/animations/unboxing/epic1.png');
+    animation:
+      epicPlayX 140ms steps(5) 7,
+      epicPlayY 980ms steps(7);
+  }
+
+  &.legendary {
+    background-image: url('/assets/animations/unboxing/legendary1.png');
+    animation:
+      legendaryPlayX 140ms steps(6) 7,
+      legendaryPlayY 980ms steps(7);
+  }
+
+  &.rare {
+    background-image: url('/assets/animations/unboxing/rare1.png');
+    animation:
+      rarePlayX 200ms steps(4) 4,
+      rarePlayY 800ms steps(4);
+  }
+
+  &.preload {
+    animation: none !important;
+    width: 0;
+    height: 0;
+    min-width: 0;
+    min-height: 0;
+    opacity: 0;
+  }
+}
+
+.preload-container {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+@keyframes exoticPlayX {
+  from {
+    background-position-x: 0px;
+  }
+
+  to {
+    background-position-x: -3200px;
+  }
+}
+
+@keyframes exoticPlayY {
+  from {
+    background-position-y: 0px;
+  }
+
+  to {
+    background-position-y: -2520px;
+  }
+}
+
+@keyframes uncommonPlayX {
+  from {
+    background-position-x: 0px;
+  }
+
+  to {
+    background-position-x: -1920px;
+  }
+}
+
+@keyframes uncommonPlayY {
+  from {
+    background-position-y: 0px;
+  }
+
+  to {
+    background-position-y: -1440px;
+  }
+}
+
+@keyframes epicPlayX {
+  from {
+    background-position-x: 0px;
+  }
+
+  to {
+    background-position-x: -3200px;
+  }
+}
+
+@keyframes epicPlayY {
+  from {
+    background-position-y: 0px;
+  }
+
+  to {
+    background-position-y: -2520px;
+  }
+}
+
+@keyframes legendaryPlayX {
+  from {
+    background-position-x: 0px;
+  }
+
+  to {
+    background-position-x: -3840px;
+  }
+}
+
+@keyframes legendaryPlayY {
+  from {
+    background-position-y: 0px;
+  }
+
+  to {
+    background-position-y: -2520px;
+  }
+}
+
+@keyframes rarePlayX {
+  from {
+    background-position-x: 0px;
+  }
+
+  to {
+    background-position-x: -2560px;
+  }
+}
+
+@keyframes rarePlayY {
+  from {
+    background-position-y: 0px;
+  }
+
+  to {
+    background-position-y: -1440px;
+  }
+}

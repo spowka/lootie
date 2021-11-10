@@ -1,0 +1,100 @@
+<div class="dialog-wrapper dialog-wrapper__light" #wrapper>
+  <button mat-dialog-close>
+    <mat-icon>close</mat-icon>
+  </button>
+
+  <div class="flex-row flex-row__center inventory-title">
+    {{'DIALOG_WITHDRAW_ADD_ITEMS.PAGE_TITLE' | translate }}
+  </div>
+
+  <mat-dialog-actions class="footer-actions" *ngIf="(isMobile$ | async) && selectedItems.length > 0">
+    <div class="footer-actions__inner w-100">
+      <div class="flex-row flex-row__btw footer-border w-100">
+        <ol class="withdraw-faq__body">
+          <li class="withdraw-faq-item">
+            {{'DIALOG_WITHDRAW_ADD_ITEMS.SELECTED_ITEMS' | translate }}
+          </li>
+        </ol>
+      </div>
+      <div class="flex-row flex-row__btw w-100 selected-block footer-border">
+        <div class="selected-item-block flex-col flex-col__start">
+          <div *ngFor="let inventory of selectedItems" class="selected-item">
+            <div class="selected-item__img" [ngStyle]="{'background': 'url(' + inventory.item.image + ')'}"></div>
+            <div class="flex-col flex-col__start">
+              <div class="selected-item__title" [ngStyle]="{
+                'color': inventory.item.color || '#8847ff'
+              }">{{ inventory.item.name || inventory.item.marketName }}</div>
+              <div class="selected-item__price">
+                <span>{{'DIALOG_WITHDRAW_ADD_ITEMS.PRICE' | translate }}</span>
+                ${{ (inventory.item.value || inventory.item.price) | number:'1.2-2'}}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="withdraw-faq-desc">
+        {{'DIALOG_WITHDRAW_ADD_ITEMS.SELECTED_DESC' | translate }}
+      </div>
+    </div>
+    <div class="select-btn">
+      <button mat-button class="btn-large btn-linear" [disabled]="!selectedItems.length"
+        (click)="selectItems()">{{'DIALOG_WITHDRAW_ADD_ITEMS.SELECTED' | translate }} {{ selectedItems.length }}
+        {{'DIALOG_WITHDRAW_ADD_ITEMS.ITEM' | translate }}
+      </button>
+    </div>
+
+  </mat-dialog-actions>
+
+  <mat-dialog-content class="select-items">
+    <app-filters [showSelected]="false" [showSelectAll]="false" [isSelectAllSelected]="isSelectAllSelected"
+      (filtersChange)="onFiltersChange($event)">
+    </app-filters>
+    <div class="cases-list flex-row flex-row__center" infiniteScroll infiniteScrollDistance="0" [alwaysCallback]="false"
+      [scrollWindow]="false" [infiniteScrollDisabled]="isScrollDisabled" (scrolled)="onScroll()">
+      <app-case-item *ngFor="let inventory of inventoryItems" [isMobile]="(isMobile$ | async)" [item]="inventory.item"
+        [isSelected]="selectedItemsIds.includes(inventory._id)" (addToSelected)="addToSelectedItems($event)"
+        (removeFromSelected)="removeFromSelectedItems($event)" [isInventory]="false" class="case-item">
+      </app-case-item>
+      <div class="no-items" *ngIf="!((isLoading$ | async).inventory) && (!inventoryItems || inventoryItems.length === 0)">
+        {{'DIALOG_WITHDRAW_ADD_ITEMS.NO_ITEMS' | translate }}
+      </div>
+    </div>
+    <div class="flex-row flex-row__center loading-container" *ngIf="(isLoading$ | async).inventory">
+      <mat-spinner mode="indeterminate" class="skinworld-customized">
+      </mat-spinner>
+    </div>
+  </mat-dialog-content>
+
+  <mat-dialog-actions class="footer-actions" *ngIf="!(isMobile$ | async) && selectedItems.length > 0">
+    <div class="flex-row flex-row__btw footer-border w-100">
+      <ol class="withdraw-faq__body">
+        <li class="withdraw-faq-item">
+          {{'DIALOG_WITHDRAW_ADD_ITEMS.SELECTED_ITEMS' | translate }}
+        </li>
+      </ol>
+      <div class="withdraw-faq-desc">
+        {{'DIALOG_WITHDRAW_ADD_ITEMS.SELECTED_DESC' | translate }}
+      </div>
+    </div>
+    <div class="flex-row flex-row__btw w-100 selected-block">
+      <div class="selected-item-block flex-col flex-col__start">
+        <div *ngFor="let inventory of selectedItems" class="selected-item">
+          <div class="selected-item__img" [ngStyle]="{'background': 'url(' + inventory.item.image + ')'}"></div>
+          <div class="flex-col flex-col__start">
+            <div class="selected-item__title" [ngStyle]="{
+              'color': inventory.item.color || '#8847ff'
+            }">{{ inventory.item.name || inventory.item.marketName }}</div>
+            <div class="selected-item__price">
+              <span>{{'DIALOG_WITHDRAW_ADD_ITEMS.PRICE' | translate }}</span>
+              ${{ (inventory.item.value || inventory.item.price) | number:'1.2-2'}}
+            </div>
+          </div>
+        </div>
+      </div>
+      <button mat-button class="btn-large btn-linear" [disabled]="!selectedItems.length"
+        (click)="selectItems()">{{'DIALOG_WITHDRAW_ADD_ITEMS.SELECTED' | translate }} {{ selectedItems.length }}
+        {{'DIALOG_WITHDRAW_ADD_ITEMS.ITEM' | translate }}
+      </button>
+    </div>
+  </mat-dialog-actions>
+</div>

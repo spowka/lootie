@@ -1,0 +1,38 @@
+<div id="upgrades" infiniteScroll infiniteScrollDistance="0" [scrollWindow]="false" (scrolled)="onScroll()">
+  <table class="stripped">
+    <tbody>
+      <tr *ngFor="let upgrade of upgrades">
+        <td>#{{ upgrade.dice?.betId }}</td>
+        <td>
+          <mat-icon *ngIf="upgrade.status === 'WIN'; else lose" class="win-icon">check</mat-icon>
+          <ng-template #lose>
+            <mat-icon class="lose-icon">close</mat-icon>
+          </ng-template>
+        </td>
+        <td>
+          <div class="upgrade-images">
+            <div class="image" *ngFor="let source of upgrade.sourceItems"
+              [class.multiple]="upgrade.sourceItems.length > 1"
+              [ngStyle]="{'background-image': 'url(' + source.image + ')'}"></div>
+          </div>
+        </td>
+        <td>
+          <div class="upgrade-images">
+            <div class="image" *ngFor="let target of upgrade.targetItems"
+              [class.multiple]="upgrade.targetItems.length > 1"
+              [ngStyle]="{'background-image': 'url(' + target.image + ')'}">
+            </div>
+          </div>
+        </td>
+        <td>{{ upgrade.updatedAt | date: 'h:mm a d MMMM y' }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div *ngIf="!upgrades.length && !(loading$ | async)" class="empty-data">
+    {{'NO_DATA' | translate }}
+  </div>
+  <div class="flex-row flex-row__center">
+    <mat-spinner *ngIf="loading$ | async" mode="indeterminate" class="skinworld-customized"></mat-spinner>
+  </div>
+</div>

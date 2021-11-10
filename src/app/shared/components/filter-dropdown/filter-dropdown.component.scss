@@ -1,0 +1,48 @@
+@import '../../../../styles/concepts.scss';
+@import '../../../../styles/partials/index.scss';
+
+@include register-component {
+  ::ng-deep {
+    .mat-select-value {
+      color: from-theme(color);
+    }
+
+    .mat-select-arrow {
+      color: from-theme(color);
+    }
+  }
+}
+
+:host {
+  ::ng-deep {
+    .filter-dropdown {
+      .mat-form-field-prefix {
+        @extend .l-md;
+        margin-right: 6px;
+        margin-top: 2px;
+        text-transform: uppercase;
+        opacity: 0.4;
+      }
+
+      &.box-type {
+        .mat-form-field-infix {
+          max-width: none;
+        }
+      }
+
+      .mat-form-field-infix {
+        border-top: none;
+        width: auto;
+
+        .mat-select-value {
+          text-transform: uppercase;
+          font-weight: 500;
+        }
+
+        .mat-select-arrow {
+          opacity: 0.4;
+        }
+      }
+    }
+  }
+}

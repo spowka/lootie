@@ -1,0 +1,246 @@
+@import '../../../../styles/partials/index.scss';
+@import '../../../../styles/variables.scss';
+@import '../../../../styles/concepts.scss';
+
+@include register-component {
+  drag-scroll {
+    &:before {
+      background-image: from-theme(fade-effect-to-right);
+    }
+  }
+
+  .hint-live-drop {
+    background-image: from-theme(case-slider-livefeed);
+  }
+
+  .live-feed {
+    background-color: from-theme(background);
+    color: from-theme(color);
+  }
+
+  .image-info {
+    &__title {
+      color: from-theme(color);
+    }
+  }
+}
+
+div[drag-scroll-item] {
+  position: relative;
+  user-select: none;
+}
+
+drag-scroll {
+  margin-left: 90px;
+
+  &:before {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: -10px;
+    width: 20%;
+    height: 100%;
+    filter: blur(10px);
+    pointer-events: none;
+    z-index: 10;
+  }
+}
+
+.hint-live-drop {
+  position: absolute;
+  top: 11px;
+  left: -3px;
+  height: 57px;
+  width: 90px;
+  z-index: 1;
+  padding-left: 10px;
+}
+
+.txt-live-drop {
+  margin-left: 5px;
+  background-image: linear-gradient(101deg, #f48836, #f4364c);
+  font-family: Roboto;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.08;
+  letter-spacing: 0.46px;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.img-live-drop {
+  height: 10px;
+}
+
+.live-feed {
+  position: relative;
+  justify-content: space-between;
+  width: 180px;
+  height: 50px;
+  padding: 6px;
+  margin-right: 8px;
+  border-radius: 4px;
+  border-left: 2px solid currentColor;
+  box-shadow: $shadow5;
+  background-image: url('/assets/images/live-drop-light.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+
+  &:after {
+    content: '';
+    display: block;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 15%;
+    filter: blur(15px);
+    background: currentColor;
+    opacity: .4;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .image {
+    @extend %bg-image;
+    width: 65px;
+    height: 100%;
+    margin-right: 10px;
+    object-fit: contain;
+  }
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.image-info {
+  min-width: 80px;
+
+  &__title {
+    @extend %text-elipsis;
+    width: 70px;
+    font-family: Roboto;
+    font-size: 12px;
+    font-weight: bold;
+    line-height: 1.08;
+    letter-spacing: 0.4px;
+  }
+
+  &__price {
+    @extend .l-md;
+    color: currentColor;
+    font-family: Roboto;
+    font-size: 12px;
+    line-height: 1.08;
+    letter-spacing: 0.4px;
+    margin-bottom: 4px;
+  }
+}
+
+
+::ng-deep {
+  .sw-theme-dark {
+    .mat-card.skinworld-customized {
+      padding: 7px !important;
+    }
+
+    .item-popup {
+      padding: 10px 20px !important;
+
+      &:first-child {
+        background: hexToRGBA($colorSecondaryDarkGray, .4) !important;
+      }
+    }
+  }
+}
+
+.mat-card {
+  padding: 0px;
+  min-width: 200px;
+}
+
+.item-popup {
+  cursor: pointer;
+
+  &:first-child {
+    padding: 17px 27px 10px 27px;
+    background: $colorSecondaryLightTooltip;
+  }
+
+  &:last-child {
+    padding: 10px 27px 17px 27px;
+  }
+
+  &__case {
+    .image {
+      @extend %bg-image;
+      width: 30px;
+      height: 30px;
+      margin-right: 25px;
+    }
+
+    &-info {
+      line-height: 1.5;
+    }
+
+    &-name {
+      @extend %text-elipsis;
+      max-width: 190px;
+    }
+
+    &-type {
+      @extend .l-md;
+    }
+  }
+
+  &__user {
+    .user-avatar {
+      @extend %bg-image;
+      width: 30px;
+      height: 30px;
+      margin-right: 25px;
+      border-radius: 4px;
+      background-image: $colorPrimaryGradient;
+      cursor: pointer;
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  drag-scroll {
+    margin-left: 60px;
+  }
+
+  .hint-live-drop {
+    width: 60px;
+  }
+
+  .live-feed {
+    width: 150px;
+    height: 50px;
+    margin-right: 5px;
+
+    .image {
+      width: 36px;
+    }
+  }
+
+  .image-info {
+    &__title {
+      font-size: 10px;
+    }
+
+    &__price {
+      font-size: 10px;
+    }
+  }
+
+  .txt-live-drop {
+    width: 36px;
+  }
+}

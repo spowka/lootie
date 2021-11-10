@@ -1,0 +1,175 @@
+<div class="history-battle battle"
+  infiniteScroll
+  infiniteScrollDistance="0"
+  [scrollWindow]="false"
+  (scrolled)="onScroll()">
+
+  <table class="battle__table" *ngIf="!(isMobile$ | async); else mobileMysteryBattleHistory">
+    <thead>
+      <tr>
+        <td>
+          {{'BATTLE_HISTORY.ROUNDS' | translate }}
+        </td>
+        <td>
+          {{'BATTLE_HISTORY.BOXES_SCENARIO' | translate }}
+        </td>
+        <td>
+          {{'BATTLE_HISTORY.COST' | translate }}
+        </td>
+        <td>
+          {{'BATTLE_HISTORY.PLAYERS' | translate }}
+        </td>
+        <td></td>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let battle of battles; let i = index">
+        <td class="battle__rounds">
+          <div class="content-case">
+            <ng-container *ngTemplateOutlet="mysteryBattlesRounds; context: {item: battle}"></ng-container>
+          </div>
+        </td>
+
+        <td class="battle__boxes">
+          <div class="content-case">
+            <ng-container *ngTemplateOutlet="mysteryBattlesBoxes; context: {item: battle, index: i}"></ng-container>
+          </div>
+        </td>
+
+        <td class="battle__cost">
+          <div class="content-case">
+            ${{ battle.price | number:'1.2-2' }}
+          </div>
+        </td>
+
+        <td class="battle__players">
+          <div class="content-case battle__players">
+            <ng-container *ngTemplateOutlet="mysteryBattlesPlayers; context: {item: battle}"></ng-container>
+          </div>
+        </td>
+
+        <td class="battle__watch">
+          <div class="content-case">
+            <button class="btn-watch" (click)="goToWatchBattle(battle)">
+              <div class="btn-background">
+                <span class="btn-text">
+                  {{'BATTLE.WATCH_BATTLE' | translate}}
+                </span>
+                <span class="tablet-btn-text">WATCH</span>
+              </div>
+            </button>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+
+  </table>
+
+  <ng-template #mobileMysteryBattleHistory>
+    <div class="mobile-mystery-battles__container">
+      <div class="mobile-mystery-battles__item" *ngFor="let battle of battles; let i = index">
+        <div class="mobile-mystery-battles__content">
+          <div class="mobile-mystery-battles__rounds info-item">
+            <span class="mobile-mystery-battles__sub-title">
+              {{'BATTLE_HISTORY.ROUNDS' | translate }}
+            </span>
+            <ng-container *ngTemplateOutlet="mysteryBattlesRounds; context: {item: battle}"></ng-container>
+          </div>
+
+          <div class="mobile-mystery-battles__cost info-item">
+            <span class="mobile-mystery-battles__sub-title">
+              {{'BATTLE_HISTORY.COST' | translate }}
+            </span>
+            ${{ battle.price | number:'1.2-2' }}
+          </div>
+
+          <div class="mobile-mystery-battles__players info-item">
+            <span class="mobile-mystery-battles__sub-title">
+              {{ battle.sessions.length }} {{'BATTLE_HISTORY.PLAYERS' | translate }}
+            </span>
+            <ng-container *ngTemplateOutlet="mysteryBattlesPlayers; context: {item: battle}"></ng-container>
+          </div>
+        </div>
+
+        <div class="mobile-mystery-battles__boxes">
+          <ng-container *ngTemplateOutlet="mysteryBattlesBoxes; context: {item: battle, index: i}"></ng-container>
+        </div>
+
+        <div class="mobile-mystery-battles__actions">
+          <button class="btn-action">
+            <div class="btn-gradient">
+              <span class="tablet-btn-text">Watch</span>
+              <span class="btn-text">Watch battle</span>
+            </div>
+          </button>
+        </div>
+      </div>
+
+      <div class="mobile-mystery-battles__actions-more">
+        <button class="btn-action">
+          <div class="btn-gradient">
+            <span>Load More</span>
+          </div>
+        </button>
+      </div>
+    </div>
+  </ng-template>
+
+
+  <div class="no-battle"
+    *ngIf="!(isLoading$ | async) && !(battles$ | async)">
+    {{'BATTLE_LIST.NO_BATTLE_TO_WATCH' | translate }}
+  </div>
+
+  <mat-spinner *ngIf="isLoading$ | async" mode="indeterminate" class="skinworld-customized">
+  </mat-spinner>
+</div>
+
+<ng-template #mysteryBattlesPlayers let-item="item">
+  <span>{{ item.sessions.length }}/{{ item.userCount }}</span>
+  <div class="flex-row flex-row__center">
+    <img *ngFor="let player of item.sessions" [src]="player.profileImageUrl" alt="{{ player.username }}" />
+  </div>
+</ng-template>
+
+<ng-template #mysteryBattlesBoxes let-item="item" let-index="index">
+  <div class="battle__cases-items">
+
+    <div class="arrow-container arrow-left" *ngIf="scroll > 0" (click)="scrollLeft()">
+      <img class="arrow" src="assets/images/icons/arrow-left.svg">
+    </div>
+
+    <div class="battle-case-slider" #slider>
+      <div class="battle-case-slider-content" #sliderContent [ngStyle]="{marginLeft: (-1 * scroll) + 'px'}">
+        <div class="flex-col case-container" *ngFor="let case of item.cases; let i = index"
+          [ngStyle]="{'color': colors && colors.length > 0 && colors[index] && colors[index][i]}">
+
+          <div class="case-image">
+            <img [src]="case.image">
+            <div class="case-count" *ngIf="case.count > 1">{{ case.count }}</div>
+          </div>
+
+          <div class="case-label">{{ case.name }}</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="arrow-container arrow-right" *ngIf="arrowRight" (click)="scrollRight()">
+      <img class="arrow" src="assets/images/icons/arrow-right.svg">
+    </div>
+
+  </div>
+</ng-template>
+
+<ng-template #mysteryBattlesRounds let-item="item">
+  <div class="active-round">
+    <ng-container>
+      <div class="flex-row flex-row__center round-content" [ngClass]="{'active-running': item.status === 'RUNNING'}">
+        <span>{{ item.totalRounds }}</span>
+      </div>
+    </ng-container>
+
+    <p *ngIf="item.status === 'RUNNING'">{{ item.status }}</p>
+  </div>
+</ng-template>

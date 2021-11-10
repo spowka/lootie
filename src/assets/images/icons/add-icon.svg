@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="10px" height="11px" viewBox="0 0 10 11" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 61.2 (89653) - https://sketch.com -->
+    <title>Combined Shape</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="0%" y1="0%" x2="100%" y2="100%" id="linearGradient-1">
+            <stop stop-color="#F48836" offset="0%"></stop>
+            <stop stop-color="#F4364C" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Deposit-Balance" transform="translate(-800.000000, -29.000000)" fill="url(#linearGradient-1)">
+            <g id="Header-dark-2">
+                <g id="Topbar">
+                    <path d="M805,29.5 C805.414214,29.5 805.75,29.8357864 805.75,30.25 L805.75,33.75 L809.25,33.75 C809.664214,33.75 810,34.0857864 810,34.5 C810,34.9142136 809.664214,35.25 809.25,35.25 L805.75,35.25 L805.75,38.75 C805.75,39.1642136 805.414214,39.5 805,39.5 C804.585786,39.5 804.25,39.1642136 804.25,38.75 L804.25,35.25 L800.75,35.25 C800.335786,35.25 800,34.9142136 800,34.5 C800,34.0857864 800.335786,33.75 800.75,33.75 L804.25,33.75 L804.25,30.25 C804.25,29.8357864 804.585786,29.5 805,29.5 Z" id="Combined-Shape"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

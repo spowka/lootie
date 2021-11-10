@@ -1,0 +1,77 @@
+@import '../../../../styles/partials/index.scss';
+@import '../../../../styles/concepts.scss';
+@import '../../../../styles/variables.scss';
+
+@include register-component {
+  .bs__img {
+    background-color: from-theme(battle-list);
+    color: from-theme(color);
+  }
+  .status {
+    color: from-theme(text-color);
+  }
+}
+
+.bs {
+  height: 90px;
+  padding-bottom: 20px;
+  margin-top: 20px;
+  border-bottom: solid 1px #212a2d;
+
+  &__options {
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 1.08;
+    letter-spacing: 0.39px;
+    text-transform: uppercase;
+    color: #5b6873;
+  }
+
+  &__option {
+    &-title {
+      font-size: 13px;
+    }
+  }
+
+  .status {
+    font-size: 15px;
+    line-height: 1;
+    letter-spacing: 0.25px;
+    text-transform: uppercase;
+    font-weight: normal;
+  }
+
+  &__img {
+    width: 50px;
+    height: 50px;
+    padding: 10px;
+    margin-right: 15px;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+  }
+
+  .wrapper-round {
+    height: 70px;
+    padding-top: 10px;
+    align-items: normal;
+    text-align: center;
+    justify-content: space-between;
+  }
+
+  .wrapper-action {
+    height: 50px;
+    align-items: normal;
+    text-align: center;
+    justify-content: space-between;
+  }
+
+  .wrapper-case {
+    height: 50px;
+    align-items: normal;
+    justify-content: space-between;
+  }
+}

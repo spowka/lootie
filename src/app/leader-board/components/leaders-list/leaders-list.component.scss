@@ -1,0 +1,271 @@
+@import '../../../../styles/concepts.scss';
+@import '../../../../styles/register.scss';
+@import '../../../../styles/partials/index.scss';
+@import '../../../../styles/variables.scss';
+
+@include register-component {
+  .leaders-list {
+    &__top-background {
+      border-left: solid 2px from-theme(leader-board-border-line-color);
+      border-right: solid 2px from-theme(leader-board-border-line-color);
+
+      &:after,
+      &:before {
+        background-color: from-theme(leader-board-content-dark-background);
+        border-left: 2px solid from-theme(leader-board-border-line-color);
+      }
+
+      &:after {
+        border-top: 2px solid from-theme(leader-board-border-line-color);
+      }
+
+      &:before {
+        border-bottom: 2px solid from-theme(leader-board-border-line-color);
+      }
+    }
+
+    &__bottom-background {
+      border-bottom: 2px solid from-theme(leader-board-border-line-color);
+      background-color: from-theme(leader-board-content-dark-background);
+
+      &:after,
+      &:before {
+        background-color: from-theme(leader-board-content-light-background);
+        border-left: 2px solid from-theme(leader-board-border-line-color);
+      }
+
+      &:after {
+        border-top: 2px solid from-theme(leader-board-border-line-color);
+      }
+
+      &:before {
+        border-bottom: 2px solid from-theme(leader-board-border-line-color);
+      }
+    }
+
+    &__actions {
+      .btn {
+        &__load-more {
+          background-image: linear-gradient(101deg, #f48836, #f4364c);
+          color: #ffffff;
+        }
+      }
+    }
+
+    &__content {
+      background-color: from-theme(leader-board-content-dark-background);
+      border-left: solid 2px from-theme(leader-board-border-line-color);
+      border-right: solid 2px from-theme(leader-board-border-line-color);
+      border-top: solid 2px from-theme(leader-board-border-line-color);
+
+      .left-border,
+      .right-border {
+        background: linear-gradient(to top, #f48836, #f4364c);
+      }
+
+      .left-border {
+        border-right: solid 2px from-theme(leader-board-border-line-color);
+
+        &:after,
+        &:before {
+          background-color: from-theme(leader-board-content-dark-background);
+          border-bottom: 2px solid from-theme(leader-board-border-line-color);
+        }
+      }
+
+      .right-border {
+        border-left: solid 2px from-theme(leader-board-border-line-color);
+
+        &:after,
+        &:before {
+          background-color: from-theme(leader-board-content-dark-background);
+          border-bottom: 2px solid from-theme(leader-board-border-line-color);
+        }
+      }
+    }
+  }
+}
+
+.leaders-list {
+  &__container {
+    overflow: hidden;
+  }
+
+  &__top-background {
+    height: 22px;
+    overflow: hidden;
+    position: relative;
+    top: 2px;
+
+    &:after,
+    &:before {
+      content: '';
+      width: 50px;
+      height: 30px;
+      position: absolute;
+      top: 8px;
+      box-sizing: inherit;
+      z-index: 1;
+    }
+
+    &:after {
+      left: -15px;
+      -webkit-transform: rotateZ(30deg);
+      transform: rotateZ(30deg);
+    }
+
+    &:before {
+      right: -15px;
+      -webkit-transform: rotateZ(150deg);
+      transform: rotateZ(150deg);
+    }
+  }
+
+  &__bottom-background {
+    height: 22px;
+    position: relative;
+    margin-bottom: 25px;
+
+    &:after,
+    &:before {
+      content: '';
+      width: 50px;
+      height: 30px;
+      position: absolute;
+      bottom: -15px;
+      box-sizing: inherit;
+    }
+
+    &:after {
+      left: -15px;
+      -webkit-transform: rotateZ(30deg);
+      transform: rotateZ(30deg);
+    }
+
+    &:before {
+      right: -15px;
+      -webkit-transform: rotateZ(150deg);
+      transform: rotateZ(150deg);
+    }
+  }
+
+  &__actions {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .btn {
+      &__load-more {
+        width: 200px;
+        height: 40px;
+        border-radius: 22.5px;
+        border: none;
+        background-origin: border-box;
+        background-clip: content-box, border-box;
+        font-size: 18px;
+        font-weight: bold;
+        line-height: normal;
+        letter-spacing: 0.8px;
+        box-shadow: none;
+        padding: 0;
+      }
+    }
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    padding: 20px 20px 0 20px;
+    position: relative;
+
+    .left-border,
+    .right-border {
+      position: absolute;
+      width: 6px;
+      top: calc(50% - 75px);
+      height: 150px;
+    }
+
+    .left-border {
+      left: -2px;
+      border-top-right-radius: 28px;
+      border-bottom-right-radius: 28px;
+
+      &:after,
+      &:before {
+        content: '';
+        width: 8px;
+        height: 2px;
+        box-sizing: inherit;
+        z-index: 1;
+        right: -3px;
+        position: absolute;
+      }
+
+      &:after {
+        top: 1px;
+        -webkit-transform: rotateZ(50deg);
+        transform: rotateZ(50deg);
+      }
+
+      &:before {
+        bottom: 1px;
+        -webkit-transform: rotateZ(-50deg);
+        transform: rotateZ(-50deg);
+      }
+    }
+
+    .right-border {
+      right: -2px;
+      border-top-left-radius: 28px;
+      border-bottom-left-radius: 28px;
+
+      &:after,
+      &:before {
+        content: '';
+        width: 8px;
+        height: 2px;
+        box-sizing: inherit;
+        z-index: 1;
+        right: -1px;
+        position: absolute;
+      }
+
+      &:after {
+        top: 1px;
+        -webkit-transform: rotateZ(-50deg);
+        transform: rotateZ(-50deg);
+      }
+
+      &:before {
+        bottom: 1px;
+        -webkit-transform: rotateZ(50deg);
+        transform: rotateZ(50deg);
+      }
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  .leaders-list {
+    &__container {
+      margin: 0 15px;
+    }
+
+    &__content {
+      padding: 8px 8px 0 8px;
+    }
+
+    &__actions {
+      margin-bottom: 25px;
+
+      .btn {
+        &__load-more {
+          text-transform: uppercase;
+          font-size: 14px;
+          letter-spacing: 0.3px;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,219 @@
+<div class="dialog-wrapper dialog-wrapper__dark" #wrapper>
+  <button mat-dialog-close>
+    <mat-icon>close</mat-icon>
+  </button>
+
+  <mat-dialog-content class="dialog-wrapper__container">
+    <div class="flex-row flex-row__center header">
+     {{'DIALOG_VERIFY.HEADER' | translate}}
+    </div>
+
+    <div class="flex-row flex-row__center nav-items">
+      <!-- <div class="item" (click)="selectedTab = provablyFairTabsModel.info"
+        [class.active]="selectedTab === provablyFairTabsModel.info">
+        <span>Info</span>
+      </div> -->
+
+      <div class="item verify" (click)="selectedTab = provablyFairTabsModel.verify"
+        [class.active]="selectedTab === provablyFairTabsModel.verify">
+        <span>Verify</span>
+      </div>
+
+      <!-- <div class="item" (click)="selectedTab = provablyFairTabsModel.howItWorks"
+        [class.active]="selectedTab === provablyFairTabsModel.howItWorks">
+        <span>How It Works</span>
+      </div> -->
+    </div>
+
+    <ng-container [ngSwitch]="selectedTab">
+      <ng-container *ngSwitchDefault>
+        <div class="flex-col flex-col__center verify-content">
+          <div class="verify-content__input-wrapper">
+            <p>{{'DIALOG_VERIFY.CLIENT_SEED' | translate}}</p>
+            <input [(ngModel)]="clientSeed" type="text" matInput class="input-field">
+          </div>
+
+          <div class="verify-content__input-wrapper">
+            <p>{{'DIALOG_VERIFY.BEACON' | translate}}</p>
+            <input [(ngModel)]="serverSeed" type="text" matInput class="input-field">
+          </div>
+
+          <div class="verify-content__input-wrapper">
+            <p>{{'DIALOG_VERIFY.NONCE' | translate}}</p>
+            <input [(ngModel)]="nonce" (input)="onChangeRoll()" type="number" matInput class="input-field">
+          </div>
+
+          <div class="roll-count">
+            Roll for nonce <span class="nonce-color">{{nonce}}</span> is <span class="roll-color">{{roll}}</span>
+          </div>
+        </div>
+
+      </ng-container>
+
+      <ng-container *ngSwitchCase="provablyFairTabsModel.howItWorks">
+        <div class="hTW-content">
+          <div class="flex-row flex-row__center">
+            <div class="rectangle-shape left"></div>
+            <span class="title-htw">{{'DIALOG_VERIFY.HTW' | translate}}</span>
+            <div class="rectangle-shape right"></div>
+          </div>
+
+          <div class="hTW-content__wrapper">
+            <p class="hTW-content__hint" [innerHtml]="'DIALOG_VERIFY.HTW_HINT' | translate">
+            </p>
+          </div>
+
+          <p class="hTW-content__hint" [innerHtml]="'DIALOG_VERIFY.HTW_HINT1' | translate">
+          </p>
+          <p class="hTW-content__hint" [innerHtml]="'DIALOG_VERIFY.HTW_HINT2' | translate">
+          </p>
+          <p class="hTW-content__hint" [innerHtml]="'DIALOG_VERIFY.HTW_HINT3' | translate">
+          </p>
+          <p class="hTW-content__hint" [innerHtml]="'DIALOG_VERIFY.HTW_HINT4' | translate">
+          </p>
+          <p class="hTW-content__hint" [innerHtml]="'DIALOG_VERIFY.HTW_HINT5' | translate">
+          </p>
+          <p class="hTW-content__hint" [innerHtml]="'DIALOG_VERIFY.HTW_HINT6' | translate">
+          </p>
+
+          <div class="hash">
+            hash_hmac(‘sha512’, $clientSeeds.‘-’.$nonce, $beacon);
+          </div>
+
+          <p [innerHtml]="'DIALOG_VERIFY.HTW_HINT7' | translate"></p>
+
+          <div class="hash">
+            <p>$hex = substr($hash, 0, 7);</p>
+            <p>$number = hexdec($hex);</p>
+            <p>$roll = $number % 100000 + 1;</p>
+          </div>
+        </div>
+
+        <div class="hTW-content">
+          <div class="flex-row flex-row__center">
+            <div class="flex-row flex-row__center">
+              <div class="rectangle-shape left"></div>
+              <span class="title-verify">{{'DIALOG_VERIFY.VERIFY' | translate}}</span>
+              <div class="rectangle-shape right"></div>
+            </div>
+
+            <ul>
+              <li>{{'DIALOG_VERIFY.VERIFY_STEP1' | translate}}</li>
+              <li [innerHtml]="'DIALOG_VERIFY.VERIFY_STEP2' | translate"></li>
+              <li>{{'DIALOG_VERIFY.VERIFY_STEP3' | translate}} </li>
+              <li>{{'DIALOG_VERIFY.VERIFY_STEP4' | translate}}</li>
+              <li>{{'DIALOG_VERIFY.VERIFY_STEP5' | translate}}</li>
+              <li>{{'DIALOG_VERIFY.VERIFY_STEP6' | translate}}</li>
+              <li>{{'DIALOG_VERIFY.VERIFY_STEP7' | translate}}</li>
+              <li [innerHtml]="'DIALOG_VERIFY.VERIFY_STEP8' | translate"></li>
+            </ul>
+          </div>
+        </div>
+      </ng-container>
+
+      <ng-container *ngSwitchCase="provablyFairTabsModel.info">
+        <div class="info-content">
+          <table lass="stripped">
+            <thead>
+              <tr>
+                <td>{{'DIALOG_VERIFY.TYPE' | translate}}</td>
+                <td>{{'DIALOG_VERIFY.VALUE' | translate}}</td>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td>{{'DIALOG_VERIFY.TICKET_ID' | translate}}</td>
+                <td>
+                  <div class="flex-row flex-row__btw">
+                    <span>id</span>
+                    <div class="verify_btn">{{'DIALOG_VERIFY.VERIFY_TICKET' | translate}}</div>
+                  </div>
+                </td>
+              </tr>
+
+              <tr>
+                <td>{{'DIALOG_VERIFY.BEACON' | translate | uppercase}}</td>
+                <td>server seed</td>
+              </tr>
+
+              <tr>
+                <td>{{'DIALOG_VERIFY.STARTED_AT' | translate | uppercase}}</td>
+                <td>start</td>
+              </tr>
+
+              <tr>
+                <td>{{'DIALOG_VERIFY.CLIENT_SEED' | translate | uppercase}}</td>
+                <td>seed</td>
+              </tr>
+
+              <tr>
+                <td>{{'DIALOG_VERIFY.NONCE' | translate | uppercase}}</td>
+                <td>13</td>
+              </tr>
+            </tbody>
+
+          </table>
+        </div>
+
+        <div class="info-content">
+          <div class="flex-row flex-row__center">
+            <div class="rectangle-shape left"></div>
+            <span class="title-battle">{{'DIALOG_VERIFY.BATTLES' | translate}}</span>
+            <div class="rectangle-shape right"></div>
+          </div>
+          <div class="flex-row bl-container">
+            <div class="round-row" style="width: 100px;">
+              <div class="title">Round</div>
+              <div class="rounds-info">
+              </div>
+              <div class="rounds-info">
+              </div>
+            </div>
+
+            <div class="flex-row bl">
+              <div class="flex-row">
+                <div class="flex-col bl-wrapper round-{{userInfo.length}}" *ngFor="let user of userInfo">
+                  <div class="flex-row user-info">
+                    <div class="flex-row info"><img src="{{user.userimg}}"> <span>{{user.userName}}</span>
+                    </div>
+                    <div class="flex-row flex-row__btw info">
+                      <div class="title">{{'DIALOG_VERIFY.JOINED_AT' | translate}}:</div><span>{{user.joined}}</span>
+                    </div>
+                    <div class="flex-row flex-row__btw info">
+                      <div class="title">{{'DIALOG_VERIFY.CLIENT_SEED' | translate}}</div>
+                      <span class="client-seed">{{user.clientSeed}}</span>
+                    </div>
+                  </div>
+                  <div class="round-info" *ngFor="let round of user.rounds">
+                    <div class="flex-row items">
+                      <div class="title">{{'DIALOG_VERIFY.NONCE' | translate}}:</div>
+                      <div>{{round.nonce}}</div>
+                    </div>
+                    <div class="flex-row items">
+                      <div class="title">{{'DIALOG_VERIFY.ROLL' | translate}}:</div>
+                      <span>{{round.roll}} </span>
+                      <div class="btn-verify">{{'DIALOG_VERIFY.VERIFY' | translate}}</div>
+                    </div>
+                    <div class="flex-row items">
+                      <div class="title">{{'DIALOG_VERIFY.ITEM' | translate}}:</div>
+                      <div class="flex-col item">
+                        <span class="price">{{round.item.price}} $</span>
+                        <span>{{round.item.name}}</span>
+                      </div>
+                    </div>
+                    <div class="flex-row items">
+                      <div class="title">{{'DIALOG_VERIFY.TOTAL' | translate}}:</div>
+                      <span>{{round.total}}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+    </ng-container>
+
+  </mat-dialog-content>
+</div>

@@ -1,0 +1,18 @@
+<div class="slider-container" [ngClass]="{ 'slider-container-mobile': (currentUrl$ | async) !== '/' }">
+  <app-cases-slider></app-cases-slider>
+</div>
+
+<div id="unboxings" class="page-container">
+  <div class="page-title center m-b-10">
+    {{ 'UNBOXINGS.TITLE' | translate }}
+  </div>
+
+  <div class="page-subtitle center m-b-30"
+    [innerHTML]="'UNBOXINGS.SUBTITLE' | translate">
+  </div>
+
+  <div class="flex-col unboxings__content">
+    <app-unboxings-instruction></app-unboxings-instruction>
+    <app-unboxings-list></app-unboxings-list>
+  </div>
+</div>

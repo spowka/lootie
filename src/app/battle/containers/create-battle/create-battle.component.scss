@@ -1,0 +1,251 @@
+@import '../../../../styles/partials/index.scss';
+@import '../../../../styles/concepts.scss';
+@import '../../../../styles/variables.scss';
+@import '../../../../styles/register.scss';
+
+@include register-component {
+  .bc {
+    &__option-status {
+      color: from-theme(text-color);
+    }
+
+    &__add {
+      background-color: from-theme(battle-add-case-background);
+    }
+
+    &__players {
+      border-bottom: solid 1px from-theme(dark-border-color);
+
+      ::ng-deep {
+        .mat-tab-link {
+          color: from-theme(text-color);
+        }
+      }
+    }
+
+    .battle-toggle-text {
+      color: #6e6e6e;
+  
+      &.battle-toggle-text--checked {
+        color: from-theme(text-color);
+      }
+    }
+  
+    .battle-toggle {
+      &-wrapper,
+      &-after,
+      &-before {
+        border-color: from-theme(battle-toggle-border);
+        background-color: from-theme(battle-toggle-background);
+      }
+    }
+
+    .indicator-round {
+      span {
+        color: from-theme(text-color);
+      }
+    }
+  }
+}
+
+.page-title {
+  margin-top: 90px;
+}
+
+.bc {
+  &__add {
+    border-radius: 4px;
+    border: dashed 1px #607782;
+    background-color: #131719;
+    cursor: pointer;
+    position: relative;
+
+    span {
+      font-size: 13px;
+      text-transform: uppercase;
+      color: #607782;
+      margin-top: 17px;
+    }
+
+    .indicator-plus {
+      height: 34px;
+      width: 34px;
+      background-image: url('/assets/images/icons/battle-indicator-plus.svg');
+    }
+  }
+
+  &__toggler {
+    span {
+      text-transform: uppercase;
+      opacity: .4;
+
+      &.checked {
+        opacity: 1;
+      }
+    }
+  }
+
+  &__item {
+    width: 160px;
+    height: 200px;
+    margin: 15px;
+  }
+
+  &__options {
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 1.08;
+    letter-spacing: 0.39px;
+    text-transform: uppercase;
+    color: #5b6873;
+    margin-top: 7px;
+  }
+
+  .indicator-round {
+    height: 34px;
+    width: 65px;
+    position: relative;
+    background: url('/assets/images/icons/battle-indicator-lines.svg');
+
+    span {
+      font-size: 19px;
+    }
+  }
+
+  &__option {
+    &-title {
+      margin-bottom: 18px;
+    }
+
+    &-price {
+      font-size: 19px;
+      font-weight: 500;
+      line-height: 1;
+      letter-spacing: 0.25px;
+      color: #d85a3f;
+    }
+
+    &-status {
+      font-size: 19px;
+      line-height: 1;
+      letter-spacing: 0.25px;
+      text-transform: uppercase;
+      font-weight: normal;
+    }
+  }
+
+  &__players {
+    margin-bottom: 25px;
+
+    .mat-tab-nav-bar {
+      margin-bottom: -2px;
+    }
+
+    ::ng-deep {
+      .mat-tab-link {
+        min-width: 90px;
+        width: 90px;
+        height: 34px;
+        padding: 0;
+        margin: 0 10px;
+        font-weight: 300;
+        letter-spacing: 0.5px;
+        text-transform: uppercase;
+
+        &.mat-tab-label-active {
+          font-weight: 500;
+          transition: none;
+          opacity: 1;
+        }
+      }
+
+      .mat-tab-nav-bar.mat-primary .mat-ink-bar {
+        background-color: transparent;
+        background-image: linear-gradient(91deg, #f48836, #f4364c);
+      }
+
+      .mat-ripple-element {
+        background: none;
+      }
+    }
+
+  }
+
+  &__footer {
+    .mat-button.btn-linear {
+      min-width: 265px;
+      font-size: 14px !important;
+      font-weight: 400;
+      line-height: normal;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+  }
+}
+
+.battle-wrapper {
+  min-height: 492px;
+
+  .battle-box {
+    margin: 15px;
+  }
+}
+
+@media (max-width: 767px) {
+  .bc {
+    .battle-back-button {
+      display: none;
+    }
+
+    &__toggler {
+      margin: 0 auto;
+    }
+
+    &__item {
+      min-width: 103px;
+      max-width: 130px;
+      height: 166px;
+      margin: 7.5px;
+      flex: 1;
+    }
+
+    &__add {
+      min-width: 100%;
+      height: 51px;
+      flex-direction: row;
+
+      span {
+        margin-top: 0px;
+        margin-left: 8px;
+      }
+    }
+
+    &__options {
+      font-size: 8px;
+    }
+
+    &__option {
+      &-price {
+        font-size: 14px;
+      }
+      &-title {
+        margin-bottom: 4px;
+      }
+    }
+
+    &__players {
+      .mat-tab-link {
+        min-width: 70px;
+        width: 70px;
+        font-size: 13px;
+      }
+    }
+  }
+
+  .battle-wrapper {
+
+    .battle-box {
+      margin: 7.5px;
+    }
+  }
+}

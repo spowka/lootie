@@ -1,0 +1,88 @@
+@import '../../../../styles/partials/index.scss';
+
+@include register-component {
+  .time {
+    &__wrapper {
+      background-color: from-theme(battle-time-background);
+    }
+
+    &__counter {
+      background: from-theme(battle-time-counter-effect);
+      color: from-theme(battle-time-color);
+
+      &:before {
+        background: from-theme(battle-time-counter-effect);
+      }
+    }
+  }
+}
+
+
+.timer-subtitle,
+.timer-title {
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.27;
+  letter-spacing: 0.2px;
+  color: #909ba5;
+  text-align: center;
+  padding: 0 20px;
+}
+
+.timer-subtitle {
+  margin-top: 5px;
+  color: #5b6873;
+}
+
+.timer-wrapper {
+  margin-top: 12px;
+}
+
+.time {
+  margin: 0 11px;
+
+  span {
+    font-size: 13px;
+    line-height: 1.08;
+    letter-spacing: 0.17px;
+    font-weight: 300;
+  }
+
+  &__wrapper {
+    border-radius: 4px;
+    padding: 7px;
+    margin-top: 5px;
+    width: 49px;
+    height: 51px;
+    z-index: 1;
+  }
+
+  &__counter {
+    width: 100%;
+    height: 100%;
+    border-radius: 4px;
+    position: relative;
+    background-clip: padding-box;
+    font-size: 22px;
+    font-weight: 300;
+    letter-spacing: 0.26px;
+
+    &:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      z-index: -1;
+      margin: -1px;
+      border-radius: inherit;
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  .timer-wrapper {
+    margin-bottom: 20px;
+  }
+}

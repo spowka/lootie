@@ -1,0 +1,117 @@
+<div *ngIf="isMobile$ | async" [ngClass]="{ 'slider-container-mobile': (currentUrl$ | async) !== '/'}" class="slider-container">
+  <app-cases-slider></app-cases-slider>
+</div>
+
+<div id="privacy" class="page-container">
+  <div class="page-title center m-b-50">
+    {{'PRIVACY_POLICY.PAGE_TITLE' | translate }}
+  </div>
+
+  <div class="pp">
+    <div class="pp-content">
+      <div class="p-lg">
+        {{'PRIVACY_POLICY.GENERAL_PROVISIONS' | translate }}
+      </div>
+      <hr>
+      <div class="p-lg">
+        <div class="pp-content__text">
+          <span> {{'PRIVACY_POLICY.EFFECTIVE_DATA' | translate }}</span>
+          {{'PRIVACY_POLICY.GENERAL_PROVISIONS_INFO' | translate }}
+        </div>
+        <a class="link" href="mailto:support@lootie.com" target="_top">support@lootie.com.</a>
+      </div>
+    </div>
+    <div class="pp-content">
+      <div class="p-lg">
+        {{'PRIVACY_POLICY.PERSONALLY_IDENTIFIABLE' | translate }}
+      </div>
+      <hr>
+      <div class="p-lg pp-content__text">
+        {{'PRIVACY_POLICY.PERSONALLY_IDENTIFIABLE_INFO_1' | translate }}
+        <ul>
+          <li>{{'PRIVACY_POLICY.NAME' | translate }}</li>
+          <li>{{'PRIVACY_POLICY.E_MAIL_ADDRESS' | translate }}</li>
+          <li>{{'PRIVACY_POLICY.IP_ADDRESS' | translate }}</li>
+          <li>{{'PRIVACY_POLICY.PAYMENT_INFORMATION' | translate }}</li>
+          <li>{{'PRIVACY_POLICY.SHIPPING_ADDRESS' | translate }}</li>
+          <li>{{'PRIVACY_POLICY.OTHER_INFORMATION' | translate }}</li>
+        </ul>
+        {{'PRIVACY_POLICY.PERSONALLY_IDENTIFIABLE_INFO_2' | translate }}
+        <a class="link" href="mailto:support@lootie.com" target="_top">support@lootie.com.</a> {{'PRIVACY_POLICY.PERSONALLY_IDENTIFIABLE_INFO_3' | translate }}<a class="link" href="https://www.g2a.com/privacy-policy."
+          target="_blank">https://www.g2a.com/privacy-policy.</a>
+          {{'PRIVACY_POLICY.PERSONALLY_IDENTIFIABLE_INFO_4' | translate }}
+      </div>
+    </div>
+    <div class="pp-content">
+      <div class="p-lg">
+        {{'PRIVACY_POLICY.STORAGE_AND_TRANSFER' | translate }}
+      </div>
+      <hr>
+      <div class="p-lg pp-content__text">
+        {{'PRIVACY_POLICY.STORAGE_AND_TRANSFER_INFORMATION' | translate }}
+      </div>
+    </div>
+    <div class="pp-content">
+      <div class="p-lg">
+        {{'PRIVACY_POLICY.THIRD_PARTY' | translate }}
+      </div>
+      <hr>
+      <div class="p-lg">
+        <div class="pp-content__text">
+          {{'PRIVACY_POLICY.THIRD_PARTY_INFO' | translate }}
+        </div>
+        <a class="link" href="http://optout.networkadvertising.org/#/"
+          target="_blank">http://optout.networkadvertising.org/#/.</a>
+      </div>
+    </div>
+    <div class="pp-content">
+      <div class="p-lg">
+        {{'PRIVACY_POLICY.RETENTION_PERIOD' | translate }}
+      </div>
+      <hr>
+      <div class="p-lg pp-content__text">
+        {{'PRIVACY_POLICY.RETENTION_PERIOD_INFO' | translate }}
+      </div>
+    </div>
+    <div class="pp-content">
+      <div class="p-lg">
+        {{'PRIVACY_POLICY.USER_RIGHT' | translate }}
+      </div>
+      <hr>
+      <div class="p-lg pp-content__text">
+        {{'PRIVACY_POLICY.MAY_REQUEST_TO' | translate }}
+        <ul>
+          <li>{{'PRIVACY_POLICY.REQUEST_1' | translate }}</li>
+          <li>{{'PRIVACY_POLICY.REQUEST_2' | translate }}</li>
+          <li>{{'PRIVACY_POLICY.REQUEST_3' | translate }}</li>
+          <li>{{'PRIVACY_POLICY.REQUEST_4' | translate }}</li>
+          <li>{{'PRIVACY_POLICY.REQUEST_5' | translate }}</li>
+          <li>{{'PRIVACY_POLICY.REQUEST_6' | translate }}</li>
+          <li>{{'PRIVACY_POLICY.REQUEST_7' | translate }}</li>
+        </ul>
+        {{'PRIVACY_POLICY.USER_RIGHT_HINT' | translate }}
+      </div>
+    </div>
+    <div class="pp-content">
+      <div class="p-lg">
+        {{'PRIVACY_POLICY.CHANGE_TO_PRIVACY_POLICY' | translate }}
+      </div>
+      <hr>
+      <div class="p-lg pp-content__text">
+        {{'PRIVACY_POLICY.CHANGE_TO_PRIVACY_POLICY_INFO' | translate }}
+      </div>
+    </div>
+    <div class="pp-content">
+      <div class="p-lg">
+        {{'PRIVACY_POLICY.CONTACT' | translate }}
+      </div>
+      <hr>
+      <div class="p-lg">
+        <div class="pp-content__text">
+          {{'PRIVACY_POLICY.CONTACT_INFO' | translate }}
+        </div>
+        <a class="link" href="mailto:support@lootie.com" target="_top">support@lootie.com.</a>
+      </div>
+    </div>
+  </div>
+</div>

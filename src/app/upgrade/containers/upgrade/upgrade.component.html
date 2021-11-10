@@ -1,0 +1,220 @@
+<div id="upgrade-content" class="page-container">
+  <div class="upgrade__wrapper">
+    <section class="m-b-40">
+      <div class="flex-row flex-row__btw items-content">
+        <div class="flex-col inventory-items" *ngIf="selectedInventoryItems.length; else selectItem"
+          [ngStyle]="{'color': selectedInventoryItems[0].item.color || '#8847ff'}">
+          <div class="upgrade__label">
+            <span class="upgrade__helper">{{'UPGRADE.YOUR_ITEMS' | translate }}</span> &nbsp;
+            ${{ selectedInventoryItemsTotal | number:'1.2-2' }}
+          </div>
+          <div class="flex-row flex-row__center upgrade__item" (click)="openSelectInventoryDialog()">
+            <ng-container *ngFor="let inventory of selectedInventoryItems; let i = index">
+              <ng-container *ngIf="selectedInventoryItems.length > 1">
+                  <img *ngIf="i < 9" class="upgrade__item-img" [src]="inventory.item.thumbnail"
+                        [ngClass]="{'multiple': selectedInventoryItems.length > 1}">
+              </ng-container>
+
+              <ng-container *ngIf="selectedInventoryItems.length === 1">
+                  <img *ngIf="i < 9" class="upgrade__item-img" [src]="inventory.item.image" 
+                        [ngClass]="{'multiple': selectedInventoryItems.length > 1}">
+              </ng-container>
+            </ng-container>
+            <div [@inventoryItemBorder]="{value: animations.borders,
+              params: {translate: move.lTranslate}}" (@inventoryItemBorder.done)="onAnimationDone($event)"
+              class="item-border inventory-item-border"></div>
+          </div>
+          <div *ngIf="selectedInventoryItems.length === 1; else inventoryItemsCount" class="flex-col">
+            <div class="upgrade__item-title">{{ selectedInventoryItems[0].item.name }}</div>
+            <div class="upgrade__item-type">
+              {{ selectedInventoryItems[0].item.tag || selectedInventoryItems[0].item.type }}</div>
+          </div>
+          <ng-template #inventoryItemsCount>
+            <div class="upgrade__item-title"><b>{{ selectedInventoryItems.length }}</b> {{'ITEMS' | translate }}</div>
+          </ng-template>
+        </div>
+
+        <ng-template #selectItem>
+          <div class="flex-col inventory-items">
+            <div class="upgrade__label">
+              <span class="upgrade__helper">{{'UPGRADE.YOUR_ITEMS' | translate }}</span>
+            </div>
+            <div class="flex-row flex-row__center upgrade__item" (click)="openSelectInventoryDialog()">
+              <mat-icon>add</mat-icon>
+              <div class="item-border inventory-item-border" [ngStyle]="{'opacity': '0.4'}"></div>
+            </div>
+            <div class="upgrade__helper center" [innerHTML]="'UPGRADE.SELECT_ITEMS' | translate">
+            </div>
+          </div>
+        </ng-template>
+
+        <div class="divider">
+          <hr>
+        </div>
+
+        <div class="flex-col site-items" *ngIf="selectedSiteItems.length; else upgradingItem"
+          [ngStyle]="{'color': selectedSiteItems[0].color || '#8847ff'}">
+          <div class="upgrade__label">
+            <span class="upgrade__helper">{{'UPGRADE.UPGRADE' | translate }}</span> &nbsp;
+            ${{ selectedSiteItemsTotal | number:'1.2-2' }}
+          </div>
+          <div class="flex-row flex-row__center upgrade__item" (click)="openSelectSiteItemsDialog()">
+            <ng-container *ngFor="let item of selectedSiteItems; let i = index">
+              <ng-container *ngIf="selectedSiteItems.length > 1">
+                  <img *ngIf="i < 9" class="upgrade__item-img" [src]="item.thumbnail"
+                       [ngClass]="{'multiple': selectedSiteItems.length > 1}">
+              </ng-container>
+
+              <ng-container *ngIf="selectedSiteItems.length === 1">
+                <div *ngIf="i < 9" class="upgrade__item-img" [ngStyle]="{'background-image': 'url(' + item.image + ')'}"
+                  [ngClass]="{'multiple': selectedSiteItems.length > 1}"></div>
+              </ng-container>
+            </ng-container>
+            <div [@siteItemBorder]="{value: animations.borders,
+              params: {translate: move.rTranslate}}" class="item-border site-item-border"></div>
+          </div>
+          <div *ngIf="selectedSiteItems.length === 1; else siteItemsCount" class="flex-col">
+            <div class="upgrade__item-title">{{ selectedSiteItems[0].name }}</div>
+            <div class="upgrade__item-type">{{ selectedSiteItems[0].tag }}</div>
+          </div>
+          <ng-template #siteItemsCount>
+            <div class="upgrade__item-title"><b>{{ selectedSiteItems.length }}</b>{{'ITEMS' | translate }}</div>
+          </ng-template>
+        </div>
+
+        <ng-template #upgradingItem>
+          <div class="flex-col site-items">
+            <div class="upgrade__label">
+              <span class="upgrade__helper">{{'UPGRADE.UPGRADE' | translate }}</span>
+            </div>
+            <div class="flex-row flex-row__center upgrade__item orange" (click)="openSelectSiteItemsDialog()">
+              <img class="upgrade__item-logo" src="/assets/images/icons/new-logo.png">
+              <div class="item-border site-item-border" [ngStyle]="{'border-color': '#f48836'}"></div>
+            </div>
+            <div class="upgrade__helper center" [innerHTML]="'UPGRADE.SELECT_ITEMS' | translate">
+            </div>
+          </div>
+        </ng-template>
+      </div>
+    </section>
+
+    <section class="upgrade__data">
+      <div>
+        <div class="flex-row flex-row__btw m-b-30">
+          <div *ngIf="!(isMobile$ | async); else mobileLabels" [@moveLeftLabel]="animations.labels"
+            class="flex-col upgrade__winChance">
+            <span class="upgrade__value">{{ winChance | number:'1.2-2' }}%</span>
+            <span class="upgrade__label upgrade__helper">{{'UPGRADE.WIN_CHANCE' | translate }}</span>
+          </div>
+          <ng-template #mobileLabels>
+            <div class="flex-row flex-row__btw upgrade__labels">
+              <div class="flex-col upgrade__winChance">
+                <span class="upgrade__value">{{ winChance | number:'1.2-2' }}%</span>
+                <span class="upgrade__label upgrade__helper">{{'UPGRADE.WIN_CHANCE' | translate }}</span>
+              </div>
+              <div class="flex-col upgrade__multiplier">
+                <span class="upgrade__value">{{ multiplier }}x</span>
+                <span class="upgrade__label upgrade__helper">{{'UPGRADE.MULTIPLIER' | translate }}</span>
+              </div>
+            </div>
+          </ng-template>
+          <div class="flex-col roll-status-conainer">
+            <div [@fadeOutDown]="animations.actions" class="flex-row flex-row__center m-b-20 roll-status">
+              <button mat-button class="btn-large btn-outline-gray" (click)="winChanceDirection = 'DOWN'"
+                [class.selected]="winChanceDirection === 'DOWN'">
+                <span class="roll-under">{{'UPGRADE.ROLL_UNDER' | translate }}</span> &nbsp;
+                <span>{{ winChance | number:'1.2-2' }}</span>
+              </button>
+              <button mat-button class="btn-large btn-outline-gray" (click)="winChanceDirection = 'UP'"
+                [class.selected]="winChanceDirection === 'UP'">
+                <span>{{'UPGRADE.ROLL_OVER' | translate }}</span> &nbsp;
+                <span>{{ rollOver | number:'1.2-2' }}</span>
+              </button>
+            </div>
+
+            <ng-container [ngSwitch]="animations.button">
+              <div [@roundButton]="animations.button" *ngSwitchCase="'lose'" class="flex-col upgrade__result lost">
+                <mat-icon class="m-b-10">close</mat-icon>
+                <div class="m-b-10">{{'UPGRADE.LOST' | translate }}</div>
+                <div class="result-value"><span>{{'UPGRADE.ROLL' | translate }}</span>{{ upgradingResult?.rollResult.value }}</div>
+              </div>
+
+              <div [@roundButton]="animations.button" *ngSwitchCase="'win'" class="flex-col upgrade__result won">
+                <mat-icon class="m-b-10">check</mat-icon>
+                <div class="m-b-10">{{'UPGRADE.WIN' | translate }}</div>
+                <div class="result-value"><span>{{'UPGRADE.ROLL' | translate }}</span>{{ upgradingResult?.rollResult.value }}</div>
+              </div>
+
+              <button [@roundButton]="{value: animations.button,
+                params: {size: move.roundButton}}" *ngSwitchDefault mat-button
+                class="btn-large btn-linear ld-ext-right upgrade" [class.pulsate]="animations.button === 'start'"
+                [class.running]="animations.button === 'instant'" (click)="upgradeSkin()"
+                [disabled]="!isLoggedIn || !selectedSiteItems.length || !selectedInventoryItems.length">
+                <span *ngIf="animations.button === 'stop'">{{'UPGRADE.UPGRADE_SKIN' | translate }}</span>
+                <div class="ld ld-ring ld-spin"></div>
+                <div [@buttonContent] *ngIf="animations.button === 'start'">
+                  <img src="/assets/images/icons/logo-white.png" class="loading-logo">
+                </div>
+              </button>
+            </ng-container>
+
+            <div [@fadeOutDown]="animations.actions" class="flex-row flex-row__center multiplier-row">
+              <button mat-button *ngFor="let x of multipliers" (click)="onMultiplierChange(x)"
+                class="btn-medium btn-multiplier" [class.selected]="selectedMultiplier === x">
+                {{ x }}x
+              </button>
+              <button (click)="openSelectSiteItemsDialog()" mat-button class="btn-medium btn-multiplier custom"
+                [class.selected]="!selectedMultiplier" [disabled]="!isLoggedIn">
+                {{'UPGRADE.CUSTOM' | translate }} {{ (isMobile$ | async) ? '' : 'item' }}
+              </button>
+            </div>
+          </div>
+          <div *ngIf="!(isMobile$ | async)" [@moveRightLabel]="animations.labels" class="flex-col upgrade__multiplier">
+            <span class="upgrade__value">{{ multiplier }}x</span>
+            <span class="upgrade__label upgrade__helper">{{'UPGRADE.MULTIPLIER' | translate }}</span>
+          </div>
+        </div>
+        <div [@fadeOutDown]="animations.labels" class="flex-col flex-col__center">
+          <div class="flex-row flex-row__center instant-upgrade-toggle m-b-10">
+            <span>{{'UPGRADE.INSTANT_UPGRADE' | translate }}</span>
+            <mat-slide-toggle class="skinworld-customized large" [labelPosition]="'before'" (change)="onChange($event)">
+              {{ upgradeState }}
+            </mat-slide-toggle>
+            <div class="provably-title" (click)="goToProvablyFair()" *ngIf="isLoggedIn">
+              <img class="provably-icon" src="/assets/images/icons/shield.svg">
+              <span>{{'UPGRADE.PROVABLY_FAIR' | translate }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div *ngIf="!(isMobile$ | async); else mobileFooter" class="flex-row flex-row__btw">
+        <button mat-button class="btn-large btn-outline-gray" (click)="openSelectInventoryDialog()"
+          [disabled]="!isLoggedIn || animations.button !== 'stop'">{{'UPGRADE.HOW_IT_WORKS' | translate }}</button>
+        <div class="flex-col game-rules" [routerLink]="['/how-it-works/upgrade']">
+          <span style="opacity: 0.4;">{{'UPGRADE.HOW_IT_WORKS' | translate }}</span>
+          <img class="question-icon" src="/assets/images/icons/question-icon.svg">
+        </div>
+        <button mat-button class="btn-large btn-outline-gray" (click)="openSelectSiteItemsDialog()"
+          [disabled]="!isLoggedIn || animations.button !== 'stop'">{{'UPGRADE.SITE_INVENTORY' | translate }}</button>
+      </div>
+
+      <ng-template #mobileFooter>
+        <div class="flex-col game-rules" [routerLink]="['/how-it-works/upgrade']">
+          <span style="opacity: 0.4;">{{'UPGRADE.HOW_IT_WORKS' | translate }}</span>
+          <img class="question-icon" src="/assets/images/icons/question-icon.svg">
+        </div>
+        <div class="flex-row flex-row__btw inventory-buttons">
+          <button mat-button class="btn-large btn-outline-gray" (click)="openSelectInventoryDialog()"
+            [disabled]="!isLoggedIn || animations.button !== 'stop'">{{'UPGRADE.YOUR_INVENTORY' | translate }}</button>
+          <button mat-button class="btn-large btn-outline-gray" (click)="openSelectSiteItemsDialog()"
+            [disabled]="!isLoggedIn || animations.button !== 'stop'">{{'UPGRADE.SITE_INVENTORY' | translate }}</button>
+        </div>
+      </ng-template>
+    </section>
+  </div>
+
+  <app-latest-upgrades></app-latest-upgrades>
+</div>

@@ -1,0 +1,57 @@
+<div [style.display]="state.value === 'inactive' ? 'none' : ''" class="ntfs-wrapper {{ toastPackage.toastType }}">
+  <ng-container [ngSwitch]="toastPackage.toastType">
+    <ng-container *ngSwitchCase="toastTypes.success">
+      <ng-container *ngTemplateOutlet="successMessage"></ng-container>
+    </ng-container>
+
+    <ng-container *ngSwitchCase="toastTypes.error">
+      <ng-container *ngTemplateOutlet="errorMessage"></ng-container>
+    </ng-container>
+  </ng-container>
+</div>
+
+<ng-template #errorMessage>
+  <div class="flex-row flex-row__btw w-100">
+    <div class="flex-row no-wrap mobile">
+      <div class="flex-row flex-row__center ntfs-type-icon-background">
+        <div class="ntfs-type-icon"></div>
+      </div>
+
+      <div class="flex-col flex-col__start ntfs-message-box">
+        <div class="title">Error</div>
+        <div class="ntfs-message p-lg text-primary-gray" *ngIf="message" [innerHTML]="message"></div>
+      </div>
+    </div>
+
+    <div class="ntfs-close-icon" (click)="close($event)">
+      <mat-icon>close</mat-icon>
+    </div>
+  </div>
+
+  <ng-container *ngTemplateOutlet="toastProgressBar"></ng-container>
+</ng-template>
+
+<ng-template #successMessage>
+  <div class="flex-row flex-row__btw w-100">
+    <div class="flex-row no-wrap mobile">
+      <div class="flex-row flex-row__center ntfs-type-icon-background">
+        <div class="ntfs-type-icon"></div>
+      </div>
+
+      <div class="flex-col flex-col__start ntfs-message-box">
+        <div class="title">Success</div>
+        <div class="ntfs-message p-lg text-primary-gray" *ngIf="message" [innerHTML]="message"></div>
+      </div>
+    </div>
+
+    <div class="ntfs-close-icon" (click)="close($event)">
+      <mat-icon>close</mat-icon>
+    </div>
+  </div>
+
+  <ng-container *ngTemplateOutlet="toastProgressBar"></ng-container>
+</ng-template>
+
+<ng-template #toastProgressBar>
+  <div *ngIf="options.progressBar" class="toast-progress" [style.width]="width + '%'"></div>
+</ng-template>

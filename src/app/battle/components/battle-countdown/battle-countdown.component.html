@@ -1,0 +1,27 @@
+<div *ngIf="isVisible" class="flex-col">
+  <div class="flex-col">
+    <span class="timer-title">{{'BATTLE_COUNTDOWN.COUNTDOWN_HINT_1' | translate }}:</span>
+    <span class="timer-subtitle">{{'BATTLE_COUNTDOWN.COUNTDOWN_HINT_2' | translate }}.</span>
+  </div>
+
+  <div class="flex-row flex-row__center timer-wrapper">
+    <div class="flex-col time">
+      <span>{{'BATTLE_COUNTDOWN.HOURS' | translate }}</span>
+      <div class="time__wrapper">
+        <div class="flex-row flex-row__center time__counter">{{ hour }}</div>
+      </div>
+    </div>
+    <div class="flex-col time">
+      <span>{{'BATTLE_COUNTDOWN.MINUTES' | translate }}</span>
+      <div class="time__wrapper">
+        <div class="flex-row flex-row__center time__counter">{{ minute }}</div>
+      </div>
+    </div>
+    <div class="flex-col time">
+      <span>{{'BATTLE_COUNTDOWN.SECONDS' | translate }}</span>
+      <div class="time__wrapper">
+        <div class="flex-row flex-row__center time__counter">{{ second }}</div>
+      </div>
+    </div>
+  </div>
+</div>

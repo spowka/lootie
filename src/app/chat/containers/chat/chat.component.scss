@@ -1,0 +1,355 @@
+@import '../../../../styles/concepts.scss';
+@import '../../../../styles/variables.scss';
+@import "../../../../styles/partials/index.scss";
+
+$gray5: #f4f4f4;
+$footer-height: 89px;
+
+@include register-component {
+  .chat-header {
+    background: from-theme(my-cases--mobile-case-wrapper-background);
+
+    &__close {
+      .mat-icon {
+        color: from-theme(stats-title-color);
+        opacity: 0.6;
+      }
+    }
+  }
+
+  .chat-messages {
+    background: from-theme(my-cases--mobile-case-wrapper-background);
+    color: from-theme(stats-title-color);
+
+    .cm {
+      &__user{
+        &-time {
+          color: from-theme(stats-title-color);
+        }
+      }
+    }
+  }
+
+  .chat-draft-message {
+    background: from-theme(my-cases--mobile-case-wrapper-background);
+    color: from-theme(stats-title-color);
+  }
+
+  .mobile-modal {
+    &__header {
+      background: from-theme(my-cases--mobile-case-wrapper-background)!important;
+      color: from-theme(stats-title-color);
+
+      mat-icon {
+        color: from-theme(stats-title-color);
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+.counter {
+  font-weight: 500;
+  line-height: normal;
+}
+
+.chat-wrapper {
+  width: auto;
+
+  &.opened {
+    width: 280px;
+    z-index: 998;
+  }
+}
+
+.chat-toggler__wrapper {
+  position: absolute;
+  top: 100px;
+  left: 0;
+  z-index: 997;
+  box-shadow: $shadow10;
+
+  &.mobile {
+    top: 170px;
+  }
+}
+
+.chat-wrap {
+  width: 0px;
+  overflow: hidden;
+  z-index: 1000;
+  position: fixed;
+  top: 72px;
+  bottom: 0;
+  left: -280px;
+  box-shadow: 5px 20px 40px 0 rgba($colorPrimaryBlack, 0.4);
+  transition: .1s all ease-in-out;
+  will-change: left, width;
+
+  &.opened {
+    width: 280px;
+    left: 0;
+    top: 0;
+  }
+}
+
+.chat-container {
+  height: 100%;
+  background: $colorPrimaryGray;
+}
+
+.chat-header {
+  width: 100%;
+  padding: 30px 30px 10px;
+
+  &__title {
+    position: relative;
+    top: -2px;
+  }
+
+  &__subtitle {
+    margin-left: 15px;
+    text-transform: uppercase;
+    color: hexToRGBA($colorPrimaryWhite, .4);
+  }
+
+  &__close {
+    mat-icon {
+      width: 10px;
+    }
+
+    cursor: pointer;
+    color: hexToRGBA($colorPrimaryWhite, .4);
+
+    &:hover {
+      color: hexToRGBA($colorPrimaryWhite, .4);
+    }
+  }
+}
+
+.chat-messages {
+  flex-shrink: 1;
+  flex-grow: 1;
+  padding: 10px 10px 10px 20px;
+  overflow: auto;
+  width: 100%;
+
+  .cm {
+    width: 100%;
+
+    &:not(:last-child) {
+      margin-bottom: 19px;
+    }
+
+    &__content {
+      width: calc(100% - 20px);
+    }
+
+    &__options {
+      display: none;
+      width: 20px;
+      height: 20px;
+      font-size: 20px;
+      cursor: pointer;
+    }
+
+    &:hover .cm__options {
+      display: block;
+    }
+
+    &:hover mat-icon {
+      display: inline;
+    }
+
+    &__user-avatar {
+      @extend %bg-image;
+      display: inline-block;
+      vertical-align: top;
+      width: 30px;
+      height: 30px;
+      margin: 4px 20px 0 0;
+      border-radius: 4px;
+      background-image: $colorPrimaryGradient;
+      cursor: pointer;
+    }
+
+    &__info {
+      display: inline-block;
+      max-width: calc(100% - 50px);
+    }
+
+    &__user {
+      &-name {
+        @extend .p-sm;
+        font-weight: 500;
+        color: $colorSecondaryOrange;
+        margin-right: 10px;
+      }
+
+      &-time {
+        font-size: 11px;
+      }
+      
+      mat-icon {
+        display: none;
+        cursor: pointer;
+        font-size: 10px;
+        width: 10px;
+        height: 10px;
+        margin-left: 10px;
+        color: $colorSecondaryRed;
+      }
+    }
+
+    &__message {
+      font-size: 13px;
+      line-height: normal;
+      word-break: break-word;
+
+      ::ng-deep {
+        img {
+          margin-bottom: -5px;
+        }
+      }
+    }
+  }
+}
+
+.chat-draft-message {
+  flex-shrink: 0;
+  width: 100%;
+  min-height: $footer-height; // for saving height when .chat-message has a scrollbar
+  //max-height: 150px;
+  border-top: 1px solid hexToRGBA($colorPrimaryWhite, .05);
+  padding: 21px 25px 15px;
+
+  .container {
+    width: 100%;
+    position: relative;
+  }
+
+  .placeholder {
+    position: absolute;
+    color: $colorSecondaryLightGray;
+    top: 0;
+  }
+
+  textarea {
+    display: none;
+  }
+
+  .textarea {
+    font-family: Roboto;
+    font-size: 13px;
+    font-weight: normal;
+    line-height: normal;
+    outline: 0;
+    border: 0;
+    padding-bottom: 10px;
+    max-height: 100px;
+    overflow: auto;
+    background-color: transparent;
+    width: 100%;
+    resize: none;
+    color: $colorPrimaryWhite;
+    z-index: 1;
+    position: relative;
+
+    ::ng-deep {
+      img {
+        margin-bottom: -5px;
+      }
+    }
+  }
+
+  .cdm__send {
+    @extend .p-sm;
+    width: 100%;
+    margin-top: 12px;
+
+    .send-message {
+
+      &:hover {
+        color: $colorPrimaryWhite;
+      }
+
+      &:active {
+        color: $colorSecondaryOrange;
+      }
+    }
+
+    div {
+      display: flex;
+      cursor: pointer;
+
+      &.rules {
+      }
+    }
+  }
+
+  .button-icon {
+    @extend %button-icon;
+    margin-right: 12px;
+
+    &.bookmark {
+      width: 13px;
+      height: 18px;
+      background-image: url('/assets/images/icons/bookmark.svg');
+    }
+
+    &.send {
+      width: 18px;
+      height: 18px;
+      background-image: url('/assets/images/icons/send.svg');
+    }
+  }
+}
+
+::ng-deep {
+  .mat-menu-panel.chat-options {
+    background: $colorPrimaryGray;
+
+    button.mat-menu-item {
+      height: 40px;
+      line-height: 40px;
+      color: $colorPrimaryWhite;
+      border-radius: 0;
+      margin: 0;
+
+      mat-icon {
+        color: $colorPrimaryWhite;
+      }
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  .mobile-modal {
+    &__header {
+      padding: 24px 20px;
+      text-transform: uppercase;
+    }
+  }
+
+  .chat-messages {
+    padding: 10px 20px;
+  }
+
+  .chat-draft-message {
+    min-height: $footer-height;
+    padding: 10px 20px;
+
+    .textarea {
+      max-height: 77px;
+      margin-bottom: 0;
+    }
+  }
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, .12) !important;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, .12) !important;
+}

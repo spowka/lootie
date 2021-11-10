@@ -1,0 +1,11 @@
+<div class="filter-input">
+  <span class="search-icon" *ngIf="icon === 'search'"></span>
+  <input
+    type="text"
+    [placeholder]="placeholder"
+    [ngStyle]="styles"
+    [value]="value"
+    (keyup)="inputChange($event)"
+    [disabled]="isLoading$ | async"
+  />
+</div>

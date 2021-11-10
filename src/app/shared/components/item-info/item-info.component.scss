@@ -1,0 +1,83 @@
+@import '../../../../styles/concepts.scss';
+@import '../../../../styles/variables.scss';
+
+.item-content {
+  position: relative;
+  padding: 25px 0;
+}
+
+.item-content-multiple {
+  padding: 0;
+
+  .item-info {
+    margin-right: 10px;
+    height: 88px;
+    width: 88px;
+
+    &__img {
+      margin: 0px;
+    }
+  }
+}
+
+.item-info {
+  flex-grow: 1;
+
+  &__title {
+    @extend %text-elipsis;
+    max-width: 170px;
+    letter-spacing: normal;
+  }
+
+  &__type {
+    margin-top: 5px;
+    font-size: 15px;
+    font-weight: 500;
+    color: $colorSecondaryLightPurple;
+    text-transform: uppercase;
+  }
+
+  &__price {
+    font-weight: 500;
+  }
+
+  &__img {
+    position: relative;
+    @extend %bg-image;
+    width: 100px;
+    height: 54px;
+    margin-right: 25px;
+
+    &.glow-effect {
+      &:after {
+        content: '';
+        display: block;
+        position: absolute;
+        bottom: -20px;
+        left: 0;
+        width: 100%;
+        height: 30px;
+        filter: blur(20px);
+        // background: currentColor;
+        background: $colorSecondaryLightPurple;
+        opacity: .25;
+        pointer-events: none;
+        z-index: 0;
+      }
+    }
+
+    &.multiple {
+      width: calc(100%/3);
+      height: calc(100%/3);
+    }
+  }
+
+  &__delete {
+    width: 18px;
+    height: 18px;
+    font-size: 18px;
+    margin-left: 30px;
+    cursor: pointer;
+    opacity: 0.4;
+  }
+}

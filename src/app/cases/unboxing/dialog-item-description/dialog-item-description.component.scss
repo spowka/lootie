@@ -1,0 +1,110 @@
+@import '../../../../styles/concepts.scss';
+@import '../../../../styles/variables.scss';
+
+.item-description {
+  max-width: 500px;
+  min-width: 400px;
+  min-height: 150px;
+  padding: 0 30px;
+
+  &__header {
+    text-align: center;
+    padding-bottom: 1rem;
+
+    img {
+      width: 200px;
+      height: 200px;
+      object-fit: contain;
+    }
+  }
+
+  &__name {
+    font-size: 1.2rem;
+    margin: 10px 0;
+  }
+
+  &__type {
+    font-size: 15px;
+    font-weight: 500;
+    text-transform: uppercase;
+  }
+
+  &__subheader {
+    span {
+      font-weight: 500;
+      margin-left: 10px;
+    }
+
+    mat-icon {
+      color: $colorSecondaryRed;
+    }
+  }
+
+  &__section {
+    align-items: flex-start;
+  }
+
+  &__variants-container {
+    width: 100%;
+    align-items: flex-start;
+  }
+
+  &__variants {
+    width: calc(100%/3 - 10px);
+    margin-bottom: 20px;
+
+    &-name {
+      @extend %text-elipsis;
+      margin-top: .3rem;
+      font-size: .8rem;
+      line-height: 1rem;
+    }
+
+    &-price {
+      font-weight: 600;
+    }
+
+    hr {
+      margin: 5px 0;
+    }
+
+    img {
+      max-width: 100%;
+      height: 60px;
+    }
+  }
+}
+
+:host {
+  ::ng-deep {
+    .mat-spinner.skinworld-customized {
+      width: 100px !important;
+      height: 100px !important;
+
+      svg {
+        width: 100px !important;
+        height: 100px !important;
+      }
+
+      circle {
+        stroke: $colorSecondaryOrange;
+      }
+    }
+  }
+}
+
+@media(max-width: 479px) {
+  .item-description {
+    &__variants {
+      width: calc(100%/2 - 10px);
+    }
+  }
+}
+
+@media(max-width: 767px) {
+  .item-description {
+    &__variants-container {
+      margin-bottom: 60px;
+    }
+  }
+}

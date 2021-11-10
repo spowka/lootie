@@ -1,0 +1,8 @@
+<nav class="skinworld-nav flex-row nowrap" [ngClass]="{'border-nav': border}">
+  <a class="skinworld-nav__link flex-row"
+      *ngFor="let item of nav"
+      [routerLink]="item.url"
+      [ngClass]="{'active': item.isActive, 'uppercase': uppercase, 'with-border': item.isActive && uppercase}">
+      <img *ngIf="item.icon" [src]="item.icon" alt="{{ item.title }}"> {{ item.title | translate }}
+  </a>
+</nav>

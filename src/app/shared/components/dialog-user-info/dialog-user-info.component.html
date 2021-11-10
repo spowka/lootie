@@ -1,0 +1,24 @@
+<div class="dialog-wrapper dialog-wrapper__light" #wrapper>
+  <button mat-dialog-close>
+    <mat-icon>close</mat-icon>
+  </button>
+
+  <mat-dialog-content class="user-info">
+    <div class="flex-col flex-col__btw m-b-40 user-info__wrapper">
+      <div class="user-info__avatar" [ngStyle]="{'background-image': 'url(' + userInfo.image + ')'}"></div>
+      <div class="user-info__name">{{ userInfo.name }}</div>
+      <div class="user-info__date">{{'DIALOG_USER_INFO.REGISTERED' | translate }} {{ userInfo.createdAt | date: 'd MMMM y' }}</div>
+    </div>
+
+    <div class="flex-row flex-row__btw user-info__wrapper datas">
+      <div class="flex-col flex-col__btw user-info__data">
+        <span>{{ userInfo.unboxCount }}</span>
+        <span class="user-info__data-label">{{'DIALOG_USER_INFO.TOTAL_UNBOX_VALUE' | translate }}</span>
+      </div>
+      <div class="flex-col flex-col__btw user-info__data">
+        <span>{{ userInfo.upgradeCount }}</span>
+        <span class="user-info__data-label">{{'DIALOG_USER_INFO.TOTAL_UPGRADED_VALUE' | translate }}</span>
+      </div>
+    </div>
+  </mat-dialog-content>
+</div>

@@ -1,0 +1,36 @@
+@import '../../../../styles/concepts.scss';
+@import '../../../../styles/variables.scss';
+
+.chat-toggler {
+  position: relative;
+  width: 48px;
+  height: 76px;
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+  background-image: $colorPrimaryGradient;
+  z-index: 1;
+  cursor: pointer;
+
+  .button-icon {
+    @extend %button-icon;
+    position: relative;
+    top: 8px;
+    left: 4px;
+    width: 50px;
+    height: 80px;
+
+    &.chat {
+      background-image: url('/assets/images/icons/chat.png');
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  .chat-toggler {
+    height: 66px;
+
+    .button-icon {
+      height: 70px;
+    }
+  }
+}

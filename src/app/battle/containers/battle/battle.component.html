@@ -1,0 +1,127 @@
+<div class="slider-container" [ngClass]="{ 'slider-container-mobile': (currentUrl$ | async) !== '/'}" class="slider-container" [class.opened]="(isChatOpened$ | async)">
+  <app-cases-slider></app-cases-slider>
+</div>
+
+<h1 class="page-title center m-b-30">
+  {{'BATTLE.TITLE' | translate }}:
+</h1>
+
+<div class="battle-container battle">
+  <app-battle-header [battleId]="battleId" (provablyFair)="goToProvablyFair()"></app-battle-header>
+
+  <div class="flex-row flex-row__btw battle__status">
+    <div class="case-info">
+      <div class="case-info__image" [ngStyle]="{'background-image': 'url('+ battle?.case?.image +')'}"></div>
+      <div class="flex-col flex-col__btw case-info__content">
+        <span class="battle__status-label">
+          {{'BATTLE.CASE' | translate }}
+        </span>
+        <div class="flex-row flex-row__center">
+          <span class="case-info__name">{{ battle?.case?.name }}</span>
+          <span class="case-info__price">{{ battle?.case?.price | number:'1.2-2' }}</span>
+        </div>
+      </div>
+    </div>
+    <div #indicator class="round-info" [ngStyle]="{'overflow-y': platform !== 'safari' && (isMobile$ | async) ? 'hidden' : 'unset'}">
+      <div class="flex-col flex-col__btw wrapper">
+        <span class="battle__status-label">
+          {{'BATTLE.ROUNDS' | translate }}
+        </span>
+        <div class="flex-col round-info__content">
+          <ng-container *ngTemplateOutlet="roundIcon"></ng-container>
+          <div class="round-info__numbers" 
+          [ngStyle]="{'left': (indicatorPosition | async) + 'px'}">
+            <span class="round-info__number" *ngFor="let _round of totalRounds; let i = index" 
+              [class.highlight]="fleshIndex === i" [class.current]="battle?.currentRound === i"
+              [ngStyle]="{'opacity': i === (battle?.currentRound - 1) || (i === battle?.currentRound + 1) ? '.5' : '.3'}">
+              {{ i + 1 }}
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <ng-container *ngIf="!(isMobile$ | async); else mobileAction">
+      <div class="action-info flex-col flex-col__end">
+        <span class="battle__status-label">
+          {{'BATTLE.ACTION' | translate }}
+        </span>
+        <div class="action-info__content">
+          <span *ngIf="!showResult && battle" [@delayFadeInOut]="battle.currentRound">
+            {{'BATTLE.PREPARING_NEXT_ROUND' | translate }}</span>
+          <span *ngIf="showResult" @fadeInOut>{{'BATTLE.CALCULATING_COST' | translate }}</span>
+        </div>
+      </div>
+    </ng-container>
+
+    <ng-template #mobileAction>
+      <div class="action-info flex-col flex-col__end">
+        <span class="battle__status-label">
+          {{'BATTLE.PRICE' | translate }}
+        </span>
+        <div class="action-info__content">
+          <span class="price">${{ battle?.case?.price | number:'1.2-2' }}</span>
+        </div>
+      </div>
+    </ng-template>
+  </div>
+
+  <div *ngIf="battle" class="flex-row flex-row__center b-screen players-{{ battle.sessions.length }}">
+    <div class="flex-col b-screen__wrapper" *ngFor="let session of battle.sessions; let i = index">
+      <div class="flex-row flex-row__center b-screen__value">
+        <span class="b-screen__title">{{'BATTLE.VALUE_RECIVED' | translate }}:</span>
+        <span *ngIf="battle.status === 'RUNNING'" @delayFadeIn
+          class="b-screen__price">{{ session.rounds[battle.currentRound]?.item.value | number:'1.2-2' }}</span>
+      </div>
+      <div class="flex-row flex-row__center battle-wrapper">
+        <div class="border-wrapper border-wrapper-left">
+          <div class="round-border round-border-left"></div>
+        </div>
+       
+        <app-battle-result *ngIf="showResult; else battleSpinner" [totalWinning]="battle.totalWinning"
+          [result]="resultData[i]" (countStep)="onResultCountStep($event)" (countDone)="onResultCountDone()">
+        </app-battle-result>
+        <ng-template #battleSpinner>
+          <app-battle-spinner *ngIf="battle.case.items?.length && session.rounds[battle.currentRound]"
+            [items]="battle.case.items" [winItem]="session.rounds[battle.currentRound].item">
+          </app-battle-spinner>
+        </ng-template>
+        <div class="border-wrapper border-wrapper-right">
+          <div class="round-border round-border-right"></div>
+        </div>
+      </div>
+      <div class="mobile-arrow-left"></div>
+      <div class="mobile-arrow-right"></div>
+    </div>
+  </div>
+
+  <div *ngIf="battle" class="b-details players-{{ sessions.length }}">
+    <div class="flex-col battle-wrapper" *ngFor="let session of sessions; let i = index">
+      <div class="flex-row flex-row__center b-details__player" [class.counting]="showResult"
+        [class.win]="showResult && resultData[i].rounds[fleshIndex !== undefined ? fleshIndex : resultData[i].rounds.length - 1].isWin"
+        [class.medal]="showResult && fleshIndex === undefined && resultData[i].rounds[resultData[i].rounds.length - 1].isWin">
+        <img [src]="session.user.profileImageUrl" alt="">
+        <span>{{ session.user.username }}</span>
+        <div class="value-mobile">
+          <span *ngIf="battle.status === 'RUNNING'" @delayFadeIn
+          class="b-screen__price">{{ session.rounds[battle.currentRound]?.item.value | number:'1.2-2' }}</span>
+        </div>
+      </div>
+
+      <div class="b-details__items flex-row flex-row__start">
+        <div class="flex-row flex-row__center w-100">
+          <app-battle-box-item *ngFor="let round of session.rounds; let i = index" @fadeInOut
+            [animate]="fleshIndex === i" [item]="round.item">
+          </app-battle-box-item>
+          <div class="empty-box" *ngFor="let i of [].constructor(4)"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<ng-template #roundIcon>
+  <ng-container>
+    <div class="indicator-lines"></div>
+  </ng-container>
+</ng-template>

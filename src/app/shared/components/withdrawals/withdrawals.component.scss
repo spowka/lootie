@@ -1,0 +1,29 @@
+@import '../../../../styles/concepts.scss';
+@import '../../../../styles/register.scss';
+
+#withdrawals {
+  overflow: auto;
+  display: block;
+  max-height: 516px;
+}
+
+.empty-data {
+  text-align: center;
+  opacity: .4;
+}
+
+@media (min-width: 813px) {
+  #withdrawals {
+    .mat-spinner {
+      width: 25px !important;
+      height: 25px !important;
+    }
+
+    mat-spinner.skinworld-customized ::ng-deep {
+      svg {
+        width: 25px !important;
+        height: 25px !important;
+      }
+    }
+  }
+}

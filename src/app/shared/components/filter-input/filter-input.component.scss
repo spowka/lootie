@@ -1,0 +1,29 @@
+@import '../../../../styles/partials/index.scss';
+
+.filter-input {
+  padding: 10px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+
+  input {
+    background: transparent;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    letter-spacing: 0.19px;
+    color: #8399ab;
+
+    &::placeholder {
+      color: #8399ab;
+    }
+  }
+}
+
+.search-icon {
+  background-image: url(/assets/images/icons/serach-icon.svg);
+  background-repeat: no-repeat;
+  width: 18px;
+  height: 18px;
+  margin-right: 6px;
+}
